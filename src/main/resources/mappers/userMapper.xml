@@ -3,10 +3,13 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.exfinder.dao.UserDao">
+
 <select id="getUserList" resultType="userDto">
 select * from users where u_del = 'N'
 </select>
 
-
+<select id="getUser" resultType="userDto">
+	select * from users where u_id= #{u_id}
+</select>
 
 </mapper>
