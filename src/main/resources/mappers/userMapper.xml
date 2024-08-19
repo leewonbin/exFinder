@@ -12,4 +12,8 @@ select * from users where u_del = 'N'
 	select * from users where u_id= #{u_id}
 </select>
 
+<update id="updateUser">
+	update users set u_pw=#{u_pw},u_nickname=#{u_nickname},u_name=#{u_name},u_gender=#{u_gender},u_birthday=#{u_birthday},u_email=#{u_email},u_phonenumber=#{u_phonenumber},u_address=#{u_address} where u_id=#{u_id}
+</update>
+
 </mapper>
