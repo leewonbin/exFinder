@@ -1,13 +1,26 @@
 package com.exfinder.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.exfinder.dto.UserDto;
 
 public interface UserService {
-	public ArrayList<UserDto> getUserList();
-	public UserDto getUser(String u_id);
-	public int insertUser(UserDto dto);
-	public int updateUser(UserDto dto);
-	public int deleteUser(String u_id);
+public void insert(UserDto dto) throws Exception;
+	
+	public UserDto selectUser(String u_id) throws Exception;
+	
+	public List<UserDto> selectAll() throws Exception;
+	public void delete(String u_id) throws Exception;
+	public void update(UserDto dto) throws Exception;	
+	
+	public List<UserDto> select_idInquiry_email(String u_name, String u_email);
+	public List<UserDto> select_idInquiry_phone( String u_name, String u_phoneNumber);
+	
+	public boolean phoneNumber_compare(String u_id, String u_phoneNumber);
+	public boolean email_compare(String u_id, String u_email);
+	
+	public void pw_update(String u_id, String encPassword) throws Exception;
+
+	public String getU_pwByU_id(String userId);
 }
