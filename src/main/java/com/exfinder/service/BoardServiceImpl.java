@@ -60,6 +60,12 @@ public class BoardServiceImpl implements BoardService {
 		BoardDao dao=sqlSession.getMapper(BoardDao.class);
 		return dao.listSearch(vo);
 	}
+
+	@Override
+	public int categoryCnt(BoardVo vo) throws Exception {
+		BoardDao dao=sqlSession.getMapper(BoardDao.class);
+		return dao.categoryCnt(vo);
+	}
 	
 
 }

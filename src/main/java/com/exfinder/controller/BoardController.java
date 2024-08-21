@@ -71,7 +71,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
-	public void listAll(@RequestParam(value = "b_category", required = false) String b_category,
+	public void listAll(@RequestParam(value = "bCategory", required = false) String b_category,
 	                    @RequestParam(value = "searchType", required = false) String searchType,
 	                    @RequestParam(value = "keyword", required = false) String keyword,
 	                    @ModelAttribute("boardVo") BoardVo vo, Model model) throws Exception {
@@ -94,8 +94,9 @@ public class BoardController {
 		}else {
 			vo.setKeyword(null);		//검색창 비어있을 때 관련 카테고리 전부 나오게
 		}
-		
-		int totalCnt = service.listAll().size();
+		System.out.println(b_category);
+		int totalCnt = service.categoryCnt(vo);
+		System.out.println(totalCnt);
 	    List<BoardDto> boardList = service.listSearch(vo); 
 	    vo.setTotalCount(totalCnt);
 	    model.addAttribute("list", boardList);

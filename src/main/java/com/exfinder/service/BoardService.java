@@ -15,5 +15,5 @@ public interface BoardService {
 	
 	public void b_viewUpdate(int b_id) throws Exception;				//조회수 업데이트
 	public List<BoardDto> listSearch(BoardVo vo) throws Exception;		//검색 조건에 맞는 게시판 항목 조회
-	
+	public int categoryCnt(BoardVo vo) throws Exception;
 }

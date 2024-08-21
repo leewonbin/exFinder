@@ -8,8 +8,9 @@ $(document).ready(
 
 			// 카테고리별 조회? 버튼
 			$('.cButton').on("click", function() {
-				var category = $(this).data('category');
-				var url = "listAll?bCategory=" + encodeURIComponent(category);
+				var category = $(this).data('value');
+				var url = "listAll?bCategory=" + category;
+				console.log(url)
 				window.location.href = url;
 			});
 
