@@ -38,7 +38,7 @@ public class BoardController {
 		
 		System.out.println(board);
 		service.create(board);
-		rttr.addFlashAttribute("msg", "success");
+		rttr.addFlashAttribute("msg", "생성 완료 되었습니다.");
 		return "redirect:/board/listAll";
 	}
 	
@@ -59,14 +59,14 @@ public class BoardController {
 	public String updatePOST(BoardDto board, RedirectAttributes rttr) throws Exception {
 		logger.info("mod post..........");
 		service.update(board);
-		rttr.addFlashAttribute("msg", "success");
+		rttr.addFlashAttribute("msg", "수정 완료 되었습니다.");
 		return "redirect:/board/listAll";
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(@RequestParam("b_id") int b_id, RedirectAttributes rttr) throws Exception {
 		service.delete(b_id);
-		rttr.addFlashAttribute("msg", "success");
+		rttr.addFlashAttribute("msg", "삭제 완료 되었습니다.");
 		return "redirect:/board/listAll";
 	}
 	
