@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+html, body {
+	height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+#header {
+    height: 50px;
+    background: #87CEEB;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#header-a {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    padding-left: 15px;
+    text-decoration: none;
+}
+
+
+#main {
+	height: calc(100% - 50px);
+    padding-left: 15px;
+}
+
+.button {
+    margin: 10px 5px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    max-width: 200px; /* 최대 너비 설정 */
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.table {
+    margin: 20px 0px;
+    border: 2px solid #037499;
+    background-color: #21c6fc;
+    width: 75%;
+}
+
+.table th, .table td {
+    border: 1px solid #037499;
+    background-color: white;
+}
+
+.input {
+    padding: 6px; /* 내부 여백 설정 */
+    border: 1px solid #ccc; /* 테두리 선 설정 */
+    border-radius: 4px; /* 모서리를 둥글게 설정 */
+    box-sizing: border-box; /* padding을 포함하여 width 계산 */
+    max-width: 200px; /* 최대 너비 설정 */
+    font-size: 14px; /* 글자 크기 설정 */
+    margin-bottom: 10px; /* 아래 여백 설정 */
+}
+
+/* 호버 시 테두리 색상 변경 */
+.input:hover {
+    border-color: #007bff; /* 마우스 호버 시 테두리 색상 변경 */
+}
+
+/* 포커스 시 테두리 색상 변경 및 그림자 효과 추가 */
+.input:focus {
+    outline: none; /* 포커스 시 기본 아웃라인 제거 */
+    border-color: #007bff; /* 포커스 시 테두리 색상 변경 */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 포커스 시 그림자 효과 추가 */
+}
+
+#left_main {
+	height: 100%;
+	width: 10% - 1px;
+	border-right: 1px solid black;
+	float:left;
+	
+}
+#right_main {
+	height: 100%;
+	width: 90%;
+	float: left;
+	padding-left: 10px;
+}
