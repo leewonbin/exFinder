@@ -35,9 +35,7 @@
 	</script>
 </head>
 <body>
-	<div id="header">
-		<a id="header-a" href="/ex/">Home</a>
-	</div>
+	<%@include file="/WEB-INF/views/header/exFinder_Login_header.jsp"%>
 	<div id="main">
 		<h1>회원가입</h1><br>
 		<form action="/ex/user/joinDB" method="post">
