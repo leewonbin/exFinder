@@ -22,7 +22,6 @@ import com.exfinder.service.AuthoritiesService;
 import com.exfinder.service.UserService;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
@@ -65,7 +64,9 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/user/id_duplicate_check", method = RequestMethod.POST)
 	public String id_duplicate_check(@RequestParam("u_id") String u_id) throws Exception {
-	    boolean isDuplicate = userService.selectUser(u_id) == null;
+		System.out.println("u_id" + u_id);
+	    boolean isDuplicate = userService.selectUser(u_id) != null;
+	    System.out.println(isDuplicate);
 	    // boolean 값을 "true" 또는 "false" 문자열로 반환
 	    return Boolean.toString(isDuplicate);
 	}
@@ -104,6 +105,7 @@ public class UserController {
 		
 		AuthoritiesDto authDto = new AuthoritiesDto();
 		String join_id = dto.getU_id();
+		authDto.setU_id(join_id);
 		
 		// *
 		if (join_id.equals("admin")) {

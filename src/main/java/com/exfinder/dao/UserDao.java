@@ -26,5 +26,4 @@ public interface UserDao {
 	public void pw_update(@Param("u_id")String u_id, @Param("encPassword")String encPassword) throws Exception;
 	
 	public String getU_pwByU_id(String userId);
-	public boolean id_duplicate_check(String u_id);
 }

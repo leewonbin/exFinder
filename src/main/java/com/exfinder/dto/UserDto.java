@@ -19,12 +19,12 @@ public class UserDto {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate u_joinDate;
-	private int enabled;
+	private int enabled = 1;
 
 	public UserDto() {}
 	
 	public UserDto(String u_id, String u_pw, String u_nickname, String u_name, String u_gender, LocalDate u_birthday,
-			String u_email, String u_phoneNumber, String u_address, LocalDate u_joinDate, int enabled) {
+			String u_email, String u_phoneNumber, String u_address) {
 		super();
 		this.u_id = u_id;
 		this.u_pw = u_pw;
@@ -35,8 +35,6 @@ public class UserDto {
 		this.u_email = u_email;
 		this.u_phoneNumber = u_phoneNumber;
 		this.u_address = u_address;
-		this.u_joinDate = u_joinDate;
-		this.enabled = enabled;
 	}
 
 	public String getU_id() {
