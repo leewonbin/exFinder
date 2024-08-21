@@ -5,6 +5,7 @@
 	<title>Home</title>
 </head>
 <body>
+	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 <h1>
 	Hello world!  
 </h1>
