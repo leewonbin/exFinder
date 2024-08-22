@@ -67,7 +67,7 @@
 			<li><a href="/ex/">Home</a></li>
 			<li><a href="/ex/user/login">로그인</a></li>
 			<li><a href="/ex/user/join">회원가입</a></li>
-			<li><a href="">정보찾기</a></li>
+			<li><a href="/ex/find/inquiry">정보찾기</a></li>
 		</ul>
 	</div>
 </body>

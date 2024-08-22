@@ -7,7 +7,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>비밀번호 찾기</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 	
 	<script type="text/javascript">
         function validateForm() {
@@ -25,9 +24,7 @@
     
 </head>
 <body>
-	<div id="header">
-		<a id="header-a" href="/ex/">Home</a>
-	</div>
+	<%@include file="/WEB-INF/views/header/exFinder_Login_header.jsp"%>
 	<div id="main">
 		<h2>비밀번호를 변경해주세요.</h2>
 		

@@ -15,7 +15,7 @@
     	width: 100%; /* 필요에 따라 조정 가능 */
     	text-align: center; /* 텍스트 중앙 정렬 */
     	padding: 20px;
-    	margin-top: 100px; /* 높이만큼 여백 추가 */
+    	margin-top: 80px; /* 높이만큼 여백 추가 */
 	}
 	#main h1 {
 		height: 40px;
@@ -103,11 +103,11 @@
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token }" />
 			<div class="input-container">
-				<label for="u_id">아이디</label> 
+				<label>아이디</label> 
 				<input type="text" class="input" name="u_id" value="${ids}" />
 			</div>
 			<div class="input-container">
-				<label for="u_pw">비밀번호</label> 
+				<label>비밀번호</label> 
 				<input type="password" class="input" name="u_pw" value="${pws}" />
 			</div>
 			<button type="submit" class="button">로그인</button><br>
@@ -123,14 +123,6 @@
 			    </div>
 			</div>
 		</form>
-		<br>
-		<br>
-		<br>
-		<button type="button" onclick="location.href='/ex/find/idInquiry'">아이디 찾기</button>
-		<button type="button" onclick="location.href='/ex/find/pwInquiry'">비밀번호 찾기</button>
-		<br>
-
-
 
 	</div>
 </body>

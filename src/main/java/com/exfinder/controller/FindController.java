@@ -34,6 +34,13 @@ public class FindController {
 	@Autowired
 	PasswordEncoder bcryptPasswordEncoder;
 
+	// 아이디 / 비밀번호 찾기 페이지로 이동
+	@RequestMapping(value = "/find/inquiry", method = RequestMethod.GET)
+	public String Inquiry() throws Exception {
+		return "/user/find/inquiry";
+			
+	}
+		
 	// 아이디 찾기 이동
 	@RequestMapping(value = "/find/idInquiry", method = RequestMethod.GET)
 	public String idInquiry() throws Exception {

@@ -8,14 +8,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>비밀번호 찾기</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-	 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	 <script src="${pageContext.request.contextPath}/resources/js/findPwJs.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/findPwJs.js"></script>
 </head>
 <body>
-	<div id="header">
-		<a id="header-a" href="/ex/">Home</a>
-	</div>
+	<%@include file="/WEB-INF/views/header/exFinder_Login_header.jsp"%>
 	<div id="main">
 		<h2>본인확인을 해주세요.</h2>
 		
