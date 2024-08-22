@@ -12,7 +12,7 @@
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_Login_header.jsp"%>
 	<div id="main">
-		<h2>아이디 조회 결과</h2>
+		<h1>아이디 조회 결과</h1>
 		<c:forEach var="UserDto_list" items="${UserDto_list}">
 			아이디 : ${UserDto_list.u_id}<br>
 			이름 : ${UserDto_list.u_name}<br>

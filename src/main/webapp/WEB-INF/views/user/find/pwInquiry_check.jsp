@@ -10,11 +10,141 @@
 	<title>비밀번호 찾기</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/findPwJs.js"></script>
+	<style>
+/* #main 요소의 크기와 정렬 설정 */
+#main {
+	width: 100%; /* 필요에 따라 조정 가능 */
+	text-align: center; /* 텍스트 중앙 정렬 */
+	padding: 20px;
+	margin-top: 80px; /* 높이만큼 여백 추가 */
+}
+
+#main h1 {
+	height: 40px;
+	font-size: 30px; /* 글자 크기 설정 */
+	font-weight: bold; /* 글자 굵기 설정 */
+}
+
+/* 버튼 스타일 */
+.button {
+	width: 400px;
+	height: 70px;
+	background-color: #4158D0; /* 버튼 배경색을 설정합니다. */
+	color: white; /* 버튼 텍스트 색상을 흰색으로 설정합니다. */
+	padding: 10px 20px; /* 버튼의 내부 여백을 상하 10px, 좌우 20px로 설정합니다. */
+	margin: 10px 0; /* 버튼의 상하 여백을 10px로 설정합니다. */
+	border: none; /* 버튼의 테두리를 없앱니다. */
+	cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능함을 나타냅니다. */
+	font-size: 16px; /* 버튼 텍스트의 크기를 16px로 설정합니다. */
+}
+
+/* 버튼 hover 효과 */
+.button:hover {
+	background-color: #2f46a2; /* 버튼 위에 마우스를 올렸을 때 배경색을 어두운 파란색으로 변경합니다. */
+}
+
+.box {
+	width: 190px; /* 박스의 너비 설정 */
+	padding: 20px; /* 내부 여백 */
+	border: none; /* 버튼의 테두리를 없앱니다. */
+	border-radius: 8px; /* 모서리를 둥글게 */
+	text-align: center; /* 텍스트 및 이미지 중앙 정렬 */
+	background-color: #4158D0; /* 배경색 설정 */
+	margin-right: 10px; /* 박스 사이의 간격 */
+}
+
+.box-container {
+	display: flex; /* 박스를 가로로 나란히 배치 */
+	justify-content: center; /* 박스를 중앙에 배치 */
+	margin: 0 auto; /* 박스 컨테이너를 가로 중앙에 배치 */
+}
+
+.box img {
+	display: block; /* 이미지를 블록으로 설정하여 중앙 정렬 */
+	margin: 0 auto 10px auto; /* 이미지를 중앙에 위치시키고 아래쪽 여백 추가 */
+}
+
+.box a {
+	text-decoration: none; /* 링크의 기본 밑줄 제거 */
+	color: white; /* 링크 텍스트 색상 */
+	font-size: 16px; /* 텍스트 크기 설정 */
+}
+
+/* 선택된 박스에 적용될 클래스 */
+.selected {
+	background-color: #2f46a2; /* 선택된 상태에서의 배경색 */
+}
+
+/* 입력 필드 컨테이너 스타일 */
+.input-container {
+	width: 400px; /* 전체 너비 설정 */
+	margin: 20px auto; /* 상하 여백 설정, 좌우 중앙 정렬 */
+	display: flex; /* 플렉스 박스 레이아웃 사용 */
+	align-items: center; /* 수직 중앙 정렬 */
+	border: 1px solid #ccc; /* 테두리 색상 설정 */
+	padding: 5px; /* 내부 여백 설정 */
+	box-sizing: border-box; /* 패딩과 테두리를 포함하여 전체 너비 계산 */
+}
+
+/* 입력 필드 컨테이너 hover 효과 */
+.input-container:hover {
+	border-color: #2f46a2; /* 마우스를 올렸을 때 테두리 색상 설정 */
+}
+
+/* 레이블 스타일 */
+.input-container label {
+	flex-shrink: 0; /* 레이블이 축소되지 않도록 설정 */
+	width: 80px; /* 레이블 너비 설정 */
+	margin-right: 10px; /* 레이블과 입력 필드 사이의 간격 설정 */
+	font-weight: bold; /* 레이블 텍스트를 굵게 설정 */
+	text-align: right; /* 레이블 텍스트 오른쪽 정렬 */
+	white-space: nowrap; /* 레이블 텍스트가 줄바꿈되지 않도록 설정 */
+}
+
+/* 이메일 입력 필드 스타일 */
+.input {
+	flex: 1; /* 남은 공간을 채우도록 설정 */
+	min-width: 0; /* 최소 너비를 0으로 설정 */
+	height: 40px; /* 입력 필드의 높이 설정 */
+	padding: 0 10px; /* 좌우 내부 여백 설정 */
+	border: none;
+	box-sizing: border-box; /* 패딩을 포함하여 전체 너비 계산 */
+	font-size: 16px; /* 텍스트 크기 설정 */
+	background-color: #f9f9f9; /* 배경색 설정 (옵션) */
+	margin-right: 10px; /* 선택 박스와의 간격 설정 */
+}
+
+/* 선택 박스 스타일 */
+.select {
+	flex-shrink: 0; /* 선택 박스는 축소되지 않도록 설정 */
+	height: 40px; /* 선택 박스의 높이 설정 */
+	border: none;
+	padding: 0 10px; /* 좌우 내부 여백 설정 */
+	font-size: 16px; /* 텍스트 크기 설정 */
+	background-color: #f9f9f9; /* 배경색 설정 (옵션) */
+	box-sizing: border-box; /* 패딩을 포함하여 전체 너비 계산 */
+}
+</style>
+<script>
+
+	function reg_type_select(type) {
+		// 모든 섹션을 숨기기
+		document.querySelector('.type_email').style.display = 'none';
+		document.querySelector('.type_pcs').style.display = 'none';
+
+		// 선택된 타입에 따라 해당 섹션을 표시
+		if (type === 'email') {
+			document.querySelector('.type_email').style.display = 'block';
+		} else if (type === 'pcs') {
+			document.querySelector('.type_pcs').style.display = 'block';
+		}
+	}
+</script>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_Login_header.jsp"%>
 	<div id="main">
-		<h2>본인확인을 해주세요.</h2>
+		<h1 style="margin-bottom: 20px;">본인확인을 해주세요.</h1>
 		
 		<p style="display: inline;">01. 아이디 입력 </p> 
 		-> <p style="display: inline; color: blue;">02. 본인 확인 </p> 
@@ -22,42 +152,65 @@
 		
 		<br>
 		<br>
-			<p class="check_info"style="font-weight: bold;"></p>
+		<p class="check_info" style="font-weight: bold;"></p>
 		<div id="contents"> 
 		
-			<a href="#" onclick="reg_type_select('email'); return false;">이메일 인증</a>
-			<a href="#" onclick="reg_type_select('pcs'); return false;">휴대폰 인증</a>	
+				<div class="box-container">
+				<div class="box" onclick="selectBox(this)">
+					<a href="#" onclick="reg_type_select('email'); return false;"> 
+						<img src="${pageContext.request.contextPath}/resources/img/free-icon-email.png"
+						alt="" style="width: 40px; height: auto;"> 이메일 확인
+					</a>
+				</div>
+				<div class="box" onclick="selectBox(this)">
+					<a href="#" onclick="reg_type_select('pcs'); return false;"> 
+						<img src="${pageContext.request.contextPath}/resources/img/free-icon-phone.png"
+						alt="" style="width: 40px; height: auto;"> 휴대폰 확인
+					</a>
+				</div>
+			</div>
 		
 			
 			<div class="type_email" style="display: none;">
-				<h2>이메일 인증</h2>
-				<p>이메일 인증을 선택하셨습니다. 등록하신 이름과 이메일주소를 입력 후 인증번호 전송버튼을 눌러주세요.</p>
+				<h1 style="margin-top: 30px;">이메일 인증</h1>
+				<p>이메일 인증을 선택하셨습니다.</p> 
+				<p>등록하신 이메일주소를 입력 후 인증번호 전송버튼을 눌러주세요.</p>
 				
-					이메일 인증 <input type="text" class="email1" name="email">
-	       			<label for="select"> @ </label>
-					<select class="email2" name="select" >
-	    	    		<option value="naver.com">naver.com</option>
-		        		<option value="gmail.com">gmail.com</option>
-		        		<option value="daum.net">daum.net</option>
+				<div class="input-container">
+					<label>이메일</label> 
+					<input type="text" class="input" name="email" style="text-align: right;">
+					<label style="width: 10px;">@</label> 
+					<select class="input" name="select">
+						<option value="naver.com">naver.com</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="daum.net">daum.net</option>
 					</select>
-					<input class="email_btn" type="button" value="인증번호 전송">
-				
+				</div>
+				<input class="email_btn" type="button" value="인증번호 전송">
+			<form action="/ex/find/pwInquiry_check_complete" method="post">
+				인증번호 : <input class="check_number" type="text">   <!-- 인증번호 입력창 -->
+				<input type="button" class="check_btn" value="인증번호 확인" placeholder="인증번호 6자리를 입력해주세요." maxlength="6">  <!-- 인증번호와 내가 입력창에 입력한 인증번호 비교하는 창 -->
+			</form>		
 			</div>
 			
 			<div class="type_pcs" style="display:none;">
-				<h2>휴대폰 인증</h2>
-				<p>휴대폰 인증을 선택하셨습니다. 등록하신 이름과 휴대폰번호를 입력 후 인증번호 전송버튼을 눌러주세요.</p>
+				<h1 style="margin-top: 30px;">휴대폰 인증</h1>
+				<p>휴대폰 인증을 선택하셨습니다.</p>
+				<p>등록하신 휴대폰번호를 입력 후 인증번호 전송버튼을 눌러주세요.</p>
 			
-					휴대폰 인증 <input type="text" class="phoneNum1">
-					 - <input type="text" class="phoneNum2" >
-					 - <input  type="text" class="phoneNum3">  <!-- 인증번호 받을사람 휴대폰 번호 -->
+				<div class="input-container">
+					<label>휴대폰 번호</label>
+					<input type="text" class="input" name="phoneNum1" style="text-align: right;"> - 
+					<input type="text" class="input" name="phoneNum2" style="text-align: center;"> - 
+					<input type="text" class="input" name="phoneNum3">
+				</div>  <!-- 인증번호 받을사람 휴대폰 번호 -->
 					<input class="phone_btn"type="button" value="인증번호 전송">
-			</div>
 			
 			<form action="/ex/find/pwInquiry_check_complete" method="post">
 				인증번호 : <input class="check_number" type="text">   <!-- 인증번호 입력창 -->
 				<input type="button" class="check_btn" value="인증번호 확인" placeholder="인증번호 6자리를 입력해주세요." maxlength="6">  <!-- 인증번호와 내가 입력창에 입력한 인증번호 비교하는 창 -->
 			</form>		
+			</div>
     	</div>
 	</div>
 </body>
