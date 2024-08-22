@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>비밀번호 찾기</title>
+<meta charset="UTF-8">
+<title>아이디 / 비밀번호 찾기</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
 	/* #main 요소의 크기와 정렬 설정 */
 	#main {
     	width: 100%; /* 필요에 따라 조정 가능 */
     	text-align: center; /* 텍스트 중앙 정렬 */
     	padding: 20px;
-    	margin-top: 100px; /* 높이만큼 여백 추가 */
+    	margin-top: 80px; /* 높이만큼 여백 추가 */
 	}
 	#main h1 {
 		height: 40px;
@@ -44,24 +45,14 @@
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_Login_header.jsp"%>
 	<div id="main">
-		<h2>비밀번호를 찾고자하는 아이디를 입력해주세요.</h2>
-		
-		<p style="display: inline; color: blue;">01. 아이디 입력 </p> 
-		-> <p style="display: inline;">02. 본인 확인 </p> 
-		-> <p style="display: inline;">03. 비밀번호 재설정 </p> <br>
-		
-		<br>
-		<c:if test="${not empty errorMessage}">
-			<p style="color: red; font-weight: bold;">${errorMessage}</p>
-		</c:if>
-		<br>
-		
-		<form action="/ex/find/pwInquiryDB" method="post">
-			아이디 <input type="text" class="input" name="u_id" value="${u_id_result}" /><br>
-				<input type="submit" class="button" value="확인">
-		</form>
-	</div>
-	
 
+		<h1>나의 정보 찾기</h1>
+		<p>인증을 통해 회원님의 정보를 찾으세요.</p>
+		<br>
+		
+		<button type="button" class="button" onclick="location.href='/ex/find/idInquiry'">아이디 찾기</button>
+		<button type="button" class="button" onclick="location.href='/ex/find/pwInquiry'">비밀번호 찾기</button>
+
+	</div>
 </body>
 </html>
