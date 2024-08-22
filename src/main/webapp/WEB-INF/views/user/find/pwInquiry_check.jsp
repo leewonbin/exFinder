@@ -124,6 +124,24 @@
 	background-color: #f9f9f9; /* 배경색 설정 (옵션) */
 	box-sizing: border-box; /* 패딩을 포함하여 전체 너비 계산 */
 }
+
+/* 버튼 스타일 */
+.button2 {
+	width: 100px;
+	height: 40px;
+	background-color: #4158D0; /* 버튼 배경색을 설정합니다. */
+	color: white; /* 버튼 텍스트 색상을 흰색으로 설정합니다. */
+	padding: 10px 20px; /* 버튼의 내부 여백을 상하 10px, 좌우 20px로 설정합니다. */
+	margin: 10px 0; /* 버튼의 상하 여백을 10px로 설정합니다. */
+	border: none; /* 버튼의 테두리를 없앱니다. */
+	cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능함을 나타냅니다. */
+	font-size: 16px; /* 버튼 텍스트의 크기를 16px로 설정합니다. */
+}
+
+/* 버튼 hover 효과 */
+.button2:hover {
+	background-color: #2f46a2; /* 버튼 위에 마우스를 올렸을 때 배경색을 어두운 파란색으로 변경합니다. */
+}
 </style>
 <script>
 
@@ -155,7 +173,7 @@
 		<p class="check_info" style="font-weight: bold;"></p>
 		<div id="contents"> 
 		
-				<div class="box-container">
+			<div class="box-container">
 				<div class="box" onclick="selectBox(this)">
 					<a href="#" onclick="reg_type_select('email'); return false;"> 
 						<img src="${pageContext.request.contextPath}/resources/img/free-icon-email.png"
@@ -176,11 +194,11 @@
 				<p>이메일 인증을 선택하셨습니다.</p> 
 				<p>등록하신 이메일주소를 입력 후 인증번호 전송버튼을 눌러주세요.</p>
 				
-				<div class="input-container">
+				<div class="input-container"  style="display: flex;">
 					<label>이메일</label> 
-					<input type="text" class="input" name="email" style="text-align: right;">
+					<input type="text" class="email1 input" name="email" style="text-align: right;">
 					<label style="width: 10px;">@</label> 
-					<select class="input" name="select">
+					<select class="email2 input" name="select">
 						<option value="naver.com">naver.com</option>
 						<option value="gmail.com">gmail.com</option>
 						<option value="daum.net">daum.net</option>
@@ -188,8 +206,11 @@
 				</div>
 				<input class="email_btn" type="button" value="인증번호 전송">
 			<form action="/ex/find/pwInquiry_check_complete" method="post">
-				인증번호 : <input class="check_number" type="text">   <!-- 인증번호 입력창 -->
-				<input type="button" class="check_btn" value="인증번호 확인" placeholder="인증번호 6자리를 입력해주세요." maxlength="6">  <!-- 인증번호와 내가 입력창에 입력한 인증번호 비교하는 창 -->
+				<div class="input-container"  >
+					<label>인증번호</label> 
+					<input class="check_number input" type="text">   <!-- 인증번호 입력창 -->
+					<input type="button" class="check_btn" value="인증번호 확인" placeholder="인증번호 6자리를 입력해주세요." maxlength="6">  <!-- 인증번호와 내가 입력창에 입력한 인증번호 비교하는 창 -->
+				</div>
 			</form>		
 			</div>
 			
@@ -197,18 +218,22 @@
 				<h1 style="margin-top: 30px;">휴대폰 인증</h1>
 				<p>휴대폰 인증을 선택하셨습니다.</p>
 				<p>등록하신 휴대폰번호를 입력 후 인증번호 전송버튼을 눌러주세요.</p>
-			
-				<div class="input-container">
+				
+				<div style="display: flex; ">
+				<div class="input-container" style="display: flex; align-items: center;">
 					<label>휴대폰 번호</label>
-					<input type="text" class="input" name="phoneNum1" style="text-align: right;"> - 
-					<input type="text" class="input" name="phoneNum2" style="text-align: center;"> - 
-					<input type="text" class="input" name="phoneNum3">
+					<input type="text" class="phoneNum1 input" style="text-align: right;"> - 
+					<input type="text" class="phoneNum2 input" style="text-align: center;"> - 
+					<input type="text" class="phoneNum3 input" >
 				</div>  <!-- 인증번호 받을사람 휴대폰 번호 -->
-					<input class="phone_btn"type="button" value="인증번호 전송">
-			
+				<input class="phone_btn button2" type="button" value="인증번호 전송" >
+				</div>
 			<form action="/ex/find/pwInquiry_check_complete" method="post">
-				인증번호 : <input class="check_number" type="text">   <!-- 인증번호 입력창 -->
-				<input type="button" class="check_btn" value="인증번호 확인" placeholder="인증번호 6자리를 입력해주세요." maxlength="6">  <!-- 인증번호와 내가 입력창에 입력한 인증번호 비교하는 창 -->
+				<div class="input-container">
+					<label>인증번호</label> 
+					<input class="check_number input" type="text">   <!-- 인증번호 입력창 -->
+				</div>
+				<input type="button" class="check_btn button2" value="인증번호 확인" placeholder="인증번호 6자리를 입력해주세요." maxlength="6">  <!-- 인증번호와 내가 입력창에 입력한 인증번호 비교하는 창 -->
 			</form>		
 			</div>
     	</div>
