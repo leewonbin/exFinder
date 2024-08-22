@@ -8,22 +8,11 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/join.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/validationJs.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<style>
-	    .error-message {
-        color: red;
-        font-size: 0.875em;
-        margin-left: 5px;
-    }
-    .correct-message {
-        color: green;
-        font-size: 0.875em;
-        margin-left: 5px;
-        
-   	}
 	</style>
    	</head>
 <body>
