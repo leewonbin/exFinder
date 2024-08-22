@@ -79,17 +79,6 @@ public class UserController {
 		String encPassword = bcryptPasswordEncoder.encode(dto.getU_pw());
 		dto.setU_pw(encPassword);
 		
-		// 요청 파라미터를 가져와서 LocalDate로 변환
-		int year = Integer.parseInt(request.getParameter("year"));
-		int month = Integer.parseInt(request.getParameter("month"));
-		int day = Integer.parseInt(request.getParameter("day"));
-
-		// LocalDate를 java.util.Date로 변환
-		LocalDate u_birthday = LocalDate.of(year, month, day);
-		
-		dto.setU_birthday(u_birthday);
-		System.out.println("u_birthday : " + u_birthday);
-		
 		String u_email = request.getParameter("email") + "@" + request.getParameter("select");
     	System.out.println("u_email : " + u_email);
     	dto.setU_email(u_email);
