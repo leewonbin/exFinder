@@ -83,7 +83,9 @@ public class FindController {
 
 	// 비밀번호 찾기 이동
 	@RequestMapping(value = "/find/pwInquiry", method = RequestMethod.GET)
-	public String pwInquiry(Model model, String u_id) throws Exception {
+	public String pwInquiry(Model model,  @RequestParam(value = "radio", required = false) String u_id) throws Exception {
+		// 아이디 찾은 다음에 비밀번호 찾기로 이동시에 필요한 코드로, 찾은 id 저장
+		//System.out.println(u_id);
 		model.addAttribute("u_id_result", u_id);
 		return "/user/find/pwInquiry";
 	}
