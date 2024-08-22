@@ -1,3 +1,14 @@
+function selectBox(box) {
+	// 기존에 선택된 박스가 있으면 선택 해제
+	const selectedBox = document.querySelector('.box.selected');
+	if (selectedBox) {
+		selectedBox.classList.remove('selected');
+	}
+
+	// 클릭된 박스를 선택 상태로 변경
+	box.classList.add('selected');
+}
+
 function reg_type_select(type) {
 	// 모든 섹션을 숨기기
 	document.querySelector('.type_email').style.display = 'none';
