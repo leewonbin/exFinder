@@ -19,6 +19,7 @@
 	.login_navi {
  	   	margin-top: 150px; /* header의 height만큼 여백 추가 */
  	   	height: 80px;
+ 	   	width: 100%;
     	display: flex;
     	align-items: center; /* 수직으로 중앙 정렬 */
     	justify-content: center; /* 수평 중앙 정렬 */
