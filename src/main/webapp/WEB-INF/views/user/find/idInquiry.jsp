@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/find.css">
+<script src="${pageContext.request.contextPath}/resources/js/findPwJs.js"></script>
 <style>
 /* 버튼 스타일 */
 .find-button {
@@ -16,31 +17,7 @@
 	border-radius: 0px; /* 버튼의 모서리를 0px로 둥글지 않게 설정 */
 }
 </style>
-<script>
-	function selectBox(box) {
-		// 기존에 선택된 박스가 있으면 선택 해제
-		const selectedBox = document.querySelector('.box.selected');
-		if (selectedBox) {
-			selectedBox.classList.remove('selected');
-		}
 
-		// 클릭된 박스를 선택 상태로 변경
-		box.classList.add('selected');
-	}
-
-	function reg_type_select(type) {
-		// 모든 섹션을 숨기기
-		document.querySelector('.type_email').style.display = 'none';
-		document.querySelector('.type_pcs').style.display = 'none';
-
-		// 선택된 타입에 따라 해당 섹션을 표시
-		if (type === 'email') {
-			document.querySelector('.type_email').style.display = 'block';
-		} else if (type === 'pcs') {
-			document.querySelector('.type_pcs').style.display = 'block';
-		}
-	}
-</script>
 
 </head>
 <body>
