@@ -54,14 +54,21 @@ body, html {
 	position: relative; /* 상대 위치 설정 */
 }
 
+/* input 화살표 없앰 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /* 기준 통화 섹션 */
 .baseSection {
-	margin-left: 375px;
+	margin-left: 360px;
 }
 
 /* 결과 통화 섹션 */
 .resultSection {
-	margin-right: 375px;
+	margin-right: 360px;
 }
 
 /* = 문자 스타일 */
@@ -69,77 +76,91 @@ body, html {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 4em; /* 크기 조정 */
-	font-weight : bold;
-	color : white;
 	width: 50px; /* 너비 조정 */
 	height: 50px; /* 높이 조정 */
-	margin : auto 0;
-	border-radius: 50%;
-	background-color : #0091FF;
+	text-align : center;
+	margin-top : 220px
 }
 
 /* selectbox와 input 스타일 */
 .currency-section select, .currency-section input {
-	padding: 10px;
-	font-size: 1em;
+	/* padding: 10px; */
 	box-sizing: border-box; /* padding과 border가 포함된 크기 계산 */
 }
 
 /* 기준 통화 selectbox 스타일 */
 .base-currency-select {
 	width: 350px;
-	height: 80px;
-	margin-bottom: 10px;
+	height: 100px;
+	margin-bottom: 40px;
+	opacity: 0.8;
+	border: none;
 }
 
 /* 기준 통화 숫자 입력 input 스타일 */
 .base-amount-input {
 	width: 530px;
-	height: 110px;
+	height: 130px;
 	margin-bottom: 0; /* margin-bottom을 0으로 설정하여 겹치지 않도록 조정 */
 	position: relative; /* 상대 위치 설정 */
+	border: none;
+	text-align : right;
+	font-size: 1.8em;
+	padding-bottom: 30px;
+	padding-right: 20px;
+	box-shadow: 3px 3px 1px #C8E2E8;
 }
 
 /* 기준 통화 결과 표시 input 스타일 */
 .base-result-input {
 	width: 530px;
 	height: 37px;
-	background-color: #e0e0e0;
-	cursor: not-allowed;
+	background-color : white;
 	position: absolute; /* 절대 위치 설정 */
-	bottom: 80px;
+	bottom: 50px;
 	left: 0;
 	margin: 0;
+	border: none;
+	text-align : right;
+	padding-right: 20px;
 }
 
 /* 결과 통화 selectbox 스타일 */
 .result-currency-select {
 	width: 350px;
-	height: 80px;
-	margin-bottom: 10px;
+	height: 100px;
+	margin-bottom: 40px;
+	opacity: 0.8;
+	border: none;
 }
 
 /* 결과 통화 숫자 입력 input 스타일 */
 .result-amount-input {
 	width: 530px;
-	height: 110px;
+	height: 130px;
 	margin-bottom: 0; /* margin-bottom을 0으로 설정하여 겹치지 않도록 조정 */
 	position: relative; /* 상대 위치 설정 */
+	border: none;
+	text-align : right;
+	font-size: 1.8em;
+	padding-bottom: 30px;
+	padding-right: 20px;
+	box-shadow: 3px 3px 1px #C8E2E8;
 }
 
 /* 결과 통화 결과 표시 input 스타일 */
 .result-result-input {
 	width: 530px;
 	height: 37px;
-	background-color: #e0e0e0;
-	cursor: not-allowed;
+	background-color : white;
 	position: absolute; /* 절대 위치 설정 */
-	bottom: 80px;
+	bottom: 50px;
 	left: 0;
 	margin: 0;
+	border: none;
+	text-align : right;
+	padding-right: 20px;
 }
-
 </style>
 </head>
 <body>
@@ -177,7 +198,7 @@ body, html {
 			</div>
 
 			<!-- '=' 문자 -->
-			<div class="equals-sign">=</div>
+			<img alt="" src="${pageContext.request.contextPath}/resources/img/equals.png" class="equals-sign">
 
 			<!-- 결과 통화 섹션 -->
 			<div class="currency-section resultSection">
