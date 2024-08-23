@@ -1,127 +1,77 @@
- /* html, body {
-    height: 100%; 전체 화면을 차지하도록 설정
-    margin: 100; 기본 여백 제거
-    font-family: Arial, sans-serif;
-} 
- */
 body {
-    background-color: #fff; 
-    color: #333;
-    display: flex;
-    flex-direction: column; /* 수직 방향으로 정렬 */
-    align-items: center; /* 수평 중앙 정렬 */
-    min-height: 100vh; /* 화면 전체 높이 */
+	background-color: #fff;
+	color: #333;
+	display: flex;
+	flex-direction: column; /* 수직 방향으로 정렬 */
+	align-items: center; /* 수평 중앙 정렬 */
+	min-height: 100vh; /* 화면 전체 높이 */
 }
 
-/* header {
-    width: 100%;
-    background-color: #8EC5FC;
-    background-image: linear-gradient(62adeg, #8EC5FC 31%, #E0C3FC 100%);
-} */
-
-/* header .header_wrapper {
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    box-sizing: border-box;
-}
- */
-/* .header_center img {
-    max-width: 100%;
-    height: auto;
-}
- */
-/* .login_navi {
-    width: 100%;
-    height: 80px;
-    display: flex;
-    align-items: center; 수직으로 중앙 정렬
-    justify-content: center; 수평 중앙 정렬
-    background-color: #fefefe; 거의 흰색에 가까운 매우 연한 회색 
-    border-bottom: 1px solid #d0d0d0; 연한 회색 밑에 선 추가
-} */
-
-/* .login_navi ul {
-    display: flex; 수평 정렬을 위해 flex 사용
-    padding: 0;
-    margin: 0;
+#main {
+	/*  display: flex; */
+	/* flex-direction: column; */
+	/* align-items: center; */
+	width: 100%;
+	max-width: 800px; /* 최대 너비 설정 */
+	/* box-sizing: border-box; */
+	margin-top: 50px; /* 여기에 원하는 값 설정 */
+	background-color: #ffffff;
+	border-radius: 50px;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+	padding: 40px;
 }
 
-.login_navi li {
-    margin: 0 20px; 각 항목 사이의 간격
+#main h1 {
+	height: 40px;
+	font-size: 30px; /* 글자 크기 설정 */
+	font-weight: bold; /* 글자 굵기 설정 */
+	text-align: center;
 }
 
-.login_navi a {
-    text-decoration: none; 링크의 기본 밑줄 제거
-    color: #000; 기본 링크 색상 설정
-    font-weight: normal; 기본 글자 굵기 설정 (기본값)
+#main h3 {
+	text-align: center;
 }
 
-.login_navi a:hover {
-    color: #4158D0; 마우스를 올렸을 때 링크 색상 변경
-    font-weight: bold; 마우스를 올렸을 때 글자 굵기 변경
+button{
+	width: 100px;
+	height: 70px;
+    background-color: #4158D0; /* 버튼 배경색을 설정합니다. */
+    color: white; /* 버튼 텍스트 색상을 흰색으로 설정합니다. */
+    padding: 10px 20px; /* 버튼의 내부 여백을 상하 10px, 좌우 20px로 설정합니다. */
+    margin: 10px 0; /* 버튼의 상하 여백을 10px로 설정합니다. */
+    border: none; /* 버튼의 테두리를 없앱니다. */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능함을 나타냅니다. */
+    font-size: 16px; /* 버튼 텍스트의 크기를 16px로 설정합니다. */
 }
- */
- #main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 800px; 최대 너비 설정
-    padding: 20px;
-    box-sizing: border-box;
-    margin-top: 100px; /* 여기에 원하는 값 설정 */
-}
- 
-form {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    width: 100%; /* 폼의 너비를 100%로 설정 */
-    box-sizing: border-box;
+text{
+	
 }
 
-h1 {
-    
-    text-align: center; /* 여기에 원하는 값 설정 */
-   
-} 
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="date"],
-input[type="radio"],
-input[type="checkbox"],
-input[type="submit"],
-button {
-    width: 100%; /* 입력 필드와 버튼의 너비를 100%로 설정 */
-    padding: 15px;
-    margin: 15px 0;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 18px;
+input[type="text"], input[type="email"], input[type="password"], input[type="date"],
+	input[type="radio"], input[type="checkbox"], input[type="submit"] {
+	width: 100%; /* 입력 필드와 버튼의 너비를 100%로 설정 */
+	padding: 15px;
+	margin: 15px 0;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	box-sizing: border-box;
+	font-size: 18px;
+	color: black;
 }
 
-button,
 input[type="submit"] {
-    background-color: #0056b3;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
+	background-color: #0056b3;
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-weight: bold;
 }
 
-button:hover,
-input[type="submit"]:hover {
-    background-color: #004494;
+button:hover, input[type="submit"]:hover {
+	background-color: #004494;
 }
 
 label {
-    margin-left: 8px;
-    font-size: 18px;
+	margin-left: 8px;
+	font-size: 18px;
 }

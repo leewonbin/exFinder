@@ -17,31 +17,33 @@
    	</head>
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_Login_header.jsp"%>
+	
 	<div id="main">
-		<!-- <h1>회원가입</h1><br> -->
+		<h1>회원가입</h1><br> 
+		<h3>정보를 정확히 입력해 주세요</h3><br><br>	
 		<form name="signupForm" action="/ex/user/joinDB" method="post" onsubmit="return validateForm()">
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
-			아이디 <br>
-			<input type="text" id="u_id" name="u_id" oninput="validateField('u_id')">
-			<button type="button" onclick="id_check()">아이디 중복 검사</button><br>
+			<br>
+			<input type="text" id="u_id" name="u_id" oninput="validateField('u_id')" placeholder="아이디를 입력하시오">
+			<button type="button" id="id_button"onclick="id_check()">아이디 중복 검사</button><br>
             <span id="u_id-error" class="error-message"></span>
 			<div id="idChk"></div>
 			
-			비밀번호<br>
-			<input type="password" class="input" name="u_pw" id="u_pw" oninput="validateField('u_pw')"> 
+			<br>
+			<input type="password" class="input" name="u_pw" id="u_pw" oninput="validateField('u_pw')" placeholder="비밀번호를 입력하시오"> 
             <button type="button" id="togglePw" onclick="togglePassword('u_pw', 'togglePw')">보기</button><br>
             <span id="u_pw-error" class="error-message"></span><br>
             
-         	비밀번호 확인<br>  
-         	<input type="password" class="input" name="u_pw_check" oninput="validateField('u_pw_check')"><br>
+         	<br>  
+         	<input type="password" class="input" name="u_pw_check" oninput="validateField('u_pw_check')" placeholder="비밀번호를 한번 더 입력하시오"><br>
          	<span id="u_pw_check-error" class="error-message"></span><br> 
          	
-			별명<br>
-			<input type="text" class="input" name="u_nickname" oninput="validateField('u_nickname')"><br>
+			<br>
+			<input type="text" class="input" name="u_nickname" oninput="validateField('u_nickname')" placeholder="별명을 입력하시오"><br>
             <span id="u_nickname-error" class="error-message"></span><br>
             
-			이름<br>
-			<input type="text" class="input" name="u_name" oninput="validateField('u_name')"><br>
+			<br>
+			<input type="text" class="input" name="u_name" oninput="validateField('u_name')" placeholder="이름을 입력하시오"><br>
            	<span id="u_name-error" class="error-message"></span><br>
            
 			성별<br>
@@ -53,8 +55,8 @@
 	       	<input type="date" name="u_birthday" oninput="validateField('u_birthday')"><br>
             <span id="u_birthday-error" class="error-message"></span><br>
 	       	
-	       	이메일 <br> 
-	       	<input type="text" class="input" name="email" oninput="validateField('email')">
+	       	<br> 
+	       	<input type="text" class="input" name="email" oninput="validateField('email')"placeholder="이메일을 입력하시오">
             <label> @ </label>
             <select class="input" name="select">
                 <option value="naver.com">naver.com</option>
@@ -69,8 +71,8 @@
 	      	<input class="input" type="text" name="phoneNumber3" maxlength="4" oninput="validateField('phoneNumber3')"><br>
             <span id="phoneNumber3-error" class="error-message"></span><br>
              
-	       	 주소<br>  
-	       	<input type="text" name="u_address" id="u_address" placeholder="주소" oninput="validateField('u_address')">
+	       	<br>  
+	       	<input type="text" name="u_address" id="u_address" placeholder="주소를 입력하시오" oninput="validateField('u_address')">
 			<input type="button" onclick="sample4_execDaumPostcode()" value="주소검색"><br>
 			<span id="u_address-error" class="error-message"></span><br>
 	       	
