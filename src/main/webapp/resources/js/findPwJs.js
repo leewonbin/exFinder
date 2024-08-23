@@ -1,6 +1,6 @@
 function selectBox(box) {
 	// 기존에 선택된 박스가 있으면 선택 해제
-	const selectedBox = document.querySelector('.box.selected');
+	const selectedBox = document.querySelector('.find-box.selected');
 	if (selectedBox) {
 		selectedBox.classList.remove('selected');
 	}
