@@ -45,16 +45,19 @@ function sample4_execDaumPostcode() {
 
 // 비밀번호 가리기/보기 기능
 function togglePassword(fieldId, buttonId) {
-	const passwordField = document.getElementById(fieldId);
-	const toggleButton = document.getElementById(buttonId);
-
-	if (passwordField.type === "password") {
-		passwordField.type = "text";
-		toggleButton.textContent = "가리기";
-	} else {
-		passwordField.type = "password";
-		toggleButton.textContent = "보기";
-	}
+    const passwordField = document.getElementById(fieldId);
+    const toggleImg = document.getElementById('toggleImg');
+    /*const contextPath = '${pageContext.request.contextPath}';*/
+    
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleImg.src = contextPath + "/resources/img/close.png"; // 비밀번호가 보일 때 이미지
+        toggleImg.alt = "가리기";
+    } else {
+        passwordField.type = "password";
+        toggleImg.src = contextPath + "/resources/img/open.png"; // 비밀번호가 가려질 때 이미지
+        toggleImg.alt = "보기";
+    }
 }
 
 function validateField(fieldName) {
