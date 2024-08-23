@@ -24,9 +24,9 @@
 			</div>
 			<div class="header_end">
 				<!-- 로그인, 마이페이지 등등.. -->
-				<p>로그인</p>
+				<p><a href="/ex/user/login">로그인</a></p>
 				/
-				<p>회원가입</p>
+				<p><a href="/ex/user/join">회원가입</a></p>
 			</div>
 		</div>
 	</header>
