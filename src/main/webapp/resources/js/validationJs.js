@@ -123,7 +123,7 @@ function validateField(fieldName) {
 
 	if (fieldName === 'u_gender') {
 		if (value === '') {
-			errorSpan.textContent = ' 성별을 선택해 주세요.';
+			errorSpan.textContent = '성별을 선택해 주세요.';
 			isValid = false;
 		} else {
 			errorSpan.textContent = '';

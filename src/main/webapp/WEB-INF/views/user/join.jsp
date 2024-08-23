@@ -24,14 +24,14 @@
 		<form name="signupForm" action="/ex/user/joinDB" method="post" onsubmit="return validateForm()">
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
 			<br>
-			<input type="text" id="u_id" name="u_id" oninput="validateField('u_id')" placeholder="아이디를 입력하시오">
-			<button type="button" id="id_button"onclick="id_check()">아이디 중복 검사</button><br>
+			<input type="text" class ="input" id="u_id" name="u_id" oninput="validateField('u_id')" placeholder="아이디를 입력하시오">
+			<button type="button" name="button" onclick="id_check()">중복 검사</button><br>
             <span id="u_id-error" class="error-message"></span>
 			<div id="idChk"></div>
 			
 			<br>
 			<input type="password" class="input" name="u_pw" id="u_pw" oninput="validateField('u_pw')" placeholder="비밀번호를 입력하시오"> 
-            <button type="button" id="togglePw" onclick="togglePassword('u_pw', 'togglePw')">보기</button><br>
+            <button type="button" name="button" id="togglePw"  onclick="togglePassword('u_pw', 'togglePw')">보기</button><br>
             <span id="u_pw-error" class="error-message"></span><br>
             
          	<br>  
@@ -46,34 +46,34 @@
 			<input type="text" class="input" name="u_name" oninput="validateField('u_name')" placeholder="이름을 입력하시오"><br>
            	<span id="u_name-error" class="error-message"></span><br>
            
-			성별<br>
-			남자<input type="radio" name="u_gender" value="남성" oninput="validateField('u_gender')"><br>
-          	여자<input type="radio" name="u_gender" value="여성" oninput="validateField('u_gender')"><br> 
-     		<span id="u_gender-error" class="error-message"></span><br>
+			<br>
+			남자<input type="radio" name="u_gender" value="남성" oninput="validateField('u_gender')">
+          	여자<input type="radio" name="u_gender" value="여성" oninput="validateField('u_gender')"><br><br>
+     		<span id="u_gender-error" class="error-message"></span><br><br>
      		
-	       	생년월일<br>  
+	       	<br>  
 	       	<input type="date" name="u_birthday" oninput="validateField('u_birthday')"><br>
             <span id="u_birthday-error" class="error-message"></span><br>
 	       	
 	       	<br> 
-	       	<input type="text" class="input" name="email" oninput="validateField('email')"placeholder="이메일을 입력하시오">
+	       	<input type="text" class="input" name="email" id="email" oninput="validateField('email')"placeholder="이메일을 입력하시오">
             <label> @ </label>
-            <select class="input" name="select">
+            <select class="input" name="select" id="select">
                 <option value="naver.com">naver.com</option>
                 <option value="gmail.com">gmail.com</option>
                 <option value="daum.net">daum.net</option>
             </select><br>
-            <span id="email-error" class="error-message"></span><br>
+            <span id="email-error" class="error-message"></span><br><br>
             
-	      	전화번호<br>  
-	      	<input type="text" class="input" name="phoneNumber1" maxlength="3"> - 
-	      	<input class="input" type="text" name="phoneNumber2" maxlength="4"> - 
-	      	<input class="input" type="text" name="phoneNumber3" maxlength="4" oninput="validateField('phoneNumber3')"><br>
+	      	<br>  
+	      	<input type="text" class="input" name="phoneNumber1" id="phoneNumber" maxlength="3"> - 
+	      	<input class="input" type="text" name="phoneNumber2" id="phoneNumber" maxlength="4"> - 
+	      	<input class="input" type="text" name="phoneNumber3" id="phoneNumber" maxlength="4" oninput="validateField('phoneNumber3')"><br>
             <span id="phoneNumber3-error" class="error-message"></span><br>
              
 	       	<br>  
 	       	<input type="text" name="u_address" id="u_address" placeholder="주소를 입력하시오" oninput="validateField('u_address')">
-			<input type="button" onclick="sample4_execDaumPostcode()" value="주소검색"><br>
+			<button type="button" name="button" onclick="sample4_execDaumPostcode()">주소 검색</button><br>
 			<span id="u_address-error" class="error-message"></span><br>
 	       	
 	       	<input type="submit" class="button" value="회원가입">
