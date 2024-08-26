@@ -4,9 +4,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>완료 페이지</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/myPage.css">
 </head>
 <body>
-
-</body>
+<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
+	<div id="main">
+		<button type="button" class="myPage-button" onclick="">
+			<img src="${pageContext.request.contextPath}/resources/img/human.png" id="Img">계정관리
+		</button>
+		<button type="button" class="myPage-button" onclick="">
+			<img src="${pageContext.request.contextPath}/resources/img/board.png" id="Img">나의 게시판
+		</button>
+		<button type="button" class="myPage-button" onclick="">
+			<img src="${pageContext.request.contextPath}/resources/img/alarm.png" id="Img">알림내역
+		</button>
+		<button type="button" class="myPage-button" onclick="">
+			<img src="${pageContext.request.contextPath}/resources/img/bookmark.png" id="Img">즐겨찾기
+		</button>
+		<button type="button" class="myPage-button" onclick="">
+			<img src="${pageContext.request.contextPath}/resources/img/setup.png" id="Img">설정
+		</button>
+		<button type="button" class="myPage-button" onclick="">??</button>
+	</div>
+<body>
 </html>

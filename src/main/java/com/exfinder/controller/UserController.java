@@ -213,5 +213,9 @@ public class UserController {
 	public void complete() throws Exception{
 		
 	}
+	@RequestMapping(value = "/user/myPage", method = RequestMethod.GET)
+	public void myPage() throws Exception{
+		
+	}
 
 }
