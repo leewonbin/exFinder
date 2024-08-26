@@ -14,21 +14,33 @@
     justify-content: space-between;
     height: 100px;
     padding: 0 16px;
+    position: relative;
+    max-width: 1300px; /* 전체 헤더의 최대 너비 제한 */
+    margin: 0 auto; /* 중앙 정렬 */
 }
 
 .header_start {
-    list-style: none;
+    display: flex;
+    align-items: flex-end; /* 아래쪽 정렬 */
+    height: 100%; /* 전체 높이 차지 */
+    max-width: 200px; /* 메뉴의 최대 너비 제한 */
+    margin-right: 100px; /* 로고와의 간격을 더 넓히기 */
 }
 
-.header_start > ul >li {
-    float: left;
+.header_start > ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.header_start > ul > li {
     margin-left: 15px;
     font-weight: bold;
-    cursor : pointer;
+    cursor: pointer;
 }
 
 .header_start > ul > li:hover {
-    color : #007BFF;
+    color: #007BFF;
 }
 
 .header_start > ul > li:before {
@@ -40,31 +52,32 @@
     margin-right: 10px;
 }
 
+.header_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative; /* 로고의 위치 조정 */
+}
+
 .header_center > img {
-    width : 150px;
+    width: 150px; /* 로고 크기 */
 }
 
 .header_end {
     display: flex;
+    align-items: flex-end; /* 아래쪽 정렬 */
+    height: 100%; /* 전체 높이 차지 */
+    max-width: 200px; /* 로그인 섹션 최대 너비 제한 */
+    margin-left: 100px; /* 로고와의 간격을 더 넓히기 */
 }
 
 .header_info {
     margin: auto 0;
 }
 
-.header_profile {
-    width: 30px;
-    height: 30px;
-    background-image: url(../img/user.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin-left: 10px;
-    border-radius: 50%;
-}
-
 .header_end a {
-    	text-decoration: none; /* 링크의 기본 밑줄 제거 */
-    	color: #000; /* 기본 링크 색상 설정 */
-    	font-weight: normal; /* 기본 글자 굵기 설정 (기본값) */
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: #000; /* 링크 색상 */
+    font-weight: normal; /* 글자 굵기 */
 }
