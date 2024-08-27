@@ -12,7 +12,7 @@
 <body>
 <%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	<div id="main">
-		<button type="button" class="myPage-button" onclick="">
+		<button type="button" class="myPage-button" onclick="location.href='/ex/user/myInfo'">
 			<img src="${pageContext.request.contextPath}/resources/img/Puser.png" id="Img">계정관리
 		</button>
 		<button type="button" class="myPage-button" onclick="">

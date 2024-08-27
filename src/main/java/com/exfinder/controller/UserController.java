@@ -211,12 +211,17 @@ public class UserController {
 	public String Logincomplete(HttpSession session) throws Exception{
 		String userid = (String)session.getAttribute("userId");
 		session.setAttribute("dto", userService.selectUser(userid));
-		session.removeAttribute("userId");
 		return "/main/exFinder_main";
 	}
 	
 	@RequestMapping(value = "/user/myPage", method = RequestMethod.GET)
 	public void myPage() throws Exception{
+		
+	}
+	@RequestMapping(value = "/user/myInfo", method = RequestMethod.GET)
+	public void myInfo(Model model, HttpSession session) throws Exception{
+		String userid = (String)session.getAttribute("userId");
+		model.addAttribute("dto", userService.selectUser(userid));
 		
 	}
 
