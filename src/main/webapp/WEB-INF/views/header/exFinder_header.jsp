@@ -21,9 +21,8 @@
 			</div>
 			<div class="header_center">
 				<!-- 로고 -->
-				<a href="/ex/">
-					<img src="${pageContext.request.contextPath}/resources/img/logo.png" alt="">
-				</a>
+					<img src="${pageContext.request.contextPath}/resources/img/logo.png"
+					onclick="location.href='/ex/'">
 			</div>
 			
 			<c:if test="${empty sessionScope.userId}">

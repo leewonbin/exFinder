@@ -60,7 +60,7 @@
     position: relative; /* 로고의 위치 조정 */
 }
 
-.header_center > a > img {
+.header_center > img {
     width: 150px; /* 로고 크기 */
 }
 
