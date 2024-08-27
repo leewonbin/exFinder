@@ -2,18 +2,21 @@
 
 /* #main 요소의 크기와 정렬 설정 */
 #main {
-        width: 100%; /* #main 요소의 너비를 100%로 설정 */
-        text-align: center; /* #main 요소 내의 텍스트를 중앙 정렬 */
-        padding: 20px; /* 내부 여백 설정 */
-        margin-top: 150px; /* 상단 여백 추가 */
-        display: grid; /* 그리드 레이아웃 사용 */
-        grid-template-columns: repeat(3, 1fr); /* 3열로 설정 */
-        grid-row-gap: 20px; /* 각 버튼 사이의 위아래 간격을 30px로 설정 */
-    	grid-column-gap: 0px; /* 각 버튼 사이의 좌우 간격을 0px로 설정 */
-        justify-items: center; /* 각 버튼을 수평 중앙에 정렬 */
-        
-        
-    }
+    height:800px;
+    width: 1500px; /* #main 요소의 너비를 부모 요소의 80%로 설정 */
+    padding: 50px 50px 50px 50px; /* 상단 여백을 100px로 늘림, 좌우와 하단은 기존의 20px 유지 */
+    text-align: center; /* #main 요소 내의 텍스트를 중앙 정렬 */
+    margin: 150px auto 0; /* 상단 여백 150px, 좌우 여백을 auto로 설정하여 중앙에 배치 */
+    display: grid; /* 그리드 레이아웃 사용 */
+    grid-template-columns: auto 250px auto; /* 가운데 열을 50px로 고정하고 양쪽 열은 자동 조정 */
+    grid-row-gap: 20px; /* 각 버튼 사이의 위아래 간격을 20px로 설정 */
+    grid-column-gap: 0px; /* 각 버튼 사이의 좌우 간격을 0px로 설정 */
+    justify-items: center; /* 각 버튼을 수평 중앙에 정렬 */
+    background-color: #ffffff; /* 배경색 설정 */
+    border-radius: 50px; /* 모서리를 둥글게 설정 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+}
+
     
 #Img{
 	width: 100px;
@@ -26,9 +29,10 @@
 .myPage-button {
     width: 350px; /* 버튼의 너비 */
     height: 350px; /* 버튼의 높이 */
-    background-color: #4158D0; /* 버튼의 배경색 */
+    background-color: #fff; /* 버튼의 배경색 */
     border-radius: 8px; /* 모서리를 둥글게 설정 */
-    color: white; /* 텍스트 색상 */
+    font-weight:800;
+    color: #black; /* 텍스트 색상 */
     padding: 20px; /* 내부 여백 */
     border: none; /* 테두리 제거 */
     font-size: 20px; /* 텍스트 크기 */
@@ -42,6 +46,6 @@
 
 /* 버튼 hover 효과 */
 .myPage-button:hover {
-    background-color: #2f46a2; /* 배경색 변경 */
+    border: 5px outset #4158D0
 }
 

@@ -13,19 +13,19 @@
 <%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	<div id="main">
 		<button type="button" class="myPage-button" onclick="">
-			<img src="${pageContext.request.contextPath}/resources/img/human.png" id="Img">계정관리
+			<img src="${pageContext.request.contextPath}/resources/img/Puser.png" id="Img">계정관리
 		</button>
 		<button type="button" class="myPage-button" onclick="">
-			<img src="${pageContext.request.contextPath}/resources/img/board.png" id="Img">나의 게시판
+			<img src="${pageContext.request.contextPath}/resources/img/Pboard.png" id="Img">나의 게시판
 		</button>
 		<button type="button" class="myPage-button" onclick="">
-			<img src="${pageContext.request.contextPath}/resources/img/alarm.png" id="Img">알림내역
+			<img src="${pageContext.request.contextPath}/resources/img/Palarm.png" id="Img">알림내역
 		</button>
 		<button type="button" class="myPage-button" onclick="">
-			<img src="${pageContext.request.contextPath}/resources/img/bookmark.png" id="Img">즐겨찾기
+			<img src="${pageContext.request.contextPath}/resources/img/Pbookmark.png" id="Img">즐겨찾기
 		</button>
 		<button type="button" class="myPage-button" onclick="">
-			<img src="${pageContext.request.contextPath}/resources/img/setup.png" id="Img">설정
+			<img src="${pageContext.request.contextPath}/resources/img/Psetup.png" id="Img">설정
 		</button>
 		<button type="button" class="myPage-button" onclick="">??</button>
 	</div>
