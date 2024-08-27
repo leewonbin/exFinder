@@ -56,8 +56,8 @@
 		<div class="header_mini_myPage_top">
 			<img src="${pageContext.request.contextPath}/resources/img/user.png" alt="">
 			<div>
-				<p class="user-info"><a href="/ex/user/myPage">유저 님</a></p>
-				<p class="email-info">이메일@naver.com</p>
+				<p class="user-info"><a href="/ex/user/myPage"><c:out value="${dto.u_nickname }"/>님</a></p>
+				<p class="email-info"><c:out value="${dto.u_email }"/></p>
 			</div>
 			<form action="${pageContext.request.contextPath}/user/logout" method="POST">
     			<input type="submit" class="mini_myPage_button" value="로그아웃" />
