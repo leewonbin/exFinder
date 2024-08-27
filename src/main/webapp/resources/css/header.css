@@ -198,7 +198,7 @@
 	padding-right: 20px; /* 오른쪽 여백 추가 */
 	font-size: 14px;
 }
-.header_mini_myPage_bottom li:not (:last-child )::after {
+.header_mini_myPage_bottom li:not(:last-child )::after {
 	content: "";
 	position: absolute;
 	right: 0;

@@ -10,6 +10,9 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <script src="${pageContext.request.contextPath}/resources/js/header.js"></script>
+<style>
+
+</style>
 </head>
 <body>
 	<header class="header">
@@ -64,7 +67,7 @@
 				<li>즐겨찾기</li>
 			</ul>
 			<button type="button" class="mini_myPage_button" onclick="" >
-				설정<img src="${pageContext.request.contextPath}/resources/img/setup.png">
+				설정<img src="${pageContext.request.contextPath}/resources/img/Psetup.png">
 			</button>
 		</div>
 	</div>
