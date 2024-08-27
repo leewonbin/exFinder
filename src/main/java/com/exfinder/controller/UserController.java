@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,11 +37,8 @@ public class UserController {
 	// 유저 로그인
 	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
 	public String login(HttpSession session) throws Exception{
-		//String userId = (String) session.getAttribute("userId");
-		//System.out.println("userId : " + userId);
 		
 		String auto_login_Checked = (String) session.getAttribute("auto_login_Checked");
-		//System.out.println("autoLogin : " + auto_login_Checked);
 		
 		if (auto_login_Checked != null && auto_login_Checked.equals("checked")) {
 			System.out.println("자동 로그인이 체크되어있어서, 자동 로그인이 되었습니다.");
@@ -209,10 +207,14 @@ public class UserController {
 		return "/user/complete";
 	}
 	
-	@RequestMapping(value = "/user/complete", method = RequestMethod.GET)
-	public void complete() throws Exception{
-		
+	@RequestMapping(value = "/user/Logincomplete", method = RequestMethod.GET)
+	public String Logincomplete(HttpSession session) throws Exception{
+		String userid = (String)session.getAttribute("userId");
+		session.setAttribute("dto", userService.selectUser(userid));
+		session.removeAttribute("userId");
+		return "/main/exFinder_main";
 	}
+	
 	@RequestMapping(value = "/user/myPage", method = RequestMethod.GET)
 	public void myPage() throws Exception{
 		
