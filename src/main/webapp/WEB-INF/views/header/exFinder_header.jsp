@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,14 +21,29 @@
 			</div>
 			<div class="header_center">
 				<!-- 로고 -->
-				<img src="${pageContext.request.contextPath}/resources/img/logo.png" alt="">
+				<a href="/ex/">
+					<img src="${pageContext.request.contextPath}/resources/img/logo.png" alt="">
+				</a>
 			</div>
+			
+			<c:if test="${empty sessionScope.userId}">
 			<div class="header_end">
 				<!-- 로그인, 마이페이지 등등.. -->
 				<p><a href="/ex/user/login">로그인</a></p>
 				/
 				<p><a href="/ex/user/join">회원가입</a></p>
 			</div>
+			</c:if>
+			
+			<c:if test="${!empty sessionScope.userId}">
+			<div class="header_end_myPage">
+				<!-- 로그인, 마이페이지 등등.. -->
+				<p><a href="/ex/user/myPage">
+					<img src="${pageContext.request.contextPath}/resources/img/user.png" alt="" style="width: 50px; height: auto;">
+				</a></p>
+				<p><a href="/ex/user/myPage"> 님</a></p>
+			</div>
+			</c:if>
 		</div>
 	</header>
 </body>
