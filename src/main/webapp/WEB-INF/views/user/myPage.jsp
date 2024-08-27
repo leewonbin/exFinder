@@ -12,22 +12,18 @@
 <body>
 <%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	<div id="main">
-		<button type="button" class="myPage-button" onclick="">
+		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/">
 			<img src="${pageContext.request.contextPath}/resources/img/Puser.png" id="Img">계정관리
 		</button>
-		<button type="button" class="myPage-button" onclick="">
+		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/myBoard'">
 			<img src="${pageContext.request.contextPath}/resources/img/Pboard.png" id="Img">나의 게시판
 		</button>
-		<button type="button" class="myPage-button" onclick="">
-			<img src="${pageContext.request.contextPath}/resources/img/Palarm.png" id="Img">알림내역
+		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/">
+			<img src="${pageContext.request.contextPath}/resources/img/Palarm.png" id="Img">알림
 		</button>
-		<button type="button" class="myPage-button" onclick="">
+		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/">
 			<img src="${pageContext.request.contextPath}/resources/img/Pbookmark.png" id="Img">즐겨찾기
 		</button>
-		<button type="button" class="myPage-button" onclick="">
-			<img src="${pageContext.request.contextPath}/resources/img/Psetup.png" id="Img">설정
-		</button>
-		<button type="button" class="myPage-button" onclick="">??</button>
 	</div>
 <body>
 </html>

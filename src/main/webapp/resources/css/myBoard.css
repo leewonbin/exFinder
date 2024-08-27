@@ -1,0 +1,53 @@
+/* #board 요소의 크기와 정렬 설정 */
+#board {
+    width: 1000px; /* 게시판의 너비 */
+    padding: 50px; /* 내부 여백 */
+    margin: 180px auto; /* 상단 여백과 좌우 중앙 정렬 */
+    background-color: #ffffff; /* 배경색 설정 */
+    border-radius: 20px; /* 모서리를 둥글게 설정 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+    text-align: left; /* 텍스트 좌측 정렬 */
+}
+
+/* 게시판 제목 스타일 */
+#board h1 {
+    text-align: center; /* 제목 중앙 정렬 */
+    font-size: 36px; /* 폰트 크기 */
+    margin-bottom: 30px; /* 제목 아래 여백 */
+}
+
+/* 게시글 목록 스타일 */
+.board-list {
+    list-style-type: none; /* 목록 스타일 제거 */
+    padding: 0; /* 내부 여백 제거 */
+}
+
+/* 개별 게시글 항목 스타일 */
+.board-item {
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 제목과 날짜를 좌우로 정렬 */
+    padding: 20px; /* 항목의 내부 여백 */
+    margin-bottom: 10px; /* 항목 간의 간격 */
+    background-color: #f9f9f9; /* 항목의 배경색 */
+    border-radius: 8px; /* 모서리를 둥글게 설정 */
+    cursor: pointer; /* 마우스 커서 모양 */
+    transition: background-color 0.3s; /* 배경색 전환 효과 */
+}
+
+/* 항목 hover 효과 */
+.board-item:hover {
+    background-color: #e6e6e6; /* 배경색 변경 */
+}
+
+/* 게시글 제목 스타일 */
+.board-title {
+    font-size: 24px; /* 폰트 크기 */
+    font-weight: bold; /* 폰트 두께 */
+    color: #333333; /* 텍스트 색상 */
+}
+
+/* 게시글 날짜 스타일 */
+.board-date {
+    font-size: 18px; /* 폰트 크기 */
+    color: #888888; /* 텍스트 색상 */
+}

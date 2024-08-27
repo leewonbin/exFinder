@@ -219,5 +219,9 @@ public class UserController {
 	public void myPage() throws Exception{
 		
 	}
-
+	
+	@RequestMapping(value = "/user/myBoard", method = RequestMethod.GET)
+	public void myBoard() throws Exception{
+		
+	}
 }
