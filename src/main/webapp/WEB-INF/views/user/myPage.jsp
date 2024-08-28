@@ -13,16 +13,16 @@
 <%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	<div id="main">
 		<button type="button" class="myPage-button" onclick="location.href='/ex/user/myInfo'">
-			<img src="${pageContext.request.contextPath}/resources/img/Puser.png" id="Img">계정관리
+			<img src="${pageContext.request.contextPath}/resources/img/Nuser.png" id="Img">계정관리
 		</button>
 		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/myBoard'">
-			<img src="${pageContext.request.contextPath}/resources/img/Pboard.png" id="Img">나의 게시판
+			<img src="${pageContext.request.contextPath}/resources/img/Nboard.png" id="Img">나의 게시판
 		</button>
 		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/">
-			<img src="${pageContext.request.contextPath}/resources/img/Palarm.png" id="Img">알림
+			<img src="${pageContext.request.contextPath}/resources/img/Nalarm.png" id="Img">알림
 		</button>
 		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/">
-			<img src="${pageContext.request.contextPath}/resources/img/Pbookmark.png" id="Img">즐겨찾기
+			<img src="${pageContext.request.contextPath}/resources/img/Nbookmark.png" id="Img">즐겨찾기
 		</button>
 	</div>
 <body>
