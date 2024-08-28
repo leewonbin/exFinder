@@ -8,16 +8,10 @@ body {
 }
 
 #main {
-	/*  display: flex; */
-	/* flex-direction: column; */
-	/* align-items: center; */
 	width: 100%;
 	max-width: 800px; /* 최대 너비 설정 */
-	/* box-sizing: border-box; */
-	margin-top: 50px; /* 여기에 원하는 값 설정 */
+	margin-top: 150px; /* 여기에 원하는 값 설정 */
 	background-color: #ffffff;
-	border-radius: 50px;
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 	padding: 40px;
 }
 
@@ -30,20 +24,6 @@ body {
 
 #main h3 {
 	text-align: center;
-}
-
-button, input[type="submit"]{
-	width: 100px;
-	height: 50px;
-	background-color: #4158D0; /* 버튼 배경색을 설정합니다. */
-	color: white; /* 버튼 텍스트 색상을 흰색으로 설정합니다. */
-	padding: 10px 20px; /* 버튼의 내부 여백을 상하 10px, 좌우 20px로 설정합니다. */
-	margin: 10px 0; /* 버튼의 상하 여백을 10px로 설정합니다. */
-	border: none; /* 버튼의 테두리를 없앱니다. */
-	cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능함을 나타냅니다. */
-	font-size: 14px; /* 버튼 텍스트의 크기를 14px로 설정합니다. */
-	border-radius: 5px;
-	
 }
 
 #u_id,#u_address {
@@ -115,7 +95,7 @@ button, input[type="submit"]{
 }
 
 input[type="text"], input[type="date"], input[type="password"], input[type="checkbox"],
-	input[type="submit"],u_pw{
+	u_pw{
 	width: 100%; /* 입력 필드와 버튼의 너비를 100%로 설정 */
 	padding: 15px;
 	margin: 15px 0;
@@ -129,16 +109,17 @@ input[type="radio"] {
 	appearance: none; /* 기본 브라우저 스타일 제거 */
 	width: 20px;
 	height: 20px;
-	border: 2px solid #4158D0; /* 테두리 색상 */
+	border: 3px solid #05203C; /* 테두리 색상 */
 	border-radius: 50%; /* 원형으로 만들기 */
 	outline: none;
 	cursor: pointer;
 	transition: background-color 0.3s, border-color 0.3s;
 }
 
+
 input[type="radio"]:checked {
-	background-color: #4158D0; /* 선택되었을 때의 배경색 */
-	border-color: #4158D0; /* 선택되었을 때의 테두리 색상 */
+	background-color: #05203C; /* 선택되었을 때의 배경색 */
+	border-color: #05203C; /* 선택되었을 때의 테두리 색상 */
 	position: relative;
 }
 
@@ -154,24 +135,39 @@ input[type="radio"]:checked::after {
 	transform: translate(-50%, -50%);
 }
 
-input[type="submit"]{
-	width: 200px;
-	background-color: #4158D0;
-	color: white;
-	border: none;
-	cursor: pointer;
-	font-weight: bold;
-	background-color: #4158D0;
-	display: inline-block; /* 기본값이지만 명시적으로 설정 */
-	margin: 15px auto; /* 위아래 여백을 설정하고, 좌우 자동으로 설정 */
-	display: flex;
-	flex-direction: column; /* 수직 방향으로 정렬 */
-	align-items: center; /* 수평 중앙 정렬 */
+button{
+	width: 100px;
+	height: 50px;
+	background-color: #05203C; /* 버튼 배경색을 설정합니다. */
+	color: white; /* 버튼 텍스트 색상을 흰색으로 설정합니다. */
+	padding: 10px 20px; /* 버튼의 내부 여백을 상하 10px, 좌우 20px로 설정합니다. */
+	margin: 10px 0; /* 버튼의 상하 여백을 10px로 설정합니다. */
+	border: none; /* 버튼의 테두리를 없앱니다. */
+	cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능함을 나타냅니다. */
+	font-size: 14px; /* 버튼 텍스트의 크기를 14px로 설정합니다. */
+	border-radius: 5px;
 	
 }
 
-button:hover, input[type="submit"]:hover{
-	background-color: #2f46a2;
+.button-join{
+    width: 200px;
+    height: 60px;
+    background-color: #05203C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px auto; /* 위아래 여백을 설정하고, 좌우 자동으로 중앙 정렬 */
+    display: flex; /* 플렉스 박스로 설정 */
+    flex-direction: column; /* 수직 방향으로 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+}
+ 
+button:hover, .button-join:hover{
+	 background-color: #054184; 
+	
 }
 
 label {

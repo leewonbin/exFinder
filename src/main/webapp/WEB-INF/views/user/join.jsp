@@ -16,7 +16,7 @@
 	</style>
    	</head>
 <body>
-	<%@include file="/WEB-INF/views/header/exFinder_Login_header.jsp"%>
+	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	
 	<div id="main">
 		<h1>회원가입</h1><br> 
@@ -53,8 +53,8 @@
            	<span id="u_name-error" class="error-message"></span><br><br>
            
 			
-			남자<input type="radio" name="u_gender" value="남성" oninput="validateField('u_gender')">
-          	여자<input type="radio" name="u_gender" value="여성" oninput="validateField('u_gender')"><br><br>
+			남자<input type="radio" name="u_gender" class="u_gender" value="남성" oninput="validateField('u_gender')">
+          	여자<input type="radio" name="u_gender" class="u_gender" value="여성" oninput="validateField('u_gender')"><br><br>
      		<span id="u_gender-error" class="error-message"></span><br>
      		
 	       	
@@ -82,7 +82,7 @@
 			<button type="button" name="button" onclick="sample4_execDaumPostcode()">주소 검색</button><br>
 			<span id="u_address-error" class="error-message"></span><br><br><br>
 	       	
-	       	<input type="submit" class="button" value="가입완료">
+	       	<input type="submit" class="button-join" value="가입완료">
 	       	
 			
 		</form>
