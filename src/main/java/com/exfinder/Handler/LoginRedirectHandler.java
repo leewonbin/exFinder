@@ -72,7 +72,7 @@ public class LoginRedirectHandler implements AuthenticationSuccessHandler {
 		if (roleNames.contains("ROLE_MEMBER")) {
 			session.setAttribute("userId", user_id);
 			session.setAttribute("action", "login");
-			response.sendRedirect("/ex/user/complete");
+			response.sendRedirect("/ex/user/Logincomplete");
 			return;
 		}
 
