@@ -19,7 +19,7 @@
 		<div class="header_wrapper">
 			<div class="header_start">
 				<ul>
-					<li>홈</li>
+					<li onclick="location.href='/ex/'">홈</li>
 					<li>알림</li>
 					<li>게시판</li>
 				</ul>
@@ -46,7 +46,9 @@
 						<!-- 로그인, 마이페이지 등등.. -->
 								<img src="${pageContext.request.contextPath}/resources/img/Wuser.png" onclick="location.href='/ex/user/myPage'">
 						<p><a href="/ex/user/myPage"><c:out value="${dto.u_nickname }"/>님</a></p>
-						<button type="button" id="toggleButton" onclick="toggleMiniMyPage()">▼</button>
+						<button type="button" id="toggleButton" onclick="toggleMiniMyPage()">
+							
+						</button>
 					</div>
 				</c:otherwise>
 			</c:choose>
