@@ -13,7 +13,6 @@
         // 모든 섹션 숨기기
         document.getElementById('myPosts').style.display = 'none';
         document.getElementById('myComments').style.display = 'none';
-        document.getElementById('myLiked').style.display = 'none';
         
         // 모든 탭 비활성화
         var tabs = document.querySelectorAll('.board-typeItem');
@@ -48,9 +47,7 @@
             <li class="board-typeItem" onclick="showSection('myComments',this)">
                 <span class="board-type">작성댓글</span>
             </li>
-            <li class="board-typeItem" onclick="showSection('myLiked',this)">
-                <span class="board-type">좋아요한 글</span>
-            </li>
+           
         </ul>
         
         <!-- 나의 게시글 목록 -->
@@ -73,10 +70,10 @@
             </li>
             
 	        <ul class="button-container">
-			    <li class="board-write" onclick="window.location.href='/ex/board/'">
+			    <li class="button-write" onclick="window.location.href='/ex/board/'">
 			        <span>글쓰기</span>
 			   	</li>
-			    <li class="board-delete" onclick="window.location.href='/ex/board/'">
+			    <li class="button-delete" onclick="window.location.href='/ex/board/'">
 			        <span>삭제</span>
 			    </li>
 			</ul>
@@ -95,29 +92,13 @@
                 <span class="board-date">2024-08-26</span>
             </li>
             <ul class="button-container">
-			    <li class="board-delete" onclick="window.location.href='/ex/board/'">
+			    <li class="button-delete" onclick="window.location.href='/ex/board/'">
 			        <span>삭제</span>
 			   	</li>   
 			</ul>
-
-        </ul>
+		</ul>
         
-        <!-- 나의 좋아요한 글 목록 -->
-        <ul id="myLiked" class="board-list" style="display: none;">
-            <li class="board-item" onclick="window.location.href='/ex/comment/'">
-                <span class="board-title">좋아요한 글1</span>
-                <span class="board-date">2024-08-27</span>
-            </li>
-            <li class="board-item" onclick="window.location.href='/ex/comment/'">
-                <span class="board-title">좋아요한 글2</span>
-                <span class="board-date">2024-08-26</span>
-            </li>
-            <ul class="button-container">
-			    <li class="board-delete" onclick="window.location.href='/ex/board/'">
-			        <span>좋아요 취소</span>
-			   	</li>   
-			</ul>
-        </ul>
+        
     </div>
 </body>
 </html>

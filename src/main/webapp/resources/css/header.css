@@ -41,7 +41,8 @@
 	cursor: pointer;
 }
 
-.header_start>ul>li:hover {
+.header_start>ul>li:hover,
+.header_end a:hover	{
 	color: #054184;
 }
 
