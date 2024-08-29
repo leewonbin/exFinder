@@ -12,6 +12,8 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/myInfo.js"></script>
 </head>
+<style>
+</style>
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	<div id="main">
@@ -28,9 +30,10 @@
 						<li><a href="#" onclick="reg_type_select('1'); return false;" id="profile-link">내 프로필</a></li>
         				<li><a href="#" onclick="reg_type_select('2'); return false;" id="info-link">회원 정보 수정</a></li>
         				<li><a href="#" onclick="reg_type_select('3'); return false;" id="password-link">비밀번호 변경</a></li>
+        				<li><a href="#" onclick="reg_type_select('4'); return false;" id="cancel-account">회원 탈퇴</a></li>
 					</ul>
 				</div>
-				<button type="button" class="secession-button" onclick="confirmDelete()">회원 탈퇴</button>
+				
 			</div>
 			
 		</div>
@@ -124,12 +127,34 @@
 	        			<input type="submit" class="myinfo-button" value="변경하기">
     				</form>
 				</div>
-				
-				
-				
+				<div class="my_info2 type_4" style="display: none; height: 550px;">
+					<h2 class="profile-title">회원 탈퇴</h2>
+					<div class="withdrawal-container">						
+              			<h2>회원 탈퇴 안내</h2>
+    					<p>ExFinder를 이용해 주셔서 감사합니다. 회원 탈퇴 시 다음과 같은 사항이 적용됩니다:</p>
+    					<p>현재 사용 중인 아이디(<label>${dto.u_id}</label>)는 탈퇴 후 복구할 수 없으며, 재사용도 불가능합니다.</p>
+    					<ul>
+        					<li>회원 정보 삭제 : 모든 개인 정보와 데이터가 영구적으로 삭제됩니다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        					삭제된 정보는 복구할 수 없습니다.</li>
+        					<li>서비스 이용 중지 : 탈퇴 후 ExFinder의 대부분의 서비스에 접근할 수 없습니다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        					재이용 시 새롭게 회원가입을 해야 합니다.</li>
+        					<li>탈퇴 후 취소 불가 : 탈퇴 완료 후에는 취소할 수 없습니다. 신중하게 결정해 주세요.</li>
+    					</ul>
+    					<p>이용해 주셔서 감사드리며, 나중에 다시 찾아뵙기를 바랍니다.<br> 문의 사항이 있으면 언제든지 연락해 주세요.</p>
+    					<p>감사합니다.</p>
+					</div>
+
+					<div class="myinfo-checkbox-container">
+						<label for="cancel-account-check">회원 탈퇴하는 것에 동의합니다.</label>
+						<input type="checkbox" id="cancel-account-check" name="cancel-account-check">
+					</div>
+					<button type="button" class="myinfo-button" id="delete-account-btn" onclick="confirmDelete()" disabled>회원 탈퇴</button>
+				</div>
 			</div>
-			
 		</div>
 	</div>
 <body>
+<script>
+
+</script>
 </html>

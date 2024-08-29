@@ -3,6 +3,7 @@ function reg_type_select(type) {
 	document.querySelector('.type_1').style.display = 'none';
 	document.querySelector('.type_2').style.display = 'none';
 	document.querySelector('.type_3').style.display = 'none';
+	document.querySelector('.type_4').style.display = 'none';
 	
 
 	// 모든 링크에서 active 클래스를 제거
@@ -20,6 +21,9 @@ function reg_type_select(type) {
 	} else if (type === '3') {
 		document.querySelector('.type_3').style.display = 'block';
 		document.getElementById('password-link').classList.add('active');
+	} else if (type === '4') {
+		document.querySelector('.type_4').style.display = 'block';
+		document.getElementById('cancel-account').classList.add('active');
 	}
 }
 
@@ -120,9 +124,46 @@ function togglePassword(fieldId, buttonId) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const checkbox = document.getElementById('cancel-account-check');
+    const label = document.querySelector('.myinfo-checkbox-container label');
+
+    // 체크박스 상태에 따라 라벨 스타일 변경
+    function updateLabelStyle() {
+        if (checkbox.checked) {
+            label.style.color = '#000'; // 체크된 상태에서 라벨의 색상
+            label.style.fontWeight = 'bold'; // 체크된 상태에서 폰트 두께
+            label.style.fontSize = '18px'; // 체크된 상태에서 폰트 크기
+        } else {
+            label.style.color = '#666'; // 기본 상태에서 라벨의 색상
+            label.style.fontWeight = 'normal'; // 기본 상태에서 폰트 두께
+            label.style.fontSize = '16px'; // 기본 상태에서 폰트 크기
+        }
+    }
+
+    // 초기 상태 적용
+    updateLabelStyle();
+
+    // 체크박스 상태가 변경될 때마다 라벨 스타일 업데이트
+    checkbox.addEventListener('change', updateLabelStyle);
+});
+
+//동의 체크박스 상태에 따라 탈퇴 버튼 활성화/비활성화
+document.addEventListener('DOMContentLoaded', function() {
+    // 체크박스와 버튼 요소를 가져옵니다
+    const checkbox = document.getElementById('cancel-account-check');
+    const deleteButton = document.getElementById('delete-account-btn');
+
+    // 체크박스의 상태에 따라 버튼 활성화/비활성화
+    checkbox.addEventListener('change', function() {
+        deleteButton.disabled = !this.checked;
+    });
+});
+
+// 탈퇴 버튼 클릭 시 확인 메시지 표시
 function confirmDelete() {
 	// 확인 및 취소 버튼이 있는 메시지 표시
-	var confirmed = confirm("정말로 회원 탈퇴하시겠습니까? 회원탈퇴 취소");
+	var confirmed = confirm("정말로 회원 탈퇴를 진행하시겠습니까?");
 
 	// 사용자가 '확인'을 클릭한 경우
 	if (confirmed) {

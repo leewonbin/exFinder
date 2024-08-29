@@ -218,6 +218,6 @@ public class FindController {
 		
 		session.removeAttribute("u_id_Find");
 		session.setAttribute("action", "pw_update");
-		return "/user/complete";
+		return "/user/login";
 	}
 }
