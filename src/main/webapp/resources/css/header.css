@@ -41,7 +41,8 @@
 	cursor: pointer;
 }
 
-.header_start>ul>li:hover {
+.header_start>ul>li:hover,
+.header_end a:hover	{
 	color: #054184;
 }
 
@@ -91,29 +92,36 @@
 .header_end_myPage {
 	display: flex;
 	align-items: center;
-	margin-right: 10px;
-	margin-top: 40px;
+	margin-right: 0px;
+	margin-top: 60px;
 }
 
 .header_end_myPage img {
 	margin-right: 10px;
-	width: 50px;
+	width: 35px;
 	height: auto;
+	/* margin-left: 10px; */
 }
 
 .header_end_myPage a {
 	text-decoration: none; /* 링크의 기본 밑줄 제거 */
 	color: #fff; /* 기본 링크 색상 설정 */
 	font-weight: bold; /* 기본 글자 굵기 설정 (기본값) */
+	/* margin-right: 15px; */
 }
-/* ▼ 버튼 스타일 설정 */
+/* 기본 버튼 스타일 */
 .header_end_myPage button {
-	background: none; /* 버튼 배경 제거 */
-	border: none; /* 버튼 테두리 제거 */
-	font-size: 24px; /* 버튼 크기 조정 */
-	cursor: pointer; /* 버튼 모양으로 커서 변경 */
-	color: #fff;
+    background: none; /* 기본 배경 제거 */
+    border: none; /* 기본 테두리 제거 */
+    width: 24px; /* 버튼 너비 */
+    height: 24px; /* 버튼 높이 */
+    cursor: pointer; /* 포인터 커서 사용 */
+    background-size: cover; /* 이미지 크기에 맞게 조정 */
+    background-repeat: no-repeat; /* 이미지 반복 방지 */
+    margin-left: 3px; 
+    margin-top: 2px;
 }
+
 
 
 
