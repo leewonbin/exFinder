@@ -19,9 +19,9 @@
 		<div class="header_wrapper">
 			<div class="header_start">
 				<ul>
-					<li>홈</li>
+					<li onclick="location.href='/ex/'">홈</li>
 					<li>알림</li>
-					<li>게시판</li>
+					<li onclick="location.href='/ex/board/listAll'">게시판</li>
 				</ul>
 			</div>
 			<div class="header_center">
