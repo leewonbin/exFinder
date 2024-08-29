@@ -13,10 +13,11 @@
 	<script src="${pageContext.request.contextPath}/resources/js/myInfo.js"></script>
 </head>
 <body>
+	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	<div id="main">
 		<div id="left_main">
 			<div class="sidebar_menu">
-				<img class="menu_logo" src="${pageContext.request.contextPath}/resources/img/logo-Photoroom.png" onclick="location.href='/ex/'"> 
+				
 				<img class="menu_user" src="${pageContext.request.contextPath}/resources/img/user.png" onclick="">
 				<div class="all_info">
 					<p class="user_info">${dto.u_nickname}</p>

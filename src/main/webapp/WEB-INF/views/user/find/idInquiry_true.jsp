@@ -11,7 +11,7 @@
 	
 </head>
 <body>
-	<%@include file="/WEB-INF/views/header/exFinder_Login_header.jsp"%>
+	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	<div id="main">
 		<h1>아이디 조회 결과</h1>
 		

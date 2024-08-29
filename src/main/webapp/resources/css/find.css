@@ -5,7 +5,7 @@
 	width: 100%; /* #main 요소의 너비를 100%로 설정하여 부모 요소의 너비에 맞추어 확장 */
 	text-align: center; /* #main 요소 내의 텍스트를 중앙 정렬 */
 	padding: 20px; /* #main 요소의 내부 여백을 상하 좌우 20px로 설정 */
-	margin-top: 80px; /* #main 요소의 상단 여백을 80px로 설정하여 위쪽 여백을 추가 */
+	margin-top: 250px; /* #main 요소의 상단 여백을 80px로 설정하여 위쪽 여백을 추가 */
 }
 /* #main 요소 내의 h1 태그 스타일 설정 */
 #main h1 {
@@ -18,7 +18,7 @@
 .find-button {
 	width: 180px; /* 버튼의 너비를 180px로 설정 */
 	height: 60px; /* 버튼의 높이를 60px로 설정 */
-	background-color: #4158D0; /* 버튼의 배경색을 #4158D0 (파란색)으로 설정 */
+	background-color: #05203c; /* 버튼의 배경색을 #4158D0 (파란색)으로 설정 */
 	border-radius: 8px; /* 버튼의 모서리를 8px로 둥글게 설정 */
 	color: white; /* 버튼 텍스트의 색상을 흰색으로 설정 */
 	padding: 10px 20px; /* 버튼의 내부 여백을 상하 10px, 좌우 20px로 설정 */
@@ -29,8 +29,7 @@
 }
 /* 버튼 hover 효과 */
 .find-button:hover {
-	background-color: #2f46a2;
-	/* 버튼 위에 마우스를 올렸을 때 배경색을 어두운 파란색 (#2f46a2)으로 변경 */
+	background-color: #054184;
 }
 
 .find-box {
@@ -39,7 +38,7 @@
 	border: none; /* 버튼의 테두리를 없앱니다. */
 	border-radius: 8px; /* 모서리를 둥글게 */
 	text-align: center; /* 텍스트 및 이미지 중앙 정렬 */
-	background-color: #4158D0; /* 배경색 설정 */
+	background-color: #05203c; /* 배경색 설정 */
 	margin-right: 10px; /* 박스 사이의 간격 */
 }
 
@@ -62,7 +61,7 @@
 
 /* 선택된 박스의 스타일 */
 .find-box.selected {
-	background-color: #2c46a0; /* 선택된 상태의 배경색 */
+	background-color: #054184; /* 선택된 상태의 배경색 */
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 선택된 상태의 그림자 효과 */
 }
 
@@ -144,7 +143,7 @@
 	display: inline-block;
 	width: 20px; /* 커스텀 체크박스 너비 */
 	height: 20px; /* 커스텀 체크박스 높이 */
-	border: 2px solid #4158D0; /* 테두리 색상 설정 */
+	border: 2px solid #05203c; /* 테두리 색상 설정 */
 	border-radius: 6px; /* 모서리를 둥글게 */
 	background-color: white; /* 기본 배경색 */
 	vertical-align: middle; /* 텍스트와 체크박스를 수직 중앙에 정렬 */
@@ -155,8 +154,8 @@
 /* 체크된 상태의 스타일 */
 .find-checkbox-container1 input[type="checkbox"]:checked+label::before,
 .find-checkbox-container2 input[type="checkbox"]:checked+label::before {
-	background-color: #4158D0; /* 체크 시 배경색 */
-	border-color: #4158D0; /* 체크 시 테두리 색상 */
+	background-color: #054184; /* 체크 시 배경색 */
+	border-color: #05203c; /* 체크 시 테두리 색상 */
 	content: '✓'; /* 체크된 상태에서 체크 표시 추가 */
 	color: white; /* 체크 표시의 색상 */
 	font-size: 14px; /* 체크 표시의 크기 */
@@ -164,10 +163,13 @@
 	line-height: 20px; /* 체크박스 내부에 텍스트 중앙 정렬 */
 }
 
+
+
+
 /* 인증번호 전송 버튼  스타일 */
 .find-certification-button {
 	height: 52px; /* 버튼의 높이를 60px로 설정 */
-	background-color: #4158D0; /* 버튼의 배경색을 #4158D0 (파란색)으로 설정 */
+	background-color: #05203c; /* 버튼의 배경색을 #4158D0 (파란색)으로 설정 */
 	border-radius: 0px; /* 버튼의 모서리를 8px로 둥글게 설정 */
 	color: white; /* 버튼 텍스트의 색상을 흰색으로 설정 */
 	padding: 5px 10px; /* 버튼의 내부 여백을 상하 10px, 좌우 20px로 설정 */
@@ -178,7 +180,7 @@
 }
 /* 인증번호 전송 버튼 hover 효과 */
 .find-certification-button:hover {
-	background-color: #2f46a2;
+	background-color: #054184;
 	/* 버튼 위에 마우스를 올렸을 때 배경색을 어두운 파란색 (#2f46a2)으로 변경 */
 }
 
@@ -218,4 +220,33 @@
 /* 행에 마우스를 올렸을 때 배경색 */
 .table-container tr:hover {
 	background-color: #d3d3d3; /* 마우스를 올렸을 때 행의 배경색을 더 두드러지게 설정 */
+}
+
+.inquiry {
+	display: flex; /* 수평 정렬을 위해 flex 사용 */
+	justify-content: center; /* 가운데 정렬 */
+	align-items: center; /* 수직 가운데 정렬 */
+}
+.inquiry ul {
+	display: flex; /* 수평 정렬을 위해 flex 사용 */
+	padding: 0; /* 기본 패딩 제거 */
+	margin-top: 5px; /* 기본 마진 제거 */
+	list-style: none; /* 기본 리스트 스타일 제거 */
+}
+.inquiry li {
+	margin: 0 10px; /* 각 항목 사이의 간격 */
+}
+/* 첫 번째 항목에만 오른쪽 테두리 추가 */
+.inquiry li:first-child {
+	border-right: 1px solid #d3d3d3; /* 회색 선으로 오른쪽 테두리 설정 */
+	padding-right: 20px; /* 오른쪽 여백 추가 */
+}
+.inquiry a {
+	text-decoration: none; /* 링크의 기본 밑줄 제거 */
+	color: #000; /* 기본 링크 색상 설정 */
+	font-weight: normal; /* 기본 글자 굵기 설정 (기본값) */
+}
+.inquiry a:hover {
+	color: #054184; /* 마우스를 올렸을 때 링크 색상 변경 */
+	font-weight: bold; /* 마우스를 올렸을 때 글자 굵기 변경 */
 }

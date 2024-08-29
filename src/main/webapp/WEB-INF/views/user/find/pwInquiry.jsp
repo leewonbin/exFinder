@@ -18,11 +18,11 @@
 	</style>
 </head>
 <body>
-	<%@include file="/WEB-INF/views/header/exFinder_Login_header.jsp"%>
+	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	<div id="main">
 		<h1 style="margin-bottom: 20px;">비밀번호를 찾고자하는 아이디를 입력해주세요.</h1>
 		
-		<p style="display: inline; color: blue;">01. 아이디 입력 </p> 
+		<p style="display: inline; color: #054184;">01. 아이디 입력 </p> 
 		-> <p style="display: inline;">02. 본인 확인 </p> 
 		-> <p style="display: inline;">03. 비밀번호 재설정 </p> <br>
 		
