@@ -26,7 +26,7 @@
 			</div>
 			<div class="header_center">
 				<!-- 로고 -->
-				<img src="${pageContext.request.contextPath}/resources/img/logo.png"
+				<img src="${pageContext.request.contextPath}/resources/img/newLogo.png"
 					onclick="location.href='/ex/'">
 			</div>
 			<c:choose>

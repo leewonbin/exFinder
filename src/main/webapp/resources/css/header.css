@@ -6,13 +6,15 @@
 	background-color: white;
 	box-shadow: 0 0 3px #8a8989;
 	z-index: 20;
+	color: #fff;
+	background-color: #05203C;
 }
 
 .header_wrapper {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	height: 100px;
+	height: 110px;
 	padding: 0 16px;
 	position: relative;
 	max-width: 1300px; /* 전체 헤더의 최대 너비 제한 */
@@ -30,7 +32,7 @@
 .header_start>ul {
 	display: flex;
 	list-style: none;
-	padding: 0;
+	margin-bottom: 15px;
 }
 
 .header_start>ul>li {
@@ -53,39 +55,36 @@
 }
 
 .header_center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	position: relative; /* 로고의 위치 조정 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .header_center>img {
-	width: 150px; /* 로고 크기 */
-}
-
-.header_end {
-	display: flex;
-	align-items: flex-end; /* 아래쪽 정렬 */
-	height: 100%; /* 전체 높이 차지 */
-	max-width: 200px; /* 로그인 섹션 최대 너비 제한 */
-	margin-left: 100px; /* 로고와의 간격을 더 넓히기 */
+	width: 180px; /* 로고 크기 */
 }
 
 .header_info {
 	margin: auto 0;
 }
 
-.header_end a {
-	text-decoration: none; /* 링크 밑줄 제거 */
-	color: #000; /* 링크 색상 */
-	font-weight: normal; /* 글자 굵기 */
+.header_end {
+	display: flex; 
+	align-items: flex-end; /* 아래쪽 정렬 */
+	height: 100%; /* 전체 높이 차지 */
+	max-width: 200px; /* 로그인 섹션 최대 너비 제한 */
+	margin-bottom: 30px; /* 로그인,회원가입   */
 }
 
 .header_end a {
-	text-decoration: none; /* 링크의 기본 밑줄 제거 */
-	color: #000; /* 기본 링크 색상 설정 */
-	font-weight: normal; /* 기본 글자 굵기 설정 (기본값) */
+	text-decoration: none; /* 링크 밑줄 제거 */
+	color: #fff; /* 링크 색상 */
+	font-weight: normal; /* 글자 굵기 */
+	margin: 0 0 0 30px; /* 상, 우, 하, 좌 */ /* 로그인,회원가입  좌,우 */
 }
 
 .header_end_myPage {

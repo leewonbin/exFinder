@@ -57,7 +57,7 @@
 		
 		<jdbc-user-service 
 			data-source-ref="dataSource" 
-			users-by-username-query="select u_id, u_pw, 1 as enabled from users where u_id = ?" 
+			users-by-username-query="select u_id, u_pw, enabled from users where u_id = ?" 
     		authorities-by-username-query="select u_id, authority from authorities where u_id = ?"  
 		/>
 	</authentication-provider> 
