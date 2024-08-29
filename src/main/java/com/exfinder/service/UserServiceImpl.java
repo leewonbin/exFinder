@@ -41,7 +41,13 @@ public class UserServiceImpl implements UserService {
 		UserDao dao=sqlSession.getMapper(UserDao.class);
 		dao.delete(u_id);
 	}
-
+	
+	@Override
+	public void deactivate(String u_id) throws Exception {
+		UserDao dao=sqlSession.getMapper(UserDao.class);
+		dao.deactivate(u_id);
+	}
+	
 	@Override
 	public void update(UserDto dto) throws Exception {
 		UserDao dao=sqlSession.getMapper(UserDao.class);
