@@ -27,25 +27,25 @@
 	height: 100%; /* 전체 높이 차지 */
 	max-width: 200px; /* 메뉴의 최대 너비 제한 */
 	margin-right: 100px; /* 로고와의 간격을 더 넓히기 */
+	margin-bottom: 25px;
 }
 
 .header_start>ul {
 	display: flex;
 	list-style: none;
-	margin-bottom: 15px;
 }
 
 .header_start>ul>li {
-	margin-left: 15px;
+	margin-left: 25px;
 	font-weight: bold;
 	cursor: pointer;
 }
 
 .header_start>ul>li:hover {
-	color: #007BFF;
+	color: #054184;
 }
 
-.header_start>ul>li:before {
+/* .header_start>ul>li:before {
 	display: inline-block;
 	content: "";
 	width: 1px;
@@ -53,7 +53,7 @@
 	background-color: #c2c2c2;
 	margin-right: 10px;
 }
-
+ */
 .header_center {
     position: absolute;
     left: 50%;
@@ -77,7 +77,7 @@
 	align-items: flex-end; /* 아래쪽 정렬 */
 	height: 100%; /* 전체 높이 차지 */
 	max-width: 200px; /* 로그인 섹션 최대 너비 제한 */
-	margin-bottom: 30px; /* 로그인,회원가입   */
+	margin-bottom: 25px; /* 로그인,회원가입   */
 }
 
 .header_end a {
@@ -85,12 +85,14 @@
 	color: #fff; /* 링크 색상 */
 	font-weight: normal; /* 글자 굵기 */
 	margin: 0 0 0 30px; /* 상, 우, 하, 좌 */ /* 로그인,회원가입  좌,우 */
+	font-weight: bold;
 }
 
 .header_end_myPage {
 	display: flex;
 	align-items: center;
 	margin-right: 10px;
+	margin-top: 40px;
 }
 
 .header_end_myPage img {
@@ -101,7 +103,7 @@
 
 .header_end_myPage a {
 	text-decoration: none; /* 링크의 기본 밑줄 제거 */
-	color: #000; /* 기본 링크 색상 설정 */
+	color: #fff; /* 기본 링크 색상 설정 */
 	font-weight: bold; /* 기본 글자 굵기 설정 (기본값) */
 }
 /* ▼ 버튼 스타일 설정 */
@@ -110,6 +112,7 @@
 	border: none; /* 버튼 테두리 제거 */
 	font-size: 24px; /* 버튼 크기 조정 */
 	cursor: pointer; /* 버튼 모양으로 커서 변경 */
+	color: #fff;
 }
 
 
