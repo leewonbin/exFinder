@@ -13,8 +13,6 @@
     grid-column-gap: 0px; /* 각 버튼 사이의 좌우 간격을 0px로 설정 */
     justify-items: center; /* 각 버튼을 수평 중앙에 정렬 */
     background-color: #ffffff; /* 배경색 설정 */
-    border-radius: 50px; /* 모서리를 둥글게 설정 */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
 }
 
     
@@ -47,6 +45,6 @@
 
 /* 버튼 hover 효과 */
 .myPage-button:hover {
-    border: 5px outset #4158D0
+    border: 5px outset #05203C
 }
 
