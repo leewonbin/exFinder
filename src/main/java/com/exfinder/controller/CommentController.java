@@ -69,6 +69,7 @@ public class CommentController {
 	    try {
 	        // DTO에 comm_id 설정
 	        //dto.setComm_id(comm_id);
+	    	System.out.println("commentDTO : " + dto.toString());
 	    	UserDto userDto = (UserDto)session.getAttribute("dto");
         	dto.setU_id(userDto.getU_id());
 	        cs.commentUpdate(dto);

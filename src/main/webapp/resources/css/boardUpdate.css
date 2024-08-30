@@ -1,4 +1,3 @@
-/* 기본 스타일 초기화 */
 body {
     font-family: Arial, sans-serif;
     color: #333;
@@ -6,73 +5,64 @@ body {
     padding: 0;
 }
 
-/* 메인 콘텐츠 스타일 */
 .main {
-    width: 80%; 
-    max-width: 800px; 
-    margin: 140px auto 20px; /* 수평 중앙 정렬 */
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;     
+    width: 80%;
+    max-width: 800px;
+    margin: 140px auto 20px;
     padding: 20px;
-}
-
-/* 폼 스타일 */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* 폼 요소들 사이의 간격 */
-}
-
-/* 제목 필드 스타일 */
-h2 {
-    margin-bottom: 15px; 
-}
-
-/* 카테고리 선택 스타일 */
-h2 select {
-    width: 20%; 
-    padding: 10px;
-    border: 1px solid #ddd; 
-    border-radius: 5px; /* 모서리 둥글게 */
-}
-
-/* 입력 필드 스타일 */
-h2 input[type="text"], h2 textarea {
-    width: 100%; 
-    padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 5px;
 }
 
-/* 텍스트 영역 스타일 */
-h2 textarea {
-    height: 150px; 
-    resize: vertical; /* 세로로만 크기 조절 가능 */
-    margin-bottom: 20px; 
+h2 {
+    margin-bottom: 10px;
 }
 
-/* 버튼 스타일 */
-button {
-    background-color: #05203C; 
-    color: white;
+
+.b_category input {
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 5px; /* 버튼 간격 */
+    margin-bottom: 20px;
+    font-size: 15px;
 }
 
-/* 버튼 호버 스타일 */
-button:hover {
-    background-color: #054184; 
+.b_category select {
+	width: 110px;
+    height: 35px;
+    padding: 0 15px;
 }
 
-/* box-footer 스타일 */
+
+.b_title input {
+    border: 1px solid #ddd;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    padding: 0 15px;
+}
+
+.b_content textarea {
+	border: 1px solid #ddd;
+	font-size: 15px;
+	padding: 25px 15px;
+}
+
 .box-footer {
-    display: flex;
-    justify-content: flex-end; /* 버튼들을 오른쪽으로 정렬 */
-    gap: 10px; 
-    margin-top: 10px; /* 상단 여백 (필요에 따라 조정) */
+	display: flex; /* Flexbox 레이아웃 활성화 */
+	justify-content: flex-end; /*우측으로 정렬*/
+	margin-top: 20px;
+}
+
+.box-footer button {
+	width: 50px;
+	height: 35px;
+	margin: 0 5px;
+	background-color: #05203C;
+	color: white;
+	font-size: 15px;
+	cursor: pointer;
+	border: none;
+}
+
+.box-footer button:hover {
+	background-color: #054184;
 }

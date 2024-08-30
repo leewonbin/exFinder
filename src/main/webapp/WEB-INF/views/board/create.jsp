@@ -30,7 +30,7 @@
 		<!-- 	<form role="form" method="post"> -->
 		<form role="form" method="post">
 
-			<h2>
+			<h2 class="b_category">
 				<select name="b_category">
 					<option value="공지사항">공지사항</option>
 					<option value="자유게시판">자유게시판</option>
@@ -38,13 +38,13 @@
 				</select>
 			</h2>
 
-			<h3>
+			<h2 class="b_title">
 				<input type="text" name='b_title' placeholder="제목 입력"
 					style="width: 100%">
-			</h3>
+			</h2>
 
 
-			<h2>
+			<h2 class="b_content">
 				<textarea name="b_content" rows="35" style="width: 100%"
 					placeholder="내용 입력"></textarea>
 			</h2>
@@ -53,7 +53,9 @@
 				<input type="text" name="u_id" placeholder="작성자" style="width: 100%">
 			</h2>
 
-			<button type="submit" class="btn btn-primary">등록</button>
+			<div class="submitBtn">
+                <button type="submit">등록</button>
+            </div>
 
 		</form>
 

@@ -40,26 +40,26 @@ $(document).ready(function() {
                     console.log(res);
                     if (res.parent_id === null) {
                         commArea.append(
-                            "<div id='c_" + res.comm_id + "' class='comment'>" +
-                            "<p>" + res.u_id + "</p>" +
-                            "<p>" + res.comm_date+ "</p>" +
-                            "<p class='comment-content'>" + res.comm_content + "</p>" +
+                            "<div id='c_" + res.comm_id + "' class='comment'>" +		// 부모 댓글 전체 영역
+                            "<p>" + res.u_id + "</p>" +									// 아이디
+                            "<p>" + res.comm_date+ "</p>" +								// 작성일차
+                            "<p class='comment-content'>" + res.comm_content + "</p>" +	// 내용
                             "<button class='edit-btn' data-id='" + res.comm_id + "'>수정</button>" +
                             "<button class='del-btn' data-id='" + res.comm_id + "'>삭제</button>" +
                             "<button class='reply-btn' data-id='" + res.comm_id + "'>답글</button>" +
-                            "<div class='reply_area' id='reply-section" + res.comm_id + "' style='display:none;'>" +
-                            "<textarea cols='30' rows='5' data-parent-id='" + res.comm_id + "'></textarea>" +
-                            "<button class='reply_btn' data-parent-id='" + res.comm_id + "'>등록</button>" +
+                            "<div class='reply_area' id='reply-section" + res.comm_id + "' style='display:none;'>" + // 답글 입력 영역
+                            "<textarea cols='30' rows='5' data-parent-id='" + res.comm_id + "'></textarea>" +		// 답글 인풋창
+                            "<button class='reply_btn' data-parent-id='" + res.comm_id + "'>등록</button>" +			// 답글 등록 버튼
                             "</div>" +
-                            "<div id='reply_" + res.comm_id + "'></div>" +
+                            "<div id='reply_" + res.comm_id + "'></div>" +											// 부모 댓글의 답글 영역 
                             "</div><br>"
                         );
                     } else {
                         $("#reply_" + res.parent_id).append(
-                            "<div id='c_" + res.comm_id + "' class='reply'>" +
-                            "<p>" + res.u_id + "</p>" +
-                            "<p>" + res.comm_date+ "</p>" +
-                            "<p class='reply-content'>" + res.comm_content + "</p>" +
+                            "<div id='c_" + res.comm_id + "' class='reply'>" +										// 자식 댓글 아이디
+                            "<p>" + res.u_id + "</p>" +																// 자식 댓글 작성자 아이디
+                            "<p>" + res.comm_date+ "</p>" +															// 날짜
+                            "<p class='reply-content'>" + res.comm_content + "</p>" +								// 내용
                             "<button class='edit-btn' data-id='" + res.comm_id + "'>수정</button>" +
                             "<button class='del-btn' data-id='" + res.comm_id + "'>삭제</button>" +
                             "</div><br>"

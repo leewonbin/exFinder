@@ -15,18 +15,15 @@
 	href="${pageContext.request.contextPath}/resources/css/boardUpdate.css">
 </head>
 <body>
+	<div>
+		<%@include file="../header/exFinder_header.jsp"%>
+	</div>
+
 	<div class="main">
 
 		<form role="form" method="post">
 
-			<div class="box-body">
-
-				<h2>
-					<input type="text" name='bId' style="width: 20%"
-						value="${boardDto.b_id}" readonly="readonly">
-				</h2>
-
-				<h2>
+				<h2 class="b_category">
 					<select name="b_category">
 						<option value="공지사항">공지사항</option>
 						<option value="자유게시판">자유게시판</option>
@@ -34,27 +31,23 @@
 					</select>
 				</h2>
 
-				<h2>
+				<h2 class="b_title">
 					<input type="text" name='b_title' style="width: 100%"
 						value="${boardDto.b_title}">
 				</h2>
 
-				<h2>
-					<input type="text" name="u_id" style="width: 20%"
-						value="${boardDto.u_id}" readonly>
-				</h2>
-
-				<h2>
+				<h2 class="b_content">
 					<textarea style="width: 100%" name="b_content" rows="35">${boardDto.b_content}</textarea>
 				</h2>
-
+				
+				<div class="box-footer">
+					<button type="submit" class="btn btn-primary">저장</button>
+					<button type="submit" class="btn btn-warning">취소</button>
+				</div>
 			</div>
 
 		</form>
-		<div class="box-footer">
-			<button type="submit" class="btn btn-primary">저장</button>
-			<button type="submit" class="btn btn-warning">취소</button>
-		</div>
+	
 		<script>
 			$(document).ready(function() {
 				var formObj = $("form[role='form']");
