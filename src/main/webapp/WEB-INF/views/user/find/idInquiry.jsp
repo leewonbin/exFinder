@@ -21,7 +21,7 @@
 
 </head>
 <body>
-	<%@include file="/WEB-INF/views/header/exFinder_Login_header.jsp"%>
+	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	<div id="main">
 		<h1>아이디 찾기</h1>
 		<p>아이디 찾기를 위해 이메일이나 휴대폰을 선택해주세요.</p>

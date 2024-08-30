@@ -1,0 +1,81 @@
+/* 기본 스타일 초기화 */
+body {
+	font-family: Arial, sans-serif;
+	color: #333;
+	margin: 0;
+	padding: 0;
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+	margin-left: 220px; /* 사이드바 너비보다 약간 큰 여백 */
+	padding: 20px;
+}
+
+/* 전체 컨테이너 스타일 */
+.main {
+	width: 80%;
+	max-width: 800px;
+	margin: 140px auto 20px; /* 수평 중앙 정렬 */
+	display: flex;
+	flex-direction: column;
+	background-color: #ffffff;
+	padding: 20px;
+}
+
+/* 폼 스타일 */
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 3px; /* 폼 요소들 사이의 간격 */
+}
+
+/* 제목 필드 스타일 */
+h3 {
+	margin-bottom: 10px; /* 제목 필드와 카테고리 사이 여백 */
+}
+
+/* 내용 입력 스타일 */
+h2 textarea {
+	width: 100%; /* 텍스트 영역 너비 조정 */
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	margin-bottom: 20px; /* 내용 입력 필드와 작성자 입력 필드 사이의 여백 */
+}
+
+/* 작성자 입력 스타일 */
+h2 input[type="text"] {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+/* 버튼 스타일 */
+button {
+	background-color: #05203C; /* 버튼 배경색 */
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 5px; /* 버튼과 다른 요소 사이의 여백 */
+}
+
+button:hover {
+	background-color: #054184; /* 호버 시 버튼 배경색 */
+}
+
+.comment {
+	margin : 0 auto;
+	width : 760px;
+	
+	background-color: lightgray;
+}
+
+.reply {
+	background-color: green;
+	margin-left: 50px;
+}

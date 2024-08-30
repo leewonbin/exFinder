@@ -27,7 +27,11 @@ delete from users where u_id=#{u_id, jdbcType=NVARCHAR}
 </delete>
 
 <update id="update">
-update users set u_pw=#{u_pw}, u_nickname=#{u_nickname}, u_name=#{u_name}, u_gender=#{u_gender}, u_birthday=#{u_birthday}, u_email=#{u_email}, u_phoneNumber=#{u_phoneNumber},u_address=#{u_address}
+update users set u_nickname=#{u_nickname}, u_name=#{u_name}, u_gender=#{u_gender}, u_birthday=#{u_birthday}, u_email=#{u_email}, u_phoneNumber=#{u_phoneNumber}, u_address=#{u_address}
+ where u_id=#{u_id}
+</update>
+<update id="deactivate">
+update users set enabled = 0
  where u_id=#{u_id}
 </update>
 

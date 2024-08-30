@@ -125,7 +125,8 @@ public class FindController {
 			String ran = Integer.toString(rand.nextInt(10));
 			numStr += ran;
 		}
-
+		System.out.println("인증 번호 : " + numStr);
+		 
 		String u_id = (String) session.getAttribute("u_id_Find");
 		String u_email = email + "@" + select;
 
@@ -158,7 +159,8 @@ public class FindController {
 			String ran = Integer.toString(rand.nextInt(10));
 			numStr += ran;
 		}
-
+		System.out.println("인증 번호 : " + numStr);
+		
 		String u_id = (String) session.getAttribute("u_id_Find");
 		String u_phoneNumber = phoneNum1 + "-" + phoneNum2 + "-" + phoneNum3;
 
@@ -216,6 +218,6 @@ public class FindController {
 		
 		session.removeAttribute("u_id_Find");
 		session.setAttribute("action", "pw_update");
-		return "/user/complete";
+		return "/user/login";
 	}
 }

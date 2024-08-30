@@ -5,19 +5,22 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class BoardDto {
-    
-	private int b_id;				//게시판 번호
-	private String b_title;			//게시판 제목
-	private String b_content;		//게시판 내용
-	private String b_category;		//게시판 카테고리
-	private int b_view;				//조회수
-	private String u_id;			//유저 아이디(작성자)
-	private String b_del="N";		//게시판 삭제 여부
 
-	public BoardDto() {}
+	private int b_id; // 게시판 번호
+	private String b_title; // 게시판 제목
+	private String b_content; // 게시판 내용
+	private String b_category = ""; // 게시판 카테고리
+	private int b_view; // 조회수
+	private String u_id; // 유저 아이디(작성자)
+	private String b_del = "N"; // 게시판 삭제 여부
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date b_date;
+	
+	public BoardDto() {
+	}
 	
 	public BoardDto(int b_id, String b_title, String b_content, String b_category, int b_view, String u_id,
-			String b_del) {
+			String b_del, Date b_date) {
 		super();
 		this.b_id = b_id;
 		this.b_title = b_title;
@@ -26,8 +29,9 @@ public class BoardDto {
 		this.b_view = b_view;
 		this.u_id = u_id;
 		this.b_del = b_del;
+		this.b_date = b_date;
 	}
-
+	
 	public int getB_id() {
 		return b_id;
 	}
@@ -70,12 +74,17 @@ public class BoardDto {
 	public void setB_del(String b_del) {
 		this.b_del = b_del;
 	}
-	
+	public Date getB_date() {
+		return b_date;
+	}
+	public void setB_date(Date b_date) {
+		this.b_date = b_date;
+	}
 	
 	@Override
 	public String toString() {
 		return "BoardDto [b_id=" + b_id + ", b_title=" + b_title + ", b_content=" + b_content + ", b_category="
-				+ b_category + ", b_view=" + b_view + ", u_id=" + u_id + ", b_del=" + b_del + "]";
+				+ b_category + ", b_view=" + b_view + ", u_id=" + u_id + ", b_del=" + b_del + ", b_date=" + b_date
+				+ "]";
 	}
-	
 }

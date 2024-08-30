@@ -16,6 +16,9 @@ public interface UserDao {
 	public void insert(UserDto dto) throws Exception;
 	
 	public void delete(String u_id) throws Exception;
+	
+	public void deactivate(String u_id) throws Exception;
+	
 	public void update(UserDto dto) throws Exception;
 	
 	

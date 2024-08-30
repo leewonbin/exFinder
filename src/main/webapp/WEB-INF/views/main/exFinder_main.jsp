@@ -6,251 +6,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>웹페이지</title>
-<style>
-/* 페이지 전체 크기와 기본 설정 */
-body, html {
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 100%;
-	font-family: Arial, sans-serif;
-	box-sizing: border-box; /* padding과 border가 포함된 크기를 계산 */
-}
-
-/* 콘텐츠 영역 */
-.content {
-	height: calc(4000px - 120px); /* 헤더를 제외한 나머지 공간 */
-	padding: 20px;
-	position: relative;
-}
-
-/* p 태그 스타일 */
-.exchange-rate-calculator {
-	font-size: 1.1em;
-	font-weight: bold;
-	margin-left: 325px; /* x 위치 조정 */
-	margin-top: 208px; /* y 위치 조정 */
-}
-
-/* p 태그 스타일 - 국가별 차트 */
-.country-chart {
-	font-size: 1.1em;
-	font-weight: bold;
-	margin-left: 325px; /* x 위치 조정 */
-	margin-top: 100px; /* p 태그와 div 간의 간격 조정 */
-}
-
-/* 구분선 스타일 */
-.divider {
-	margin: 20px 0; /* 위 아래 여백 */
-	border: none;
-	height: 1px;
-	background-color: #dcdcdc; /* 밝은 회색 구분선 */
-}
-
-/* div 영역 스타일 */
-.calculator-container {
-	width: 100vw; /* 화면의 전체 너비 */
-	height: 400px;
-	background-color: #D4F4FC;
-	margin-top: 20px; /* p 태그와 div 간격 */
-	margin-left: calc(-50vw + 50%); /* 화면 전체 너비를 차지하게 정렬 */
-	display: flex;
-	justify-content: space-between; /* 왼쪽과 오른쪽으로 배치 */
-	padding: 20px;
-	box-sizing: border-box; /* padding과 border가 포함된 크기 계산 */
-}
-
-/* 기준 통화와 결과 통화 섹션 스타일 */
-.currency-section {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start; /* 왼쪽 정렬 */
-	justify-content: center;
-	position: relative; /* 상대 위치 설정 */
-}
-
-/* input 화살표 없앰 */
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-}
-
-/* 기준 통화 섹션 */
-.baseSection {
-	margin-left: 360px;
-}
-
-/* 결과 통화 섹션 */
-.resultSection {
-	margin-right: 360px;
-}
-
-/* = 문자 스타일 */
-.equals-sign {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 50px; /* 너비 조정 */
-	height: 50px; /* 높이 조정 */
-	text-align: center;
-	margin-top: 220px
-}
-
-/* selectbox와 input 스타일 */
-.currency-section select, .currency-section input {
-	/* padding: 10px; */
-	box-sizing: border-box; /* padding과 border가 포함된 크기 계산 */
-}
-
-/* 기준 통화 selectbox 스타일 */
-.base-currency-select {
-	width: 350px;
-	height: 100px;
-	margin-bottom: 40px;
-	opacity: 0.8;
-	border: none;
-}
-
-/* 기준 통화 숫자 입력 input 스타일 */
-.base-amount-input {
-	width: 500px;
-	height: 130px;
-	margin-bottom: 0; /* margin-bottom을 0으로 설정하여 겹치지 않도록 조정 */
-	position: relative; /* 상대 위치 설정 */
-	border: none;
-	text-align: right;
-	font-size: 1.8em;
-	padding-bottom: 30px;
-	padding-right: 20px;
-	box-shadow: 3px 3px 1px #C8E2E8;
-}
-
-/* 기준 통화 결과 표시 input 스타일 */
-.base-result-input {
-	width: 500px;
-	height: 37px;
-	background-color: white;
-	position: absolute; /* 절대 위치 설정 */
-	bottom: 50px;
-	left: 0;
-	margin: 0;
-	border: none;
-	text-align: right;
-	padding-right: 20px;
-}
-
-/* 결과 통화 selectbox 스타일 */
-.result-currency-select {
-	width: 350px;
-	height: 100px;
-	margin-bottom: 40px;
-	opacity: 0.8;
-	border: none;
-}
-
-/* 결과 통화 숫자 입력 input 스타일 */
-.result-amount-input {
-	width: 500px;
-	height: 130px;
-	margin-bottom: 0; /* margin-bottom을 0으로 설정하여 겹치지 않도록 조정 */
-	position: relative; /* 상대 위치 설정 */
-	border: none;
-	text-align: right;
-	font-size: 1.8em;
-	padding-bottom: 30px;
-	padding-right: 20px;
-	box-shadow: 3px 3px 1px #C8E2E8;
-}
-
-/* 결과 통화 결과 표시 input 스타일 */
-.result-result-input {
-	width: 500px;
-	height: 37px;
-	background-color: white;
-	position: absolute; /* 절대 위치 설정 */
-	bottom: 50px;
-	left: 0;
-	margin: 0;
-	border: none;
-	text-align: right;
-	padding-right: 20px;
-}
-/* 슬라이드 쇼 */
-/* li{list-style:none;}
-.flex{
-  display:flex;
-}
-
-.flex-jc-c{
-  justify-content:center;
-}
-.con{
-  max-width:1200px;
-  margin:0 auto;
-  border:solid red;
-}
-
-.article-board-box{
-  position:relative;
-  border:solid red;
-}
-.slide_wrapper{
-  border:solid red;
-  position:relative;
-  width:960px;
-  margin:0 auto;
-  height:300px;
-  overflow:hidden
-}
-
-.slides{
-  position:absolute;
-  left:0;
-  top:0;
-  transition:left 0.5s ease-out;
-}
-
-.slides li:not(:last-child){
-  justify-content:flex-start;
-  margin-right:30px;
-}
-
-
-.controls{
-  text-align:center;
-}
-
-.controls span{
-  z-index:2;
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-}
-
-.controls>.prev{
-  right:calc(100% - 40px);
-}
-
-.controls>.next{
-  left:calc(100% - 40px);
-}
-
-.ha{
-  width:50px;
-} */
-</style>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/exFinder_main.css">
+<script src="${pageContext.request.contextPath}/resources/js/mainScrollJs.js"></script>
 </head>
 <body>
 	<!-- 헤더 Include -->
-	<div class="header">
+ 	<div class="include_header">
 		<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	</div>
 
 	<!-- 메인 콘텐츠 -->
 	<div class="content">
 		<!-- 환율 계산기 p 태그 -->
-		<p class="exchange-rate-calculator">환율 계산기</p>
+<!-- 		<p class="exchange-rate-calculator">환율 계산기</p> -->
+
+<div class="top-content">
+	<div class="top-content-wrap">
+		<div class="top-content-start">
+			<img src="${pageContext.request.contextPath }/resources/img/newLogo.png"/>
+			<ul>
+				<li>홈</li>
+				<li>알림</li>
+				<li>게시판</li>
+			</ul>
+		</div>
+		<div class="top-content-end">
+			<ul>
+				<li>로그인</li>
+				<li>회원가입</li>
+			</ul>
+		</div>
+	</div>
+</div>
 
 		<!-- 환율 계산기 div 영역 -->
 		<div class="calculator-container">
@@ -381,7 +168,6 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 				'input', updateResult);
 		document.getElementById('result-currency-select').addEventListener(
 				'change', updateResult);
-		
 		/* var slides = document.querySelector('.slides'),
 		  slide = document.querySelectorAll('.slides li'),
 		  currentIdx = 0,

@@ -196,15 +196,15 @@ public class UserController {
 	    return "/user/complete";
 	}
 	
-	//유저 탈퇴 처리
-	@RequestMapping(value = "/user/deleteDB", method = RequestMethod.GET)
-	public String deleteDB(HttpServletRequest request, HttpSession session) throws Exception{
-		System.out.println("User deleteDB");
+	//유저 탈퇴 처리, 비활성화
+	@RequestMapping(value = "/user/deactivateDB", method = RequestMethod.GET)
+	public String deactivateDB(HttpServletRequest request, HttpSession session) throws Exception{
+		System.out.println("유저 계정이 비활성화 되었습니다.");
 		
 		String u_id = (String) session.getAttribute("userId");
-		userService.delete(u_id);
-		session.setAttribute("action", "delete");
-		return "/user/complete";
+		userService.deactivate(u_id);
+		
+		return "/main/exFinder_main";
 	}
 	
 	@RequestMapping(value = "/user/Logincomplete", method = RequestMethod.GET)
@@ -219,12 +219,53 @@ public class UserController {
 		
 	}
 	@RequestMapping(value = "/user/myInfo", method = RequestMethod.GET)
-	public void myInfo(Model model, HttpSession session) throws Exception{
+	public void myInfo(UserDto dto, Model model, HttpSession session) throws Exception{
 		String userid = (String)session.getAttribute("userId");
-		model.addAttribute("dto", userService.selectUser(userid));
+		dto = userService.selectUser(userid);
+		model.addAttribute("dto", dto);
+		
+		String u_email = dto.getU_email();
+        String[] u_emailArr = u_email.split("@");
+        model.addAttribute("u_emailArr", u_emailArr);
+            
+        String u_phoneNumber = dto.getU_phoneNumber();
+        String[] u_phoneNumberArr = u_phoneNumber.split("-");
+        model.addAttribute("u_phoneNumberArr", u_phoneNumberArr);
 		
 	}
+	
+	@RequestMapping(value = "/user/myInfo/menber_upDB", method = RequestMethod.POST)
+	public String menber_upDB(UserDto dto, String u_pw, Model model, HttpServletRequest request) throws Exception{
+		
+		String u_email = request.getParameter("email") + "@" + request.getParameter("select");
+	    System.out.println("u_email : " + u_email);
+	    dto.setU_email(u_email);
+	    	
+		String u_phoneNumber = request.getParameter("phoneNumber1") + "-" + request.getParameter("phoneNumber2") + "-" + request.getParameter("phoneNumber3");
+	    System.out.println("u_phoneNumber : " + u_phoneNumber );
+	    dto.setU_phoneNumber(u_phoneNumber);
+		
+	    userService.update(dto);
+		System.out.println(dto);
+		
+		return "/user/myPage";
+	}
+	
+	@RequestMapping(value = "/user/myInfo/pw_upDB", method = RequestMethod.POST)
+	public String pw_upDB(UserDto dto, String u_pw, Model model, HttpSession session) throws Exception{
+		String u_id = (String) session.getAttribute("userId");
+	    
+		String encPassword = bcryptPasswordEncoder.encode(u_pw);
 
+		userService.pw_update(u_id, encPassword);
+		
+		System.out.println("u_id : " + u_id);
+		System.out.println("u_pw : " + encPassword);
+		return "/user/myPage";
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "/user/myBoard", method = RequestMethod.GET)
 	public void myBoard() throws Exception{

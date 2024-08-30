@@ -18,7 +18,7 @@ import com.exfinder.service.BoardService;
 import com.exfinder.vo.BoardVo;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/board/*")
 public class BoardController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
@@ -35,19 +35,19 @@ public class BoardController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String createPOST(BoardDto board, Model model, RedirectAttributes rttr) throws Exception {
 		logger.info("create post..........");
-		
+		logger.info(board.toString());
 		System.out.println(board);
 		service.create(board);
-		rttr.addFlashAttribute("msg", "생성 완료 되었습니다.");
+		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/board/listAll";
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void read(@RequestParam("b_id") int b_id, Model model) throws Exception {
 		logger.info("read.........." + b_id);
-		
 		service.b_viewUpdate(b_id);				//조회수
-		model.addAttribute(service.read(b_id));	//model.addAttribute("board", board); 명확한 키 사용
+		BoardDto board = service.read(b_id);
+		model.addAttribute("boardDto", board);
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
@@ -57,21 +57,23 @@ public class BoardController {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updatePOST(BoardDto board, RedirectAttributes rttr) throws Exception {
+		System.out.println("--------------------------확인");
+		System.out.println(board.toString());
 		logger.info("mod post..........");
 		service.update(board);
-		rttr.addFlashAttribute("msg", "수정 완료 되었습니다.");
+		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/board/listAll";
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(@RequestParam("b_id") int b_id, RedirectAttributes rttr) throws Exception {
 		service.delete(b_id);
-		rttr.addFlashAttribute("msg", "삭제 완료 되었습니다.");
+		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/board/listAll";
 	}
 	
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
-	public void listAll(@RequestParam(value = "bCategory", required = false) String b_category,
+	public void listAll(@RequestParam(value = "b_category", required = false) String b_category,
 	                    @RequestParam(value = "searchType", required = false) String searchType,
 	                    @RequestParam(value = "keyword", required = false) String keyword,
 	                    @ModelAttribute("boardVo") BoardVo vo, Model model) throws Exception {
@@ -94,9 +96,8 @@ public class BoardController {
 		}else {
 			vo.setKeyword(null);		//검색창 비어있을 때 관련 카테고리 전부 나오게
 		}
-		System.out.println(b_category);
-		int totalCnt = service.categoryCnt(vo);
-		System.out.println(totalCnt);
+		
+		int totalCnt = service.listAll().size();
 	    List<BoardDto> boardList = service.listSearch(vo); 
 	    vo.setTotalCount(totalCnt);
 	    model.addAttribute("list", boardList);

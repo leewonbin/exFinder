@@ -11,7 +11,10 @@ public void insert(UserDto dto) throws Exception;
 	
 	public List<UserDto> selectAll() throws Exception;
 	public void delete(String u_id) throws Exception;
-	public void update(UserDto dto) throws Exception;	
+	
+	public void deactivate(String u_id) throws Exception;
+	
+	public void update(UserDto dto) throws Exception;
 	
 	public List<UserDto> select_idInquiry_email(String u_name, String u_email);
 	public List<UserDto> select_idInquiry_phone( String u_name, String u_phoneNumber);
