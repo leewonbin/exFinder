@@ -72,7 +72,7 @@
 				<li>즐겨찾기</li>
 			</ul>
 			<button type="button" class="mini_myPage_button" onclick="" >
-				설정<img src="${pageContext.request.contextPath}/resources/img/Psetup.png">
+				설정<img src="${pageContext.request.contextPath}/resources/img/Nsetup1.png">
 			</button>
 		</div>
 	</div>
