@@ -3,142 +3,114 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="logout-status"
+	content="${sessionScope.userId == null ? 'logged-out' : 'logged-in'}">
+<title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/boardList.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/boardList.css">
 
-<script>
-	$(document).ready(
-			function() {
-				// 등록 성공 알림창
-				var result = '${msg}';
-				if (result == 'success') {
-					alert("처리가 완료되었습니다.");
-				}
-
-				// 카테고리별 조회? 버튼 
-				$('.cButton').on(
-						"click",
-						function() {
-							var category = $(this).data('category');
-							var url = "listAll?bCategory="
-									+ encodeURIComponent(category);
-							window.location.href = url;
-						});
-
-				// 검색하기 버튼
-				$('#searchBtn')
-						.on(
-								"click",
-								function(event) {
-									var searchType = $(
-											"select[name='searchType']").val();
-									var keyword = $('#keywordInput').val();
-									var url = "listAll?bCategory="
-											+ encodeURIComponent(searchType)
-											+ "&keyword="
-											+ encodeURIComponent(keyword);
-									window.location.href = url;
-								});
-
-				// 글쓰기 버튼
-				$('.writeBtn').on("click", function(event) {
-					location.href = "/ex/board/create";
-				});
-			});
-</script>
-
-
-<div>
-<%@include file="../header/exFinder_header.jsp"%>
-</div> 
-
-<div class="main">
-	<c:if test="${not empty param.b_category}">${param.b_category}</c:if>
-	<div class="sidebar">
-		<button class="cButton" data-category="">전체글보기</button>
-		<button class="cButton" data-category="공지사항">공지사항</button>
-		<button class="cButton" data-category="자유게시판">자유게시판</button>
-		<button class="cButton" data-category="고객센터">고객센터</button>
-							<!-- data-category는 커스텀 데이터 속성으로 특정 요소에 추가적인 데이터 저장 가능 -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/listAllJs.js"></script>
+<body>
+	<div>
+		<%@include file="../header/exFinder_header.jsp"%>
 	</div>
 
-<div class="main-content">
-        <div class="horizontal-line"></div>
+	<div class="main">
+		<c:if test="${not empty param.b_category}">${param.b_category}</c:if>
+		<div class="sidebar">
+			<button class="cButton" data-category="">전체글보기</button>
+			<button class="cButton" data-category="공지사항">공지사항</button>
+			<button class="cButton" data-category="자유게시판">자유게시판</button>
+			<button class="cButton" data-category="고객센터">고객센터</button>
+			<!-- data-category는 커스텀 데이터 속성으로 특정 요소에 추가적인 데이터 저장 가능 -->
+		</div>
 
-        <div class="search-container">
-            <select name="searchType">
-                <option value="-----">-----</option>
-                <option value="공지사항">공지사항</option>
-                <option value="자유게시판">자유게시판</option>
-                <option value="고객센터">고객센터</option>
-            </select>
-            <input type="text" id="keywordInput" placeholder="검색어 입력">
-            <button id="searchBtn">검색</button>
-        </div>
+		<div class="main-content">
+			<div class="horizontal-line"></div>
 
-        <table id='customers'>
-            <thead>
-                <tr>
-                    <th style="width: 20px; text-align: center;">No.</th>
-                    <th style="width: 50px; text-align: center;">카테고리</th>
-                    <th style="width: 200px; text-align: center;">제목</th>
-                    <th style="width: 30px; text-align: center;">작성자</th>
-                    <th style="width: 50px; text-align: center;">작성일</th>
-                    <th style="width: 20px; text-align: center;">조회</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${list}" var="boardDto">
-                    <tr>
-                        <td style="text-align: center;">${boardDto.b_id }</td>
-                        <td style="text-align: center;">${boardDto.b_category }</td>
-                        <td style="text-align: center;"><a href="/ex/board/read?b_id=${boardDto.b_id}">${boardDto.b_title}</a></td>
-                        <td style="text-align: center;">${boardDto.u_id}</td>
-                        <td style="text-align: center;"><fmt:formatDate value="${boardDto.b_date}" pattern="yyyy-MM-dd" /></td>
-                        <td style="text-align: center;">${boardDto.b_view}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+			<div class="search-container">
+				<select name="searchType">
+					<option value="-----">-----</option>
+					<option value="공지사항">공지사항</option>
+					<option value="자유게시판">자유게시판</option>
+					<option value="고객센터">고객센터</option>
+				</select> <input type="text" id="keywordInput" placeholder="검색어 입력">
+				<button id="searchBtn">검색</button>
+			</div>
 
-        <div class="writeBtn-container">
-            <button class="writeBtn">글쓰기</button>
-        </div>
+			<table id='customers'>
+				<thead>
+					<tr>
+						<th style="width: 20px; text-align: center;">No.</th>
+						<th style="width: 50px; text-align: center;">카테고리</th>
+						<th style="width: 200px; text-align: center;">제목</th>
+						<th style="width: 30px; text-align: center;">작성자</th>
+						<th style="width: 50px; text-align: center;">작성일</th>
+						<th style="width: 20px; text-align: center;">조회</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${list}" var="boardDto">
+						<tr>
+							<td style="text-align: center;">${boardDto.b_id }</td>
+							<td style="text-align: center;">${boardDto.b_category }</td>
+							<td style="text-align: center;"><a
+								href="/ex/board/read?b_id=${boardDto.b_id}">${boardDto.b_title}</a></td>
+							<td style="text-align: center;">${boardDto.u_id}</td>
+							<td style="text-align: center;"><fmt:formatDate
+									value="${boardDto.b_date}" pattern="yyyy-MM-dd" /></td>
+							<td style="text-align: center;">${boardDto.b_view}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 
-        <div class="pagination">
-            <c:if test="${boardVo.page !=1}">
-                <a href='listAll${boardVo.makeSearch(1)}'>&lt;&lt;&lt;</a>
-            </c:if>
+			<div class="writeBtn-container">
+				<button class="writeBtn">글쓰기</button>
+			</div>
 
-            <c:if test="${boardVo.prev }">
-                <a href='listAll${boardVo.makeSearch(boardVo.startPage-1)}'>&lt;&lt;</a>
-            </c:if>
+			<div class="pagination">
+				<c:if test="${boardVo.page !=1}">
+					<a href='listAll${boardVo.makeSearch(1)}'>&lt;&lt;&lt;</a>
+				</c:if>
 
-            <c:if test="${boardVo.page != 1}">
-                <a href='listAll${boardVo.makeSearch(boardVo.page-1)}'>&lt;</a>
-            </c:if>
+				<c:if test="${boardVo.prev }">
+					<a href='listAll${boardVo.makeSearch(boardVo.startPage-1)}'>&lt;&lt;</a>
+				</c:if>
 
-            <c:forEach begin="${boardVo.startPage }" end="${ boardVo.endPage}" var="idx">
-                <a href='listAll${boardVo.makeSearch(idx)}'
-                   <c:out value="${boardVo.page==idx?' class=active ':'' }"/>>
-                   ${idx}</a>
-            </c:forEach>
+				<c:if test="${boardVo.page != 1}">
+					<a href='listAll${boardVo.makeSearch(boardVo.page-1)}'>&lt;</a>
+				</c:if>
 
-            <c:if test="${boardVo.page != boardVo.totalEndPage}">
-                <a href='listAll${boardVo.makeSearch(boardVo.page+1)}'>&gt;</a>
-            </c:if>
+				<c:forEach begin="${boardVo.startPage }" end="${ boardVo.endPage}"
+					var="idx">
+					<a href='listAll${boardVo.makeSearch(idx)}'
+						<c:out value="${boardVo.page==idx?' class=active ':'' }"/>>
+						${idx}</a>
+				</c:forEach>
 
-            <c:if test="${boardVo.next }">
-                <a href='listAll${boardVo.makeSearch(boardVo.endPage+1)}'>&gt;&gt;</a>
-            </c:if>
+				<c:if test="${boardVo.page != boardVo.totalEndPage}">
+					<a href='listAll${boardVo.makeSearch(boardVo.page+1)}'>&gt;</a>
+				</c:if>
 
-            <c:if test="${boardVo.page != boardVo.totalEndPage}">
-                <a href='listAll${boardVo.makeSearch(boardVo.totalEndPage)}'>&gt;&gt;&gt;</a>
-            </c:if>
-        </div>
-    </div>
-</div>
+				<c:if test="${boardVo.next }">
+					<a href='listAll${boardVo.makeSearch(boardVo.endPage+1)}'>&gt;&gt;</a>
+				</c:if>
+
+				<c:if test="${boardVo.page != boardVo.totalEndPage}">
+					<a href='listAll${boardVo.makeSearch(boardVo.totalEndPage)}'>&gt;&gt;&gt;</a>
+				</c:if>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
 
