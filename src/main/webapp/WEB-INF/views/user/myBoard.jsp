@@ -52,25 +52,39 @@
         
         <!-- 나의 게시글 목록 -->
         <ul id="myPosts" class="board-list">
+            <li class="board-header">
+            	<span class="board-header-kategorie">카데코리</span>
+                <span class="board-header-title">제목</span>
+                <span class="board-header-date">작성일</span>
+            </li>
             <li class="board-item" onclick="window.location.href='/ex/board/'">
-                <span class="board-title">게시글 제목 1</span>
+            	<span class="board-kategorie">카데고리1</span>
+                <span class="board-title">게시글제목</span>
                 <span class="board-date">2024-08-27</span>
             </li>
             <li class="board-item" onclick="window.location.href='/ex/board/'">
+                <span class="board-kategorie">카데고리2</span>
                 <span class="board-title">게시글 제목 2</span>
                 <span class="board-date">2024-08-26</span>
             </li>
             <li class="board-item" onclick="window.location.href='/ex/board/'">
+                <span class="board-kategorie">카데고리3</span>
                 <span class="board-title">게시글 제목 2</span>
                 <span class="board-date">2024-08-26</span>
             </li>
             <li class="board-item" onclick="window.location.href='/ex/board/'">
+                <span class="board-kategorie">카데고리1</span>
+                <span class="board-title">게시글 제목 2</span>
+                <span class="board-date">2024-08-26</span>
+            </li>
+            <li class="board-item" onclick="window.location.href='/ex/board/'">
+                <span class="board-kategorie">카데고리1</span>
                 <span class="board-title">게시글 제목 2</span>
                 <span class="board-date">2024-08-26</span>
             </li>
             
 	        <ul class="button-container">
-			    <li class="button-write" onclick="window.location.href='/ex/board/'">
+			    <li class="button-write" onclick="window.location.href='/ex/board/create'">
 			        <span>글쓰기</span>
 			   	</li>
 			    <li class="button-delete" onclick="window.location.href='/ex/board/'">
@@ -83,6 +97,11 @@
         
         <!-- 나의 댓글 목록 -->
         <ul id="myComments" class="board-list" style="display: none;">
+        	<li class="board-header">
+                <span class="board-header-title">댓글</span>
+                <span class="board-header-date">작성일</span>
+            </li>
+            
             <li class="board-item" onclick="window.location.href='/ex/comment/'">
                 <span class="board-title">댓글 내용 1</span>
                 <span class="board-date">2024-08-27</span>
