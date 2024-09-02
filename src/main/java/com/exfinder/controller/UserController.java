@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.exfinder.dto.AuthoritiesDto;
 import com.exfinder.dto.UserDto;
 import com.exfinder.service.AuthoritiesService;
 import com.exfinder.service.UserService;
+import com.exfinder.util.fileUtil;
 
 @Controller
 public class UserController {
@@ -264,11 +266,34 @@ public class UserController {
 		return "/user/myPage";
 	}
 	
-	
-	
-	
 	@RequestMapping(value = "/user/myBoard", method = RequestMethod.GET)
 	public void myBoard() throws Exception{
 		
+	}
+	
+	@RequestMapping(value="/user/myInfo/updateImg", method=RequestMethod.POST)
+	public String updateImg(UserDto dto, MultipartHttpServletRequest mpRequest, Model model, HttpSession session)throws Exception {
+		String u_id = (String) session.getAttribute("userId");
+		System.out.println("u_id : " + u_id);
+		dto.setU_id(u_id);
+		
+		// 현재 사용자의 기존 프로필 이미지 경로를 가져옴
+        UserDto currentUser = userService.selectUser(u_id);
+        String oldImgPath = currentUser.getU_profile_img();
+        
+	    
+		String user_Img = fileUtil.updateImg(mpRequest, oldImgPath); 
+		
+		userService.updateImg(user_Img, u_id);
+		
+		dto.setU_profile_img(user_Img);
+		System.out.println(dto);
+		
+		model.addAttribute("dto", dto);
+		
+		session.setAttribute("login", dto);
+		
+				
+		return "/home";
 	}
 }
