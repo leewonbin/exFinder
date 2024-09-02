@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class UserDto {
 	private String u_id;
 	private String u_pw;
+	private String u_profile_img;
 	private String u_nickname;
 	private String u_name;
 	private String u_gender;
@@ -23,11 +24,13 @@ public class UserDto {
 
 	public UserDto() {}
 	
+	
 	public UserDto(String u_id, String u_pw, String u_nickname, String u_name, String u_gender, LocalDate u_birthday,
 			String u_email, String u_phoneNumber, String u_address) {
 		super();
 		this.u_id = u_id;
 		this.u_pw = u_pw;
+		
 		this.u_nickname = u_nickname;
 		this.u_name = u_name;
 		this.u_gender = u_gender;
@@ -52,6 +55,16 @@ public class UserDto {
 	public void setU_pw(String u_pw) {
 		this.u_pw = u_pw;
 	}
+	
+	public String getU_profile_img() {
+		return u_profile_img;
+	}
+
+
+	public void setU_profile_img(String u_profile_img) {
+		this.u_profile_img = u_profile_img;
+	}
+
 
 	public String getU_nickname() {
 		return u_nickname;
@@ -127,9 +140,9 @@ public class UserDto {
 
 	@Override
 	public String toString() {
-		return "UserDto [u_id=" + u_id + ", u_pw=" + u_pw + ", u_nickname=" + u_nickname + ", u_name=" + u_name
-				+ ", u_gender=" + u_gender + ", u_birthday=" + u_birthday + ", u_email=" + u_email + ", u_phoneNumber="
-				+ u_phoneNumber + ", u_address=" + u_address + ", u_joinDate=" + u_joinDate + ", enabled=" + enabled
-				+ "]";
+		return "UserDto [u_id=" + u_id + ", u_pw=" + u_pw + ", u_profile_img=" + u_profile_img + ", u_nickname="
+				+ u_nickname + ", u_name=" + u_name + ", u_gender=" + u_gender + ", u_birthday=" + u_birthday
+				+ ", u_email=" + u_email + ", u_phoneNumber=" + u_phoneNumber + ", u_address=" + u_address
+				+ ", u_joinDate=" + u_joinDate + ", enabled=" + enabled + "]";
 	}
 }

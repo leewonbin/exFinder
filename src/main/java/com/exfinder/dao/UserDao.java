@@ -20,7 +20,7 @@ public interface UserDao {
 	public void deactivate(String u_id) throws Exception;
 	
 	public void update(UserDto dto) throws Exception;
-	
+	public void updateImg(@Param("user_Img") String user_Img, @Param("u_id") String u_id) throws Exception;
 	
 	
 	public boolean phoneNumber_compare(@Param("u_id")String u_id, @Param("u_phoneNumber")String u_phoneNumber);

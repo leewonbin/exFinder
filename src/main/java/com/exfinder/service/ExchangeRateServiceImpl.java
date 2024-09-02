@@ -1,5 +1,8 @@
 package com.exfinder.service;
 
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -42,9 +45,13 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 		WebElement element = null;
 		String[] sDate = startDate.split("-");
 		String[] eDate = endDate.split("-");
+		
 
 		try {
-			System.setProperty("webdriver.chrome.driver", "C://chromedriver/chromedriver.exe");
+			URL resource = getClass().getClassLoader().getResource("drivers/chromedriver.exe");
+			String driverPath = Paths.get(resource.toURI()).toString();
+			System.out.println("driverPath : " + driverPath);
+			System.setProperty("webdriver.chrome.driver", driverPath);
 
 			ChromeOptions options = new ChromeOptions();
 
@@ -133,6 +140,9 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 				list.add(dto);
 			}
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

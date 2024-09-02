@@ -34,6 +34,10 @@ update users set u_nickname=#{u_nickname}, u_name=#{u_name}, u_gender=#{u_gender
 update users set enabled = 0
  where u_id=#{u_id}
 </update>
+<update id="updateImg">
+update users set u_profile_img = #{user_Img} where u_id=#{u_id}
+</update>
+
 
 <!-- 유저 정보 찾기 -->
 <select id="select_idInquiry_email" resultType="com.exfinder.dto.UserDto">

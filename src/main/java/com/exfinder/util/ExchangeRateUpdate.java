@@ -27,7 +27,7 @@ public class ExchangeRateUpdate {
 		String[] eDate = endDate.split("-");
 
 		try {
-			System.setProperty("webdriver.chrome.driver", "C://chromedriver/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 
 			ChromeOptions options = new ChromeOptions();
 
