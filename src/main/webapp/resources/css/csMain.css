@@ -1,0 +1,46 @@
+body {
+	font-family: Arial, sans-serif;
+	color: #333;
+	margin: 0;
+	padding: 0;
+}
+
+.faq {
+    margin-top: 130px; 
+    padding: 20px; 
+    text-align: center; 
+    background-color: #fff; 
+    border-bottom: 1px solid #ddd; 
+}
+
+.qna-list {
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 배치 */
+    align-items: center; /* 수평 중앙 정렬 */
+    width: 1000px;
+    box-sizing: border-box;
+}
+
+.question {
+    width: 1000px;
+    height: auto; /* 내용에 따라 높이 자동 조정 */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #05203C;
+    cursor: pointer;
+    margin: 10px 0;
+    color: white;
+}
+
+.answer {
+    max-width: 1000px;
+    height: auto; /* 내용에 따라 높이 자동 조정 */
+    display: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #CDD2D8;
+    margin-top: 10px;
+    word-break: break-word; /* 긴 단어를 줄바꿈 */
+}
