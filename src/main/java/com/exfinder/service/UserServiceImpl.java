@@ -55,6 +55,11 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public void updateImg(String user_Img, String u_id) throws Exception {
+		UserDao dao=sqlSession.getMapper(UserDao.class);
+		dao.updateImg(user_Img, u_id);
+	}
 	
 	@Override
 	public List<UserDto> select_idInquiry_email(String u_name, String u_email) {
@@ -91,5 +96,8 @@ public class UserServiceImpl implements UserService {
 		UserDao dao=sqlSession.getMapper(UserDao.class);
 		return dao.getU_pwByU_id(userId);
 	}
+
+
+	
 
 }
