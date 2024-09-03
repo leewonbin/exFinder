@@ -1,0 +1,75 @@
+body {
+	font-family: Arial, sans-serif;
+	color: #333;
+	margin: 0;
+	padding-top: 150px;
+}
+
+.content {
+    width: 60%;
+    margin: 0 auto; /* 중앙 정렬 */
+    margin-top: 200px;
+}
+
+h1{
+	text-align: center;
+    color: #05203C;
+    font-weight: bold !important;
+    font-size: 40px !important;
+}
+
+a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 부모 요소의 색상 상속 (기본 색상으로 설정) */
+}
+
+a:hover {
+    text-decoration: underline; 
+}
+
+#cs {
+	width: 100%;
+    border-collapse: collapse;
+}
+
+#cs th, #cs td {
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+#cs thead th {
+    border-bottom: 1px solid #ddd;
+}
+
+#cs th {
+	font-weight: bold;
+	text-align: center;
+}
+
+#cs tr:hover {
+	background-color: #EFF3F8;
+}
+
+.box-footer {
+	display: flex; /* Flexbox 레이아웃 활성화 */
+	margin-left: 75%;
+	margin-top: 20px;
+}
+
+.box-footer button {
+	width: 70px;
+	height: 35px;
+	margin: 0 5px;
+	background-color: #05203C;
+	color: white;
+	font-size: 15px;
+	cursor: pointer;
+	border: none;
+}
+
+
+.box-footer button:hover {
+	background-color: #054184;
+}

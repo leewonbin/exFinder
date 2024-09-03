@@ -13,38 +13,49 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/csList.css">
+
+
 <script
 	src="${pageContext.request.contextPath}/resources/js/listAllJs.js"></script>
 <body>
+	<div>
+		<%@include file="../header/exFinder_header.jsp"%>
+	</div>
 
-	<h1>cs 문의글 목록 화면임</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>NO.</th>
-                <th>상태</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일</th>
-                <th>답변완료일</th>
+	<div class="content">
+		<h1>관리자가 cs글 관리하는 화면임, 아이디는 임의로 넣음</h1>
+		<br> <br> <br>
 
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="csDto" items="${list}">
-                <tr>
-                    <td>${csDto.cs_id}</td>
-                    <td>${csDto.cs_status}</td>
-                    <td><a href="/ex/cs/read?cs_id=${csDto.cs_id}">${csDto.cs_title}</a></td>
-                    <td>${csDto.u_id}</td>
-                    <td><fmt:formatDate value="${csDto.cs_date}" pattern="yyyy-MM-dd" /></td>
-                    <td><fmt:formatDate value="${csDto.resolved_date}" pattern="yyyy-MM-dd" /></td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-    
-    <a href="/ex/cs/main">메인</a>
+		<table id="cs" border="1">
+			<thead>
+				<tr>
+					<th style="width: 20px;">NO.</th>
+					<th style="width: 200px;">제목</th>
+					<th style="width: 30px;">관리자</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="csDto" items="${list}">
+					<tr>
+						<td>${csDto.cs_id}</td>
+						<td><a href="/ex/cs/read?cs_id=${csDto.cs_id}">${csDto.cs_title}</a></td>
+						<td>${csDto.admin_id}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="box-footer">
+		<button type="submit" class="btn btn-warning"
+			onclick="location.href='/ex/cs/create'">글쓰기</button>
+		<button type="submit" class="btn btn-primary"
+			onclick="location.href='/ex/cs/main'">메인</button>
+	</div>
+	
 </body>
 </html>
 

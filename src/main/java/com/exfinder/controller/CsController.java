@@ -49,7 +49,8 @@ public class CsController {
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public void updateGET(int cs_id, Model model) throws Exception {
-		model.addAttribute(service.read(cs_id));
+		CsDto cs = service.read(cs_id);
+	    model.addAttribute("CsDto", cs);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)

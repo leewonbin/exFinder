@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    width: 80%;
+    max-width: 800px;
+    margin: 140px auto 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.horizontal-line {
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+.main-content {
+    margin-left: 220px; /* 사이드바 너비보다 약간 큰 여백 */
+    padding: 20px;
+}
+
+.cs_title input {
+	border: 1px solid #ddd;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    padding: 0 15px;
+}
+
+.cs_content textarea {
+	margin-bottom: 10px;
+	border: 1px solid #ddd;
+	font-size: 15px;
+	padding: 25px 15px;
+}
+
+.box-title {
+	font-size: 20px;
+    color: #054184;
+    font-weight: bold;
+}
+
+.submitBtn {
+    display: flex; /* Flexbox 레이아웃 활성화 */
+    justify-content: flex-end; /* 우측으로 정렬 */
+    margin-top: 20px;
+}
+
+.submitBtn button {
+    width: 50px;
+    height: 35px;
+    margin: 0 5px;
+    background-color: #05203C;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+}

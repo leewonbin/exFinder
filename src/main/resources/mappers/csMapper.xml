@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <!-- cs 생성 -->
 	<insert id="create">
-		insert into cs(cs_id, cs_title, cs_content, cs_status, u_id, cs_date, resolved_date, cs_del)
-        VALUES (cs_num.nextval, #{cs_title}, #{cs_content}, #{cs_status}, #{u_id}, #{cs_date}, #{resolved_date}, #{cs_del})
+		insert into cs(cs_id, cs_title, cs_content, admin_id, cs_del)
+        values (cs_num.nextval, #{cs_title}, #{cs_content}, #{admin_id}, #{cs_del})
 	</insert>
 
 
@@ -20,8 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- cs 수정 -->
 	<update id="update"> 
-		update cs set cs_title = #{cs_title}, cs_content = #{cs_content}, cs_status = #{cs_status}, u_id = #{u_id},
-		cs_date = #{cs_date}, resolved_date = #{resolved_date}, cs_del = #{cs_del} where cs_id = #{cs_id}
+		update cs set cs_title = #{cs_title}, cs_content = #{cs_content}, admin_id = #{admin_id},
+		cs_del = #{cs_del} where cs_id = #{cs_id}
 	</update>
 
 
