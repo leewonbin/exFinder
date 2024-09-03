@@ -95,7 +95,7 @@ public class UserController {
 		authDto.setU_id(join_id);
 		
 		// *
-		if (join_id.equals("admin1234")) {
+		if (join_id.equals("admin")) {
 			authDto.setAuthority("ROLE_ADMIN");
 			authoritiesService.insert(authDto);
 		}else {

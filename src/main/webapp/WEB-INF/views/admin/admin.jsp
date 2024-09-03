@@ -9,7 +9,6 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
 </head>
 <body>
-<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	<div id="header">
 		<a id="header-a" href="/ex/">Home</a>
 	</div>
