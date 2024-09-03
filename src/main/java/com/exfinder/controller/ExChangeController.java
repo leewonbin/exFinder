@@ -79,6 +79,12 @@ public class ExChangeController {
 	    return ResponseEntity.ok(groupList);
 	}
 	
+	@RequestMapping(value = "charts", method = RequestMethod.GET)
+	public void charts() throws Exception {
+		// service.exchangeRateSelect(currency, start_date, end_date);
+		//@RequestParam String start_date, @RequestParam String end_date, @RequestParam String currency
+	}
+	
 	// 지원 환율 조회
 	
 	
