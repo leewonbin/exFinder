@@ -35,13 +35,19 @@
 	margin-top: 110px; /* 위쪽에 100px 여백을 추가 */
 }
 
+.menu_user_container {
+    position: relative;
+    width: 200px; /* 이미지와 컨테이너의 너비를 동일하게 설정 */
+    margin: 0 auto; /* 수평 중앙 정렬 */
+    margin-top: 90px; /* 위쪽 여백 */
+}
+
 .menu_user {
-	width: 200px;
-	height: auto;
-	display: block; /* 이미지가 인라인 요소가 아닌 블록 요소로 처리되도록 설정 */
-	margin: 0 auto; /* 수평 중앙 정렬 */
-	cursor: pointer;
-	margin-top: 90px; /* 위쪽에 100px 여백을 추가 */
+    width: 100%; /* 컨테이너에 맞게 이미지 너비 조정 */
+    height: auto;
+    display: block;
+    cursor: pointer;
+    border-radius: 50%;
 }
 
 .all_info {

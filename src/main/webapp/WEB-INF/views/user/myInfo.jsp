@@ -18,9 +18,19 @@
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	<div id="main">
 		<div id="left_main">
-			<div class="sidebar_menu">
-				
-				<img class="menu_user" src="${pageContext.request.contextPath}/resources/img/user.png" onclick="">
+			<div class="sidebar_menu">		
+				<c:choose>
+    				<c:when test="${not empty dto.u_profile_img}">
+    					<div class="menu_user_container">
+        					<img class="menu_user" src="${pageContext.request.contextPath}/resources/profile_img/${dto.u_profile_img}">
+        				</div>
+    				</c:when>
+    				<c:otherwise>
+    					<div class="menu_user_container">
+        					<img class="menu_user" src="${pageContext.request.contextPath}/resources/img/user.png">
+        				</div>
+    				</c:otherwise>
+				</c:choose>
 				<div class="all_info">
 					<p class="user_info">${dto.u_nickname}</p>
 					<p class="email_info">${dto.u_email}</p>

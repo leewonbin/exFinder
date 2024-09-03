@@ -12,5 +12,6 @@
 통화 1년치 내역 업데이트
 <button class="update-btn">업데이트</button>
 <p class="result_p"></p>
+<button class="select-btn">환율 정보 가져오기</button>
 </body>
 </html>
