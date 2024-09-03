@@ -20,14 +20,19 @@
 		<div id="left_main">
 			<div class="sidebar_menu">		
 				<c:choose>
-    				<c:when test="${not empty dto.u_profile_img}">
+    				<c:when test="${not empty sessionScope.dto.u_profile_img}">
     					<div class="menu_user_container">
-        					<img class="menu_user" src="${pageContext.request.contextPath}/resources/profile_img/${dto.u_profile_img}">
+        					<img class="menu_user" src="${pageContext.request.contextPath}/resources/profile_img/${sessionScope.dto.u_profile_img}" 
+        					onclick="reg_type_select('img'); return false;" id="profile_img"  >
+        					<img class="menu_user_change" src="${pageContext.request.contextPath}/resources/img/Bsetup.png"
+        					onclick="reg_type_select('img'); return false;" id="profile_img">
         				</div>
     				</c:when>
     				<c:otherwise>
     					<div class="menu_user_container">
-        					<img class="menu_user" src="${pageContext.request.contextPath}/resources/img/user.png">
+        					<img class="menu_user" src="${pageContext.request.contextPath}/resources/img/user.png" onclick="reg_type_select('img'); return false;" id="profile_img">
+        					<img class="menu_user_change" src="${pageContext.request.contextPath}/resources/img/Bsetup.png"
+        					onclick="reg_type_select('img'); return false;" id="profile_img">
         				</div>
     				</c:otherwise>
 				</c:choose>
@@ -159,6 +164,17 @@
 						<input type="checkbox" id="cancel-account-check" name="cancel-account-check">
 					</div>
 					<button type="button" class="myinfo-button" id="delete-account-btn" onclick="confirmDelete()" disabled>회원 탈퇴</button>
+				</div>
+				<div class="my_info type_img" style="display: none; height: 300px;">
+					<h2 class="profile-title">프로필 이미지 수정</h2>
+					<div class="card">						
+ 			        	<form  action="/ex/user/myInfo/updateImg" method="post" enctype="multipart/form-data">
+            				<label class="file-label" for="file-input">파일 선택</label>
+    						<input type="file" id="file-input" class="file-input" name="file" onchange="updateFileName()">
+    						<span class="file-name" id="file-name">파일이 선택되지 않았습니다.</span>
+            				<input type="submit" class="myinfo-button" value="프로필 사진변경">
+        				</form>
+					</div>
 				</div>
 			</div>
 		</div>

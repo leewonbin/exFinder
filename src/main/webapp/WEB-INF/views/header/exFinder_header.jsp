@@ -44,7 +44,15 @@
 				<c:otherwise>
 					<div class="header_end_myPage">
 						<!-- 로그인, 마이페이지 등등.. -->
-								<img src="${pageContext.request.contextPath}/resources/img/Wuser.png" onclick="location.href='/ex/user/myPage'">
+						<c:choose>
+    						<c:when test="${not empty dto.u_profile_img}">
+        						<img src="${pageContext.request.contextPath}/resources/profile_img/${dto.u_profile_img}" onclick="location.href='/ex/user/myPage'">
+    						</c:when>
+    						<c:otherwise>
+        						<img src="${pageContext.request.contextPath}/resources/img/Wuser.png" onclick="location.href='/ex/user/myPage'">
+    						</c:otherwise>
+						</c:choose>
+						
 						<p><a href="/ex/user/myPage"><c:out value="${dto.u_nickname }"/>님</a></p>
 						<button type="button" id="toggleButton" onclick="toggleMiniMyPage()">
 							
@@ -56,7 +64,14 @@
 	</header>
 	<div class="header_mini_myPage" id="miniMyPage">
 		<div class="header_mini_myPage_top">
-			<img src="${pageContext.request.contextPath}/resources/img/user.png" alt="">
+			<c:choose>
+    			<c:when test="${not empty dto.u_profile_img}">
+        			<img src="${pageContext.request.contextPath}/resources/profile_img/${dto.u_profile_img}" onclick="location.href='/ex/user/myPage'">
+    			</c:when>
+    			<c:otherwise>
+					<img src="${pageContext.request.contextPath}/resources/img/user.png" onclick="location.href='/ex/user/myPage'">       						
+    				</c:otherwise>
+			</c:choose>
 			<div>
 				<p class="user-info"><a href="/ex/user/myPage"><c:out value="${dto.u_nickname }"/>님</a></p>
 				<p class="email-info"><c:out value="${dto.u_email }"/></p>

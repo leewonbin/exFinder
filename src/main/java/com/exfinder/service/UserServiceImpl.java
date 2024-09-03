@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.exfinder.dao.UserDao;
 import com.exfinder.dto.UserDto;
@@ -54,7 +55,8 @@ public class UserServiceImpl implements UserService {
 		dao.update(dto);
 		
 	}
-
+	
+	@Transactional
 	@Override
 	public void updateImg(String user_Img, String u_id) throws Exception {
 		UserDao dao=sqlSession.getMapper(UserDao.class);
