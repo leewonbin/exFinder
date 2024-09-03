@@ -12,7 +12,7 @@
 	content="${sessionScope.userId == null ? 'logged-out' : 'logged-in'}">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/boardCreate.css">
+	href="${pageContext.request.contextPath}/resources/css/csCreate.css">
 </head>
 <body>
 	<div>
@@ -21,7 +21,7 @@
 
 	<div class="main">
 		<div class="box-header">
-			<h1 class="box-title">글쓰기</h1>
+			<h1 class="box-title">FAQ 작성</h1>
 		</div>
 
 		<div class="horizontal-line"></div>
@@ -30,27 +30,15 @@
 		<!-- 	<form role="form" method="post"> -->
 		<form role="form" method="post">
 
-			<h2 class="b_category">
-				<select name="b_category">
-					<option value="공지사항">공지사항</option>
-					<option value="자유게시판">자유게시판</option>
-					<option value="고객센터">고객센터</option>
-				</select>
-			</h2>
-
-			<h2 class="b_title">
-				<input type="text" name='b_title' placeholder="제목 입력"
+			<h2 class="cs_title">
+				<input type="text" name='cs_title' placeholder="질문 내용 입력"
 					style="width: 100%">
 			</h2>
 
 
-			<h2 class="b_content">
-				<textarea name="b_content" rows="35" style="width: 100%"
-					placeholder="내용 입력"></textarea>
-			</h2>
-
-			<h2>
-				<input type="text" name="u_id" placeholder="작성자" style="width: 100%">
+			<h2 class="cs_content">
+				<textarea name="cs_content" rows="25" style="width: 100%"
+					placeholder="답변 내용 입력"></textarea>
 			</h2>
 
 			<div class="submitBtn">

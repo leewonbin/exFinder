@@ -1,0 +1,57 @@
+body {
+	font-family: Arial, sans-serif;
+	color: #333;
+	margin: 0;
+	padding: 0;
+}
+
+.main {
+	width: 80%;
+	max-width: 800px;
+	margin: 140px auto 20px;
+	padding: 20px;
+	border: 1px solid #ddd;
+}
+
+.main h2{
+	margin-bottom: 5px;
+}
+
+.cs_title input {
+    border: 1px solid #ddd;
+    font-size: 15px;
+    padding: 10px 15px;
+}
+
+.cs_content textarea {
+	border: 1px solid #ddd;
+	font-size: 15px;
+	padding: 20px 15px;
+}
+
+.box-footer {
+	display: flex; /* Flexbox 레이아웃 활성화 */
+	justify-content: flex-end; /*우측으로 정렬*/
+	margin-top: 20px;
+}
+
+.box-footer button {
+	width: 50px;
+	height: 35px;
+	margin: 0 5px;
+	background-color: #05203C;
+	color: white;
+	font-size: 15px;
+	cursor: pointer;
+	border: none;
+}
+
+.box-footer button:hover {
+	background-color: #054184;
+}
+
+.horizontal-line {
+    border: 1px solid #ddd;
+    margin: 30px 0;
+}
+

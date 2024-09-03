@@ -1,0 +1,30 @@
+#chatbot-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #007bff; /* 버튼 배경색 */
+    color: white;
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#chatbot-button img {
+    width: 50px; /* 아이콘 크기 */
+    height: auto;
+}
+
+#chatbot {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    width: 300px;
+    height: 400px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}

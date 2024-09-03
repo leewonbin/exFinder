@@ -18,6 +18,7 @@
 
 <script
 	src="${pageContext.request.contextPath}/resources/js/listAllJs.js"></script>
+	
 <body>
 	<div>
 		<%@include file="../header/exFinder_header.jsp"%>
@@ -49,25 +50,25 @@
 			<table id='customers'>
 				<thead>
 					<tr>
-						<th style="width: 20px; text-align: center;">No.</th>
-						<th style="width: 50px; text-align: center;">카테고리</th>
-						<th style="width: 200px; text-align: center;">제목</th>
-						<th style="width: 30px; text-align: center;">작성자</th>
-						<th style="width: 50px; text-align: center;">작성일</th>
-						<th style="width: 20px; text-align: center;">조회</th>
+						<th style="width: 20px;">No.</th>
+						<th style="width: 50px;">카테고리</th>
+						<th style="width: 200px;">제목</th>
+						<th style="width: 30px;">작성자</th>
+						<th style="width: 50px;">작성일</th>
+						<th style="width: 20px;">조회</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${list}" var="boardDto">
 						<tr>
-							<td style="text-align: center;">${boardDto.b_id }</td>
-							<td style="text-align: center;">${boardDto.b_category }</td>
-							<td style="text-align: center;"><a
+							<td>${boardDto.b_id }</td>
+							<td>${boardDto.b_category }</td>
+							<td><a
 								href="/ex/board/read?b_id=${boardDto.b_id}">${boardDto.b_title}</a></td>
-							<td style="text-align: center;">${boardDto.u_id}</td>
-							<td style="text-align: center;"><fmt:formatDate
+							<td>${boardDto.u_id}</td>
+							<td><fmt:formatDate
 									value="${boardDto.b_date}" pattern="yyyy-MM-dd" /></td>
-							<td style="text-align: center;">${boardDto.b_view}</td>
+							<td>${boardDto.b_view}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
