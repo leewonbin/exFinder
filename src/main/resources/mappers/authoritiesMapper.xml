@@ -13,6 +13,13 @@ insert into authorities(
 )
 </insert>
 
+<update id="update">
+    UPDATE authorities
+    SET authority = #{authority}
+    WHERE u_id = #{u_id}
+</update>
+
+
 </mapper>
 
 

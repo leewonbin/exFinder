@@ -31,15 +31,16 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 	}
 
 	@Override
-	public ArrayList<ExchangeRateDto> exchangeRateSelect(String currency, String start_date, String end_date)
+	public ArrayList<ExchangeRateDto> exchangeRateSelect(String c_code, String start_date, String end_date)
 			throws Exception {
-		return dao.exchangeRateSelect(currency, start_date, end_date);
+		return dao.exchangeRateSelect(c_code, start_date, end_date);
 	}
 
 	@Override
 	public int exchangeRateInsert(ExchangeRateDto dto) throws Exception {
 		return dao.exchangeRateInsert(dto);
 	}
+	
 	public ArrayList<ExchangeRateDto> checkExchange(String curreny,String startDate,String endDate) {
 		ArrayList<ExchangeRateDto> list = new ArrayList<ExchangeRateDto>();
 		WebElement element = null;

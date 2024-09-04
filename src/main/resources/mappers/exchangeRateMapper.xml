@@ -8,6 +8,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <insert id="exchangeRateInsert">
 	insert into exchangerate values(#{rate_date},#{c_code},#{ttb},#{tts},#{cash_buy},#{cash_sell},#{deal_bas_r},#{base_r})
 </insert>
+<select id="exchangeRateSelect" resultType="exchangeRateDto">
+    SELECT * FROM exchangerate
+    WHERE c_code = #{c_code}
+      AND rate_date BETWEEN #{start_date}
+      AND #{end_date}
+    ORDER BY c_code, rate_date
+</select>
 
 </mapper>
 

@@ -4,7 +4,6 @@ function reg_type_select(type) {
 	document.querySelector('.type_2').style.display = 'none';
 	document.querySelector('.type_3').style.display = 'none';
 	document.querySelector('.type_4').style.display = 'none';
-	document.querySelector('.type_img').style.display = 'none';
 	
 
 	// 모든 링크에서 active 클래스를 제거
@@ -25,9 +24,6 @@ function reg_type_select(type) {
 	} else if (type === '4') {
 		document.querySelector('.type_4').style.display = 'block';
 		document.getElementById('cancel-account').classList.add('active');
-	} else if (type === 'img') {
-		document.querySelector('.type_img').style.display = 'block';
-		document.getElementById('profile_img').classList.add('active');
 	}
 }
 
@@ -175,18 +171,4 @@ function confirmDelete() {
 		location.href = '/ex/user/deactivateDB';
 	}
 	// 사용자가 '취소'를 클릭하면 아무 작업도 하지 않음
-}
-
-// 파일 선택 텍스트 업데이트
-function updateFileName() {
-    const fileInput = document.getElementById('file-input');
-    const fileNameSpan = document.getElementById('file-name');
-    
-    if (fileInput.files.length > 0) {
-        // 파일이 선택된 경우, 파일 이름을 업데이트
-        fileNameSpan.textContent = fileInput.files[0].name;
-    } else {
-        // 파일이 선택되지 않은 경우
-        fileNameSpan.textContent = '파일이 선택되지 않았습니다.';
-    }
 }

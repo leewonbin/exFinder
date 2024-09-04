@@ -97,7 +97,7 @@ public class UserController {
 		authDto.setU_id(join_id);
 		
 		// *
-		if (join_id.equals("admin")) {
+		if (join_id.equals("admin1234")) {
 			authDto.setAuthority("ROLE_ADMIN");
 			authoritiesService.insert(authDto);
 		}else {
@@ -212,7 +212,9 @@ public class UserController {
 	@RequestMapping(value = "/user/Logincomplete", method = RequestMethod.GET)
 	public String Logincomplete(HttpSession session) throws Exception{
 		String userid = (String)session.getAttribute("userId");
+		
 		session.setAttribute("dto", userService.selectUser(userid));
+		
 		return "/main/exFinder_main";
 	}
 	
@@ -225,6 +227,7 @@ public class UserController {
 		String userid = (String)session.getAttribute("userId");
 		dto = userService.selectUser(userid);
 		model.addAttribute("dto", dto);
+		System.out.println("/user/myInfo : " + dto);
 		
 		String u_email = dto.getU_email();
         String[] u_emailArr = u_email.split("@");
@@ -283,17 +286,15 @@ public class UserController {
         
 	    
 		String user_Img = fileUtil.updateImg(mpRequest, oldImgPath); 
-		
+		dto.setU_profile_img(user_Img);
 		userService.updateImg(user_Img, u_id);
 		
-		dto.setU_profile_img(user_Img);
-		System.out.println(dto);
-		
-		model.addAttribute("dto", dto);
-		
-		session.setAttribute("login", dto);
-		
+		// 세션 정보 갱신
+	    session.setAttribute("dto", userService.selectUser(u_id));
+	    
+		System.out.println("/user/myInfo/updateImg : " + dto);
 				
-		return "/home";
+		return "redirect:/user/myInfo?t=" + System.currentTimeMillis();
 	}
+	
 }

@@ -1,0 +1,77 @@
+.charts_view {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 1000px;
+	height: 400px;
+	margin: 300px auto 0 auto; /* 위쪽에 500px 간격 추가, 좌우는 자동, 아래는 0 */
+	overflow: hidden; /* 슬라이드가 1000px을 넘지 않도록 숨김 처리 */
+}
+
+.charts_container {
+	text-align: center;
+	max-width: 1000px; /* 최대 너비를 1000px로 제한 */
+}
+
+.charts_container h1 {
+	height: 40px; /* h1 태그의 높이를 40px로 설정 */
+	font-size: 30px; /* h1 태그의 텍스트 크기를 30px로 설정 */
+	font-weight: bold; /* h1 태그의 텍스트를 굵게 설정 */
+	width: 100%;
+	border-bottom: 2px solid #ddd;
+	padding-bottom: 50px;
+	margin-bottom: 20px;
+	display: inline-block;
+}
+
+.chart_graph_box_slide {
+	display: flex;
+	transition: transform 1.0s ease-in-out; /* 슬라이드 효과 */
+	width: 100%; /* 슬라이드 전체의 너비를 100%로 설정 */
+}
+
+.chart_graph_box_container {
+	display: flex; /* flexbox를 사용하여 수평 배치 */
+	justify-content: center; /* 수평 정렬 */
+	gap: 20px; /* 요소 사이의 간격 설정 */
+}
+
+.chart_graph_box {
+	text-align: center;
+	align-items: center; /* 세로축 정렬 */
+	justify-content: center; /* 가로축 정렬 */
+}
+
+.chart_graph_box a {
+	text-align: center;
+	height: 40px; /* h1 태그의 높이를 40px로 설정 */
+	font-size: 20px; /* h1 태그의 텍스트 크기를 30px로 설정 */
+	font-weight: bold; /* h1 태그의 텍스트를 굵게 설정 */
+}
+
+.chart_graph_box img {
+	width: 40px;
+	height: 40px;
+}
+
+.chart_graph {
+	width: 500px;
+	height: 200px;
+	margin: 0 auto;
+}
+
+.slide-controls {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.slide-controls button {
+	padding: 5px 10px;
+	margin: 0 5px;
+	cursor: pointer;
+}
+#slide-indicator {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 10px;
+}

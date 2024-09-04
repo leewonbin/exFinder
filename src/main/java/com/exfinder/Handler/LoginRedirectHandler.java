@@ -65,6 +65,7 @@ public class LoginRedirectHandler implements AuthenticationSuccessHandler {
 			System.out.println("==role.authority==" + authority.getAuthority());
 		});
 
+		
 		if (roleNames.contains("ROLE_ADMIN")) {
 			response.sendRedirect("/ex/admin/admin");
 			return;
