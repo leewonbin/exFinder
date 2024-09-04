@@ -30,7 +30,7 @@
 	box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2); /* 오른쪽에 그림자 효과 추가 */
 	position: fixed; /* 화면에 고정되도록 설정 */
 	top: 0; /* 상단에 고정 */
-	left: 350px; /* 왼쪽에 고정 */
+	left: 200px; /* 왼쪽에 고정 */
 	z-index: 1000; /* 다른 요소들보다 위에 표시 */
 	
 	margin-top: 110px; /* 위쪽에 100px 여백을 추가 */
@@ -133,18 +133,81 @@
 	
 	position: fixed; /* 화면에 고정되도록 설정 */
 	top: 0; /* 상단에 고정 */
-	left: 800px; /* 왼쪽에 고정 */
+	left: 700px; /* 왼쪽에 고정 */
 	z-index: 1000; /* 다른 요소들보다 위에 표시 */
 	
-	margin-top: 110px; /* 위쪽에 100px 여백을 추가 */
+	margin-top: 150px; /* 위쪽에 150px 여백을 추가 */
+}
+.user-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0;
+	padding: 0;
+	table-layout: auto;
+}
+
+.user-table thead {
+	background-color: #fff;
+	color: black;
+	font-weight: bold;
+}
+
+.user-table th, .user-table td {
+	padding: 12px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+	
+}
+
+.user-table th {
+	text-align: center;
+}
+
+.user-table td {
+	text-align: center;
+}
+
+.user-table tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.user-table tr:hover {
+	background-color: #e0e0e0;
+}
+
+.user-table form {
+	margin: 0;
+	padding: 0;
+}
+
+.user-table select {
+	padding: 5px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	background-color: white;
+}
+
+.user-table input[type="submit"] {
+	width: 100px;
+	height: 30px;
+	background-color: #05203C;
+	color: white;
+	border: none;
+	font-size: 14px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.user-table input[type="submit"]:hover {
+	background-color: #054184;
 }
 
 .my_info {
-	width: 760px; /* 너비 설정 */
+	width: 1100px; /* 너비 설정 */
 	height: 400px; /* 높이 설정 */
-	
 	margin: 20px 20px; /* 상하 좌우 */
 	border: 1px solid #ddd; /* 테두리 추가 (선택사항) */
+	
 	
 }
 .profile-title {
@@ -152,9 +215,7 @@
     color: white; /* 글자색 흰색 */
     padding: 10px; /* 내부 여백 */
     font-size: 23px; /* 글꼴 크기 설정 */
-    
     height: 50px;
-    
     margin-bottom: 20px; /* 아래쪽 여백 추가 */
 }
 

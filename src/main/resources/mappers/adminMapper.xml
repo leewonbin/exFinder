@@ -5,20 +5,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.exfinder.dao.AdminDao">
 
-<!-- 유저 crud -->
-<select id="selectAll" resultType="com.exfinder.dto.UserDto">
-select * from users order by u_id
-</select>
+	<!-- 유저 crud -->
+	<select id="selectAll" resultType="com.exfinder.dto.UserDto">
+		select * from users order by u_id
+	</select>
 
-<select id="selectUser" resultType="com.exfinder.dto.UserDto">
-select * from users where u_id=#{u_id}
-</select>
+	<select id="selectAllAuthorities" resultType="com.exfinder.dto.AuthoritiesDto">
+		 SELECT * FROM authorities
+	</select>
 
+	<!-- 권한 업데이트 쿼리 추가 -->
+	<update id="updateAuthority" >
+		UPDATE authorities
+		SET authority = #{authority}
+		WHERE u_id = #{u_id}
+	</update>
+	<!-- 계정상태 업데이트 쿼리 추가 -->
+	 <update id="updateStatus">
+        UPDATE users
+        SET enabled = #{enabled}
+        WHERE u_id = #{u_id}
+    </update>
 
+	<select id="selectUser" resultType="com.exfinder.dto.UserDto">
+		select * from users where u_id=#{u_id}
+	</select>
 
-<!-- 
-매퍼에 없는 클래스를 요청하면 404에러가 난다
--->
+	
+
+	<!-- 매퍼에 없는 클래스를 요청하면 404에러가 난다 -->
 
 </mapper>
 

@@ -13,7 +13,7 @@ insert into authorities(
 )
 </insert>
 
-<update id="update">
+<update id="updateAuthority">
     UPDATE authorities
     SET authority = #{authority}
     WHERE u_id = #{u_id}
