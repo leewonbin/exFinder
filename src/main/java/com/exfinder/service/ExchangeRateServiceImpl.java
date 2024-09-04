@@ -40,6 +40,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 	public int exchangeRateInsert(ExchangeRateDto dto) throws Exception {
 		return dao.exchangeRateInsert(dto);
 	}
+	
 	public ArrayList<ExchangeRateDto> checkExchange(String curreny,String startDate,String endDate) {
 		ArrayList<ExchangeRateDto> list = new ArrayList<ExchangeRateDto>();
 		WebElement element = null;
