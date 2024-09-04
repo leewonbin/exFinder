@@ -61,5 +61,10 @@ public class BoardServiceImpl implements BoardService {
 		return dao.listSearch(vo);
 	}
 	
+	@Override
+    public int getTotalCountByCategory(BoardVo vo) throws Exception {
+        BoardDao dao = sqlSession.getMapper(BoardDao.class);
+        return dao.getTotalCountByCategory(vo);
+    }
 
 }

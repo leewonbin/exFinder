@@ -95,7 +95,6 @@ public class BoardVo {
 		if (endPage > totalEndPage) {
 	        endPage = totalEndPage;
 	    }
-	    startPage = endPage - displayPageNum + 1;
 	    if (startPage < 1) {
 	        startPage = 1;
 	    }

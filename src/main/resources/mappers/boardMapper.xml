@@ -66,5 +66,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<sql id="search">
 		<if test="searchKeyword != null"> AND bTitle LIKE '%' || #{searchKeyword} || '%' </if>
 	</sql>
+	
+<!-- 카테고리 및 검색 조건에 따른 전체 게시글 수 조회 -->
+	<select id="getTotalCountByCategory" resultType="int">
+        SELECT COUNT(*) 
+        FROM board
+        <where>
+            <if test="bCategory != null and bCategory != ''">
+                AND b_category = #{bCategory}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                AND b_title LIKE '%' || #{keyword} || '%'
+            </if>
+        </where>
+    </select>
 
 </mapper>

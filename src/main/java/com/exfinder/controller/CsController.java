@@ -35,6 +35,7 @@ public class CsController {
 		logger.info("create post..........");
 		logger.info(cs.toString());
 		System.out.println(cs);
+		
 		service.create(cs);
 		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/cs/listAll";

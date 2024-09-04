@@ -21,37 +21,37 @@
 
 
 <script>
-let lastOpenedQuestionId = null;
+let lastId = null;
 
 function toggleAnswer(id) {
     // 현재 클릭한 질문의 답변 요소 찾기
-    var currentAnswer = document.getElementById('answer-' + id);
+    var currentA = document.getElementById('answer-' + id);
     
     // 이전에 열려 있던 답변이 있다면, 그것을 닫기
-    if (lastOpenedQuestionId !== null && lastOpenedQuestionId !== id) {
-        var lastAnswer = document.getElementById('answer-' + lastOpenedQuestionId);
-        lastAnswer.style.display = 'none';
+    if (lastId !== null && lastId !== id) {
+        var lastA = document.getElementById('answer-' + lastId);
+        lastA.style.display = 'none';
         
         // 이전 질문의 스타일에서 'active' 클래스 제거
-        var lastQuestion = document.getElementById('question-' + lastOpenedQuestionId);
-        lastQuestion.classList.remove('active');
+        var lastQ = document.getElementById('question-' + lastId);
+        lastQ.classList.remove('active');
     }
     
     // 현재 클릭한 질문의 답변을 열기
-    if (currentAnswer.style.display === 'none' || currentAnswer.style.display === '') {
-        currentAnswer.style.display = 'block';
+    if (currentA.style.display === 'none' || currentA.style.display === '') {
+        currentA.style.display = 'block';
         // 현재 질문의 스타일에 'active' 클래스 추가
-        var currentQuestion = document.getElementById('question-' + id);
-        currentQuestion.classList.add('active');
+        var currentQ = document.getElementById('question-' + id);
+        currentQ.classList.add('active');
     } else {
-        currentAnswer.style.display = 'none';
+        currentA.style.display = 'none';
         // 현재 질문의 스타일에서 'active' 클래스 제거
-        var currentQuestion = document.getElementById('question-' + id);
-        currentQuestion.classList.remove('active');
+        var currentQ = document.getElementById('question-' + id);
+        currentQ.classList.remove('active');
     }
     
-    // 현재 질문의 ID를 lastOpenedQuestionId에 저장
-    lastOpenedQuestionId = (currentAnswer.style.display === 'block') ? id : null;
+    // 현재 질문의 ID를 lastId에 저장
+    lastId = (currentA.style.display === 'block') ? id : null;
 }
 	
 	

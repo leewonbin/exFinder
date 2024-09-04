@@ -15,5 +15,6 @@ public interface BoardDao {
 	
 	public void b_viewUpdate(int b_id) throws Exception;				//조회수 업데이트
 	public List<BoardDto> listSearch(BoardVo vo) throws Exception;		//검색 조건에 맞는 게시판 항목 조회
-
+	
+	public int getTotalCountByCategory(BoardVo vo) throws Exception;	//카테고리 및 검색 조건에 따른 전체 게시글 수 조회
 }

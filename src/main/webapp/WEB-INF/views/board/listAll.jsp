@@ -18,7 +18,6 @@
 
 <script
 	src="${pageContext.request.contextPath}/resources/js/listAllJs.js"></script>
-	
 <body>
 	<div>
 		<%@include file="../header/exFinder_header.jsp"%>
@@ -63,11 +62,10 @@
 						<tr>
 							<td>${boardDto.b_id }</td>
 							<td>${boardDto.b_category }</td>
-							<td><a
-								href="/ex/board/read?b_id=${boardDto.b_id}">${boardDto.b_title}</a></td>
+							<td><a href="/ex/board/read?b_id=${boardDto.b_id}">${boardDto.b_title}</a></td>
 							<td>${boardDto.u_id}</td>
-							<td><fmt:formatDate
-									value="${boardDto.b_date}" pattern="yyyy-MM-dd" /></td>
+							<td><fmt:formatDate value="${boardDto.b_date}"
+									pattern="yyyy-MM-dd" /></td>
 							<td>${boardDto.b_view}</td>
 						</tr>
 					</c:forEach>
@@ -80,15 +78,11 @@
 
 			<div class="pagination">
 				<c:if test="${boardVo.page !=1}">
-					<a href='listAll${boardVo.makeSearch(1)}'>&lt;&lt;&lt;</a>
+					<a href='listAll${boardVo.makeSearch(1)}'>&laquo;</a>
 				</c:if>
 
 				<c:if test="${boardVo.prev }">
-					<a href='listAll${boardVo.makeSearch(boardVo.startPage-1)}'>&lt;&lt;</a>
-				</c:if>
-
-				<c:if test="${boardVo.page != 1}">
-					<a href='listAll${boardVo.makeSearch(boardVo.page-1)}'>&lt;</a>
+					<a href='listAll${boardVo.makeSearch(boardVo.startPage-1)}'>&lt;</a>
 				</c:if>
 
 				<c:forEach begin="${boardVo.startPage }" end="${ boardVo.endPage}"
@@ -98,16 +92,12 @@
 						${idx}</a>
 				</c:forEach>
 
-				<c:if test="${boardVo.page != boardVo.totalEndPage}">
-					<a href='listAll${boardVo.makeSearch(boardVo.page+1)}'>&gt;</a>
-				</c:if>
-
 				<c:if test="${boardVo.next }">
-					<a href='listAll${boardVo.makeSearch(boardVo.endPage+1)}'>&gt;&gt;</a>
+					<a href='listAll${boardVo.makeSearch(boardVo.endPage+1)}'>&gt;</a>
 				</c:if>
 
 				<c:if test="${boardVo.page != boardVo.totalEndPage}">
-					<a href='listAll${boardVo.makeSearch(boardVo.totalEndPage)}'>&gt;&gt;&gt;</a>
+					<a href='listAll${boardVo.makeSearch(boardVo.totalEndPage)}'>&raquo;</a>
 				</c:if>
 			</div>
 		</div>

@@ -47,7 +47,7 @@ a:hover {
 .main-content{
 	margin-left: 200px;
 	margin-top: 150px;
-	
+	padding: 0 130px;
 }
 
 .main {
@@ -137,18 +137,34 @@ a:hover {
 
 }
 
-.search-container #searchBtn {
-		
-}	
-
 .pagination {
-	text-align: center;
+    display: flex; /* 버튼들을 수평으로 정렬 */
+    justify-content: center; /* 중앙 정렬 */
+    margin: 20px 0; /* 상하 여백 */
 }
 
 .pagination a {
-	color: red;
-	font-size: 20px;
+    display: inline-block;
+    color: black; 
+    background-color: white;
+    font-size: 15px;
+    padding: 10px 15px; /* 버튼 안쪽 여백 */
+    margin: 0 1px; /* 버튼 간 간격 */
+    text-decoration: none;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    line-height: 20px; /* 텍스트 수직 중앙 정렬, 없으면 높이 안맞음 */
 }
 
+.pagination a:hover {
+    background-color: #EFF3F8;
+    color: #000;
+}
 
+.pagination a.active {
+    background-color: #EFF3F8;
+    color: #054184;
+    font-weight: bold;
+}
 

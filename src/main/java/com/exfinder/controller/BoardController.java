@@ -97,18 +97,28 @@ public class BoardController {
 			vo.setKeyword(null);		//검색창 비어있을 때 관련 카테고리 전부 나오게
 		}
 		
-		int totalCnt = service.listAll().size();
-	    List<BoardDto> boardList = service.listSearch(vo); 
-	    vo.setTotalCount(totalCnt);
-	    model.addAttribute("list", boardList);
-	    model.addAttribute("boardVo", vo);
+//		int totalCnt = service.listAll().size();
+//	    List<BoardDto> boardList = service.listSearch(vo); 
+//	    vo.setTotalCount(totalCnt);
+//	    model.addAttribute("list", boardList);
+//	    model.addAttribute("boardVo", vo);
+//		
+//	    System.out.println("확인용~~~~" + boardList);
+//	    
+//		model.addAttribute("page", vo.getPage());
+//		model.addAttribute("perPageNum", vo.getPerPageNum());
+//		model.addAttribute("searchType", vo.getSearchType());
+//		model.addAttribute("keyword", vo.getKeyword());
 		
-	    System.out.println("확인용~~~~" + boardList);
-	    
-		model.addAttribute("page", vo.getPage());
-		model.addAttribute("perPageNum", vo.getPerPageNum());
-		model.addAttribute("searchType", vo.getSearchType());
-		model.addAttribute("keyword", vo.getKeyword());
+		// 카테고리별 전체 게시글 수 조회
+        int totalCnt = service.getTotalCountByCategory(vo);
+        vo.setTotalCount(totalCnt);
+
+        // 게시글 목록 조회
+        List<BoardDto> boardList = service.listSearch(vo);
+
+        model.addAttribute("list", boardList);
+        model.addAttribute("boardVo", vo);
 		
 	}
 }
