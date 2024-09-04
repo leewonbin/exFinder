@@ -47,11 +47,13 @@
 			</div>
 			
 		</div>
+		
+	</div>
 		<div id="right_main">
 			<div class="right_menu">
 				
 				<div class="my_info type_1">
-					<h2 class="profile-title">계정목록</h2>
+					<h2 class="profile-title">계정 목록</h2>
 						<!-- 테이블을 사용해 계정 목록을 표시 -->
                 <table class="user-table">
                     <thead>
@@ -65,151 +67,77 @@
                             <th>주소</th>
                             <th>가입 날짜</th>
                             <th>상태</th>
-                            <th>${user.u_id}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- selectAll를 반복하며 테이블 행 생성 -->
-                        
-                        <c:forEach var="user" items="${userList}">
-                            <tr>
-                                <td>${user.u_id}</td>
-                                <td>${user.u_nickname}</td>
-                                <td>${user.u_name}</td>
-                                <td>${user.u_gender}</td>
-                                <td>${user.u_email}</td>
-                                <td>${user.u_phoneNumber}</td>
-                                <td>${user.u_address}</td>
-                                <td>${user.u_joinDate}</td>
-                                <td>
-                                    <c:choose>
-                                        <c:when test="${user.enabled == 1}">활성화</c:when>
-                                        <c:otherwise>비활성화</c:otherwise>
-                                    </c:choose>
-                                </td>
-									<%-- <td>
-										<form
-											action="${pageContext.request.contextPath}/admin/updateAuthority"
-											method="post">
-											<input type="hidden" name="u_id" value="${user.u_id}">
-											<select name="authority">
-												<option value="ROLE_USER"
-													${user.authority == 'ROLE_USER' ? 'selected' : ''}>일반
-													사용자</option>
-												<option value="ROLE_ADMIN"
-													${user.authority == 'ROLE_ADMIN' ? 'selected' : ''}>관리자</option>
-											</select> <input type="submit" value="변경">
-										</form>
-									</td> --%>
-								</tr>
-                        </c:forEach>
-                    </tbody>
+
+							<c:forEach var="user" items="${userList}">
+							    <tr>
+							        <td>${user.u_id}</td>
+							        <td>${user.u_nickname}</td>
+							        <td>${user.u_name}</td>
+							        <td>${user.u_gender}</td>
+							        <td>${user.u_email}</td>
+							        <td>${user.u_phoneNumber}</td>
+							        <td>${user.u_address}</td>
+							        <td>${user.u_joinDate}</td>
+							        <!-- 상태 변경 폼 -->
+							        <td>
+							            <form action="${pageContext.request.contextPath}/admin/updateStatus" method="post">
+							                <input type="hidden" name="u_id" value="${user.u_id}" />
+							                <select name="enabled">
+							                    <option value="1" <c:if test="${user.enabled == 1}">selected</c:if>>활성화</option>
+							                    <option value="0" <c:if test="${user.enabled == 0}">selected</c:if>>비활성화</option>
+							                </select>
+							                <input type="submit" value="계정상태 변경" />
+							            </form>
+							        </td>
+							    </tr>
+							</c:forEach>
+
+							
+
+						</tbody>
                 </table>    
 				</div>
 				<div class="my_info2 type_2" style="display: none;" >
-					<h2 class="profile-title">회원 정보 수정</h2>
-					<form action="/ex/user/myInfo/menber_upDB" method="post">
-						<div class="my_info-container">
-							<label>아이디</label> 
-							<input type="text" class="input-text" name="u_id" value="${dto.u_id}" readonly />
-						</div>
-						<div class="my_info-container">
-							<label>닉네임</label> 
-							<input type="text" class="input-text" name="u_nickname" placeholder="별명을 변경하시오" value="${dto.u_nickname}" />
-						</div>
-						<div class="my_info-container">
-            				<label>이름</label> 
-							<input type="text" class="input-text" name="u_name" placeholder="이름을 변경하시오" value="${dto.u_name}" />
-						</div>
-						
-						<div class="my_info-container">
-							<label>성별</label> 
-							<label>남자</label><input type="radio" name="u_gender" value="남성" ${dto.u_gender.equals("남성") ? "checked" : ""}>
-          					<label>여자</label><input type="radio" name="u_gender" value="여성" ${dto.u_gender.equals("여성") ? "checked" : ""}>
-     					</div>
-     					
-     					<div class="my_info-container">
-	       					<label>생일</label> 
-	       					<input type="date" class="input-date" name="u_birthday" value="${dto.u_birthday}"><br>
-	       				</div>
+					<h2 class="profile-title">계정 권한</h2>
+					<c:forEach var="auth" items="${authorityList}">
+					    <tr>
+					        <td>${auth.u_id}</td>
+					        <!-- 권한을 선택할 수 있는 드롭다운 목록 -->
+					        <td>
+					            <form action="${pageContext.request.contextPath}/admin/updateAuthority" method="post">
+					                <input type="hidden" name="u_id" value="${auth.u_id}" />
+					                <select name="authority">
+					                    <!-- 권한 목록을 생성 -->
+					                    <option value="ROLE_ADMIN" <c:if test="${auth.authority == 'ROLE_ADMIN'}">selected</c:if>>
+					                      	  관리자
+					                    </option>
+					                    <option value="ROLE_MEMBER" <c:if test="${auth.authority == 'ROLE_MEMBER'}">selected</c:if>>
+					                       	 일반회원
+					                    </option>
+					                </select>
+					                <input type="submit" value="권한 변경" />
+					            </form>
+					        </td>
+					    </tr>
+					</c:forEach>
 
-						<div class="my_info-container">
-							<label>이메일</label> 	      
-	       					<input type="text" class="input-text-email" name="email"  placeholder="이메일을 입력하시오" value="${u_emailArr[0] }">
-            				<label style="font-weight: bold;"> @ </label>
-            				<select class="email-select" name="select" ${u_emailArr[2] }>
-                				<option value="naver.com">naver.com</option>
-                				<option value="gmail.com">gmail.com</option>
-                				<option value="daum.net">daum.net</option>
-            				</select><br>
-            			</div>
-            			<div class="my_info-container">
-            				<label>전화번호</label> 
-				      		<input type="text" class="input-phone1" name="phoneNumber1" maxlength="3" placeholder="010" value="${u_phoneNumberArr[0] }">
-				      		<label style="font-weight: bold;"> - </label> 
-	      					<input type="text" class="input-phone2" name="phoneNumber2" maxlength="4" value="${u_phoneNumberArr[1] }">
-	      					<label style="font-weight: bold;"> - </label> 
-	      					<input type="text" class="input-phone3" name="phoneNumber3" maxlength="4" value="${u_phoneNumberArr[2] }"><br>
-            			</div>
-            			
-            			<div style="display: flex;">
-    	        			<div class="my_info-container" style="width: 550px;">
-	            				<label>주소</label> 
-	       						<input type="text" class="input-text-address" name="u_address" placeholder="주소를 입력하시오" value="${dto.u_address }" id="u_address">
-							</div>
-							<button type="button" class="my_info-container-button" onclick="sample4_execDaumPostcode()">주소 검색</button><br>
-						</div>
-						
-						<div class="my_info-container">
-							<label>가입날짜</label>
-							<label class="join-date">${dto.u_joinDate }</label>
-	       				</div>
-	       				
-	        			<input type="submit" class="myinfo-button" value="회원정보 변경하기">
-    				</form>
-					
+
+
 				</div>
 				<div class="my_info type_3" style="display: none;">
 					<h2 class="profile-title">비밀번호 변경</h2>
-					<p>안전한 비밀번호를 만들고 같은 비밀번호를 다른 계정에 사용하지 마세요.</p>
-					<form name="passwordForm" action="/ex/user/myInfo/pw_upDB" method="post" onsubmit="return validateForm()">
-						<div class="password-container">
-        					<input type="password" class="myinfo-input" name="u_pw" id="u_pw" oninput="validateField('u_pw')" placeholder="변경할 비밀번호 입력하시오"/>
-        					<button type="button" id="togglePw" onclick="togglePassword('u_pw', 'togglePw')">
-           						<img src="${pageContext.request.contextPath}/resources/img/open.png" id="toggleImg" alt="보기">
-        					</button>        					 	
-        				</div>   
-        				<span id="u_pw-error" class="error-message"></span><br>   
-        								
-       	 				<input type="password" class="myinfo-input2" name="u_pw_check" oninput="validateField('u_pw_check')" placeholder="비밀번호를 한번 더 입력하시오" />
-       	 				<span id="u_pw_check-error" class="error-message"></span> 	 			
-       	 				
-	        			<input type="submit" class="myinfo-button" value="변경하기">
-    				</form>
+					
 				</div>
+				
 				<div class="my_info2 type_4" style="display: none; height: 550px;">
 					<h2 class="profile-title">회원 탈퇴</h2>
-					<div class="withdrawal-container">						
-              			<h2>회원 탈퇴 안내</h2>
-    					<p>ExFinder를 이용해 주셔서 감사합니다. 회원 탈퇴 시 다음과 같은 사항이 적용됩니다:</p>
-    					<p>현재 사용 중인 아이디(<label>${dto.u_id}</label>)는 탈퇴 후 복구할 수 없으며, 재사용도 불가능합니다.</p>
-    					<ul>
-        					<li>회원 정보 삭제 : 모든 개인 정보와 데이터가 영구적으로 삭제됩니다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        					삭제된 정보는 복구할 수 없습니다.</li>
-        					<li>서비스 이용 중지 : 탈퇴 후 ExFinder의 대부분의 서비스에 접근할 수 없습니다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-        					재이용 시 새롭게 회원가입을 해야 합니다.</li>
-        					<li>탈퇴 후 취소 불가 : 탈퇴 완료 후에는 취소할 수 없습니다. 신중하게 결정해 주세요.</li>
-    					</ul>
-    					<p>이용해 주셔서 감사드리며, 나중에 다시 찾아뵙기를 바랍니다.<br> 문의 사항이 있으면 언제든지 연락해 주세요.</p>
-    					<p>감사합니다.</p>
-					</div>
-
-					<div class="myinfo-checkbox-container">
-						<label for="cancel-account-check">회원 탈퇴하는 것에 동의합니다.</label>
-						<input type="checkbox" id="cancel-account-check" name="cancel-account-check">
-					</div>
-					<button type="button" class="myinfo-button" id="delete-account-btn" onclick="confirmDelete()" disabled>회원 탈퇴</button>
-				</div>
+				
+					
+								
 			</div>
 		</div>
 	</div>
