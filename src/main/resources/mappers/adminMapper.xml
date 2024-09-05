@@ -27,11 +27,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE u_id = #{u_id}
     </update>
 
-	<select id="selectUser" resultType="com.exfinder.dto.UserDto">
-		select * from users where u_id=#{u_id}
-	</select>
-
-	
+	 <update id="updateUser">
+        UPDATE users
+        SET
+            u_nickname = #{u_nickname},
+            u_name = #{u_name},
+            u_gender = #{u_gender},
+            u_email = #{u_email},
+            u_phoneNumber = #{u_phoneNumber},
+            u_address = #{u_address}
+        WHERE u_id = #{u_id}
+    </update>
 
 	<!-- 매퍼에 없는 클래스를 요청하면 404에러가 난다 -->
 

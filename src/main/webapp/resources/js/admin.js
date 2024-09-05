@@ -27,6 +27,24 @@ function reg_type_select(type) {
 	}
 }
 
+function submitForm(userId, button) {
+    var row = button.closest('tr');
+    var inputs = row.querySelectorAll('input, select');
+    
+    // 폼의 숨겨진 필드에 값을 설정
+    document.getElementById('u_id').value = userId;
+    
+    inputs.forEach(function(input) {
+        document.getElementById(input.getAttribute('data-field')).value = input.value;
+    });
+    
+    // 폼을 제출
+    document.getElementById('updateForm').submit();
+}
+
+
+
+	
 
 //주소검색
 function sample4_execDaumPostcode() {
