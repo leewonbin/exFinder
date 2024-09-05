@@ -9,7 +9,7 @@ body, html {
 }
 
 .include_header * {
-	    color: #fff; /* 텍스트 색상 설정 */
+	color: #fff; /* 텍스트 색상 설정 */
     text-shadow: none; /* 텍스트 그림자 제거 */
     /* 기타 스타일 필요시 추가 */
 }

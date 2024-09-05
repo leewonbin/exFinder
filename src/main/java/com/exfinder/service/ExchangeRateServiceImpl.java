@@ -24,7 +24,9 @@ import com.exfinder.dto.ExchangeRateDto;
 @Service
 public class ExchangeRateServiceImpl implements ExchangeRateService {
 	
+	
 	private ExchangeRateDao dao;
+	
 	@Autowired
 	public ExchangeRateServiceImpl(SqlSession sqlSession) {
 		this.dao = sqlSession.getMapper(ExchangeRateDao.class);
@@ -149,6 +151,11 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 		}
 		System.out.println(curreny + " 완료");
 		return list;
+	}
+
+	@Override
+	public double exchangeRateSelect_base_r(String c_code, String rate_date) {
+		return dao.exchangeRateSelect_base_r(c_code, rate_date);
 	}
 
 }

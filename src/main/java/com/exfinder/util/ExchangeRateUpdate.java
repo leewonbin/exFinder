@@ -114,6 +114,7 @@ public class ExchangeRateUpdate {
 				
 				dto.setC_code(curreny);
 				list.add(dto);
+				
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -121,4 +122,5 @@ public class ExchangeRateUpdate {
 		}
 		return list;
 	}
+	
 }

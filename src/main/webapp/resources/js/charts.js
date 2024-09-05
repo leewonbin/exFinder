@@ -8,7 +8,25 @@ $(document).ready(function() {
 	ajaxData('JPY', 'chart_div2'); // 페이지가 로드될 때 두 번째 AJAX 요청
 	ajaxData('EUR', 'chart_div3');
 	ajaxData('CNY', 'chart_div4');
-	$('#addBtn').hide();
+	
+	ajaxData('GBP', 'chart_div5');
+	ajaxData('CHF', 'chart_div6');
+	
+	ajaxData('INR', 'chart_div7');
+	ajaxData('AUD', 'chart_div8');
+	ajaxData('SAR', 'chart_div9');
+	ajaxData('RUB', 'chart_div10');
+	
+	fetchExchangeRateData('USD', '2024/03/26', 'value' );
+	fetchExchangeRateData('JPY', '2024/03/26', 'value2' );
+	fetchExchangeRateData('EUR', '2024/03/26', 'value3' );
+	fetchExchangeRateData('CNY', '2024/03/26', 'value4' );
+	fetchExchangeRateData('GBP', '2024/03/26', 'value5' );
+	fetchExchangeRateData('CHF', '2024/03/26', 'value6' );
+	fetchExchangeRateData('INR', '2024/03/26', 'value7' );
+	fetchExchangeRateData('AUD', '2024/03/26', 'value8' );
+	fetchExchangeRateData('SAR', '2024/03/26', 'value9' );
+	fetchExchangeRateData('RUB', '2024/03/26', 'value10' );
 });
 
 // AJAX 요청 함수
@@ -19,7 +37,7 @@ function ajaxData(c_code, chartDivId) {
 
 	$.ajax({
 		type : "POST",
-		url : contextPath + "/charts/graph", // contextPath 사용 "${pageContext.request.contextPath}/charts/graph",
+		url : "/ex/charts/graph", // contextPath 사용 "${pageContext.request.contextPath}/charts/graph",
 		data : {
 			c_code : c_code,
 			start_date : start_date,
@@ -75,6 +93,59 @@ function drawCharts(data, chartDivId) {
 	chart.draw(chartData, options);
 }
 
+// 정보 함수
+function fetchExchangeRateData(c_code, rate_date, div_id) {
+    $.ajax({
+        url: '/ex/charts/value',
+        type: 'POST',
+        data: {
+            c_code: c_code,
+            rate_date: rate_date
+        },
+        success: function(response) {
+            console.log('서버 응답:', response); // 서버 응답 확인
+
+            // 응답 데이터가 JSON 객체로 가정
+            const today_base_r = response.today_base_r;
+            const yesterday_base_r = response.yesterday_base_r;
+            const difference = response.difference;
+            const percent = response.percent;
+
+            // 결과 문자열 생성
+            let result;
+            let cssClass;
+
+            if (today_base_r > yesterday_base_r) {
+                result = today_base_r + ' ▲' + difference.toFixed(2) + ' +' + percent.toFixed(2) + '%';
+                cssClass = 'increased';
+            } else if (today_base_r === yesterday_base_r) {
+                result = today_base_r + ' -' + difference.toFixed(2) + ' ' + percent.toFixed(2) + '%';
+                cssClass = 'unchanged';
+            } else {
+                result = today_base_r + ' ▼' + difference.toFixed(2) + ' -' + percent.toFixed(2) + '%';
+                cssClass = 'decreased';
+            }
+
+            console.log('결과 문자열:', result); // 결과 문자열 확인
+            console.log('CSS 클래스:', cssClass); // CSS 클래스 확인
+
+            // HTML 콘텐츠 업데이트
+            const htmlContent = '<div class="' + cssClass + '">' + result + '</div>';
+            console.log('업데이트할 HTML:', htmlContent); // 업데이트할 HTML 확인
+
+            // HTML 업데이트
+            $('#' + div_id).html(htmlContent);
+
+            // 업데이트 후 상태 확인
+            console.log('업데이트된 HTML:', $('#' + div_id).html());
+        },
+        error: function(xhr, status, error) {
+            console.error('데이터를 가져오는 데 실패했습니다:', error);
+            $('#' + div_id).html('<div>데이터를 가져오는 데 실패했습니다.</div>');
+        }
+    });
+}
+
 
 
 // 슬라이드
@@ -82,7 +153,7 @@ $(document).ready(function() {
     var currentIndex = 0;
     var totalSlides = $('.chart_graph_box_container').length; // 총 슬라이드 개수
     var container = $('#slide-container');
-    var slideWidth = $('.charts_view').width(); // 슬라이드 폭 계산 (charts_view의 너비와 동일)
+    var slideWidth = $('.chart_graph_box_slide').width(); // 슬라이드 폭 계산 (chart_graph_box_slide의 너비와 동일)
 
     function showSlide(index) {
         var maxIndex = totalSlides - 1; // 최대 슬라이드 인덱스
@@ -94,7 +165,7 @@ $(document).ready(function() {
     }
 
     function updateSlideIndicator() {
-        $('#slide-indicator').text((currentIndex + 1) + '/' + totalSlides);
+        $('#slide-indicator').text((currentIndex + 1) + ' / ' + totalSlides);
     }
 
     $('#next-slide').click(function() {
@@ -107,4 +178,10 @@ $(document).ready(function() {
 
     // 초기 슬라이드 표시
     showSlide(currentIndex);
+
+    // 윈도우 리사이즈 시 슬라이드 폭 업데이트
+    $(window).resize(function() {
+        slideWidth = $('.chart_graph_box_slide').width();
+        showSlide(currentIndex);
+    });
 });

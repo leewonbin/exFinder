@@ -16,6 +16,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY c_code, rate_date
 </select>
 
+<select id="exchangeRateSelect_base_r" parameterType="String" resultType="double">
+    SELECT base_r FROM exchangerate
+    WHERE c_code = #{c_code}
+      AND rate_date = #{rate_date}
+</select>
+
 </mapper>
 
 
