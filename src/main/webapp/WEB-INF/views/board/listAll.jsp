@@ -42,7 +42,8 @@
 					<option value="공지사항">공지사항</option>
 					<option value="자유게시판">자유게시판</option>
 					<option value="고객센터">고객센터</option>
-				</select> <input type="text" id="keywordInput" placeholder="검색어 입력">
+				</select> 
+				<input type="text" id="keywordInput" placeholder="검색어 입력">
 				<button id="searchBtn">검색</button>
 			</div>
 
