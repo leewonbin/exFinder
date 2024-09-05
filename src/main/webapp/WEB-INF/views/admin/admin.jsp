@@ -49,59 +49,84 @@
 		</div>
 		
 	</div>
-		<div id="right_main">
-			<div class="right_menu">
-				
-				<div class="my_info type_1">
-					<h2 class="profile-title">계정 목록</h2>
-						<!-- 테이블을 사용해 계정 목록을 표시 -->
-                <table class="user-table">
-                    <thead>
-                        <tr>
-                            <th>아이디</th>
-                            <th>닉네임</th>
-                            <th>이름</th>
-                            <th>성별</th>
-                            <th>이메일</th>
-                            <th>전화번호</th>
-                            <th>주소</th>
-                            <th>가입 날짜</th>
-                            <th>상태</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- selectAll를 반복하며 테이블 행 생성 -->
+	<div id="right_main">
+		<div class="right_menu">
+			<div class="my_info type_1">
+				<h2 class="profile-title">계정 목록</h2>
+				<form id="updateForm"
+					action="${pageContext.request.contextPath}/admin/updateUser"
+					method="post" style="display: none;">
+					<input type="hidden" name="u_id" id="u_id"> <input
+						type="hidden" name="u_nickname" id="u_nickname"> <input
+						type="hidden" name="u_name" id="u_name"> <input
+						type="hidden" name="u_gender" id="u_gender"> <input
+						type="hidden" name="u_email" id="u_email"> <input
+						type="hidden" name="u_phoneNumber" id="u_phoneNumber"> <input
+						type="hidden" name="u_address" id="u_address">
+				</form>
 
-							<c:forEach var="user" items="${userList}">
-							    <tr>
-							        <td>${user.u_id}</td>
-							        <td>${user.u_nickname}</td>
-							        <td>${user.u_name}</td>
-							        <td>${user.u_gender}</td>
-							        <td>${user.u_email}</td>
-							        <td>${user.u_phoneNumber}</td>
-							        <td>${user.u_address}</td>
-							        <td>${user.u_joinDate}</td>
-							        <!-- 상태 변경 폼 -->
-							        <td>
-							            <form action="${pageContext.request.contextPath}/admin/updateStatus" method="post">
-							                <input type="hidden" name="u_id" value="${user.u_id}" />
-							                <select name="enabled">
-							                    <option value="1" <c:if test="${user.enabled == 1}">selected</c:if>>활성화</option>
-							                    <option value="0" <c:if test="${user.enabled == 0}">selected</c:if>>비활성화</option>
-							                </select>
-							                <input type="submit" value="계정상태 변경" />
-							            </form>
-							        </td>
-							    </tr>
-							</c:forEach>
-
-							
-
-						</tbody>
-                </table>    
-				</div>
-				<div class="my_info2 type_2" style="display: none;" >
+				<!-- 기존 테이블 코드 유지 -->
+				<table class="user-table">
+					<thead>
+						<tr>
+							<th>아이디</th>
+							<th>닉네임</th>
+							<th>이름</th>
+							<th>성별</th>
+							<th>이메일</th>
+							<th>전화번호</th>
+							<th>주소</th>
+							<th>가입 날짜</th>
+							<th>작업</th>
+							<th>계정 상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="user" items="${userList}">
+							<tr>
+								<td>${user.u_id}</td>
+								<td><input type="text" value="${user.u_nickname}"
+									data-field="u_nickname" class="u_nickname" /></td>
+								<td><input type="text" value="${user.u_name}"
+									data-field="u_name" class="u_name"/></td>
+								<td><select data-field="u_gender">
+										<option value="남성"
+											<c:if test="${user.u_gender == '남성'}">selected</c:if>>남성</option>
+										<option value="여성"
+											<c:if test="${user.u_gender == '여성'}">selected</c:if>>여성</option>
+								</select></td>
+								<td><input type="email" value="${user.u_email}"
+									data-field="u_email" /></td>
+								<td><input type="text" value="${user.u_phoneNumber}"
+									data-field="u_phoneNumber" class="u_phoneNumber" /></td>
+								<td><input type="text" value="${user.u_address}"
+									data-field="u_address" /></td>
+								<td>${user.u_joinDate}</td>
+								<td>
+									<button onclick="submitForm('${user.u_id}', this)">저장</button>
+								</td>
+								<!-- 상태 변경 폼 -->
+								<td>
+									<form
+										action="${pageContext.request.contextPath}/admin/updateStatus"
+										method="post">
+										<input type="hidden" name="u_id" value="${user.u_id}" /> <select
+											name="enabled">
+											<option value="1"
+												<c:if test="${user.enabled == 1}">selected</c:if>>활성화</option>
+											<option value="0"
+												<c:if test="${user.enabled == 0}">selected</c:if>>비활성화</option>
+										</select> <input type="submit" value="변경" />
+									</form>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="my_info2 type_2" style="display: none;" >
 					<h2 class="profile-title">계정 권한</h2>
 					<c:forEach var="auth" items="${authorityList}">
 					    <tr>
@@ -124,7 +149,6 @@
 					        </td>
 					    </tr>
 					</c:forEach>
-
 
 
 				</div>

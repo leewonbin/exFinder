@@ -14,6 +14,10 @@ public interface AdminService {
 	public void updateAuthority(AuthoritiesDto authoritiesDto) throws Exception;
 	// 계정 상태 업데이트 메서드 추가
 	public void updateStatus(String u_id, int enabled) throws Exception;
+
+	public void updateUser(UserDto userDto) throws Exception;
+
+
 	
 
 	

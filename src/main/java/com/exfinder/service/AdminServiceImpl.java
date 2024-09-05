@@ -51,6 +51,16 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
+	@Override
+	public void updateUser(UserDto userDto) throws Exception {
+		AdminDao dao = sqlSession.getMapper(AdminDao.class);
+		dao.updateUser(userDto);
+		
+	}
+
+	
+	
+
 	
 
 	

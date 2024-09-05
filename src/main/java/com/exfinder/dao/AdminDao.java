@@ -11,6 +11,7 @@ public interface AdminDao {
 	public ArrayList<AuthoritiesDto> selectAllAuthorities() throws Exception;
 	public void updateAuthority(AuthoritiesDto authoritiesDto)  throws Exception;
 	public void updateStatus(Map<String, Object> params) throws Exception;
+	public void updateUser(UserDto userDto) throws Exception;
 	
 
 	
