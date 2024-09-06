@@ -35,6 +35,7 @@ public class CurrencyController {
 	public void listAll(Model model) throws Exception {
 		logger.info("listAll..........");
 		List<CurrencyDto> list = service.listAll();
+		System.out.println(list);
 		model.addAttribute("list", list);
 	}
 	

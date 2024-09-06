@@ -43,19 +43,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                <c:set var="beforeValue"/>
                     <c:forEach var="currency" items="${list}">
                         <tr>
                             <td>${currency.rate_date}</td>
                             <td>${currency.c_country}</td>
                             <td>${currency.c_name}</td>
                             <td>${currency.deal_bas_r}</td>
-                            <td>${currency.cash_buy - currency.deal_bas_r}</td>
+                            <td>${currency.base_r - beforeValue }</td>
                             <td>${currency.cash_buy}</td>
                             <td>${currency.cash_sell}</td>
                             <td>${currency.ttb}</td>
                             <td>${currency.tts}</td>
                             <td>${currency.base_r}</td>
                         </tr>
+                    	<c:set var="beforeValue" value="${currency.base_r }"/>
                     </c:forEach>
                 </tbody>
             </table>

@@ -18,6 +18,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/charts.js"></script>
 </head>
 <body>
+<script>
+	console.log("${list}")
+</script>
 	<!-- 헤더 Include -->
  	<div class="include_header">
 		<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
