@@ -332,6 +332,51 @@
 		</div> -->
 
 	</div>
+	
+	<h1>환율조회</h1>
+
+    <div class="box-contents">
+        <div>
+            <table class="exchange">
+                <thead>
+                    <tr class="chart">
+                        <th rowspan="2">일자</th>
+                        <th rowspan="2">국가명</th>
+                        <th rowspan="2">통화</th>
+                        <th rowspan="2">매매기준율</th>
+                        <th rowspan="2">전일비</th>
+                        <th colspan="2">현찰</th>
+                        <th colspan="2">송금(전신환)</th>
+                        <th rowspan="2">기준환율</th>
+                    </tr>
+                    <tr class="chartB">
+                        <th class="leftL">사실때</th>
+                        <th>파실때</th>
+                        <th>보내실때</th>
+                        <th>받으실때</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <c:set var="beforeValue"/>
+                    <c:forEach var="currency" items="${list}">
+                        <tr>
+                            <td>${currency.rate_date}</td>
+                            <td>${currency.c_country}</td>
+                            <td>${currency.c_name}</td>
+                            <td>${currency.deal_bas_r}</td>
+                            <td>${currency.base_r - beforeValue }</td>
+                            <td>${currency.cash_buy}</td>
+                            <td>${currency.cash_sell}</td>
+                            <td>${currency.ttb}</td>
+                            <td>${currency.tts}</td>
+                            <td>${currency.base_r}</td>
+                        </tr>
+                    	<c:set var="beforeValue" value="${currency.base_r }"/>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 	<script>
 		// 환율 변환 로직
