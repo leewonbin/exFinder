@@ -311,8 +311,11 @@
 
 	<!-- 구분선 -->
 	<hr class="divider">
-	<div class="world_map">
-		<img src="${pageContext.request.contextPath}/resources/img/gonfalon/world_map.png">
+	
+	<div class="world_map_view">
+		<div class="world_map">
+			<img src="${pageContext.request.contextPath}/resources/img/gonfalon/world_map.png">
+		</div>
 	</div>
 		<!-- 슬라이드쇼 미완성 -->
 <!-- 		<div class="slide_wrapper ">
