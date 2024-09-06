@@ -32,7 +32,7 @@
 	background-color: #dcdcdc; /* 밝은 회색 구분선 */
 }
 .world_map {
-	position: relative;
+	position: relative;    /* 부모 요소를 기준으로 자식 요소 배치 */
     display: flex;
     justify-content: center; /* 수평 중앙 정렬 */
     align-items: center;     /* 수직 중앙 정렬 */
@@ -45,16 +45,17 @@
 }
 
 .rectangle {
-    position: absolute;   /* 부모 요소를 기준으로 배치 */
-    top: 120px;            /* 이미지 위로부터 20px 내려옴 */
-    left: 70%;            /* 부모 요소 기준으로 가로 중앙에 배치 */
-    transform: translateX(-50%); /* 정확한 중앙 배치를 위해 사용 */
-    width: 150px;         /* 직사각형의 가로 길이 */
-    height: 30px;         /* 직사각형의 세로 길이 */
+    position: absolute;    /* 부모 요소(.world_map)를 기준으로 고정 배치 */
+    top: 100px;           /* 화면 위에서 100px 아래 */
+    left: 50px;           /* 화면 왼쪽에서 50px 오른쪽으로 */
+    width: 200px;         /* 직사각형의 가로 길이 */
+    height: auto;         /* 내용에 따라 세로 길이를 자동 조정 */
     background-color: white; /* 배경색을 흰색으로 설정 */
-    border: 1px solid gray;   /* 테두리를 회색으로 설정 */
-    border-radius: 5px;   /* 직사각형 모서리를 살짝 둥글게 설정 */
+    border: 1px solid gray;  /* 회색 테두리 */
+    border-radius: 5px;   /* 직사각형 모서리를 살짝 둥글게 */
+    padding: 10px;        /* 이미지와 텍스트의 안쪽 여백 */
 }
+
 .rectangle img {
 	width: 25px;         /* 이미지를 부모 요소의 너비에 맞게 조정 */
     height: 25px;
