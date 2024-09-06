@@ -8,6 +8,14 @@
 <title>웹페이지</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/exFinder_main.css">
 <script src="${pageContext.request.contextPath}/resources/js/mainScrollJs.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/charts.css">  	
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<!-- google charts -->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<!-- 슬라이드 효과를 위한 JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/charts.js"></script>
 </head>
 <body>
 	<!-- 헤더 Include -->
@@ -92,6 +100,209 @@
 
 		<!-- 구분선 -->
 		<hr class="divider">
+			<!-- 중앙에 위치시키기 위한 div -->
+    	<div class="charts_view">
+    		<div class="Cover-box1"></div>
+        	<div class="charts_container">
+            	<div class="slide-controls">
+            		<div class="Cover-button-box">
+            			<button id="prev-slide">
+            				<img src="${pageContext.request.contextPath}/resources/img/arrow.png" class="slide-controls-img" style="transform: scaleX(-1);">
+            			</button>
+            		</div>
+            		<div class="chart_graph_box_slide" id="slide-container">
+            	    	<div class="chart_graph_box_container">
+            				<div class="chart_graph_box">
+            					<div class="chart_graph_box_top">
+            						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/USD.png">
+            						<a>미국 USD</a>        					
+            						<div id="value"></div>
+            					</div>
+            					<div id="chart_div" class="chart_graph"></div>
+            				</div>
+            				<div class="chart_graph_box">
+            					<div class="chart_graph_box_top">
+	            					<img src="${pageContext.request.contextPath}/resources/img/gonfalon/JPY2.png">
+    	        					<a>일본 JPY</a>
+        	    					<div id="value2"></div>
+            					</div>
+            					<div id="chart_div2" class="chart_graph"></div>
+            				</div>    	
+    	        		</div>
+	            		<div class="chart_graph_box_container">
+        	    			<div class="chart_graph_box">
+        	    				<div class="chart_graph_box_top">
+            						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/EUR.png">
+            						<a>유럽연합 EUR</a>
+            						<div id="value3"></div>
+            					</div>
+            					<div id="chart_div3" class="chart_graph"></div>
+            				</div>
+            				<div class="chart_graph_box">
+            					<div class="chart_graph_box_top">
+            						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/CNY.png">
+            						<a>중국 CNY</a>
+            						<div id="value4"></div>
+            					</div>
+            					<div id="chart_div4" class="chart_graph"></div>
+            				</div>
+            			</div>
+            			<div class="chart_graph_box_container">
+        	    			<div class="chart_graph_box">
+        	    				<div class="chart_graph_box_top">
+            						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/GBP.png">
+            						<a>영국 GBP</a>
+            						<div id="value5"></div>
+            					</div>
+            					<div id="chart_div5" class="chart_graph"></div>
+            				</div>
+            				<div class="chart_graph_box">
+	            				<div class="chart_graph_box_top">
+    	        					<img src="${pageContext.request.contextPath}/resources/img/gonfalon/CHF.png">
+        	    					<a>스위스 CHF</a>
+            						<div id="value6"></div>
+            					</div>
+            					<div id="chart_div6" class="chart_graph"></div>
+            				</div>
+            			</div>            		
+            			<div class="chart_graph_box_container">
+        	    			<div class="chart_graph_box">
+        	    				<div class="chart_graph_box_top">
+            						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/CAD.png">
+            						<a>캐나다 CAD</a>
+            						<div id="value7"></div>
+            					</div>
+            					<div id="chart_div7" class="chart_graph"></div>
+            				</div>
+            				<div class="chart_graph_box">
+            					<div class="chart_graph_box_top">            	
+            						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/INR.png">
+            						<a>인도 INR</a>
+            						<div id="value8"></div>
+            					</div>
+            					<div id="chart_div8" class="chart_graph"></div>
+            				</div>
+            			</div>
+            			<div class="chart_graph_box_container">
+        	    			<div class="chart_graph_box">
+        	    				<div class="chart_graph_box_top">
+            						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/HKD.png">
+            						<a>홍콩 HKD</a>
+            						<div id="value9" ></div>
+            					</div>	
+            					<div id="chart_div9" class="chart_graph"></div>
+            				</div>
+            				<div class="chart_graph_box">
+            					<div class="chart_graph_box_top">
+            						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/EGP.png">
+            						<a>이집트 EGP</a>
+            						<div id="value10"></div>
+            					</div>
+            					<div id="chart_div10" class="chart_graph"></div>
+            				</div>
+            			</div>
+            			<div class="chart_graph_box_container">
+        	    			<div class="chart_graph_box">
+        	    				<div class="chart_graph_box_top">
+        	    					<img src="${pageContext.request.contextPath}/resources/img/gonfalon/SAR.png">
+            						<a>사우디 SAR</a>
+            						<div id="value11" ></div>
+            					</div>
+            					<div id="chart_div11" class="chart_graph"></div>
+            				</div>
+            				<div class="chart_graph_box">
+	            				<div class="chart_graph_box_top">
+    	        					<img src="${pageContext.request.contextPath}/resources/img/gonfalon/AUD.png">
+        	    					<a>호주 AUD</a>
+            						<div id="value12"></div>
+            					</div>
+            					<div id="chart_div12" class="chart_graph"></div>
+	            			</div>
+    	        		</div>
+        	    		<div class="chart_graph_box_container">
+        		    		<div class="chart_graph_box">
+        	    				<div class="chart_graph_box_top">
+        	    					<img src="${pageContext.request.contextPath}/resources/img/gonfalon/THB.png">
+            						<a>태국 THB</a>
+            						<div id="value13" ></div>
+            					</div>
+            					<div id="chart_div13" class="chart_graph"></div>
+            				</div>
+            				<div class="chart_graph_box">
+            					<div class="chart_graph_box_top">
+            						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/RUB.png">
+            						<a>러시아 RUB</a>
+            						<div id="value14"></div>
+            					</div>
+            					<div id="chart_div14" class="chart_graph"></div>
+            				</div>
+            			</div>
+            			<div class="chart_graph_box_container">
+        	    			<div class="chart_graph_box">
+        	    				<div class="chart_graph_box_top">
+        	    					<img src="${pageContext.request.contextPath}/resources/img/gonfalon/VND.png">
+            						<a>베트남 VND</a>
+            						<div id="value15" ></div>
+            					</div>
+            					<div id="chart_div15" class="chart_graph"></div>
+            				</div>
+            				<div class="chart_graph_box">
+            					<div class="chart_graph_box_top">
+            						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/ZAR.png">
+	            					<a>남아공 ZAR</a>
+    	        					<div id="value16"></div>
+        	    				</div>
+            					<div id="chart_div16" class="chart_graph"></div>
+            				</div>
+            			</div>
+            			<div class="chart_graph_box_container">
+        	    			<div class="chart_graph_box">
+        	    				<div class="chart_graph_box_top">
+	        	    				<img src="${pageContext.request.contextPath}/resources/img/gonfalon/MXN.png">
+    	        					<a>멕시코 MXN</a>
+        	    					<div id="value17" ></div>
+            					</div>
+            					<div id="chart_div17" class="chart_graph"></div>
+            				</div>
+            				<div class="chart_graph_box">
+	            				<div class="chart_graph_box_top">
+    	        					<img src="${pageContext.request.contextPath}/resources/img/gonfalon/BRL.png">
+        	    					<a>브라질 BRL</a>
+            						<div id="value18"></div>
+            					</div>
+            					<div id="chart_div18" class="chart_graph"></div>
+            				</div>
+	            		</div>
+    	        		<div class="chart_graph_box_container">
+        		    		<div class="chart_graph_box">
+        		    			<div class="chart_graph_box_top">
+        	    					<img src="${pageContext.request.contextPath}/resources/img/gonfalon/ILS.png">
+            						<a>이스라엘 ILS</a>
+            						<div id="value19" ></div>
+            					</div>
+	            				<div id="chart_div19" class="chart_graph"></div>
+    	        			</div>
+        	    			<div class="chart_graph_box">
+            					<div class="chart_graph_box_top">
+            						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/NZD.png">
+            						<a>뉴질랜드 NZD</a>
+            						<div id="value20"></div>
+            					</div>
+	            				<div id="chart_div20" class="chart_graph"></div>
+    	        			</div>
+        	    		</div>
+            		</div>
+            		<div class="Cover-button-box">
+            			<button id="next-slide">
+            				<img src="${pageContext.request.contextPath}/resources/img/arrow.png" class="slide-controls-img" >
+            			</button>        		
+            		</div>
+    			</div>
+    			<span id="slide-indicator">1 / 10</span>
+        	</div>
+        	<div class="Cover-box2"></div>
+    	</div>
+    
 		<!-- 슬라이드쇼 미완성 -->
 <!-- 		<div class="slide_wrapper ">
 			<ul class="slides flex">

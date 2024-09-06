@@ -101,7 +101,7 @@ public class ExChangeController {
 		
 		double today_base_r = service.exchangeRateSelect_base_r(c_code, rate_date);
 		System.out.println("최신값 : " + today_base_r);
-		rate_date = "2024/03/25";
+		rate_date = "2024/09/05";
 		double yesterday_base_r = service.exchangeRateSelect_base_r(c_code, rate_date);
 		System.out.println("최신값-1 : " + yesterday_base_r);
 		// model.addAttribute("ExchangeRateDto", dto);

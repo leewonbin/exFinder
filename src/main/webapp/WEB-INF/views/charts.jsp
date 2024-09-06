@@ -39,7 +39,7 @@
             			<div class="chart_graph_box">
             				<div class="chart_graph_box_top">
             					<img src="${pageContext.request.contextPath}/resources/img/gonfalon/USD.png">
-            					<a>미국 USD</a>
+            					<a>미국 USD</a>        					
             					<div id="value"></div>
             				</div>
             				<div id="chart_div" class="chart_graph"></div>
@@ -210,7 +210,7 @@
             			<div class="chart_graph_box">
             				<div class="chart_graph_box_top">
             					<img src="${pageContext.request.contextPath}/resources/img/gonfalon/NZD.png">
-            					<a>뉴질랜드</a>
+            					<a>뉴질랜드 NZD</a>
             					<div id="value20"></div>
             				</div>
             				<div id="chart_div20" class="chart_graph"></div>

@@ -27,27 +27,27 @@ $(document).ready(function() {
 	ajaxData('NZD', 'chart_div20');
 	
 	
-	fetchExchangeRateData('USD', '2024/03/26', 'value' );
-	fetchExchangeRateData('JPY', '2024/03/26', 'value2' );
-	fetchExchangeRateData('EUR', '2024/03/26', 'value3' );
-	fetchExchangeRateData('CNY', '2024/03/26', 'value4' );
-	fetchExchangeRateData('GBP', '2024/03/26', 'value5' );
-	fetchExchangeRateData('CHF', '2024/03/26', 'value6' );
-	fetchExchangeRateData('INR', '2024/03/26', 'value7' );
-	fetchExchangeRateData('AUD', '2024/03/26', 'value8' );
-	fetchExchangeRateData('SAR', '2024/03/26', 'value9' );
-	fetchExchangeRateData('RUB', '2024/03/26', 'value10' );
+	fetchExchangeRateData('USD', '2024/09/06', 'value' );
+	fetchExchangeRateData('JPY', '2024/09/06', 'value2' );
+	fetchExchangeRateData('EUR', '2024/09/06', 'value3' );
+	fetchExchangeRateData('CNY', '2024/09/06', 'value4' );
+	fetchExchangeRateData('GBP', '2024/09/06', 'value5' );
+	fetchExchangeRateData('CHF', '2024/09/06', 'value6' );
+	fetchExchangeRateData('INR', '2024/09/06', 'value7' );
+	fetchExchangeRateData('AUD', '2024/09/06', 'value8' );
+	fetchExchangeRateData('SAR', '2024/09/06', 'value9' );
+	fetchExchangeRateData('RUB', '2024/09/06', 'value10' );
 	
-	fetchExchangeRateData('CAD', '2024/03/26', 'value11' );
-	fetchExchangeRateData('HKD', '2024/03/26', 'value12' );
-	fetchExchangeRateData('EGP', '2024/03/26', 'value13' );
-	fetchExchangeRateData('THB', '2024/03/26', 'value14' );
-	fetchExchangeRateData('VND', '2024/03/26', 'value15' );
-	fetchExchangeRateData('ZAR', '2024/03/26', 'value16' );
-	fetchExchangeRateData('MXN', '2024/03/26', 'value17' );
-	fetchExchangeRateData('BRL', '2024/03/26', 'value18' );
-	fetchExchangeRateData('ILS', '2024/03/26', 'value19' );
-	fetchExchangeRateData('NZD', '2024/03/26', 'value20' );
+	fetchExchangeRateData('CAD', '2024/09/06', 'value11' );
+	fetchExchangeRateData('HKD', '2024/09/06', 'value12' );
+	fetchExchangeRateData('EGP', '2024/09/06', 'value13' );
+	fetchExchangeRateData('THB', '2024/09/06', 'value14' );
+	fetchExchangeRateData('VND', '2024/09/06', 'value15' );
+	fetchExchangeRateData('ZAR', '2024/09/06', 'value16' );
+	fetchExchangeRateData('MXN', '2024/09/06', 'value17' );
+	fetchExchangeRateData('BRL', '2024/09/06', 'value18' );
+	fetchExchangeRateData('ILS', '2024/09/06', 'value19' );
+	fetchExchangeRateData('NZD', '2024/09/06', 'value20' );
 });
 
 // AJAX 요청 함수
