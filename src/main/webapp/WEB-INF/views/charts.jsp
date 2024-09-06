@@ -16,7 +16,49 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/charts.js"></script>
 	<style>
-        
+/* p 태그 스타일 - 국가별 차트 */
+.country-chart {
+	font-size: 1.1em;
+	font-weight: bold;
+	margin-left: 325px; /* x 위치 조정 */
+	margin-top: 100px; /* p 태그와 div 간의 간격 조정 */
+}
+
+/* 구분선 스타일 */
+.divider {
+	margin: 20px 0; /* 위 아래 여백 */
+	border: none;
+	height: 1px;
+	background-color: #dcdcdc; /* 밝은 회색 구분선 */
+}
+.world_map {
+	position: relative;
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center;     /* 수직 중앙 정렬 */
+    height: 400px;           /* 부모 요소의 높이를 설정 */
+}
+.world_map img {
+    width: 1100px;         /* 이미지를 부모 요소의 너비에 맞게 조정 */
+    height: auto;            /* 이미지의 비율을 유지하면서 크기 조정 */
+    z-index: -1;
+}
+
+.rectangle {
+    position: absolute;   /* 부모 요소를 기준으로 배치 */
+    top: 120px;            /* 이미지 위로부터 20px 내려옴 */
+    left: 70%;            /* 부모 요소 기준으로 가로 중앙에 배치 */
+    transform: translateX(-50%); /* 정확한 중앙 배치를 위해 사용 */
+    width: 150px;         /* 직사각형의 가로 길이 */
+    height: 30px;         /* 직사각형의 세로 길이 */
+    background-color: white; /* 배경색을 흰색으로 설정 */
+    border: 1px solid gray;   /* 테두리를 회색으로 설정 */
+    border-radius: 5px;   /* 직사각형 모서리를 살짝 둥글게 설정 */
+}
+.rectangle img {
+	width: 25px;         /* 이미지를 부모 요소의 너비에 맞게 조정 */
+    height: 25px;
+}
     </style>
 	<script>
 
@@ -228,6 +270,18 @@
         <div class="Cover-box2"></div>
     </div>
     
+    <!-- 국가별 차트 p 태그 -->
+	<p class="country-chart">오늘의 세계 증시</p>
+
+	<!-- 구분선 -->
+	<hr class="divider">
+	<div class="world_map">
+		<img src="${pageContext.request.contextPath}/resources/img/gonfalon/world_map.png">
+		<div class="rectangle">
+			<img src="${pageContext.request.contextPath}/resources/img/gonfalon/USD.png">
+			<a>미국</a>
+		</div>
+	</div>
 </body>
 
 </html>
