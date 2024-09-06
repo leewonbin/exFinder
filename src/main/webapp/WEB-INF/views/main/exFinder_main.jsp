@@ -49,6 +49,22 @@
 					<option value="EUR" data-rate="0.93">유로 (EUR)</option>
 					<option value="JPY" data-rate="141.29">일본 엔 (JPY)</option>
 					<option value="KRW" data-rate="1318.42">한국 원화 (KRW)</option>
+					<option value="GBP" data-rate="1">영국 파운드 (GBP)</option>
+					<option value="CHF" data-rate="0.93">스위스 프랑 (CHF)</option>
+					<option value="CAD" data-rate="141.29">캐나다 달러 (CAD)</option>
+					<option value="INR" data-rate="1318.42">인도 루피 (INR)</option>
+					<option value="HKD" data-rate="1">홍콩 달러 (HKD)</option>
+					<option value="EGP" data-rate="0.93">이집트 파운드 (EGP)</option>
+					<option value="SAR" data-rate="141.29">사우디 리얄(SAR)</option>
+					<option value="AUD" data-rate="1318.42">호주 달러(AUD)</option>
+					<option value="THB" data-rate="1">태국 바트(THB)</option>
+					<option value="RUB" data-rate="0.93">러시아 루블(RUB)</option>
+					<option value="VND" data-rate="141.29">베트남 동(VND)</option>
+					<option value="ZAR" data-rate="1318.42">남아공 랜드(ZAR)</option>
+					<option value="MXN" data-rate="1">멕시코 페소(MXN)</option>
+					<option value="BRL" data-rate="0.93">브라질 레알(BRL)</option>
+					<option value="ILS" data-rate="141.29">이스라엘 쉐캐림(ILS)</option>
+					<option value="NZD" data-rate="1318.42">뉴질랜드 달러(NZD)</option>
 					<!-- 추가 가능한 다른 국가들 -->
 				</select>
 
@@ -70,10 +86,26 @@
 			<div class="currency-section resultSection">
 				<!-- 결과 통화 SelectBox -->
 				<select id="result-currency-select" class="result-currency-select">
-					<option value="USD" data-rate="1">미국 달러 (USD)</option>
+										<option value="USD" data-rate="1">미국 달러 (USD)</option>
 					<option value="EUR" data-rate="0.93">유로 (EUR)</option>
 					<option value="JPY" data-rate="141.29">일본 엔 (JPY)</option>
 					<option value="KRW" data-rate="1318.42">한국 원화 (KRW)</option>
+					<option value="GBP" data-rate="1">영국 파운드 (GBP)</option>
+					<option value="CHF" data-rate="0.93">스위스 프랑 (CHF)</option>
+					<option value="CAD" data-rate="141.29">캐나다 달러 (CAD)</option>
+					<option value="INR" data-rate="1318.42">인도 루피 (INR)</option>
+					<option value="HKD" data-rate="1">홍콩 달러 (HKD)</option>
+					<option value="EGP" data-rate="0.93">이집트 파운드 (EGP)</option>
+					<option value="SAR" data-rate="141.29">사우디 리얄(SAR)</option>
+					<option value="AUD" data-rate="1318.42">호주 달러(AUD)</option>
+					<option value="THB" data-rate="1">태국 바트(THB)</option>
+					<option value="RUB" data-rate="0.93">러시아 루블(RUB)</option>
+					<option value="VND" data-rate="141.29">베트남 동(VND)</option>
+					<option value="ZAR" data-rate="1318.42">남아공 랜드(ZAR)</option>
+					<option value="MXN" data-rate="1">멕시코 페소(MXN)</option>
+					<option value="BRL" data-rate="0.93">브라질 레알(BRL)</option>
+					<option value="ILS" data-rate="141.29">이스라엘 쉐캐림(ILS)</option>
+					<option value="NZD" data-rate="1318.42">뉴질랜드 달러(NZD)</option>
 					<!-- 추가 가능한 다른 국가들 -->
 				</select>
 
