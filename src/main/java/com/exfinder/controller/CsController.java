@@ -2,6 +2,8 @@ package com.exfinder.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.exfinder.dto.CsDto;
 import com.exfinder.service.CsService;
+import com.exfinder.service.UserService;
 
 @Controller
 @RequestMapping("/cs/*")
@@ -24,6 +27,9 @@ public class CsController {
 	@Autowired
 	private CsService service;
 	
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String createGET(CsDto cs, Model model) throws Exception{
 		logger.info("create get..........");
@@ -31,7 +37,10 @@ public class CsController {
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String createPOST(CsDto cs, Model model, RedirectAttributes rttr) throws Exception{
+	public String createPOST(CsDto cs, Model model, RedirectAttributes rttr,HttpSession session) throws Exception{
+		// 세션에서 로그인된 사용자 ID 가져오기
+        String userid = (String) session.getAttribute("userId");
+        session.setAttribute("dto", userService.selectUser(userid));
 		logger.info("create post..........");
 		logger.info(cs.toString());
 		System.out.println(cs);

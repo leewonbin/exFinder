@@ -56,13 +56,14 @@
 				<form id="updateForm"
 					action="${pageContext.request.contextPath}/admin/updateUser"
 					method="post" style="display: none;">
-					<input type="hidden" name="u_id" id="u_id"> <input
-						type="hidden" name="u_nickname" id="u_nickname"> <input
-						type="hidden" name="u_name" id="u_name"> <input
-						type="hidden" name="u_gender" id="u_gender"> <input
-						type="hidden" name="u_email" id="u_email"> <input
-						type="hidden" name="u_phoneNumber" id="u_phoneNumber"> <input
-						type="hidden" name="u_address" id="u_address">
+					<input type="hidden" name="u_id" id="u_id"> 
+					<input type="hidden" name="u_nickname" id="u_nickname"> 
+					<input type="hidden" name="u_name" id="u_name"> 
+					<input type="hidden" name="u_gender" id="u_gender"> 
+					<input type="hidden" name="u_email" id="u_email"> 
+					<input type="hidden" name="u_phoneNumber" id="u_phoneNumber"> 
+					<input type="hidden" name="u_address" id="u_address">
+					<input type="hidden" name="u_birthday" id="u_birthday">
 				</form>
 
 				<!-- 기존 테이블 코드 유지 -->
@@ -76,6 +77,7 @@
 							<th>이메일</th>
 							<th>전화번호</th>
 							<th>주소</th>
+							<th>생년월일</th>
 							<th>가입 날짜</th>
 							<th>작업</th>
 							<th>계정 상태</th>
@@ -101,9 +103,11 @@
 									data-field="u_phoneNumber" class="u_phoneNumber" /></td>
 								<td><input type="text" value="${user.u_address}"
 									data-field="u_address" /></td>
+								<td><input type="date" value="${user.u_birthday}"
+									data-field="u_birthday" /></td>
 								<td>${user.u_joinDate}</td>
 								<td>
-									<button onclick="submitForm('${user.u_id}', this)">저장</button>
+									<button onclick="submitForm('${user.u_id}', this)" class="storageBtn">저장</button>
 								</td>
 								<!-- 상태 변경 폼 -->
 								<td>
@@ -124,40 +128,72 @@
 					</tbody>
 				</table>
 			</div>
-		</div>
-	</div>
-	<div class="my_info2 type_2" style="display: none;" >
-					<h2 class="profile-title">계정 권한</h2>
-					<c:forEach var="auth" items="${authorityList}">
-					    <tr>
-					        <td>${auth.u_id}</td>
-					        <!-- 권한을 선택할 수 있는 드롭다운 목록 -->
-					        <td>
-					            <form action="${pageContext.request.contextPath}/admin/updateAuthority" method="post">
-					                <input type="hidden" name="u_id" value="${auth.u_id}" />
-					                <select name="authority">
-					                    <!-- 권한 목록을 생성 -->
-					                    <option value="ROLE_ADMIN" <c:if test="${auth.authority == 'ROLE_ADMIN'}">selected</c:if>>
-					                      	  관리자
-					                    </option>
-					                    <option value="ROLE_MEMBER" <c:if test="${auth.authority == 'ROLE_MEMBER'}">selected</c:if>>
-					                       	 일반회원
-					                    </option>
-					                </select>
-					                <input type="submit" value="권한 변경" />
-					            </form>
-					        </td>
-					    </tr>
-					</c:forEach>
+		
+				<div class="my_info type_2" style="display: none;">
+				    <h2 class="profile-title">계정 권한</h2>
+				    <table class="user-table">
+				        <thead>
+				            <tr>
+				                <th>아이디</th>
+				                <th>권한</th>
+				                <th>작업</th>
+				            </tr>
+				        </thead>
+				        <tbody>
+				            <c:forEach var="auth" items="${authorityList}">
+				                <tr>
+				                    <td>${auth.u_id}</td>
+				                    <td>
+				                    	<form action="${pageContext.request.contextPath}/admin/updateAuthority" method="post">
+				                            <input type="hidden" name="u_id" value="${auth.u_id}" />
+				                            <select name="authority" class="selectA">
+				                                <option value="ROLE_ADMIN" <c:if test="${auth.authority == 'ROLE_ADMIN'}">selected</c:if>>관리자</option>
+				                                <option value="ROLE_MEMBER" <c:if test="${auth.authority == 'ROLE_MEMBER'}">selected</c:if>>일반회원</option>
+				                            </select>
+				                    </td>
+				                    <td><input type="submit" value="변경" /></td>
+				                   		</form> 
+				                </tr>
+				            </c:forEach>
+				        </tbody>
+				    </table>
+				</div>
+
+			<div class="my_info type_3" style="display: none;">
+				<h2 class="profile-title">고객센터</h2>
+					<div class="content">
+						<table id="cs" class="user-table">
+							<thead>
+								<tr>
+									<th style="width: 20px;">NO.</th>
+									<th style="width: 200px;">제목</th>
+									<th style="width: 30px;">관리자ID</th>
+	
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="csDto" items="${list}">
+									<tr>
+										<td>${csDto.cs_id}</td>
+										<td><a href="/ex/cs/read?cs_id=${csDto.cs_id}">${csDto.cs_title}</a></td>
+										<td>${csDto.u_id}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+	
+					<div class="box-footer">
+						<button type="submit" class="btn btn-warning"
+							onclick="location.href='/ex/cs/create'">글쓰기</button>
+						<button type="submit" class="btn btn-primary"
+							onclick="location.href='/ex/cs/main'">메인</button>
+					</div>
 
 
-				</div>
-				<div class="my_info type_3" style="display: none;">
-					<h2 class="profile-title">비밀번호 변경</h2>
-					
-				</div>
-				
-				<div class="my_info2 type_4" style="display: none; height: 550px;">
+			</div>
+
+			<div class="my_info2 type_4" style="display: none; height: 550px;">
 					<h2 class="profile-title">회원 탈퇴</h2>
 				
 					

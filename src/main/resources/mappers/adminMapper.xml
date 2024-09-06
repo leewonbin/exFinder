@@ -35,7 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             u_gender = #{u_gender},
             u_email = #{u_email},
             u_phoneNumber = #{u_phoneNumber},
-            u_address = #{u_address}
+            u_address = #{u_address},
+            u_birthday = #{u_birthday}
         WHERE u_id = #{u_id}
     </update>
 

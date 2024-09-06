@@ -42,7 +42,7 @@
 					<tr>
 						<td>${csDto.cs_id}</td>
 						<td><a href="/ex/cs/read?cs_id=${csDto.cs_id}">${csDto.cs_title}</a></td>
-						<td>${csDto.admin_id}</td>
+						<td>${csDto.u_id}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

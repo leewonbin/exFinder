@@ -9,7 +9,7 @@ public class CsDto {
 	private int cs_id; 				// cs 번호
 	private String cs_title; 		// cs 제목 (질문)
 	private String cs_content; 		// cs 내용 (답변)
-	private String admin_id; 		// 관리자 id
+	private String u_id; 			// 관리자 id
 	private String cs_del = "N"; 	// cs 삭제여부
 
 	public CsDto() {
@@ -39,13 +39,7 @@ public class CsDto {
 		this.cs_content = cs_content;
 	}
 
-	public String getAdmin_id() {
-		return admin_id;
-	}
-
-	public void setAdmin_id(String admin_id) {
-		this.admin_id = admin_id;
-	}
+	
 
 	public String getCs_del() {
 		return cs_del;
@@ -58,7 +52,7 @@ public class CsDto {
 	@Override
 	public String toString() {
 		return "CsDto [cs_id=" + cs_id + ", cs_title=" + cs_title + ", cs_content=" + cs_content + ", admin_id="
-				+ admin_id + ", cs_del=" + cs_del + "]";
+				+ u_id + ", cs_del=" + cs_del + "]";
 	}
 
 	public CsDto(int cs_id, String cs_title, String cs_content, String admin_id, String cs_del) {
@@ -66,8 +60,16 @@ public class CsDto {
 		this.cs_id = cs_id;
 		this.cs_title = cs_title;
 		this.cs_content = cs_content;
-		this.admin_id = admin_id;
+		this.u_id = admin_id;
 		this.cs_del = cs_del;
+	}
+
+	public String getU_id() {
+		return u_id;
+	}
+
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
 	}
 
 }

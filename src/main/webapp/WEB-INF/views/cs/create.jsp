@@ -40,6 +40,11 @@
 				<textarea name="cs_content" rows="25" style="width: 100%"
 					placeholder="답변 내용 입력"></textarea>
 			</h2>
+			
+					<!-- u_id를 직접 입력받음 (보안 문제로 권장하지 않음) -->
+		    <h2 class="cs_user_id">
+		        <input type="text" name="u_id" placeholder="관리자 ID 입력" style="width: 100%">
+		    </h2>
 
 			<div class="submitBtn">
                 <button type="submit">등록</button>
