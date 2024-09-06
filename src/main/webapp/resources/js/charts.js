@@ -1,3 +1,16 @@
+// 날짜를 문자열로 포맷팅하는 함수
+function formatDate(date) {
+    var year = date.getFullYear();
+    var month = ('0' + (date.getMonth() + 1)).slice(-2); // 월은 0부터 시작하므로 +1
+    var day = ('0' + date.getDate()).slice(-2); // 일자는 2자리로 맞추기
+    return year + '/' + month + '/' + day;
+}
+
+// 오늘 날짜를 가져옴
+var today = new Date();
+var formattedDate = formatDate(today);
+
+
 // Google Charts 라이브러리 로드
 google.charts.load('current', {
 	'packages' : [ 'corechart' ]
@@ -27,34 +40,35 @@ $(document).ready(function() {
 	ajaxData('NZD', 'chart_div20');
 	
 	
-	fetchExchangeRateData('USD', '2024/03/26', 'value' );
-	fetchExchangeRateData('JPY', '2024/03/26', 'value2' );
-	fetchExchangeRateData('EUR', '2024/03/26', 'value3' );
-	fetchExchangeRateData('CNY', '2024/03/26', 'value4' );
-	fetchExchangeRateData('GBP', '2024/03/26', 'value5' );
-	fetchExchangeRateData('CHF', '2024/03/26', 'value6' );
-	fetchExchangeRateData('INR', '2024/03/26', 'value7' );
-	fetchExchangeRateData('AUD', '2024/03/26', 'value8' );
-	fetchExchangeRateData('SAR', '2024/03/26', 'value9' );
-	fetchExchangeRateData('RUB', '2024/03/26', 'value10' );
+	fetchExchangeRateData('USD', formattedDate, 'value' );
+	fetchExchangeRateData('JPY', formattedDate, 'value2' );
+	fetchExchangeRateData('EUR', formattedDate, 'value3' );
+	fetchExchangeRateData('CNY', formattedDate, 'value4' );
+	fetchExchangeRateData('GBP', formattedDate, 'value5' );
+	fetchExchangeRateData('CHF', formattedDate, 'value6' );
+	fetchExchangeRateData('INR', formattedDate, 'value7' );
+	fetchExchangeRateData('AUD', formattedDate, 'value8' );
+	fetchExchangeRateData('SAR', formattedDate, 'value9' );
+	fetchExchangeRateData('RUB', formattedDate, 'value10' );
 	
-	fetchExchangeRateData('CAD', '2024/03/26', 'value11' );
-	fetchExchangeRateData('HKD', '2024/03/26', 'value12' );
-	fetchExchangeRateData('EGP', '2024/03/26', 'value13' );
-	fetchExchangeRateData('THB', '2024/03/26', 'value14' );
-	fetchExchangeRateData('VND', '2024/03/26', 'value15' );
-	fetchExchangeRateData('ZAR', '2024/03/26', 'value16' );
-	fetchExchangeRateData('MXN', '2024/03/26', 'value17' );
-	fetchExchangeRateData('BRL', '2024/03/26', 'value18' );
-	fetchExchangeRateData('ILS', '2024/03/26', 'value19' );
-	fetchExchangeRateData('NZD', '2024/03/26', 'value20' );
+	fetchExchangeRateData('CAD', formattedDate, 'value11' );
+	fetchExchangeRateData('HKD', formattedDate, 'value12' );
+	fetchExchangeRateData('EGP', formattedDate, 'value13' );
+	fetchExchangeRateData('THB', formattedDate, 'value14' );
+	fetchExchangeRateData('VND', formattedDate, 'value15' );
+	fetchExchangeRateData('ZAR', formattedDate, 'value16' );
+	fetchExchangeRateData('MXN', formattedDate, 'value17' );
+	fetchExchangeRateData('BRL', formattedDate, 'value18' );
+	fetchExchangeRateData('ILS', formattedDate, 'value19' );
+	fetchExchangeRateData('NZD', formattedDate, 'value20' );
 });
+// '2024/09/06'
 
 // AJAX 요청 함수
 function ajaxData(c_code, chartDivId) {
 
 	var start_date = '2024/01/01'; // 필요한 값으로 수정
-	var end_date = '2024/08/31'; // 필요한 값으로 수정
+	var end_date = formattedDate; // 필요한 값으로 수정
 
 	$.ajax({
 		type : "POST",
@@ -82,8 +96,7 @@ function drawCharts(data, chartDivId) {
 
 	// 응답 데이터를 [날짜, 값] 형식으로 변환
 	var formattedData = data.map(function(item) {
-		var date = new Date(item.rate_date.year, item.rate_date.month - 1,
-				item.rate_date.day); // Date 객체 생성
+		var date = new Date(item.rate_date.year, item.rate_date.month - 1, item.rate_date.day); // Date 객체 생성
 		return [ date, item.base_r ]; // [날짜, 값] 형식으로 배열 반환
 	});
 	chartData.addRows(formattedData); // DataTable에 데이터 추가
@@ -143,7 +156,7 @@ function fetchExchangeRateData(c_code, rate_date, div_id) {
                 result = today_base_r + ' -' + difference.toFixed(2) + ' ' + percent.toFixed(2) + '%';
                 cssClass = 'unchanged';
             } else {
-                result = today_base_r + ' ▼' + difference.toFixed(2) + ' -' + percent.toFixed(2) + '%';
+                result = today_base_r + ' ▼' + difference.toFixed(2) + ' ' + percent.toFixed(2) + '%';
                 cssClass = 'decreased';
             }
 

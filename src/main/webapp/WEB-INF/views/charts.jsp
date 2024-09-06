@@ -16,7 +16,50 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/charts.js"></script>
 	<style>
-        
+/* p 태그 스타일 - 국가별 차트 */
+.country-chart {
+	font-size: 1.1em;
+	font-weight: bold;
+	margin-left: 325px; /* x 위치 조정 */
+	margin-top: 100px; /* p 태그와 div 간의 간격 조정 */
+}
+
+/* 구분선 스타일 */
+.divider {
+	margin: 20px 0; /* 위 아래 여백 */
+	border: none;
+	height: 1px;
+	background-color: #dcdcdc; /* 밝은 회색 구분선 */
+}
+.world_map {
+	position: relative;    /* 부모 요소를 기준으로 자식 요소 배치 */
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center;     /* 수직 중앙 정렬 */
+    height: 400px;           /* 부모 요소의 높이를 설정 */
+}
+.world_map img {
+    width: 1100px;         /* 이미지를 부모 요소의 너비에 맞게 조정 */
+    height: auto;            /* 이미지의 비율을 유지하면서 크기 조정 */
+    z-index: -1;
+}
+
+.rectangle {
+    position: absolute;    /* 부모 요소(.world_map)를 기준으로 고정 배치 */
+    top: 100px;           /* 화면 위에서 100px 아래 */
+    left: 50px;           /* 화면 왼쪽에서 50px 오른쪽으로 */
+    width: 200px;         /* 직사각형의 가로 길이 */
+    height: auto;         /* 내용에 따라 세로 길이를 자동 조정 */
+    background-color: white; /* 배경색을 흰색으로 설정 */
+    border: 1px solid gray;  /* 회색 테두리 */
+    border-radius: 5px;   /* 직사각형 모서리를 살짝 둥글게 */
+    padding: 10px;        /* 이미지와 텍스트의 안쪽 여백 */
+}
+
+.rectangle img {
+	width: 25px;         /* 이미지를 부모 요소의 너비에 맞게 조정 */
+    height: 25px;
+}
     </style>
 	<script>
 
@@ -39,7 +82,7 @@
             			<div class="chart_graph_box">
             				<div class="chart_graph_box_top">
             					<img src="${pageContext.request.contextPath}/resources/img/gonfalon/USD.png">
-            					<a>미국 USD</a>
+            					<a>미국 USD</a>        					
             					<div id="value"></div>
             				</div>
             				<div id="chart_div" class="chart_graph"></div>
@@ -210,7 +253,7 @@
             			<div class="chart_graph_box">
             				<div class="chart_graph_box_top">
             					<img src="${pageContext.request.contextPath}/resources/img/gonfalon/NZD.png">
-            					<a>뉴질랜드</a>
+            					<a>뉴질랜드 NZD</a>
             					<div id="value20"></div>
             				</div>
             				<div id="chart_div20" class="chart_graph"></div>
@@ -228,6 +271,18 @@
         <div class="Cover-box2"></div>
     </div>
     
+    <!-- 국가별 차트 p 태그 -->
+	<p class="country-chart">오늘의 세계 증시</p>
+
+	<!-- 구분선 -->
+	<hr class="divider">
+	<div class="world_map">
+		<img src="${pageContext.request.contextPath}/resources/img/gonfalon/world_map.png">
+		<div class="rectangle">
+			<img src="${pageContext.request.contextPath}/resources/img/gonfalon/USD.png">
+			<a>미국</a>
+		</div>
+	</div>
 </body>
 
 </html>
