@@ -4,18 +4,28 @@ google.charts.load('current', {
 });
 
 $(document).ready(function() {
-	ajaxData('USD', 'chart_div'); // 페이지가 로드될 때 첫 번째 AJAX 요청
-	ajaxData('JPY', 'chart_div2'); // 페이지가 로드될 때 두 번째 AJAX 요청
+	ajaxData('USD', 'chart_div'); 
+	ajaxData('JPY', 'chart_div2'); 
 	ajaxData('EUR', 'chart_div3');
 	ajaxData('CNY', 'chart_div4');
-	
 	ajaxData('GBP', 'chart_div5');
 	ajaxData('CHF', 'chart_div6');
-	
 	ajaxData('INR', 'chart_div7');
 	ajaxData('AUD', 'chart_div8');
 	ajaxData('SAR', 'chart_div9');
 	ajaxData('RUB', 'chart_div10');
+
+	ajaxData('CAD', 'chart_div11'); 
+	ajaxData('HKD', 'chart_div12'); 
+	ajaxData('EGP', 'chart_div13');
+	ajaxData('THB', 'chart_div14');
+	ajaxData('VND', 'chart_div15');
+	ajaxData('ZAR', 'chart_div16');
+	ajaxData('MXN', 'chart_div17');
+	ajaxData('BRL', 'chart_div18');
+	ajaxData('ILS', 'chart_div19');
+	ajaxData('NZD', 'chart_div20');
+	
 	
 	fetchExchangeRateData('USD', '2024/03/26', 'value' );
 	fetchExchangeRateData('JPY', '2024/03/26', 'value2' );
@@ -27,6 +37,17 @@ $(document).ready(function() {
 	fetchExchangeRateData('AUD', '2024/03/26', 'value8' );
 	fetchExchangeRateData('SAR', '2024/03/26', 'value9' );
 	fetchExchangeRateData('RUB', '2024/03/26', 'value10' );
+	
+	fetchExchangeRateData('CAD', '2024/03/26', 'value11' );
+	fetchExchangeRateData('HKD', '2024/03/26', 'value12' );
+	fetchExchangeRateData('EGP', '2024/03/26', 'value13' );
+	fetchExchangeRateData('THB', '2024/03/26', 'value14' );
+	fetchExchangeRateData('VND', '2024/03/26', 'value15' );
+	fetchExchangeRateData('ZAR', '2024/03/26', 'value16' );
+	fetchExchangeRateData('MXN', '2024/03/26', 'value17' );
+	fetchExchangeRateData('BRL', '2024/03/26', 'value18' );
+	fetchExchangeRateData('ILS', '2024/03/26', 'value19' );
+	fetchExchangeRateData('NZD', '2024/03/26', 'value20' );
 });
 
 // AJAX 요청 함수
@@ -148,40 +169,42 @@ function fetchExchangeRateData(c_code, rate_date, div_id) {
 
 
 
-// 슬라이드
-$(document).ready(function() {
-    var currentIndex = 0;
-    var totalSlides = $('.chart_graph_box_container').length; // 총 슬라이드 개수
-    var container = $('#slide-container');
-    var slideWidth = $('.chart_graph_box_slide').width(); // 슬라이드 폭 계산 (chart_graph_box_slide의 너비와 동일)
+document.addEventListener('DOMContentLoaded', function() {
+    let currentSlide = 0;
+    const slideContainer = document.querySelector('.chart_graph_box_slide');
+    const slideItems = document.querySelectorAll('.chart_graph_box_container');
+    const totalSlides = slideItems.length;
+    const slideIndicator = document.getElementById('slide-indicator');
+    const nextButton = document.getElementById('next-slide');
+    const prevButton = document.getElementById('prev-slide');
 
-    function showSlide(index) {
-        var maxIndex = totalSlides - 1; // 최대 슬라이드 인덱스
-        var newIndex = (index > maxIndex) ? 0 : (index < 0) ? maxIndex : index; // 인덱스 범위 조정
-        var offset = -newIndex * slideWidth; // 이동할 거리 계산
-        container.css('transform', 'translateX(' + offset + 'px)'); // 슬라이드 이동
-        currentIndex = newIndex; // 현재 인덱스 업데이트
-        updateSlideIndicator(); // 슬라이드 인디케이터 업데이트
+    // 초기 슬라이드 업데이트
+    updateSlide();
+
+    // 다음 슬라이드로 이동
+    nextButton.addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+        } else {
+            currentSlide = 0; // 마지막 페이지에서 다음 버튼을 누르면 첫 페이지로 이동
+        }
+        updateSlide();
+    });
+
+    // 이전 슬라이드로 이동
+    prevButton.addEventListener('click', () => {
+        if (currentSlide > 0) {
+            currentSlide--;
+        } else {
+            currentSlide = totalSlides - 1; // 첫 페이지에서 이전 버튼을 누르면 마지막 페이지로 이동
+        }
+        updateSlide();
+    });
+
+    // 슬라이드 업데이트 함수
+    function updateSlide() {
+        const slideWidth = document.querySelector('.chart_graph_box_container').clientWidth;
+        slideContainer.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        slideIndicator.textContent = `${currentSlide + 1} / ${totalSlides}`;
     }
-
-    function updateSlideIndicator() {
-        $('#slide-indicator').text((currentIndex + 1) + ' / ' + totalSlides);
-    }
-
-    $('#next-slide').click(function() {
-        showSlide(currentIndex + 1);
-    });
-
-    $('#prev-slide').click(function() {
-        showSlide(currentIndex - 1);
-    });
-
-    // 초기 슬라이드 표시
-    showSlide(currentIndex);
-
-    // 윈도우 리사이즈 시 슬라이드 폭 업데이트
-    $(window).resize(function() {
-        slideWidth = $('.chart_graph_box_slide').width();
-        showSlide(currentIndex);
-    });
 });

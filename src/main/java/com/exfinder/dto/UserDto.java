@@ -21,6 +21,7 @@ public class UserDto {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate u_joinDate;
 	private int enabled = 1;
+	
 
 	public UserDto() {}
 	
