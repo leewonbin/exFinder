@@ -30,14 +30,20 @@ function reg_type_select(type) {
 function submitForm(userId, button) {
     var row = button.closest('tr');
     var inputs = row.querySelectorAll('input, select');
-    
-    // 폼의 숨겨진 필드에 값을 설정
+
+    // 숨겨진 필드에 값을 설정
     document.getElementById('u_id').value = userId;
-    
+
     inputs.forEach(function(input) {
-        document.getElementById(input.getAttribute('data-field')).value = input.value;
+        var field = input.getAttribute('data-field');
+        var hiddenInput = document.getElementById(field);
+        
+        // 숨겨진 필드가 존재하는 경우에만 값을 설정
+        if (hiddenInput) {
+            hiddenInput.value = input.value;
+        }
     });
-    
+
     // 폼을 제출
     document.getElementById('updateForm').submit();
 }
