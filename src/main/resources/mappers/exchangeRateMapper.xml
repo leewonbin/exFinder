@@ -26,6 +26,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select c_code from currency where c_code != 'USD'
 </select>
 
+<select id="todaySelect" resultType="exchangeRateDto">
+	select * from exchangerate where rate_date = #{today}
+</select>
 </mapper>
 
 
