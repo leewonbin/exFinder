@@ -1,9 +1,9 @@
 package com.exfinder.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
-
-
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.exfinder.dto.AuthoritiesDto;
+import com.exfinder.dto.CsDto;
 import com.exfinder.dto.UserDto;
 import com.exfinder.service.AdminService;
+import com.exfinder.service.CsService;
+import com.exfinder.service.UserService;
 
 
 @Controller
@@ -28,14 +31,26 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private CsService service;
 
 	@RequestMapping(value = "/admin/admin", method = RequestMethod.GET)
-	public String admin(Model model) throws Exception {
+	public String admin(Model model,HttpSession session) throws Exception {
+		String userid = (String)session.getAttribute("userId");
+		session.setAttribute("dto", userService.selectUser(userid));
+		
 		ArrayList<UserDto> userList = adminService.selectAll(); // DB에서 데이터 가져오기
 		model.addAttribute("userList", userList); // 모델에 추가하여 JSP로 전달
 		
 		ArrayList<AuthoritiesDto> authorityList = adminService.selectAllAuthorities(); // DB에서 권한 데이터 가져오기
 	    model.addAttribute("authorityList", authorityList); // 모델에 추가하여 JSP로 전달
+	    
+	    List<CsDto> list = service.listAll(); 
+	    model.addAttribute("list", list);
 		return "/admin/admin";
 	}
 	

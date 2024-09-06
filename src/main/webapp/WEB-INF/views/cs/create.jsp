@@ -41,9 +41,11 @@
 					placeholder="답변 내용 입력"></textarea>
 			</h2>
 			
+
 			<h2>
 				<input type="text" name="admin_id" placeholder="관리자" style="width: 100%">
 			</h2>			<!-- 나중에 삭제 -->
+
 
 			<div class="submitBtn">
                 <button type="submit">등록</button>

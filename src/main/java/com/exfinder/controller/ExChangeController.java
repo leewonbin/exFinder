@@ -46,11 +46,9 @@ public class ExChangeController {
 			
 			String nowDate = today.format(formatter);
 			String oldDate = oneYearAgo.format(formatter);
-			String[] c_codeArr = service.currSelect();
-	        ArrayList<ExchangeRateDto> list = service.checkExchange("USD", oldDate, nowDate);
-	        for(String curr : c_codeArr) {
-	        	list.addAll(service.checkExchange(curr, oldDate, nowDate));
-	        }
+//			String[] curr = service.currSelect();
+			String[] curr = {"USD","CNY","EUR","JPY"};
+	        ArrayList<ExchangeRateDto> list = service.checkExchange(curr, oldDate, nowDate);
 	        System.out.println("환율 값 넣기 완료");
 	        for(ExchangeRateDto dto : list) {
 	        	service.exchangeRateInsert(dto);
@@ -87,6 +85,31 @@ public class ExChangeController {
 		}
 	    
 	    return ResponseEntity.ok(groupList);
+	}
+	
+	@RequestMapping(value = "exchange/todyExchange", method = RequestMethod.POST)
+	public ResponseEntity<Map<String,Double>> todayExchange() {
+		Map<String,Double> exchangeList = new HashMap<>();
+		try {
+		int size = 0;
+		LocalDate localDate = LocalDate.now().plusDays(1);
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		ArrayList<ExchangeRateDto> list = null;
+		while(size == 0) {
+			localDate.minusDays(1);
+			String today = localDate.format(formatter);
+			list = service.todaySelect(today);
+			size = list.size();
+		}
+		
+		for(ExchangeRateDto dto : list) { exchangeList.put(dto.getC_code(), dto.getBase_r());}
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(exchangeList);
 	}
 	
 	@RequestMapping(value = "charts", method = RequestMethod.GET)
