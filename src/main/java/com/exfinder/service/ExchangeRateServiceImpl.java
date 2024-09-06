@@ -121,23 +121,29 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 				String res_date = trs.get(i).findElements(By.tagName("td")).get(0).getText();
 				dto.setRate_date(LocalDate.parse(res_date,formatter));
 				
-				String res_tts = trs.get(i).findElements(By.tagName("td")).get(1).getText();
-				dto.setTts(Double.parseDouble(res_tts.replaceAll(",", "")));
+				String res_tts = trs.get(i).findElements(By.tagName("td")).get(1).getText().replaceAll(",", "");
+				double tts = isValidDouble(res_tts) != -1 ? isValidDouble(res_tts) : 0; 
+				dto.setTts(tts);
 				
-				String res_ttb = trs.get(i).findElements(By.tagName("td")).get(2).getText();
-				dto.setTtb(Double.parseDouble(res_ttb.replaceAll(",", "")));
+				String res_ttb = trs.get(i).findElements(By.tagName("td")).get(2).getText().replaceAll(",", "");
+				double ttb = isValidDouble(res_ttb) != -1 ? isValidDouble(res_ttb) : 0; 
+				dto.setTtb(ttb);
 				
-				String res_cashBuy = trs.get(i).findElements(By.tagName("td")).get(3).getText();
-				dto.setCash_buy(Double.parseDouble(res_cashBuy.replaceAll(",", "")));
+				String res_cashBuy = trs.get(i).findElements(By.tagName("td")).get(3).getText().replaceAll(",", "");
+				double cashBuy = isValidDouble(res_cashBuy) != -1 ? isValidDouble(res_cashBuy) : 0; 
+				dto.setCash_buy(cashBuy);
 				
-				String res_cashSell = trs.get(i).findElements(By.tagName("td")).get(4).getText();
-				dto.setCash_sell(Double.parseDouble(res_cashSell.replaceAll(",", "")));
+				String res_cashSell = trs.get(i).findElements(By.tagName("td")).get(4).getText().replaceAll(",", "");
+				double cashSell = isValidDouble(res_cashSell) != -1 ? isValidDouble(res_cashSell) : 0;
+				dto.setCash_sell(cashSell);
 				
-//				String res_dealBS = trs.get(i).findElements(By.tagName("td")).get(5).getText();
-//				dto.setDeal_bas_r(Double.parseDouble(res_dealBS.replaceAll(",", "")));
+				String res_dealBS = stringCut(trs.get(i).findElements(By.tagName("td")).get(5).getText().replaceAll(",", ""));
+				double dealBs = isValidDouble(res_dealBS) != -1 ? isValidDouble(res_dealBS) : 0;
+				dto.setDeal_bas_r(dealBs);
 				
-				String res_baseR = trs.get(i).findElements(By.tagName("td")).get(6).getText();
-				dto.setBase_r(Double.parseDouble(res_baseR.replaceAll(",", "")));
+				String res_baseR = trs.get(i).findElements(By.tagName("td")).get(6).getText().replaceAll(",", "");
+				double baseR = isValidDouble(res_baseR) != -1 ? isValidDouble(res_baseR) : 0; 
+				dto.setBase_r(baseR);
 				
 				dto.setC_code(curreny);
 				list.add(dto);
@@ -152,10 +158,34 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 		System.out.println(curreny + " 완료");
 		return list;
 	}
+	
+	public double isValidDouble(String str) {
+	    try {
+	        return Double.parseDouble(str);
+	    } catch (NumberFormatException e) {
+	        return -1;
+	    }
+	}
+	
+	 public static String stringCut(String input) {
+	        String[] keywords = {"하락", "상승"};
+	        for (String keyword : keywords) {
+	            if (input.contains(keyword)) {
+	                String[] parts = input.split(keyword, 2); // 두 번째 매개변수는 분할 수를 지정합니다.
+	                return parts[0].trim(); // 첫 번째 부분(하락 또는 상승 앞)을 반환
+	            }
+	        }
+	        return input.trim(); // 키워드가 없을 경우 전체 문자열 반환
+	    }
 
 	@Override
 	public double exchangeRateSelect_base_r(String c_code, String rate_date) {
 		return dao.exchangeRateSelect_base_r(c_code, rate_date);
+	}
+
+	@Override
+	public String[] currSelect() throws Exception {
+		return dao.currSelect();
 	}
 
 }

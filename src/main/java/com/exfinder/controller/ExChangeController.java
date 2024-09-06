@@ -46,19 +46,12 @@ public class ExChangeController {
 			
 			String nowDate = today.format(formatter);
 			String oldDate = oneYearAgo.format(formatter);
+			String[] c_codeArr = service.currSelect();
 	        ArrayList<ExchangeRateDto> list = service.checkExchange("USD", oldDate, nowDate);
-	        list.addAll(service.checkExchange("JPY", oldDate, nowDate));
-	        list.addAll(service.checkExchange("EUR", oldDate, nowDate));
-	        list.addAll(service.checkExchange("CNY", oldDate, nowDate));
-	        
-	        list.addAll(service.checkExchange("GBP", oldDate, nowDate));
-	        list.addAll(service.checkExchange("CHF", oldDate, nowDate));
-	        list.addAll(service.checkExchange("INR", oldDate, nowDate));
-	        list.addAll(service.checkExchange("AUD", oldDate, nowDate)); 
-	        // list.addAll(service.checkExchange("BRL", oldDate, nowDate)); //브라질은 안 되요. 뭔가 브라질 값은 뭔가 다른가봐요.
-	        
-	        list.addAll(service.checkExchange("SAR", oldDate, nowDate));
-	        list.addAll(service.checkExchange("RUB", oldDate, nowDate));
+	        for(String curr : c_codeArr) {
+	        	list.addAll(service.checkExchange(curr, oldDate, nowDate));
+	        }
+	        System.out.println("환율 값 넣기 완료");
 	        for(ExchangeRateDto dto : list) {
 	        	service.exchangeRateInsert(dto);
 	        }
