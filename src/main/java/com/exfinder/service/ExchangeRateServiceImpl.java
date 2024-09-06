@@ -180,7 +180,12 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 
 	@Override
 	public double exchangeRateSelect_base_r(String c_code, String rate_date) {
-		return dao.exchangeRateSelect_base_r(c_code, rate_date);
+	    try {
+	    	return dao.exchangeRateSelect_base_r(c_code, rate_date);
+	    } catch (Exception e) {
+	    	System.out.println("조회할수 있는 날짜 조차 없으니 0을 반환");
+	        return 0;
+	    }
 	}
 
 	@Override
