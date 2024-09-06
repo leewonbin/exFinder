@@ -131,3 +131,18 @@
     padding-right: 30px;
     
 }
+
+
+
+.world_map {
+	position: relative;    /* 부모 요소를 기준으로 자식 요소 배치 */
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center;     /* 수직 중앙 정렬 */
+    height: 400px;           /* 부모 요소의 높이를 설정 */
+}
+.world_map img {
+    width: 1100px;         /* 이미지를 부모 요소의 너비에 맞게 조정 */
+    height: auto;            /* 이미지의 비율을 유지하면서 크기 조정 */
+    z-index: -1;
+}

@@ -306,6 +306,14 @@
         	<div class="Cover-box2"></div>
     	</div>
     
+    <!-- 국가별 차트 p 태그 -->
+	<p class="country-chart">오늘의 세계 증시</p>
+
+	<!-- 구분선 -->
+	<hr class="divider">
+	<div class="world_map">
+		<img src="${pageContext.request.contextPath}/resources/img/gonfalon/world_map.png">
+	</div>
 		<!-- 슬라이드쇼 미완성 -->
 <!-- 		<div class="slide_wrapper ">
 			<ul class="slides flex">
