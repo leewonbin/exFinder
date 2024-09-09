@@ -46,7 +46,7 @@ public class ExChangeController {
 			
 			String nowDate = today.format(formatter);
 			String oldDate = oneYearAgo.format(formatter);
-				String[] curr = service.currSelect();
+			String[] curr = service.currSelect();
 	        ArrayList<ExchangeRateDto> list = service.checkExchange(curr, oldDate, nowDate);
 	        System.out.println("환율 값 넣기 완료");
 	        for(ExchangeRateDto dto : list) {
@@ -86,7 +86,7 @@ public class ExChangeController {
 	    return ResponseEntity.ok(groupList);
 	}
 	
-	@RequestMapping(value = "exchange/todyExchange", method = RequestMethod.POST)
+	@RequestMapping(value = "exchange/todayExchange", method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Double>> todayExchange() {
 		Map<String,Double> exchangeList = new HashMap<>();
 		try {
@@ -96,7 +96,7 @@ public class ExChangeController {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		ArrayList<ExchangeRateDto> list = new ArrayList<ExchangeRateDto>();
 		while(size == 0) {
-			localDate.minusDays(1);
+			localDate = localDate.minusDays(1);
 			String today = localDate.format(formatter);
 			list = service.todaySelect(today);
 			size = list.size();

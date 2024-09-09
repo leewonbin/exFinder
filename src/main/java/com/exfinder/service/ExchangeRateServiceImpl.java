@@ -50,7 +50,6 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 	public ArrayList<ExchangeRateDto> checkExchange(String[] currency, String startDate, String endDate) {
 		ArrayList<ExchangeRateDto> list = new ArrayList<>();
 		WebDriver driver = null;
-
 		try {
 			URL resource = getClass().getClassLoader().getResource("drivers/chromedriver.exe");
 			if (resource == null) {
@@ -201,7 +200,6 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 		try {
 			return dao.exchangeRateSelect_base_r(c_code, rate_date);
 		} catch (Exception e) {
-			System.out.println("조회할수 있는 날짜 조차 없으니 0을 반환");
 			return 0;
 		}
 	}

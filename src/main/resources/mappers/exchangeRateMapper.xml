@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 <select id="currSelect" resultType="string">
-	select c_code from currency where c_code != 'USD'
+	select c_code from currency
 </select>
 
 <select id="todaySelect" resultType="exchangeRateDto">

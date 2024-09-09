@@ -16,6 +16,7 @@
 	<!-- 슬라이드 효과를 위한 JavaScript -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/charts.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>
 </head>
 <body>
 	<!-- 헤더 Include -->
