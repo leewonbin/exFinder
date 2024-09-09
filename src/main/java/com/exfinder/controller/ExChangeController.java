@@ -46,8 +46,7 @@ public class ExChangeController {
 			
 			String nowDate = today.format(formatter);
 			String oldDate = oneYearAgo.format(formatter);
-//			String[] curr = service.currSelect();
-			String[] curr = {"USD","CNY","EUR","JPY"};
+				String[] curr = service.currSelect();
 	        ArrayList<ExchangeRateDto> list = service.checkExchange(curr, oldDate, nowDate);
 	        System.out.println("환율 값 넣기 완료");
 	        for(ExchangeRateDto dto : list) {
@@ -95,7 +94,7 @@ public class ExChangeController {
 		LocalDate localDate = LocalDate.now().plusDays(1);
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		ArrayList<ExchangeRateDto> list = null;
+		ArrayList<ExchangeRateDto> list = new ArrayList<ExchangeRateDto>();
 		while(size == 0) {
 			localDate.minusDays(1);
 			String today = localDate.format(formatter);
