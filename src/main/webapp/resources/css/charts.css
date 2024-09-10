@@ -132,19 +132,139 @@
     
 }
 
-
+/*  세계지도 */
 .world_map_view {
 	display: flex;
-    justify-content: center; /* 수평 중앙 정렬 */
-    align-items: center;     /* 수직 중앙 정렬 */
-    height: 400px;           /* 부모 요소의 높이를 설정 */
-    position: relative;      /* 자식 요소를 기준으로 배치할 수 있도록 설정 */
-}
-.world_map {
-	position: absolute;      /* 부모 요소(.world_map_view)를 기준으로 고정 배치 */
-}
-.world_map img {
-	width: 1100px;         /* 이미지를 부모 요소의 너비에 맞게 조정 */
-    height: auto;     
+    height: 650px;           /* 부모 요소의 높이 설정 */
+    align-items: center;
+    overflow: hidden;        /* 부모 요소를 넘치는 부분 숨김 */
+    flex-direction: column; /* 자식 요소를 수직으로 배치 */
 }
 
+.world_map_header {
+	width: 1100px; 
+    height: 50px;  
+    justify-content: flex-end; /* 수평 끝으로 정렬 */
+    align-items: center;
+    display: flex;
+}
+.world_map_header > ul {		
+    display: flex;             /* 수평 정렬 */
+    list-style: none;          /* 리스트 스타일 제거 */
+    padding: 0;                /* 기본 패딩 제거 */
+    margin: 0;                 /* 기본 마진 제거 */
+}
+.world_map_header > ul > li {
+    margin: 0 20px;            /* 리스트 항목 사이의 간격 설정 */
+}
+.world_map_header > ul > li:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* 마우스 오버 시 배경색 변경 */
+    border-radius: 5px;        /* 둥근 모서리 추가 */
+}
+.world_map_header > ul > li > a {
+    text-decoration: none;     /* 밑줄 제거 */
+    color: #888;               /* 글자 색상 설정 */
+    font-size: 16px;           /* 글자 크기 설정 */
+    font-weight: bold;         /* 글자 굵기 설정 */
+    padding: 10px 15px;        /* 내부 여백 추가 */
+}
+
+.world_map_header > ul > li > a:focus {
+    color: #000;               /* 클릭 또는 포커스 상태에서 글자 색상 변경 */
+}
+
+.world_map {
+ 	width: 1100px;
+    position: relative;      /* 부모 요소(.world_map_view)를 기준으로 배치 */
+    height: 600px;  
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center;     /* 수직 중앙 정렬 */
+}
+
+.map-image {
+    width: 100%;             /* 부모 요소의 너비에 맞게 이미지 크기 조정 */
+    height: auto;            /* 비율을 유지하면서 세로 크기 자동 조정 */
+    object-fit: cover;       /* 이미지가 부모 요소에 맞도록 자르기 */
+}
+.flag {
+    position: absolute;      /* 부모 요소(.world_map_view)를 기준으로 고정 배치 */
+    top: 120px;              /* 화면 위에서 120px 아래 */
+    left: 850px;             /* 화면 왼쪽에서 850px 오른쪽으로 */
+}
+.flag-content {
+	display: flex;
+ 	width: auto;         /* 내용의 가로 길이 */
+    height: 30px;         /* 내용에 따라 세로 길이를 자동 조정 */
+    background-color: white; /* 배경색을 흰색으로 설정 */
+    border: 1px solid gray;  /* 회색 테두리 */
+    border-radius: 5px;   /* 직사각형 모서리를 살짝 둥글게 */
+    padding: 5px;        /* 이미지와 텍스트의 안쪽 여백 */
+    
+    z-index: 10;
+    display: flex;         /* Flexbox를 사용하여 자식 요소를 정렬 */
+    align-items: center;   /* 이미지와 텍스트를 세로 가운데 정렬 */
+    justify-content: flex-start; /* 가로 방향에서 요소들이 차례로 정렬됨 */
+    gap: 5px;             /* 이미지와 텍스트 사이 간격 설정 */
+}
+.flag-content img {
+	width: 25px;         /* 이미지를 부모 요소의 너비에 맞게 조정 */
+    height: 25px;
+}
+.flag-content label {
+    font-size: 16px;     /* 글자 크기를 16px로 설정 */
+}
+
+.flag-increased {
+   	color: red;
+   	font-size: 15px; /* 글씨 크기를 살짝 줄여 가독성 개선 */
+   	font-weight: bold;
+   	margin-left: auto;
+}
+.flag-unchanged {
+    color: gray;
+    font-size: 15px; /* 글씨 크기를 살짝 줄여 가독성 개선 */
+    font-weight: bold;
+    margin-left: auto;
+    
+}
+.flag-decreased {
+    color: blue;
+    font-size: 15px; /* 글씨 크기를 살짝 줄여 가독성 개선 */
+    font-weight: bold;
+    margin-left: auto;
+    
+}
+
+.line {
+	position: absolute;
+    display: block;      /* 선을 블록 요소로 만듦 */
+    width: 1px;         /* 선의 두께 */
+    height: 45px;       /* 선의 길이 */
+    background-color: gray; /* 선의 색상 */
+    margin: 10px 0;      /* 위아래 여백 */
+    z-index: 7;
+    top: 19px;           /* 화면 위에서 19px 아래 */
+    left: 20px;          /* 화면 왼쪽에서 20px 오른쪽으로 */
+}
+.circle {
+	position: absolute;
+ 	width: 15px;
+    height: 15px;
+    background-color: rgba(255, 255, 255, 0.1); /* 반투명 흰색 배경 */
+    border: 1px solid rgba(211, 211, 211); /* 매우 연한 회색 테두리 */
+    border-radius: 50%; /* 원형으로 만듦 */
+    z-index: 9;
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+    justify-content: center; /* 수평 가운데 정렬 */
+    top: 65px;           /* 화면 위에서 65px 아래 */
+    left: 13px;          /* 화면 왼쪽에서 13px 오른쪽으로 */
+}
+.mini-circle {
+	position: absolute;
+ 	width: 5px;
+    height: 5px;
+    background-color: red;
+    border-radius: 50%; /* 원형으로 만듦 */
+    z-index: 9;
+}
