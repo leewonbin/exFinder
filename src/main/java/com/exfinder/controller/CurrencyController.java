@@ -35,7 +35,7 @@ public class CurrencyController {
 	public void listAll(Model model) throws Exception {
 		logger.info("listAll..........");
 		List<CurrencyDto> list = service.listAll();
-		System.out.println(list);
+		logger.info("Currency List: " + list); // 데이터 확인을 위한 로그
 		model.addAttribute("list", list);
 	}
 	

@@ -250,6 +250,74 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	text-align: right;
 	padding-right: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.box-contents {
+	margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+.rate-lookup {
+	font-size: 1.1em;
+	font-weight: bold;
+	margin-left: 325px; /* x 위치 조정 */
+	margin-top: 100px; /* p 태그와 div 간의 간격 조정 */
+}
+
+/* 기본 테이블 스타일 */
+.exchange {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0; /* 테이블 위아래 여백 */
+    font-family: Arial, sans-serif;
+}
+
+.exchange thead {
+    background-color: white;
+    color: #ff0000;
+}
+
+.exchange th, .exchange td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    vertical-align: middle; /* 수직 가운데 정렬 */
+}
+
+.exchange th {
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 슬라이드 쇼 */
 /* li{list-style:none;}
 .flex{
