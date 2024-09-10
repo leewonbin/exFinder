@@ -309,6 +309,22 @@
     cursor: not-allowed; /* 비활성화 시 커서 변경 */
 	opacity: 0.6; /* 비활성화 시 투명도 낮춤 */
 }
+.writeBtn{
+	
+    margin-left: 10px; /* 버튼들 사이에 여백 추가 */
+    width: 80px;
+    height: 35px;
+    margin: 0 5px;
+    background-color: #05203C;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+}
 
 .myinfo-button:hover {
     background-color: #054184; /* 마우스를 올렸을 때 배경색 변경 */
