@@ -13,4 +13,6 @@ public interface ExchangeRateDao {
 	public double exchangeRateSelect_base_r(@Param("c_code")String c_code, @Param("rate_date")String rate_date);
 	public String[] currSelect() throws Exception;
 	public ArrayList<ExchangeRateDto> todaySelect(String today) throws Exception;
+	
+	public int exchangeRate_column_checkValue(@Param("c_code")String c_code);
 }

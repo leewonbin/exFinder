@@ -31,12 +31,9 @@
 				<h2 class="cs_content">
 					<textarea style="width: 100%" name="cs_content" rows="25">${CsDto.cs_content}</textarea>
 				</h2>
-				
-				<h2>
-				<input type="text" name="admin_id" placeholder="관리자" style="width: 100%">
-				</h2>			<!-- 나중에 삭제 -->
-				
+			
 				<div class="box-footer">
+					<input type="hidden" name="u_id" value="${sessionScope.userId}" />
 					<button type="submit" class="btn btn-primary">저장</button>
 					<button type="submit" class="btn btn-warning">취소</button>
 				</div>
@@ -50,7 +47,7 @@
 				console.log(formObj);
 				$(".btn-warning").on("click", function() {
 					event.preventDefault(); // 폼 제출 방지---500오류 발생하는데 board에서도 똑같이 쓴 코드가 여기선 오류뜸
-					self.location = "/ex/cs/listAll";
+					self.location = "/ex/admin/admin";
 				});
 				$(".btn-primary").on("click", function() {
 					formObj.submit();

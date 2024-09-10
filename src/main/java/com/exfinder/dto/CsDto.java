@@ -1,8 +1,6 @@
 package com.exfinder.dto;
 
-import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class CsDto {
 
@@ -10,7 +8,7 @@ public class CsDto {
 	private String cs_title; 		// cs 제목 (질문)
 	private String cs_content; 		// cs 내용 (답변)
 	private String u_id; 			// 관리자 id
-	private String cs_del = "N"; 	// cs 삭제여부
+	private int cs_state = 1; 	// cs 활
 
 	public CsDto() {
 	}
@@ -41,27 +39,27 @@ public class CsDto {
 
 	
 
-	public String getCs_del() {
-		return cs_del;
+	public int getcs_state() {
+		return cs_state;
 	}
 
-	public void setCs_del(String cs_del) {
-		this.cs_del = cs_del;
+	public void setcs_state(int cs_state) {
+		this.cs_state = cs_state;
 	}
 
 	@Override
 	public String toString() {
 		return "CsDto [cs_id=" + cs_id + ", cs_title=" + cs_title + ", cs_content=" + cs_content + ", admin_id="
-				+ u_id + ", cs_del=" + cs_del + "]";
+				+ u_id + ", cs_state=" + cs_state + "]";
 	}
 
-	public CsDto(int cs_id, String cs_title, String cs_content, String admin_id, String cs_del) {
+	public CsDto(int cs_id, String cs_title, String cs_content, String admin_id, int cs_state) {
 		super();
 		this.cs_id = cs_id;
 		this.cs_title = cs_title;
 		this.cs_content = cs_content;
 		this.u_id = admin_id;
-		this.cs_del = cs_del;
+		this.cs_state = cs_state;
 	}
 
 	public String getU_id() {

@@ -42,7 +42,7 @@
 			<button type="submit" class="btn btn-danger"
 				onclick="location.href='/ex/cs/delete?cs_id=${CsDto.cs_id}'">삭제</button>
 			<button type="submit" class="btn btn-primary"
-				onclick="location.href='/ex/cs/listAll'">목록</button>
+				onclick="location.href='/ex/admin/admin'">목록</button>
 		</div>
 
 

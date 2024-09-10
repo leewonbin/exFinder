@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <!-- cs 생성 -->
 	<insert id="create" parameterType="com.exfinder.dto.CsDto">
-		insert into cs(cs_id, cs_title, cs_content, u_id, cs_del)
-        values (cs_num.nextval, #{cs_title}, #{cs_content}, #{u_id}, #{cs_del})
+		insert into cs(cs_id, cs_title, cs_content, u_id, cs_state)
+        values (cs_num.nextval, #{cs_title}, #{cs_content}, #{u_id}, 1)
 	</insert>
 
 
@@ -17,12 +17,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from cs where cs_id = #{cs_id}
 	</select>
 
+<!--활성화된 글만 조회 -->
+	<select id="listActive" resultType="com.exfinder.dto.CsDto">
+    	SELECT * FROM cs WHERE cs_state = 1
+	</select>
+	
+
 
 <!-- cs 수정 -->
 	<update id="update"> 
 		update cs set cs_title = #{cs_title}, cs_content = #{cs_content}, u_id = #{u_id},
-		cs_del = #{cs_del} where cs_id = #{cs_id}
+		cs_state = #{cs_state} where cs_id = #{cs_id}
 	</update>
+	
+<!-- 글 상태 업데이트 쿼리 추가 -->
+	 <update id="updateStatus">
+        UPDATE cs
+        SET cs_state = #{cs_state}
+        WHERE cs_id = #{cs_id}
+    </update>
 
 
 <!-- cs 삭제 -->
@@ -33,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- cs 전체 조회 -->
 	<select id="listAll" resultType="com.exfinder.dto.CsDto">
-		select * from cs
+		select * from cs order by cs_id ASC
 	</select>
 
 
