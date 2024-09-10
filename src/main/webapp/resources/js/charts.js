@@ -67,7 +67,7 @@ $(document).ready(function() {
 // AJAX 요청 함수
 function ajaxData(c_code, chartDivId) {
 
-	var start_date = '2024/01/01'; // 필요한 값으로 수정
+	var start_date = '2024/08/26'; // 필요한 값으로 수정
 	var end_date = formattedDate; // 필요한 값으로 수정
 
 	$.ajax({
@@ -80,6 +80,7 @@ function ajaxData(c_code, chartDivId) {
 		},
 		dataType : "json", // Expect JSON response
 		success : function(response) {
+			console.log('응답 데이터 확인 ');
 			console.log(response); // 응답 데이터 확인
 			drawCharts(response, chartDivId); // 차트 그리기 함수 호출
 		},
