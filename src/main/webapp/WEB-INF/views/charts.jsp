@@ -31,14 +31,25 @@
 	height: 1px;
 	background-color: #dcdcdc; /* 밝은 회색 구분선 */
 }
-
+        /* 로딩 상태에서 페이지를 숨기기 위한 스타일 */
+        body.loading {
+            visibility: hidden;
+            overflow: hidden;
+        }
+        body {
+            transition: visibility 0s, opacity 0.5s linear;
+        }
+        body.loaded {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 	<script>
 
 
 	</script>
 </head>
-<body>
+<body class="loading">
 	<!-- 중앙에 위치시키기 위한 div -->
     <div class="charts_view">
     	<div class="Cover-box1"></div>

@@ -577,6 +577,9 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 구분선 -->
+	<hr class="divider">
 		<!-- 슬라이드쇼 미완성 -->
 <!-- 		<div class="slide_wrapper ">
 			<ul class="slides flex">

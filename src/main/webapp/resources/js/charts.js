@@ -1,8 +1,25 @@
-// 페이지의 모든 스크립트가 로드된 후 페이지를 표시
+// 타이머 시작
+console.time('Total Execution Time');
+console.log('타이머 시작');
+
+// 페이지가 새로 고침되었는지 확인
+if (sessionStorage.getItem('isReloaded')) {
+    window.addEventListener('load', function() {
+        document.body.classList.remove('loading');
+        document.body.classList.add('loaded');
+        
+        // 타이머 종료
+        console.timeEnd('Total Execution Time');
+        console.log('타이머 종료');
+    });
+} else {
+    sessionStorage.setItem('isReloaded', 'true');
+    window.location.reload();
+}
+
+// 페이지 로드 후 플래그 초기화
 window.addEventListener('load', function() {
-    // 모든 스크립트와 리소스가 로드된 후
-    document.body.classList.remove('loading');
-    document.body.classList.add('loaded');
+    sessionStorage.removeItem('isReloaded');
 });
 
 // 날짜를 문자열로 포맷팅하는 함수
@@ -97,6 +114,16 @@ function ajaxData(c_code, chartDivId) {
 }
 // 차트 그리기 함수
 function drawCharts(data, chartDivId) {
+	if (typeof google === 'undefined' || !google.visualization || typeof google.visualization.DataTable !== 'function') {
+        // Google Charts가 로드되지 않았을 경우, 재시도 로직을 실행
+        console.error("Google Charts 라이브러리가 로드되지 않았습니다. 재시도합니다.");
+        setTimeout(function() {
+            // 재시도: 일정 시간 후에 drawCharts를 다시 호출
+            drawCharts(data, chartDivId);
+        }, 1000); // 1초 후 재시도
+        return;
+    }
+	
 	var chartData = new google.visualization.DataTable();
 	chartData.addColumn('date', 'yy년MM월dd일'); // 첫 번째 열: 날짜
 	chartData.addColumn('number', '값'); // 두 번째 열: 값
@@ -144,7 +171,7 @@ function fetchExchangeRateData(c_code, rate_date, div_id, flag_id) {
             rate_date: rate_date
         },
         success: function(response) {
-            console.log('서버 응답:', response); // 서버 응답 확인
+            // console.log('서버 응답:', response); // 서버 응답 확인
 
             // 응답 데이터가 JSON 객체로 가정
             const today_base_r = response.today_base_r;
@@ -195,7 +222,7 @@ function fetchExchangeRateData(c_code, rate_date, div_id, flag_id) {
             console.log('업데이트된 HTML:', $('#' + div_id).html());
         },
         error: function(xhr, status, error) {
-            console.error('데이터를 가져오는 데 실패했습니다:', error);
+            console.error(c_code,'에 대한 데이터를 가져오는 데 실패했습니다:', error);
             $('#' + div_id).html('<div>데이터를 가져오는 데 실패했습니다.</div>');
             $('#' + flag_id).html('<span>데이터를 가져오는 데 실패했습니다.</span>');
         }
