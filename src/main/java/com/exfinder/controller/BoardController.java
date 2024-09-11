@@ -2,6 +2,8 @@ package com.exfinder.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.exfinder.dto.BoardDto;
+import com.exfinder.dto.UserDto;
 import com.exfinder.service.BoardService;
 import com.exfinder.vo.BoardVo;
 
@@ -27,16 +30,21 @@ public class BoardController {
 	private BoardService service;
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String createGET(BoardDto board, Model model) throws Exception {
+	public String createGET(BoardDto board, Model model,HttpSession session) throws Exception {
+		UserDto dto = (UserDto)session.getAttribute("dto");
+		System.out.println("UserDto TEst : "+dto);
 		logger.info("create get..........");
 		return "/board/create";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String createPOST(BoardDto board, Model model, RedirectAttributes rttr) throws Exception {
+	public String createPOST(BoardDto board, Model model, RedirectAttributes rttr,HttpSession session) throws Exception {
 		logger.info("create post..........");
 		logger.info(board.toString());
 		System.out.println(board);
+		UserDto dto = (UserDto)session.getAttribute("dto");
+		String userid = dto.getU_id();
+		board.setU_id(userid);
 		service.create(board);
 		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/board/listAll";

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page session="false"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -15,6 +15,12 @@
 	href="${pageContext.request.contextPath}/resources/css/boardCreate.css">
 </head>
 <body>
+ 	<c:if test="${sessionScope.dto eq null }">
+		<script>
+			alert('로그인이 필요합니다.');
+			location.href= "/ex/user/login";
+		</script>
+	</c:if>
 	<div>
 		<%@include file="../header/exFinder_header.jsp"%>
 	</div>
@@ -49,16 +55,12 @@
 					placeholder="내용 입력"></textarea>
 			</h2>
 
-			<h2>
-				<input type="text" name="u_id" placeholder="작성자" style="width: 100%">
-			</h2>
 
 			<div class="submitBtn">
                 <button type="submit">등록</button>
             </div>
 
 		</form>
-
 	</div>
 </body>
 </html>

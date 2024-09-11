@@ -214,6 +214,8 @@ public class UserController {
 		String userid = (String)session.getAttribute("userId");
 		
 		session.setAttribute("dto", userService.selectUser(userid));
+		UserDto dto = (UserDto)session.getAttribute("dto");
+		System.out.println(dto);
 		
 		return "/main/exFinder_main";
 	}
