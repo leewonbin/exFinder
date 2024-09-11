@@ -38,10 +38,12 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String createPOST(BoardDto board, Model model, RedirectAttributes rttr,HttpSession session) throws Exception {
+	public String createPOST(BoardDto board, Model model, RedirectAttributes rttr, HttpSession session) throws Exception {
 		logger.info("create post..........");
 		logger.info(board.toString());
 		System.out.println(board);
+		
+		// 현재 로그인한 사용자 정보 가져오기
 		UserDto dto = (UserDto)session.getAttribute("dto");
 		String userid = dto.getU_id();
 		board.setU_id(userid);
@@ -51,11 +53,16 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public void read(@RequestParam("b_id") int b_id, Model model) throws Exception {
+	public void read(@RequestParam("b_id") int b_id, Model model, HttpSession session) throws Exception {
 		logger.info("read.........." + b_id);
 		service.b_viewUpdate(b_id);				//조회수
 		BoardDto board = service.read(b_id);
 		model.addAttribute("boardDto", board);
+		
+		// 현재 로그인한 사용자 정보 추가
+	    UserDto userDto = (UserDto) session.getAttribute("dto");
+	    model.addAttribute("userDto", userDto);
+	   
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
@@ -64,19 +71,44 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updatePOST(BoardDto board, RedirectAttributes rttr) throws Exception {
+	public String updatePOST(BoardDto board, RedirectAttributes rttr, HttpSession session) throws Exception {
 		System.out.println("--------------------------확인");
 		System.out.println(board.toString());
 		logger.info("mod post..........");
+		
+		// 현재 로그인한 사용자 정보 가져오기
+	    UserDto dto = (UserDto) session.getAttribute("dto");
+	    if (dto == null) {
+	        rttr.addFlashAttribute("msg", "login_required");
+	        return "redirect:/login";
+	    }
+	    
+	    String userid = dto.getU_id();
+	    
+	    // 게시글의 현재 작성자와 로그인한 사용자 비교
+	    BoardDto existingBoard = service.read(board.getB_id());
+	    if (existingBoard == null) {
+	        //rttr.addFlashAttribute("msg", "board_not_found");
+	        return "redirect:/board/listAll";
+	    }
+	    
+	    if (!userid.equals(existingBoard.getU_id())) {
+	        //rttr.addFlashAttribute("msg", "not_authorized");
+	        return "redirect:/board/listAll";
+	    }
+		
+	    //게시글 수정
+		board.setU_id(userid);
 		service.update(board);
-		rttr.addFlashAttribute("msg", "success");
+		
+		rttr.addFlashAttribute("msg", "update_success");
 		return "redirect:/board/listAll";
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(@RequestParam("b_id") int b_id, RedirectAttributes rttr) throws Exception {
 		service.delete(b_id);
-		rttr.addFlashAttribute("msg", "success");
+		rttr.addFlashAttribute("msg", "delete_success");
 		return "redirect:/board/listAll";
 	}
 	

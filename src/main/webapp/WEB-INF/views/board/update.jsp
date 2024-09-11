@@ -2,19 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 수정</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/boardUpdate.css">
 </head>
-<body>
+<body>	
 	<div>
 		<%@include file="../header/exFinder_header.jsp"%>
 	</div>
