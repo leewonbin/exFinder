@@ -2,6 +2,8 @@ package com.exfinder.service;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.exfinder.dto.ExchangeRateDto;
 
 public interface ExchangeRateService {
@@ -12,4 +14,5 @@ public interface ExchangeRateService {
 	public String[] currSelect() throws Exception;
 	public ArrayList<ExchangeRateDto> todaySelect(String today) throws Exception;
 	
+	public int exchangeRate_column_checkValue(String c_code);
 }

@@ -40,7 +40,7 @@
 						<li><a href="#" onclick="reg_type_select('1'); return false;" id="profile-link">계정정보 관리</a></li>
         				<li><a href="#" onclick="reg_type_select('2'); return false;" id="info-link">계정권한 관리</a></li>
         				<li><a href="#" onclick="reg_type_select('3'); return false;" id="password-link">고객센터 관리</a></li>
-        				<li><a href="#" onclick="reg_type_select('4'); return false;" id="cancel-account"></a></li>
+        				<li><a href="#" onclick="reg_type_select('4'); return false;" id="cancel-account">???</a></li>
 					</ul>
 				</div>
 				
@@ -168,6 +168,7 @@
 									<th style="width: 20px;">NO.</th>
 									<th style="width: 200px;">제목</th>
 									<th style="width: 30px;">관리자ID</th>
+									<th style="width: 30px;">글 상태</th>
 	
 								</tr>
 							</thead>
@@ -177,6 +178,17 @@
 										<td>${csDto.cs_id}</td>
 										<td><a href="/ex/cs/read?cs_id=${csDto.cs_id}">${csDto.cs_title}</a></td>
 										<td>${csDto.u_id}</td>
+										<!-- 상태 변경 폼 -->
+										<td>
+										    <form action="${pageContext.request.contextPath}/cs/updateStatus" method="post">
+										        <input type="hidden" name="cs_id" value="${csDto.cs_id}" />
+										        <select name="cs_state">
+										            <option value="1" <c:if test="${csDto.cs_state == 1}">selected</c:if>>활성화</option>
+										            <option value="0" <c:if test="${csDto.cs_state == 0}">selected</c:if>>비활성화</option>
+										        </select>
+										        <input type="submit" value="변경" />
+										    </form>
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -184,17 +196,14 @@
 					</div>
 	
 					<div class="box-footer">
-						<button type="submit" class="btn btn-warning"
-							onclick="location.href='/ex/cs/create'">글쓰기</button>
-						<button type="submit" class="btn btn-primary"
-							onclick="location.href='/ex/cs/main'">메인</button>
+						<button type="submit" class="writeBtn"onclick="location.href='/ex/cs/create'">글쓰기</button>
 					</div>
 
 
 			</div>
 
 			<div class="my_info2 type_4" style="display: none; height: 550px;">
-					<h2 class="profile-title">회원 탈퇴</h2>
+					<h2 class="profile-title">???</h2>
 				
 					
 								

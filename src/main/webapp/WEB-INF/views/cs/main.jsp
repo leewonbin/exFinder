@@ -111,7 +111,7 @@ function toggleAnswer(id) {
 			style="width: 300px; height: 400px; border: none;"></iframe>
 	</div>
 
-	<br><br><a href = "/ex/cs/listAll">목록 임시버튼</a>
+	
 
 </body>
 </html>

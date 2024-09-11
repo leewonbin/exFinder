@@ -37,20 +37,18 @@
 
 
 			<h2 class="cs_content">
-				<textarea name="cs_content" rows="25" style="width: 100%"
-					placeholder="답변 내용 입력"></textarea>
+				<textarea name="cs_content" rows="25" style="width: 100%" placeholder="답변 내용 입력"></textarea>
 			</h2>
 			
+		<!-- u_id를 세션에서 가져와 hidden 필드로 전송 -->
+		    <input type="hidden" name="u_id" value="${sessionScope.userId}" />
+		    
+		   <div class="button-container">
+			   <button class="submitBtn">등록</button>
+			   <button class="cancelBtn" onclick = "location.href='/ex/admin/admin'">취소</button>
+		   </div>
 
-			<h2>
-				<input type="text" name="admin_id" placeholder="관리자" style="width: 100%">
-			</h2>			<!-- 나중에 삭제 -->
-
-
-			<div class="submitBtn">
-                <button type="submit">등록</button>
-            </div>
-
+			
 		</form>
 
 	</div>

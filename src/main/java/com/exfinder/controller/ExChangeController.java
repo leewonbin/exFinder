@@ -119,6 +119,15 @@ public class ExChangeController {
 	@ResponseBody
 	@RequestMapping(value = "charts/value", method = RequestMethod.POST)
 	public void charts_value(HttpServletResponse response, @RequestParam("c_code") String  c_code, @RequestParam("rate_date") String rate_date) throws Exception {
+	    int checkValue = service.exchangeRate_column_checkValue(c_code);
+	    if (checkValue == 0) {
+	        // 값이 0인 경우, 즉시 종료
+	        response.setContentType("application/json");
+	        response.setCharacterEncoding("UTF-8");
+	        System.out.println("해당 통화 코드"+ c_code + " 에 대한 데이터가 없으니 중지합니다.");
+	        return;
+	    }
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		LocalDate currentDate = LocalDate.parse(rate_date, formatter);
 		

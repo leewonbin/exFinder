@@ -214,4 +214,11 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 		return dao.todaySelect(today);
 	}
 
+	@Override
+	public int exchangeRate_column_checkValue(String c_code) {
+		int checkValue = dao.exchangeRate_column_checkValue(c_code);
+		
+		return (checkValue >= 1) ? checkValue : 0;
+	}
+
 }
