@@ -80,5 +80,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             </if>
         </where>
     </select>
+    
+     <!-- 특정 사용자가 작성한 게시글 목록을 가져오는 쿼리 -->
+    <select id="getUserPosts" parameterType="string" resultType="com.exfinder.dto.BoardDto">
+        SELECT * FROM board
+        WHERE u_id = #{u_id}
+        ORDER BY b_date DESC
+    </select>
+    
+    
+    
 
 </mapper>

@@ -66,5 +66,11 @@ public class BoardServiceImpl implements BoardService {
         BoardDao dao = sqlSession.getMapper(BoardDao.class);
         return dao.getTotalCountByCategory(vo);
     }
+//--------------------------------------------------------------------------
+	@Override
+	public List<BoardDto> getUserPosts(String u_id) throws Exception {
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		return dao.getUserPosts(u_id);
+	}
 
 }
