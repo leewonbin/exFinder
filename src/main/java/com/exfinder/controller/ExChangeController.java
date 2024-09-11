@@ -135,7 +135,7 @@ public class ExChangeController {
 		
 		while (today_base_r == 0) { // 0을 null에 해당하는 값으로 가정
 			today_base_r = service.exchangeRateSelect_base_r(c_code, currentDate.format(formatter));
-            System.out.println(c_code + "- today_base_r : " +  today_base_r);
+            // System.out.println(c_code + "- today_base_r : " +  today_base_r);
             
             if (today_base_r == 0) {
                 currentDate = currentDate.minusDays(1); // 날짜에서 1일을 뺌
@@ -150,7 +150,7 @@ public class ExChangeController {
         // null이 아닐 때까지 반복
         while (yesterday_base_r == 0) { // 0을 null에 해당하는 값으로 가정
             yesterday_base_r = service.exchangeRateSelect_base_r(c_code, currentDate.format(formatter));
-            System.out.println(c_code + "- yesterday_base_r : " + yesterday_base_r);
+            // System.out.println(c_code + "- yesterday_base_r : " + yesterday_base_r);
             
             if (yesterday_base_r == 0) {
                 currentDate = currentDate.minusDays(1); // 날짜에서 1일을 뺌
