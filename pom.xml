@@ -224,6 +224,14 @@
 			<version>2.8.5</version>
 		</dependency>
 
+		<!-- jsoup은 Java에서 HTML 문서를 파싱하고 조작하는 데 사용되는 라이브러리입니다. 주로 웹 페이지에서 데이터를 추출하거나 HTML 파일을 처리할 때 사용됩니다. -->
+		<dependency>
+			<!-- jsoup HTML parser library @ https://jsoup.org/ -->
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.13.1</version>
+		</dependency>
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

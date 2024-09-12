@@ -27,4 +27,10 @@ public class CurrencyServiceImpl implements CurrencyService{
 		List<CurrencyDto> dtos = dao.listAll();
 		return dtos;
 	}
+
+	@Override
+	public CurrencyDto currency_Select(String c_code) throws Exception {
+		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);		
+		return dao.currency_Select(c_code);
+	}
 }

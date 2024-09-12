@@ -47,5 +47,8 @@ FROM
         
 	</select>
 
+<select id="currency_Select" resultType="com.exfinder.dto.CurrencyDto">
+	select * from currency where c_code = #{c_code}
+</select>
 
 </mapper>
