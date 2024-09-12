@@ -1,25 +1,5 @@
 $(document).ready(function() {
-    updateCurrencySelect('#base-currency-select', res);
-    updateCurrencySelect('#result-currency-select', res);
-
-//    console.log('여기로 들어옴');
-//
-//    $.ajax({
-//        url: "/ex/exchange/todayExchange",
-//        type: "POST",
-//        dataType: "json",
-//        success: function(res) {
-//            updateCurrencySelect('#base-currency-select', res);
-//            updateCurrencySelect('#result-currency-select', res);
-//
-//            // 기준 통화 입력값으로 초기 계산
-//            updateExchangeRate();
-//        },
-//        error: function(xhr, status, error) {
-//            console.error("AJAX Error:", status, error);  // 오류 내용 출력
-//            console.error(xhr.responseText);  // 서버에서 응답한 에러 메시지 출력
-//        }
-//    });
+    updateExchangeRate();
 });
 
 function updateCurrencySelect(selectId, rates) {
@@ -35,7 +15,7 @@ function updateCurrencySelect(selectId, rates) {
 }
 
 function currencyConvert(amount, fromCurr, toCurr) {
-    let exchangeAmount = parseFloat(amount);
+    let exchangeAmount = parseFloat(amount.replace(/,/g, ''));
     
     const fromRate = fromCurr.data('rate') || 1;
     const toRate = toCurr.data('rate') || 1;
@@ -48,16 +28,41 @@ function currencyConvert(amount, fromCurr, toCurr) {
     // 결과를 도착 통화의 data-rate로 나누기
     let result = exchangeAmount / toRate;
 
-    if(toCurr.val() === 'JPY' && fromCurr.val() === 'VND' || fromCurr.val() === 'JPY' && toCurr.val() === 'VND') {
-    	return result;
-    }else if(toCurr.val() === fromCurr.val()) {
-    	return result;
-    }else if (toCurr.val() === 'JPY' || toCurr.val() === 'VND' || fromCurr.val() == 'JPY' || fromCurr.val() == 'VND') {
-    	result /= 100;
+    if (toCurr.val() === 'JPY' && fromCurr.val() === 'VND' || fromCurr.val() === 'JPY' && toCurr.val() === 'VND') {
+        return result;
+    } else if (toCurr.val() === fromCurr.val()) {
+        return result;
+    } else if (toCurr.val() === 'JPY' || toCurr.val() === 'VND' || fromCurr.val() == 'JPY' || fromCurr.val() == 'VND') {
+        result /= 100;
     }
-    // 출발 통화가 JPY 또는 VND인 경우 100을 곱함
 
     return result;
+}
+
+function numberWithCommas(val) {
+    // 숫자형 값으로 변환 후 포맷 적용
+    const number = parseFloat(val);
+    if (isNaN(number)) return '';
+    return number.toLocaleString();
+}
+
+function updateResultInput() {
+    const baseCurr = $("#base-currency-select option:selected");
+    const resultCurr = $("#result-currency-select option:selected");
+
+    // 숫자로 변환 후 포맷 적용
+    const baseAmount = $("#base-amount-input").val().replace(/,/g, '');
+    const resultAmount = $("#result-amount-input").val().replace(/,/g, '');
+
+    const beforeFormatted = numberWithCommas(baseAmount) + baseCurr.data('curr');
+    $("#base-result-input").val(beforeFormatted);
+    
+    const afterFormatted = numberWithCommas(resultAmount) + resultCurr.data('curr');
+    $("#result-result-input").val(afterFormatted);
+    
+    // 입력 필드에 포맷 적용
+    $("#base-amount-input").val(numberWithCommas(baseAmount));
+    $("#result-amount-input").val(numberWithCommas(resultAmount));
 }
 
 function updateExchangeRate() {
@@ -67,6 +72,8 @@ function updateExchangeRate() {
 
     const exchangeVal = currencyConvert(baseAmount, baseCurr, resultCurr);
     $("#result-amount-input").val(exchangeVal.toFixed(2));
+
+    updateResultInput();
 }
 
 $("#base-amount-input").keyup(updateExchangeRate);
@@ -77,6 +84,15 @@ $("#result-amount-input").keyup(function() {
     const exchangeVal = currencyConvert(resultAmount, resultCurr, baseCurr);
 
     $("#base-amount-input").val(exchangeVal.toFixed(2));
+    updateResultInput();
 });
 
-$("#base-currency-select, #result-currency-select").change(updateExchangeRate);
+$("#base-currency-select, #result-currency-select").change(function() {
+	updateExchangeRate();
+    const baseCurr = $("#base-currency-select option:selected");
+    const resultCurr = $("#result-currency-select option:selected");
+    const baseImgUrl = "resources/img/gonfalon/"+baseCurr.val()+".png";
+    const resultImgUrl = "resources/img/gonfalon/"+resultCurr.val()+".png";
+    $(".baseImg").attr("src",baseImgUrl);
+    $(".resultImg").attr("src",resultImgUrl);
+});

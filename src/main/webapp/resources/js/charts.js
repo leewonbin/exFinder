@@ -91,7 +91,7 @@ $(document).ready(function() {
 // AJAX 요청 함수
 function ajaxData(c_code, chartDivId) {
 
-	var start_date = '2024/08/26'; // 필요한 값으로 수정
+	var start_date = '2024/08/01'; // 필요한 값으로 수정
 	var end_date = formattedDate; // 필요한 값으로 수정
 
 	$.ajax({
@@ -144,6 +144,12 @@ function drawCharts(data, chartDivId) {
 				count : -1
 			}, // 자동 그리드라인 수 조정
 			viewWindowMode : 'maximized',
+			ticks : [
+				new Date(2024,7,1),
+				new Date(2024,7,15),
+				new Date(2024,7,30),
+				new Date(2024,8,6),
+			],
 
 		},
 		vAxis : {

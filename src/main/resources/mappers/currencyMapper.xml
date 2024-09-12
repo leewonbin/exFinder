@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     e.base_r AS base_r
 FROM
     exchangerate e,currency c where e.c_code = c.c_code
-    and e.rate_date = #{today}
+    and e.rate_date = #{today} order by c_country asc
     
         
 	</select>

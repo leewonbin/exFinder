@@ -58,17 +58,20 @@
 			<!-- 기준 통화 섹션 -->
 			<div class="currency-section baseSection">
 				<!-- 기준 통화 SelectBox -->
+				<div class="selectBoxWrap">
+				<img class="baseImg" src="resources/img/gonfalon/USD.png"/>
 				<select id="base-currency-select" class="base-currency-select">
-					<option value="KRW" data-rate="1">한국 원화 (KRW)</option>
+					<option value="KRW" data-rate="1" data-curr="원" >대한민국 (KRW)</option>
 					<c:forEach var="exchange" items="${list}">
-						<option value="${exchange.c_code}" data-rate="${exchange.base_r }"
+						<option value="${exchange.c_code}" data-rate="${exchange.base_r }" data-curr="${exchange.c_name }"
 							<c:if test="${exchange.c_code eq 'USD'}">selected</c:if>>
-							${exchange.c_country} (${exchange.c_name})</option>
+							${exchange.c_country} (${exchange.c_code})</option>
 					</c:forEach>
 				</select>
+				</div>
 
 				<!-- 기준 통화 금액 입력 InputBox -->
-				<input type="number" id="base-amount-input"
+				<input type="text" id="base-amount-input"
 					class="base-amount-input" placeholder="금액 입력" value="1" />
 
 				<!-- 기준 통화 결과 입력 InputBox -->
@@ -77,23 +80,24 @@
 			</div>
 
 			<!-- '=' 문자 -->
-			<img alt=""
-				src="${pageContext.request.contextPath}/resources/img/equals.png"
-				class="equals-sign">
+			<img alt="" src="resources/img/equals.png" class="equals-sign">
 
 			<!-- 결과 통화 섹션 -->
 			<div class="currency-section resultSection">
 				<!-- 결과 통화 SelectBox -->
+				<div class="selectBoxWrap">
+				<img class="resultImg" src="resources/img/gonfalon/KRW.png"/>
 				<select id="result-currency-select" class="result-currency-select">
-					<option value="KRW" data-rate="1" selected>한국 원화 (KRW)</option>
+					<option value="KRW" data-rate="1" data-curr="원" selected>대한민국 (KRW)</option>
 					<c:forEach var="exchange" items="${list }">
-						<option value="${exchange.c_code}" data-rate="${exchange.base_r }">
-							${exchange.c_country} (${exchange.c_name})</option>
+						<option value="${exchange.c_code}" data-rate="${exchange.base_r }" data-curr="${exchange.c_name }">
+							${exchange.c_country} (${exchange.c_code})</option>
 					</c:forEach>
 				</select>
+				</div>
 
 				<!-- 결과 통화 금액 입력 InputBox -->
-				<input type="number" id="result-amount-input"
+				<input type="text" id="result-amount-input"
 					class="result-amount-input" placeholder="금액 입력" />
 
 				<!-- 결과 통화 결과 입력 InputBox -->
@@ -134,7 +138,7 @@
 							<div class="chart_graph_box">
 								<div class="chart_graph_box_top">
 									<img
-										src="${pageContext.request.contextPath}/resources/img/gonfalon/JPY2.png">
+										src="${pageContext.request.contextPath}/resources/img/gonfalon/JPY.png">
 									<a>일본 JPY</a>
 									<div id="value_JPY"></div>
 								</div>
