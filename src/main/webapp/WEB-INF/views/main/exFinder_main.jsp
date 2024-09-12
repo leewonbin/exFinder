@@ -543,8 +543,6 @@
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 
 	<!-- 구분선 -->
@@ -593,7 +591,6 @@
 			</table>
 		</div>
 	</div>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>
 </body>
 </html>

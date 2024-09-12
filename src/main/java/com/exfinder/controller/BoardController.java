@@ -90,8 +90,7 @@ public class BoardController {
 	    if (existingBoard == null) {
 	        //rttr.addFlashAttribute("msg", "board_not_found");
 	        return "redirect:/board/listAll";
-	    }
-	    
+	    }  
 	    if (!userid.equals(existingBoard.getU_id())) {
 	        //rttr.addFlashAttribute("msg", "not_authorized");
 	        return "redirect:/board/listAll";

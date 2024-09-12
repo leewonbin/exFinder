@@ -73,7 +73,7 @@
 		<c:otherwise>
 			<div class="comment-container">
 				<!-- 로그인 된 유저 정보 -->
-				${sessionScope.userInfo.u_id}<br> <br>
+				<p>현재 사용자: ${sessionScope.userInfo.u_id}</p>
 				<div>
 					내용 : <input type="text" id="newCommentText" />
 					<button id="commentAddBtn">댓글 등록</button>

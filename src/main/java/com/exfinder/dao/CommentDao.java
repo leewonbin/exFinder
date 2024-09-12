@@ -22,5 +22,6 @@ public interface CommentDao {
 
 	public List<CommentDto> selectReply(int comm_id);
 	
+	public CommentDto getCommentById(int comm_id) throws Exception;  // 댓글 조회 by ID 추가!!!
 
 }
