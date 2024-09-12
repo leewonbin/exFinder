@@ -56,5 +56,10 @@ public class CommentServiceImpl implements CommentService{
 		CommentDao dao = sqlSession.getMapper(CommentDao.class);
 		return dao.selectReply(comm_id);
 	}
-
+	
+	@Override
+    public CommentDto getCommentById(int comm_id) throws Exception {
+        CommentDao dao = sqlSession.getMapper(CommentDao.class);
+        return dao.getCommentById(comm_id);
+    }																//추가!!!
 }
