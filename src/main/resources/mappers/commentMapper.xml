@@ -43,4 +43,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY CASE WHEN parent_id IS NULL THEN comm_id ELSE parent_id END, comm_date
     </select>
 <!-- 부모댓글로 인한 계층적 정렬을 위해서  -->
+
+<!-- 댓글 id로 댓글 조회 -->
+	<select id="getCommentById" resultType="CommentDto">
+	select * from comments where comm_id = #{comm_id}
+	</select>
+
+
+
+
 </mapper>

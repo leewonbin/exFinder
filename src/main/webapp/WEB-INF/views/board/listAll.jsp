@@ -9,15 +9,15 @@
 <meta charset="UTF-8">
 <meta name="logout-status"
 	content="${sessionScope.userId == null ? 'logged-out' : 'logged-in'}">
-<title>Insert title here</title>
+<title>게시글 목록</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/boardList.css">
 
-<script
-	src="${pageContext.request.contextPath}/resources/js/listAllJs.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/listAllJs.js"></script>
+
 <body>
 	<div>
 		<%@include file="../header/exFinder_header.jsp"%>

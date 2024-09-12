@@ -2,17 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page session="false"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 보기</title>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/boardRead.css">
+	
 </head>
 <body>
 	<div>
@@ -52,10 +53,12 @@
 		</h2>
 
 		<div class="box-footer">
-			<button type="submit" class="btn btn-warning"
-				onclick="location.href='/ex/board/update?b_id=${boardDto.b_id}'">수정</button>
-			<button type="submit" class="btn btn-danger"
-				onclick="location.href='/ex/board/delete?b_id=${boardDto.b_id}'">삭제</button>
+			<c:if test="${sessionScope.dto != null && sessionScope.dto.u_id == boardDto.u_id}">
+				<button type="button" class="btn btn-warning"
+					onclick="location.href='/ex/board/update?b_id=${boardDto.b_id}'">수정</button>
+				<button type="button" class="btn btn-danger"
+					onclick="location.href='/ex/board/delete?b_id=${boardDto.b_id}'">삭제</button>
+			</c:if>
 			<button type="submit" class="btn btn-primary"
 				onclick="location.href='/ex/board/listAll'">목록</button>
 		</div>
@@ -70,7 +73,7 @@
 		<c:otherwise>
 			<div class="comment-container">
 				<!-- 로그인 된 유저 정보 -->
-				${sessionScope.userInfo.u_id}<br> <br>
+				<p>현재 사용자: ${sessionScope.userInfo.u_id}</p>
 				<div>
 					내용 : <input type="text" id="newCommentText" />
 					<button id="commentAddBtn">댓글 등록</button>

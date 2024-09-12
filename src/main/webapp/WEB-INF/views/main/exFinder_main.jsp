@@ -58,33 +58,21 @@
 			<!-- 기준 통화 섹션 -->
 			<div class="currency-section baseSection">
 				<!-- 기준 통화 SelectBox -->
+				<div class="selectBoxWrap">
+				<img class="baseImg" src="resources/img/gonfalon/USD.png"/>
 				<select id="base-currency-select" class="base-currency-select">
-					<option value="USD" selected>미국 달러 (USD)</option>
-					<option value="EUR">유로 (EUR)</option>
-					<option value="JPY">일본 엔 (JPY)</option>
-					<option value="KRW">한국 원화 (KRW)</option>
-					<option value="GBP">영국 파운드 (GBP)</option>
-					<option value="CHF">스위스 프랑 (CHF)</option>
-					<option value="CAD">캐나다 달러 (CAD)</option>
-					<option value="INR">인도 루피 (INR)</option>
-					<option value="HKD">홍콩 달러 (HKD)</option>
-					<option value="EGP">이집트 파운드 (EGP)</option>
-					<option value="SAR">사우디 리얄(SAR)</option>
-					<option value="AUD">호주 달러(AUD)</option>
-					<option value="THB">태국 바트(THB)</option>
-					<option value="RUB">러시아 루블(RUB)</option>
-					<option value="VND">베트남 동(VND)</option>
-					<option value="ZAR">남아공 랜드(ZAR)</option>
-					<option value="MXN">멕시코 페소(MXN)</option>
-					<option value="BRL">브라질 레알(BRL)</option>
-					<option value="ILS">이스라엘 쉐캐림(ILS)</option>
-					<option value="NZD">뉴질랜드 달러(NZD)</option>
-					<!-- 추가 가능한 다른 국가들 -->
+					<option value="KRW" data-rate="1" data-curr="원" >대한민국 (KRW)</option>
+					<c:forEach var="exchange" items="${list}">
+						<option value="${exchange.c_code}" data-rate="${exchange.base_r }" data-curr="${exchange.c_name }"
+							<c:if test="${exchange.c_code eq 'USD'}">selected</c:if>>
+							${exchange.c_country} (${exchange.c_code})</option>
+					</c:forEach>
 				</select>
+				</div>
 
 				<!-- 기준 통화 금액 입력 InputBox -->
-				<input type="number" id="base-amount-input"
-					class="base-amount-input" placeholder="금액 입력" value="1"/>
+				<input type="text" id="base-amount-input"
+					class="base-amount-input" placeholder="금액 입력" value="1" />
 
 				<!-- 기준 통화 결과 입력 InputBox -->
 				<input type="text" id="base-result-input" class="base-result-input"
@@ -92,39 +80,24 @@
 			</div>
 
 			<!-- '=' 문자 -->
-			<img alt=""
-				src="${pageContext.request.contextPath}/resources/img/equals.png"
-				class="equals-sign">
+			<img alt="" src="resources/img/equals.png" class="equals-sign">
 
 			<!-- 결과 통화 섹션 -->
 			<div class="currency-section resultSection">
 				<!-- 결과 통화 SelectBox -->
+				<div class="selectBoxWrap">
+				<img class="resultImg" src="resources/img/gonfalon/KRW.png"/>
 				<select id="result-currency-select" class="result-currency-select">
-					<option value="USD">미국 달러 (USD)</option>
-					<option value="EUR">유로 (EUR)</option>
-					<option value="JPY">일본 엔 (JPY)</option>
-					<option value="KRW" selected>한국 원화 (KRW)</option>
-					<option value="GBP">영국 파운드 (GBP)</option>
-					<option value="CHF">스위스 프랑 (CHF)</option>
-					<option value="CAD">캐나다 달러 (CAD)</option>
-					<option value="INR">인도 루피 (INR)</option>
-					<option value="HKD">홍콩 달러 (HKD)</option>
-					<option value="EGP">이집트 파운드 (EGP)</option>
-					<option value="SAR">사우디 리얄(SAR)</option>
-					<option value="AUD">호주 달러(AUD)</option>
-					<option value="THB">태국 바트(THB)</option>
-					<option value="RUB">러시아 루블(RUB)</option>
-					<option value="VND">베트남 동(VND)</option>
-					<option value="ZAR">남아공 랜드(ZAR)</option>
-					<option value="MXN">멕시코 페소(MXN)</option>
-					<option value="BRL">브라질 레알(BRL)</option>
-					<option value="ILS">이스라엘 쉐캐림(ILS)</option>
-					<option value="NZD">뉴질랜드 달러(NZD)</option>
-					<!-- 추가 가능한 다른 국가들 -->
+					<option value="KRW" data-rate="1" data-curr="원" selected>대한민국 (KRW)</option>
+					<c:forEach var="exchange" items="${list }">
+						<option value="${exchange.c_code}" data-rate="${exchange.base_r }" data-curr="${exchange.c_name }">
+							${exchange.c_country} (${exchange.c_code})</option>
+					</c:forEach>
 				</select>
+				</div>
 
 				<!-- 결과 통화 금액 입력 InputBox -->
-				<input type="number" id="result-amount-input"
+				<input type="text" id="result-amount-input"
 					class="result-amount-input" placeholder="금액 입력" />
 
 				<!-- 결과 통화 결과 입력 InputBox -->
@@ -165,7 +138,7 @@
 							<div class="chart_graph_box">
 								<div class="chart_graph_box_top">
 									<img
-										src="${pageContext.request.contextPath}/resources/img/gonfalon/JPY2.png">
+										src="${pageContext.request.contextPath}/resources/img/gonfalon/JPY.png">
 									<a>일본 JPY</a>
 									<div id="value_JPY"></div>
 								</div>
@@ -570,8 +543,6 @@
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 
 	<!-- 구분선 -->
@@ -620,7 +591,6 @@
 			</table>
 		</div>
 	</div>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>
 </body>
 </html>

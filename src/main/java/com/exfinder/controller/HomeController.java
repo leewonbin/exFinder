@@ -1,5 +1,8 @@
 package com.exfinder.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +28,19 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		List<CurrencyDto> list = null;
+		LocalDate localDate = LocalDate.now().plusDays(1);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		List<CurrencyDto> list = new ArrayList<CurrencyDto>();
 		try {
-			list = service.listAll();
-			System.out.println(list);
+			int size = 0;
+			while (size == 0) {
+				localDate = localDate.minusDays(1);
+				String today = localDate.format(formatter);
+
+				list = service.selectExchange(today);
+				size = list.size();
+				System.out.println("size() : " + size);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

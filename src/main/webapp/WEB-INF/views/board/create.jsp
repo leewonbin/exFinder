@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta name="logout-status"
 	content="${sessionScope.userId == null ? 'logged-out' : 'logged-in'}">
-<title>Insert title here</title>
+<title>게시글 생성</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/boardCreate.css">
 </head>
