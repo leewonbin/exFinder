@@ -27,4 +27,9 @@ public class CurrencyServiceImpl implements CurrencyService{
 		return dao.selectExchange(today);
 	}
 
+	@Override
+	public CurrencyDto currency_Select(String c_code) throws Exception {
+		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);		
+		return dao.currency_Select(c_code);
+	}
 }

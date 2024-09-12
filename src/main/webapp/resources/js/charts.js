@@ -144,6 +144,12 @@ function drawCharts(data, chartDivId) {
 				count : -1
 			}, // 자동 그리드라인 수 조정
 			viewWindowMode : 'maximized',
+			ticks : [
+				new Date(2024,7,1),
+				new Date(2024,7,15),
+				new Date(2024,7,30),
+				new Date(2024,8,6),
+			],
 
 		},
 		vAxis : {

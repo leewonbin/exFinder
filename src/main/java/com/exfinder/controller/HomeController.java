@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exfinder.dto.CurrencyDto;
 import com.exfinder.service.CurrencyService;
@@ -46,5 +47,15 @@ public class HomeController {
 		}
 		model.addAttribute("list", list);
 		return "main/exFinder_main";
+	}
+	// 접근 방식 : exFinder_Currency?c_code=USD
+	@RequestMapping(value = "/exFinder_Currency", method = RequestMethod.GET)
+	public String exFinder_Currency(Model model, @RequestParam("c_code") String  c_code) throws Exception {
+		CurrencyDto currency = new CurrencyDto();
+		currency.setC_code(c_code);
+		currency = service.currency_Select(c_code);
+		System.out.println(currency);
+		model.addAttribute("currencyDto", currency); 
+		return "main/exFinder_Currency";
 	}
 }

@@ -179,6 +179,31 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	box-sizing: border-box; /* padding과 border가 포함된 크기 계산 */
 }
 
+/* selectBoxWrap을 상대적으로 설정 */
+.selectBoxWrap {
+    position: relative; /* img와 select를 절대 위치로 설정하기 위함 */
+    display: inline-block; /* 콘텐츠가 선택박스와 이미지 둘 다 포함할 수 있도록 설정 */
+}
+
+/* img를 select박스의 왼쪽에 배치 */
+.selectBoxWrap > img {
+    position: absolute;
+    left: 10px; /* 왼쪽으로 10px 여백 추가 */
+    top: 35%; /* 수직 중앙 정렬 */
+    transform: translateY(-50%); /* 수직 중앙 정렬 보정 */
+    width: 50px; /* 이미지 크기 조정 */
+    height: 50px; /* 이미지 크기 조정 */
+    z-index: 1; /* select 요소보다 위에 배치 */
+}
+
+/* select 요소에 여백 추가 */
+.selectBoxWrap select {
+    padding-left: 70px; /* 이미지와 겹치지 않도록 왼쪽 패딩 추가 (여백과 크기를 고려하여 조정) */
+    box-sizing: border-box; /* 패딩이 포함된 크기 계산 */
+    position: relative; /* img와의 위치 관계를 위해 상대적 위치 설정 */
+    z-index: 0; /* 이미지보다 뒤에 배치 */
+}
+
 /* 기준 통화 selectbox 스타일 */
 .base-currency-select {
 	width: 350px;

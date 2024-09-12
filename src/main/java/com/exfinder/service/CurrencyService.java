@@ -9,4 +9,5 @@ public interface CurrencyService {
 	public CurrencyDto read(String c_code, String rate_date) throws Exception;
 	public List<CurrencyDto> selectExchange(String today) throws Exception;
 
+	public CurrencyDto currency_Select(String c_code) throws Exception;
 }
