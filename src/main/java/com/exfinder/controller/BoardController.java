@@ -160,4 +160,42 @@ public class BoardController {
         model.addAttribute("boardVo", vo);
 		
 	}
+	
+	
+	
+
+	@RequestMapping(value = "/user/myBoard", method = RequestMethod.GET)
+	public String myBoard(Model model, HttpSession session) throws Exception {
+	    // 세션에서 UserDto 객체를 가져옴
+	    UserDto dto = (UserDto) session.getAttribute("dto");
+
+	    // 사용자가 로그인하지 않은 경우 처리 (로그인 페이지로 리다이렉트)
+	    if (dto == null) {
+	        return "redirect:/login";
+	    }
+
+	    // 사용자 ID를 가져옴
+	    String userId = dto.getU_id();
+
+	    // 게시글 조회 서비스 호출
+	    try {
+	        // 사용자가 작성한 게시글을 서비스에서 가져오기
+	        List<BoardDto> userPosts = service.getUserPosts(userId);
+
+	        // 게시글이 없을 경우 처리
+	        if (userPosts == null || userPosts.isEmpty()) {
+	            model.addAttribute("message", "작성된 게시글이 없습니다.");
+	        } else {
+	            // 모델에 게시글 추가하여 JSP에 전달
+	            model.addAttribute("userPosts", userPosts);
+	        }
+	    } catch (Exception e) {
+	        // 에러 발생 시 로그 출력
+	        e.printStackTrace();
+	        model.addAttribute("errorMessage", "게시글 조회 중 오류가 발생했습니다.");
+	    }
+
+	    return "/user/myBoard";  // myBoard.jsp로 이동
+	}
+	
 }

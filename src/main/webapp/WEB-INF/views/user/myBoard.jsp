@@ -26,12 +26,11 @@
         // 클릭된 탭 활성화
         clickedElement.classList.add('active');
     }
-	    window.onload = function() {
-	        // 기본적으로 '작성글' 섹션을 보이게 하고 해당 탭을 활성화
-	        var defaultTab = document.querySelector('.board-typeItem');
-	        showSection('myPosts', defaultTab);
-	    }
 
+    window.onload = function() {
+        var defaultTab = document.querySelector('.board-typeItem');
+        showSection('myPosts', defaultTab);
+    }
     </script>
 </head>
 <body>
@@ -47,77 +46,50 @@
             <li class="board-typeItem" onclick="showSection('myComments',this)">
                 <span class="board-type">작성댓글</span>
             </li>
-           
         </ul>
         
         <!-- 나의 게시글 목록 -->
         <ul id="myPosts" class="board-list">
             <li class="board-header">
-            	<span class="board-header-kategorie">카데코리</span>
+                <span class="board-header-kategorie">카테고리</span>
                 <span class="board-header-title">제목</span>
                 <span class="board-header-date">작성일</span>
             </li>
-            <li class="board-item" onclick="window.location.href='/ex/board/'">
-            	<span class="board-kategorie">카데고리1</span>
-                <span class="board-title">게시글제목</span>
-                <span class="board-date">2024-08-27</span>
-            </li>
-            <li class="board-item" onclick="window.location.href='/ex/board/'">
-                <span class="board-kategorie">카데고리2</span>
-                <span class="board-title">게시글 제목 2</span>
-                <span class="board-date">2024-08-26</span>
-            </li>
-            <li class="board-item" onclick="window.location.href='/ex/board/'">
-                <span class="board-kategorie">카데고리3</span>
-                <span class="board-title">게시글 제목 2</span>
-                <span class="board-date">2024-08-26</span>
-            </li>
-            <li class="board-item" onclick="window.location.href='/ex/board/'">
-                <span class="board-kategorie">카데고리1</span>
-                <span class="board-title">게시글 제목 2</span>
-                <span class="board-date">2024-08-26</span>
-            </li>
-            <li class="board-item" onclick="window.location.href='/ex/board/'">
-                <span class="board-kategorie">카데고리1</span>
-                <span class="board-title">게시글 제목 2</span>
-                <span class="board-date">2024-08-26</span>
-            </li>
-            
-	        <ul class="button-container">
-			    <li class="button-write" onclick="window.location.href='/ex/board/create'">
-			        <span>글쓰기</span>
-			   	</li>
-			    <li class="button-delete" onclick="window.location.href='/ex/board/'">
-			        <span>삭제</span>
-			    </li>
-			</ul>
-
-            <!-- 추가 게시글 목록 -->
+            <c:forEach var="post" items="${userPosts}">
+                <li class="board-item" onclick="window.location.href='/ex/board/read?b_id=${post.b_id}'">
+                    <span class="board-kategorie">${post.b_category}</span>
+                    <span class="board-title">${post.b_title}</span>
+                    <span class="board-date">${post.b_date}</span>
+                </li>
+            </c:forEach>
+            <ul class="button-container">
+                <li class="button-write" onclick="window.location.href='/ex/board/create'">
+                    <span>글쓰기</span>
+                </li>
+                <li class="button-delete" onclick="window.location.href='/ex/board/'">
+                    <span>삭제</span>
+                </li>
+            </ul>
         </ul>
         
         <!-- 나의 댓글 목록 -->
         <ul id="myComments" class="board-list" style="display: none;">
-        	<li class="board-header">
+            <li class="board-header">
                 <span class="board-header-title">댓글</span>
                 <span class="board-header-date">작성일</span>
             </li>
-            
-            <li class="board-item" onclick="window.location.href='/ex/comment/'">
-                <span class="board-title">댓글 내용 1</span>
-                <span class="board-date">2024-08-27</span>
-            </li>
-            <li class="board-item" onclick="window.location.href='/ex/comment/'">
-                <span class="board-title">댓글 내용 2</span>
-                <span class="board-date">2024-08-26</span>
-            </li>
+            <c:forEach var="comment" items="${userComments}">
+                <li class="board-item" onclick="window.location.href='/ex/comment/read?c_id=${comment.c_id}'">
+                    <span class="board-title">${comment.c_content}</span>
+                    <span class="board-date">${comment.c_date}</span>
+                </li>
+            </c:forEach>
             <ul class="button-container">
-			    <li class="button-delete" onclick="window.location.href='/ex/board/'">
-			        <span>삭제</span>
-			   	</li>   
-			</ul>
-		</ul>
-        
-        
+                <li class="button-delete" onclick="window.location.href='/ex/board/'">
+                    <span>삭제</span>
+                </li>
+            </ul>
+        </ul>
     </div>
 </body>
 </html>
