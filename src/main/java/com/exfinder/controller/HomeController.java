@@ -48,11 +48,11 @@ public class HomeController {
 		model.addAttribute("list", list);
 		return "main/exFinder_main";
 	}
-
+	// 접근 방식 : exFinder_Currency?c_code=USD
 	@RequestMapping(value = "/exFinder_Currency", method = RequestMethod.GET)
 	public String exFinder_Currency(Model model, @RequestParam("c_code") String  c_code) throws Exception {
 		CurrencyDto currency = new CurrencyDto();
-		currency.setC_code("USD");
+		currency.setC_code(c_code);
 		currency = service.currency_Select(c_code);
 		System.out.println(currency);
 		model.addAttribute("currencyDto", currency); 
