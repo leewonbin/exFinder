@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			AND b_title LIKE '%' || #{keyword} || '%'
 		</if>
 		
-    	<![CDATA[order by b_id asc OFFSET (#{page} - 1) * #{perPageNum} ROWS FETCH NEXT #{perPageNum} ROWS ONLY]]>
+    	<![CDATA[order by b_id desc OFFSET (#{page} - 1) * #{perPageNum} ROWS FETCH NEXT #{perPageNum} ROWS ONLY]]>
 	</select>
 
 

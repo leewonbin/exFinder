@@ -290,9 +290,9 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 }
 
 .exchange th, .exchange td {
-    padding: 12px 15px;
+    padding: 5px 10px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: none;
     vertical-align: middle; /* 수직 가운데 정렬 */
 }
 
@@ -300,13 +300,36 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     font-weight: bold;
 }
 
+/* 특정 행마다 가로줄 추가 */
+.exchange tbody tr:nth-child(5n) {
+    border-bottom: 2px solid #0000ff;
+}
 
+.exchange thead th {
+    background-color: #00ffff;
+    color: #333; 
+    border-bottom: 2px solid #ff0000;
+    border-right: 2px solid #ff0000;
+    padding: 8px 10px;
+}
 
+.exchange thead th:first-child {
+    border-left: none;
+}
 
+.exchange thead th:last-child {
+    border-right: none;
+}
 
+/* 헤더의 맨 위에 테두리 추가 */
+.exchange thead {
+    border-top: 2px solid #ff0000;
+}
 
-
-
+/* 두 번째 행의 셀 스타일 (열 제목) */
+.exchange thead tr.chartB th {
+    border-right: 2px solid #ff0000; /* 열 제목 셀 사이에 세로줄 */
+}
 
 
 

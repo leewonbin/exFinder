@@ -588,11 +588,11 @@
 			</table>
 		</div>
 	</div>
-<<<<<<< HEAD
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>
-=======
+
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>
->>>>>>> develop
+
 </body>
 </html>

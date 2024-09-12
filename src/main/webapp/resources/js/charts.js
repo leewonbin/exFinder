@@ -91,7 +91,7 @@ $(document).ready(function() {
 // AJAX 요청 함수
 function ajaxData(c_code, chartDivId) {
 
-	var start_date = '2024/08/26'; // 필요한 값으로 수정
+	var start_date = '2024/08/01'; // 필요한 값으로 수정
 	var end_date = formattedDate; // 필요한 값으로 수정
 
 	$.ajax({

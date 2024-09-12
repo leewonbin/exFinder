@@ -67,13 +67,13 @@
 
 	<h2>댓글창</h2>
 	<c:choose>
-		<c:when test="${sessionScope.userInfo eq null }">
+		<c:when test="${sessionScope.dto eq null }">
 			<p>로그인 후 댓글 작성 가능 합니다.</p>
 		</c:when>
 		<c:otherwise>
 			<div class="comment-container">
 				<!-- 로그인 된 유저 정보 -->
-				<p>현재 사용자: ${sessionScope.userInfo.u_id}</p>
+				<p>현재 사용자: ${sessionScope.dto.u_id}</p>
 				<div>
 					내용 : <input type="text" id="newCommentText" />
 					<button id="commentAddBtn">댓글 등록</button>
