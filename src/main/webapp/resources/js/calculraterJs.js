@@ -1,22 +1,25 @@
 $(document).ready(function() {
-    console.log('여기로 들어옴');
+    updateCurrencySelect('#base-currency-select', res);
+    updateCurrencySelect('#result-currency-select', res);
 
-    $.ajax({
-        url: "/ex/exchange/todayExchange",
-        type: "POST",
-        dataType: "json",
-        success: function(res) {
-            updateCurrencySelect('#base-currency-select', res);
-            updateCurrencySelect('#result-currency-select', res);
-
-            // 기준 통화 입력값으로 초기 계산
-            updateExchangeRate();
-        },
-        error: function(xhr, status, error) {
-            console.error("AJAX Error:", status, error);  // 오류 내용 출력
-            console.error(xhr.responseText);  // 서버에서 응답한 에러 메시지 출력
-        }
-    });
+//    console.log('여기로 들어옴');
+//
+//    $.ajax({
+//        url: "/ex/exchange/todayExchange",
+//        type: "POST",
+//        dataType: "json",
+//        success: function(res) {
+//            updateCurrencySelect('#base-currency-select', res);
+//            updateCurrencySelect('#result-currency-select', res);
+//
+//            // 기준 통화 입력값으로 초기 계산
+//            updateExchangeRate();
+//        },
+//        error: function(xhr, status, error) {
+//            console.error("AJAX Error:", status, error);  // 오류 내용 출력
+//            console.error(xhr.responseText);  // 서버에서 응답한 에러 메시지 출력
+//        }
+//    });
 });
 
 function updateCurrencySelect(selectId, rates) {

@@ -22,9 +22,9 @@ public class CurrencyServiceImpl implements CurrencyService{
 	}
 	
 	@Override
-	public List<CurrencyDto> listAll() throws Exception {
+	public List<CurrencyDto> selectExchange(String today) throws Exception {
 		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
-		List<CurrencyDto> dtos = dao.listAll();
-		return dtos;
+		return dao.selectExchange(today);
 	}
+
 }
