@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -59,20 +60,22 @@
 			<div class="currency-section baseSection">
 				<!-- 기준 통화 SelectBox -->
 				<div class="selectBoxWrap">
-				<img class="baseImg" src="resources/img/gonfalon/USD.png"/>
-				<select id="base-currency-select" class="base-currency-select">
-					<option value="KRW" data-rate="1" data-curr="원" >대한민국 (KRW)</option>
-					<c:forEach var="exchange" items="${list}">
-						<option value="${exchange.c_code}" data-rate="${exchange.base_r }" data-curr="${exchange.c_name }"
-							<c:if test="${exchange.c_code eq 'USD'}">selected</c:if>>
-							${exchange.c_country} (${exchange.c_code})</option>
-					</c:forEach>
-				</select>
+					<img class="baseImg" src="resources/img/gonfalon/USD.png" /> <select
+						id="base-currency-select" class="base-currency-select">
+						<option value="KRW" data-rate="1" data-curr="원">대한민국
+							(KRW)</option>
+						<c:forEach var="exchange" items="${list}">
+							<option value="${exchange.c_code}"
+								data-rate="${exchange.base_r }" data-curr="${exchange.c_name }"
+								<c:if test="${exchange.c_code eq 'USD'}">selected</c:if>>
+								${exchange.c_country} (${exchange.c_code})</option>
+						</c:forEach>
+					</select>
 				</div>
 
 				<!-- 기준 통화 금액 입력 InputBox -->
-				<input type="text" id="base-amount-input"
-					class="base-amount-input" placeholder="금액 입력" value="1" />
+				<input type="text" id="base-amount-input" class="base-amount-input"
+					placeholder="금액 입력" value="1" />
 
 				<!-- 기준 통화 결과 입력 InputBox -->
 				<input type="text" id="base-result-input" class="base-result-input"
@@ -86,14 +89,16 @@
 			<div class="currency-section resultSection">
 				<!-- 결과 통화 SelectBox -->
 				<div class="selectBoxWrap">
-				<img class="resultImg" src="resources/img/gonfalon/KRW.png"/>
-				<select id="result-currency-select" class="result-currency-select">
-					<option value="KRW" data-rate="1" data-curr="원" selected>대한민국 (KRW)</option>
-					<c:forEach var="exchange" items="${list }">
-						<option value="${exchange.c_code}" data-rate="${exchange.base_r }" data-curr="${exchange.c_name }">
-							${exchange.c_country} (${exchange.c_code})</option>
-					</c:forEach>
-				</select>
+					<img class="resultImg" src="resources/img/gonfalon/KRW.png" /> <select
+						id="result-currency-select" class="result-currency-select">
+						<option value="KRW" data-rate="1" data-curr="원" selected>대한민국
+							(KRW)</option>
+						<c:forEach var="exchange" items="${list }">
+							<option value="${exchange.c_code}"
+								data-rate="${exchange.base_r }" data-curr="${exchange.c_name }">
+								${exchange.c_country} (${exchange.c_code})</option>
+						</c:forEach>
+					</select>
 				</div>
 
 				<!-- 결과 통화 금액 입력 InputBox -->
@@ -551,10 +556,11 @@
 
 	<div class="box-contents">
 		<div>
+			<p class="date-display">기준일 : ${list[0].rate_date}</p>
 			<table class="exchange">
 				<thead>
 					<tr class="chart">
-						<th rowspan="2">일자</th>
+
 						<th rowspan="2">국가명</th>
 						<th rowspan="2">통화</th>
 						<th rowspan="2">매매기준율</th>
@@ -574,16 +580,33 @@
 					<c:set var="beforeValue" />
 					<c:forEach var="currency" items="${list}">
 						<tr>
-							<td>${currency.rate_date}</td>
-							<td>${currency.c_country}</td>
-							<td>${currency.c_name}</td>
-							<td>${currency.deal_bas_r}</td>
-							<td>${currency.base_r - beforeValue }</td>
-							<td>${currency.cash_buy}</td>
-							<td>${currency.cash_sell}</td>
-							<td>${currency.ttb}</td>
-							<td>${currency.tts}</td>
-							<td>${currency.base_r}</td>
+							<td class="l">
+							<img src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png" class="flag-img"/>
+								${currency.c_country}</td>
+							<td class="l">${currency.c_name}</td>
+							<td class="r">${currency.deal_bas_r}</td>
+
+							<!-- 전일비 색상 설정 + 전일비 계산하는거 수정해야함 !-->
+							<c:set var="changeClass">
+								<c:choose>
+									<c:when test="${currency.base_r - beforeValue > 0}">
+                            			increase
+                        			</c:when>
+									<c:when test="${currency.base_r - beforeValue < 0}">
+                            			decrease
+                        			</c:when>
+									<c:otherwise>
+                            			no-change
+                        			</c:otherwise>
+								</c:choose>
+							</c:set>
+							<td class="r ${changeClass}"><fmt:formatNumber type="number"
+									maxFractionDigits="2" value="${currency.base_r - beforeValue}" />
+							<td class="r">${currency.cash_buy}</td>
+							<td class="r">${currency.cash_sell}</td>
+							<td class="r">${currency.ttb}</td>
+							<td class="r">${currency.tts}</td>
+							<td class="r">${currency.base_r}</td>
 						</tr>
 						<c:set var="beforeValue" value="${currency.base_r }" />
 					</c:forEach>
@@ -592,7 +615,8 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>
 
 </body>
 </html>
