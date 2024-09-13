@@ -37,7 +37,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE c_code = #{c_code}
 </select>
 
-    
+<select id="exchangeRateSelect_today" resultType="exchangeRateDto">
+    SELECT * FROM exchangerate
+    WHERE c_code = #{c_code}
+      AND rate_date = #{rate_date}
+</select>
+   
 </mapper>
 
 

@@ -121,15 +121,13 @@
     color: gray;
     font-size: 15px; /* 글씨 크기를 살짝 줄여 가독성 개선 */
     font-weight: bold;
-    padding-right: 30px;
-    
+    padding-right: 30px;   
 }
 .decreased {
     color: blue;
     font-size: 15px; /* 글씨 크기를 살짝 줄여 가독성 개선 */
     font-weight: bold;
-    padding-right: 30px;
-    
+    padding-right: 30px;  
 }
 
 /*  세계지도 */

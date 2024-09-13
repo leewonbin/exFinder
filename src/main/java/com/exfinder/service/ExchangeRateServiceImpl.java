@@ -221,4 +221,13 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 		return (checkValue >= 1) ? checkValue : 0;
 	}
 
+	@Override
+	public ExchangeRateDto exchangeRateSelect_today(String c_code, String rate_date) throws Exception {
+		try {
+			return dao.exchangeRateSelect_today(c_code, rate_date);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 }
