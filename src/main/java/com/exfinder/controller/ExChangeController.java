@@ -229,6 +229,78 @@ public class ExChangeController {
 		}
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "currency/chart", method = RequestMethod.POST)
+	public void Currency_chart_graph(HttpServletResponse response, @RequestParam("c_code") String  c_code, 
+			@RequestParam("start_date") String start_date, @RequestParam("end_date") String end_date, 
+			@RequestParam("cart_day") String  cart_day) throws Exception {
+	
+	    int checkValue = service.exchangeRate_column_checkValue(c_code);
+	    if (checkValue == 0) {
+	        // 값이 0인 경우, 즉시 종료
+	        response.setContentType("application/json");
+	        response.setCharacterEncoding("UTF-8");
+	        System.out.println("해당 통화 코드"+ c_code + " 에 대한 데이터가 없으니 중지합니다.");
+	        return;
+	    }
+
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+	    LocalDate endDate = LocalDate.parse(end_date, formatter);
+
+	    double today_base_r = 0;
+	    LocalDate validDate = endDate;
+
+	    while (today_base_r == 0) {
+	        today_base_r = service.exchangeRateSelect_base_r(c_code, validDate.format(formatter));
+	        if (today_base_r == 0) {
+	            validDate = validDate.minusDays(1); // 종료 날짜에서 1일을 뺌
+	        }
+	    }
+	    
+	    LocalDate startDate = null;
+
+	    // 'cart_day' 파라미터에 따라 기간을 설정
+	    switch (cart_day) {
+	        case "seven-day":
+	            startDate = validDate.minusDays(6); // 7일 전 날짜
+	            System.out.println("seven-day의 시작 날짜 : "+ startDate);
+	            break;
+	        case "one-month":
+	            startDate = validDate.minusMonths(1); // 1개월 전 날짜
+	            System.out.println("one-month의 시작 날짜  : "+ startDate);
+	            break;
+	        case "three-month":
+	            startDate = validDate.minusMonths(3); // 3개월 전 날짜
+	            System.out.println("three-month의 시작 날짜  : "+ startDate);
+	            break;
+	        case "one-year":
+	            startDate = LocalDate.of(validDate.getYear(), 1, 1); // 올해 1월 1일
+	            System.out.println("one-year의 시작 날짜  : "+ startDate);
+	            break;
+	        default:
+	            // 기본값 설정
+	            startDate = LocalDate.now().minusMonths(1); // 기본적으로 1개월 전
+	            break;
+	    }
+	    System.out.println(cart_day + "의 종료 날짜 : "+ validDate);
+	    // 날짜 포맷 조정
+	    String adjusted_StartDate = startDate.format(formatter);
+	    String adjusted_EndDate = validDate.format(formatter);
+	    
+	    
+	    List<ExchangeRateDto> dto = service.exchangeRateSelect(c_code, adjusted_StartDate, adjusted_EndDate);
+	    
+	    Gson gson = new Gson();
+	    String json = gson.toJson(dto);
+	    
+	    response.setContentType("application/json");
+	    response.setCharacterEncoding("utf-8");
+	    try {
+	        response.getWriter().print(json);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
 	// 지원 환율 조회
 	
 

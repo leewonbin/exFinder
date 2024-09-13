@@ -1,27 +1,3 @@
-// 타이머 시작
-console.time('Total Execution Time');
-console.log('타이머 시작');
-
-// 페이지가 새로 고침되었는지 확인
-if (sessionStorage.getItem('isReloaded')) {
-    window.addEventListener('load', function() {
-        document.body.classList.remove('loading');
-        document.body.classList.add('loaded');
-        
-        // 타이머 종료
-        console.timeEnd('Total Execution Time');
-        console.log('타이머 종료');
-    });
-} else {
-    sessionStorage.setItem('isReloaded', 'true');
-    window.location.reload();
-}
-
-// 페이지 로드 후 플래그 초기화
-window.addEventListener('load', function() {
-    sessionStorage.removeItem('isReloaded');
-});
-
 // 날짜를 문자열로 포맷팅하는 함수
 function formatDate(date) {
     var year = date.getFullYear();
@@ -63,7 +39,11 @@ $(document).ready(function() {
 	ajaxData('ILS', 'chart_ILS');
 	ajaxData('NZD', 'chart_NZD');
 	
-	
+    // Google Charts 라이브러리가 로드된 후 차트 그리기
+    google.charts.setOnLoadCallback(function() {
+        console.log('Google Charts 라이브러리 로드 완료');
+    });
+    
 	fetchExchangeRateData('USD', formattedDate, 'value_USD', 'flag_USD');
 	fetchExchangeRateData('JPY', formattedDate, 'value_JPY', 'flag_JPY');
 	fetchExchangeRateData('EUR', formattedDate, 'value_EUR', 'flag_EUR');

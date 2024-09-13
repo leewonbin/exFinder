@@ -49,7 +49,7 @@
 
 	</script>
 </head>
-<body class="loading">
+<body>
 	<!-- 중앙에 위치시키기 위한 div -->
     <div class="charts_view">
     	<div class="Cover-box1"></div>

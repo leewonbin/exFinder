@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exfinder.dto.CurrencyDto;
+import com.exfinder.dto.ExchangeRateDto;
 import com.exfinder.service.CurrencyService;
+import com.exfinder.service.ExchangeRateService;
 
 /**
  * Handles requests for the application home page.
@@ -23,6 +25,9 @@ public class HomeController {
 	
 	@Autowired
 	private CurrencyService service;
+	
+	@Autowired
+	private ExchangeRateService exchangerateservice;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -56,6 +61,26 @@ public class HomeController {
 		currency = service.currency_Select(c_code);
 		System.out.println(currency);
 		model.addAttribute("currencyDto", currency); 
+		
+		ExchangeRateDto exchangeRate = new ExchangeRateDto();
+		exchangeRate.setC_code(c_code);
+		
+		LocalDate today = LocalDate.now();  // 오늘 날짜를 가져옴
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+
+		// 오늘 날짜를 지정한 형식으로 포맷팅 (문자열로 변환)
+		String currentDate = today.format(formatter);
+		exchangeRate = exchangerateservice.exchangeRateSelect_today(c_code, currentDate);
+		
+	    // 환율이 null일 경우, 하루씩 빼가며 값을 찾음
+	    while (exchangeRate == null) {
+	        today = today.minusDays(1);  // 1일 빼기
+	        currentDate = today.format(formatter);  // 새로운 날짜 포맷팅
+	        exchangeRate = exchangerateservice.exchangeRateSelect_today(c_code, currentDate);
+	    }
+	    System.out.println(exchangeRate);
+	    model.addAttribute("exchangeRateDto", exchangeRate);  // 조회된 환율 정보 추가
+	    
 		return "main/exFinder_Currency";
 	}
 }
