@@ -94,6 +94,8 @@
 	font-weight: bold;
 	text-align: left; 
     margin-right: auto; /* 텍스트를 이미지 옆에 고정 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit; /* 링크 색깔 제거 */
 }
 
 .chart_graph {
@@ -203,6 +205,9 @@
     align-items: center;   /* 이미지와 텍스트를 세로 가운데 정렬 */
     justify-content: flex-start; /* 가로 방향에서 요소들이 차례로 정렬됨 */
     gap: 5px;             /* 이미지와 텍스트 사이 간격 설정 */
+    
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit; /* 링크 색깔 제거 */
 }
 .flag-content img {
 	width: 25px;         /* 이미지를 부모 요소의 너비에 맞게 조정 */

@@ -57,6 +57,7 @@
     justify-content: space-between;  /* 요소들 사이의 공간을 균등하게 배치 (왼쪽과 오른쪽) */
     align-items: center;      /* 수직 가운데 정렬 */
     width: 100%;
+    cursor: pointer; /* 클릭 가능한 요소로 표시 */
 }
 .Currency_left_chart_header a {
     font-size: 24px; /* 원하는 글자 크기 */
@@ -86,8 +87,8 @@
 }
 .circle {
     display: inline-block;
-    width: 20px; /* 동그라미의 너비 */
-    height: 20px; /* 동그라미의 높이 */
+    width: 25px; /* 동그라미의 너비 */
+    height: 25px; /* 동그라미의 높이 */
     border-radius: 50%; /* 동그라미 모양을 만들기 위한 속성 */
     background-color: #fff; /* 동그라미의 배경색을 흰색으로 설정 */
     border: 1px solid #000; /* 선택적으로 테두리 추가 */
@@ -97,6 +98,7 @@
     color: #fff; /* 동그라미 내부 텍스트 색상 */
     text-align: center;
     font-size: 12px; /* 동그라미 내부 텍스트 크기 */
+    cursor: pointer; /* 클릭 가능한 요소로 표시 */
 }
 
 .arrow-up {
@@ -210,9 +212,9 @@
     	<div class="Currency_header">
     		<img src="${pageContext.request.contextPath}/resources/img/gonfalon/${currencyDto.c_code}.png">
             <a><b>${currencyDto.c_country}</b> ${currencyDto.c_code}</a> 
-            <i class="circle">
-            	<i class="arrow-up"></i>
-            </i>
+            <i class="circle" id="toggle-list">
+        		<i class="arrow-up"></i>
+    		</i>
     	</div>
     	<div class="Currency_chart">
     	    <div class="Currency_left_chart">
@@ -503,5 +505,31 @@ document.addEventListener('DOMContentLoaded', function() {
         ajaxData(`${currencyDto.c_code}`, 'chart_1year', 'one-year'); 
     });
 });
+/*
+<span id="currency-list" class="hidden">
+<a>미국 USD</a>
+<a>일본 JPY</a>
+<a>유럽연합 EUR</a>
+<a>중국 CNY</a>
+<a>영국 GBP</a>
+		
+<a>스위스 CHF</a>
+<a>캐나다 CAD</a>
+<a>인도 INR</a>
+<a>홍콩 HKD</a>
+<a>이집트 EGP</a>
+		
+<a>사우디 SAR</a>
+<a>호주 AUD</a>
+<a>태국 THB</a>
+<a>러시아 RUB</a>
+<a>베트남 VND</a>
+		
+<a>남아공 ZAR</a>
+<a>멕시코 MXN</a>
+<a>브라질 BRL</a>
+<a>이스라엘 ILS</a>
+<a>뉴질랜드 NZD</a> 		
+</span>*/
 </script>
 </html>

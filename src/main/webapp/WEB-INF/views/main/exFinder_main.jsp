@@ -135,7 +135,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/USD.png">
-									<a>미국 USD</a>
+									<a href="exFinder_Currency?c_code=USD">미국 USD</a>
 									<div id="value_USD"></div>
 								</div>
 								<div id="chart_USD" class="chart_graph"></div>
@@ -144,7 +144,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/JPY.png">
-									<a>일본 JPY</a>
+									<a href="exFinder_Currency?c_code=JPY">일본 JPY</a>
 									<div id="value_JPY"></div>
 								</div>
 								<div id="chart_JPY" class="chart_graph"></div>
@@ -155,7 +155,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/EUR.png">
-									<a>유럽연합 EUR</a>
+									<a href="exFinder_Currency?c_code=EUR">유럽연합 EUR</a>
 									<div id="value_EUR"></div>
 								</div>
 								<div id="chart_EUR" class="chart_graph"></div>
@@ -164,7 +164,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/CNY.png">
-									<a>중국 CNY</a>
+									<a href="exFinder_Currency?c_code=CNY">중국 CNY</a>
 									<div id="value_CNY"></div>
 								</div>
 								<div id="chart_CNY" class="chart_graph"></div>
@@ -175,7 +175,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/GBP.png">
-									<a>영국 GBP</a>
+									<a href="exFinder_Currency?c_code=GBP">영국 GBP</a>
 									<div id="value_GBP"></div>
 								</div>
 								<div id="chart_GBP" class="chart_graph"></div>
@@ -184,7 +184,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/CHF.png">
-									<a>스위스 CHF</a>
+									<a href="exFinder_Currency?c_code=CHF">스위스 CHF</a>
 									<div id="value_CHF"></div>
 								</div>
 								<div id="chart_CHF" class="chart_graph"></div>
@@ -195,7 +195,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/CAD.png">
-									<a>캐나다 CAD</a>
+									<a href="exFinder_Currency?c_code=CAD">캐나다 CAD</a>
 									<div id="value_CAD"></div>
 								</div>
 								<div id="chart_CAD" class="chart_graph"></div>
@@ -204,7 +204,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/INR.png">
-									<a>인도 INR</a>
+									<a href="exFinder_Currency?c_code=INR">인도 INR</a>
 									<div id="value_INR"></div>
 								</div>
 								<div id="chart_INR" class="chart_graph"></div>
@@ -215,7 +215,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/HKD.png">
-									<a>홍콩 HKD</a>
+									<a href="exFinder_Currency?c_code=HKD">홍콩 HKD</a>
 									<div id="value_HKD"></div>
 								</div>
 								<div id="chart_HKD" class="chart_graph"></div>
@@ -224,7 +224,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/EGP.png">
-									<a>이집트 EGP</a>
+									<a href="exFinder_Currency?c_code=EGP">이집트 EGP</a>
 									<div id="value_EGP"></div>
 								</div>
 								<div id="chart_EGP" class="chart_graph"></div>
@@ -235,7 +235,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/SAR.png">
-									<a>사우디 SAR</a>
+									<a href="exFinder_Currency?c_code=SAR">사우디 SAR</a>
 									<div id="value_SAR"></div>
 								</div>
 								<div id="chart_SAR" class="chart_graph"></div>
@@ -244,7 +244,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/AUD.png">
-									<a>호주 AUD</a>
+									<a href="exFinder_Currency?c_code=AUD">호주 AUD</a>
 									<div id="value_AUD"></div>
 								</div>
 								<div id="chart_AUD" class="chart_graph"></div>
@@ -255,7 +255,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/THB.png">
-									<a>태국 THB</a>
+									<a href="exFinder_Currency?c_code=THB">태국 THB</a>
 									<div id="value_THB"></div>
 								</div>
 								<div id="chart_THB" class="chart_graph"></div>
@@ -264,7 +264,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/RUB.png">
-									<a>러시아 RUB</a>
+									<a href="exFinder_Currency?c_code=RUB">러시아 RUB</a>
 									<div id="value_RUB"></div>
 								</div>
 								<div id="chart_RUB" class="chart_graph"></div>
@@ -275,7 +275,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/VND.png">
-									<a>베트남 VND</a>
+									<a href="exFinder_Currency?c_code=VND">베트남 VND</a>
 									<div id="value_VND"></div>
 								</div>
 								<div id="chart_VND" class="chart_graph"></div>
@@ -284,7 +284,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/ZAR.png">
-									<a>남아공 ZAR</a>
+									<a href="exFinder_Currency?c_code=ZAR">남아공 ZAR</a>
 									<div id="value_ZAR"></div>
 								</div>
 								<div id="chart_ZAR" class="chart_graph"></div>
@@ -295,7 +295,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/MXN.png">
-									<a>멕시코 MXN</a>
+									<a href="exFinder_Currency?c_code=MXN">멕시코 MXN</a>
 									<div id="value_MXN"></div>
 								</div>
 								<div id="chart_MXN" class="chart_graph"></div>
@@ -304,7 +304,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/BRL.png">
-									<a>브라질 BRL</a>
+									<a href="exFinder_Currency?c_code=BRL">브라질 BRL</a>
 									<div id="value_BRL"></div>
 								</div>
 								<div id="chart_BRL" class="chart_graph"></div>
@@ -315,7 +315,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/ILS.png">
-									<a>이스라엘 ILS</a>
+									<a href="exFinder_Currency?c_code=ILS">이스라엘 ILS</a>
 									<div id="value_ILS"></div>
 								</div>
 								<div id="chart_ILS" class="chart_graph"></div>
@@ -324,7 +324,7 @@
 								<div class="chart_graph_box_top">
 									<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/NZD.png">
-									<a>뉴질랜드 NZD</a>
+									<a href="exFinder_Currency?c_code=NZD">뉴질랜드 NZD</a>
 									<div id="value_NZD"></div>
 								</div>
 								<div id="chart_NZD" class="chart_graph"></div>
@@ -366,8 +366,8 @@
 					src="${pageContext.request.contextPath}/resources/img/gonfalon/world_map3.png"
 					class="map-image">
 				<div class="flag map_america" style="top: 175px; left: 910px;">
-					<a class="flag-content"> <img
-						src="${pageContext.request.contextPath}/resources/img/gonfalon/USD.png">
+					<a class="flag-content" href="exFinder_Currency?c_code=USD"> 
+						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/USD.png">
 						<label>미국</label> <span id="flag_USD"></span>
 					</a> <i class="line" style="top: 19px; left: 20px;"></i> <i
 						class="circle" style="top: 65px; left: 13px;"> <i
@@ -375,8 +375,8 @@
 					</i>
 				</div>
 				<div class="flag map_asia" style="top: 300px; left: 485px;">
-					<a class="flag-content"> <img
-						src="${pageContext.request.contextPath}/resources/img/gonfalon/JPY.png">
+					<a class="flag-content" href="exFinder_Currency?c_code=JPY"> 
+						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/JPY.png">
 						<label>일본</label> <span id="flag_JPY"></span>
 					</a> <i class="line" style="top: -55px; left: 20px;"></i> <i
 						class="circle" style="top: -55px; left: 13px;"> <i
@@ -384,7 +384,7 @@
 					</i>
 				</div>
 				<div class="flag map_europe" style="top: 240px; left: 20px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=EUR"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/EUR.png">
 						<label>유럽연합</label> <span id="flag_EUR"></span>
 					</a> <i class="line" style="top: -40px; left: 80px; height: 30px;"></i>
@@ -394,7 +394,7 @@
 					</i>
 				</div>
 				<div class="flag map_asia" style="top: 200px; left: 420px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=CNY"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/CNY.png">
 						<label>중국</label> <span id="flag_CNY"></span>
 					</a> <i class="line" style="top: 19px; left: 20px;"></i> <i
@@ -403,7 +403,7 @@
 					</i>
 				</div>
 				<div class="flag map_europe" style="top: 80px; left: 75px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=GBP"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/GBP.png">
 						<label>영국</label> <span id="flag_GBP"></span>
 					</a> <i class="line" style="top: 19px; left: 20px; height: 75px;"></i>
@@ -412,7 +412,7 @@
 					</i>
 				</div>
 				<div class="flag map_europe" style="top: 133px; left: 100px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=CHF"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/CHF.png">
 						<label>스위스</label> <span id="flag_CHF"></span>
 					</a> <i class="line" style="top: 19px; left: 20px;"></i> <i
@@ -421,7 +421,7 @@
 					</i>
 				</div>
 				<div class="flag map_america" style="top: 110px; left: 810px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=CAD"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/CAD.png">
 						<label>캐나다</label> <span id="flag_CAD"></span>
 					</a> <i class="line" style="top: 19px; left: 20px;"></i> <i
@@ -430,7 +430,7 @@
 					</i>
 				</div>
 				<div class="flag map_asia" style="top: 250px; left: 270px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=INR"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/INR.png">
 						<label>인도</label> <span id="flag_INR"></span>
 					</a> <i class="line" style="top: 19px; left: 40px;"></i> <i
@@ -439,7 +439,7 @@
 					</i>
 				</div>
 				<div class="flag map_asia" style="top: 340px; left: 420px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=HKD"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/HKD.png">
 						<label>홍콩</label> <span id="flag_HKD"></span>
 					</a> <i class="line" style="top: -50px; left: 10px; height: 40px;"></i>
@@ -448,7 +448,7 @@
 					</i>
 				</div>
 				<div class="flag map_middle_east" style="top: 340px; left: 150px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=EGP"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/EGP.png">
 						<label>이집트</label> <span id="flag_EGP"></span>
 					</a> <i class="line" style="top: -55px; left: 20px;"></i> <i
@@ -457,7 +457,7 @@
 					</i>
 				</div>
 				<div class="flag map_middle_east" style="top: 215px; left: 200px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=SAR"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/SAR.png">
 						<label>사우디</label> <span id="flag_SAR"></span>
 					</a> <i class="line" style="top: 19px; left: 20px; height: 60px;"></i>
@@ -466,7 +466,7 @@
 					</i>
 				</div>
 				<div class="flag map_oceania" style="top: 440px; left: 510px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=AUD"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/AUD.png">
 						<label>호주</label> <span id="flag_AUD"></span>
 					</a> <i class="line" style="top: 19px; left: 20px;"></i> <i
@@ -475,7 +475,7 @@
 					</i>
 				</div>
 				<div class="flag map_asia" style="top: 415px; left: 355px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=THB"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/THB.png">
 						<label>태국</label> <span id="flag_THB"></span>
 					</a> <i class="line" style="top: -95px; left: 30px; height: 85px;"></i>
@@ -484,7 +484,7 @@
 					</i>
 				</div>
 				<div class="flag map_asia" style="top: 70px; left: 400px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=RUB"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/RUB.png">
 						<label>러시아</label> <span id="flag_RUB"></span>
 					</a> <i class="line" style="top: 19px; left: 20px;"></i> <i
@@ -493,7 +493,7 @@
 					</i>
 				</div>
 				<div class="flag map_asia" style="top: 380px; left: 390px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=VND"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/VND.png">
 						<label>베트남</label> <span id="flag_VND"></span>
 					</a> <i class="line" style="top: -40px; left: 20px; height: 30px;"></i>
@@ -502,7 +502,7 @@
 					</i>
 				</div>
 				<div class="flag" style="top: 430px; left: 130px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=ZAR"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/ZAR.png">
 						<label>남아공</label> <span id="flag_ZAR"></span>
 					</a> <i class="line" style="top: 19px; left: 20px;"></i> <i
@@ -511,7 +511,7 @@
 					</i>
 				</div>
 				<div class="flag map_america" style="top: 350px; left: 930px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=BRL"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/BRL.png">
 						<label>브라질</label> <span id="flag_BRL"></span>
 					</a> <i class="line" style="top: 19px; left: 110px;"></i> <i
@@ -520,7 +520,7 @@
 					</i>
 				</div>
 				<div class="flag map_america" style="top: 230px; left: 770px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=MXN"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/MXN.png">
 						<label>멕시코</label> <span id="flag_MXN"></span>
 					</a> <i class="line" style="top: 19px; left: 100px;"></i> <i
@@ -529,7 +529,7 @@
 					</i>
 				</div>
 				<div class="flag map_middle_east" style="top: 180px; left: 169px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=ILS"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/ILS.png">
 						<label>이스라엘</label> <span id="flag_ILS"></span>
 					</a> <i class="line" style="top: 19px; left: 20px; height: 60px;"></i>
@@ -538,7 +538,7 @@
 					</i>
 				</div>
 				<div class="flag map_oceania" style="top: 485px; left: 580px;">
-					<a class="flag-content"> <img
+					<a class="flag-content" href="exFinder_Currency?c_code=NZD"> <img
 						src="${pageContext.request.contextPath}/resources/img/gonfalon/NZD.png">
 						<label>뉴질랜드</label> <span id="flag_NZD"></span>
 					</a> <i class="line" style="top: 19px; left: 20px;"></i> <i
