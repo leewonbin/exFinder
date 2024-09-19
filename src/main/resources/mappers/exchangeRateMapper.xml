@@ -26,10 +26,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select c_code from currency
 </select>
 
-<select id="todaySelect" resultType="exchangeRateDto">
-	select * from exchangerate where rate_date = #{today}
-</select>
-
 <!-- C_CODE 컬럼에 특정 값 'a'가 존재하는지 확인하는 쿼리 -->
 <select id="exchangeRate_column_checkValue" parameterType="String" resultType="int">
     SELECT COUNT(*) AS value_exists

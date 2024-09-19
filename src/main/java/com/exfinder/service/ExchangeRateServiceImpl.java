@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import com.exfinder.dao.ExchangeRateDao;
 import com.exfinder.dto.ExchangeRateDto;
+import com.exfinder.dto.NoticeExchangeRateDto;
 
 @Service
 public class ExchangeRateServiceImpl implements ExchangeRateService {
@@ -122,19 +123,19 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
 				for (int i = trs.size() - 1; i >= 0; i--) {
-				    ExchangeRateDto dto = new ExchangeRateDto();
-				    List<WebElement> cells = trs.get(i).findElements(By.tagName("td"));
+					ExchangeRateDto dto = new ExchangeRateDto();
+					List<WebElement> cells = trs.get(i).findElements(By.tagName("td"));
 
-				    dto.setRate_date(LocalDate.parse(cells.get(0).getText(), formatter));
-				    dto.setTts(parseDouble(cells.get(1).getText()));
-				    dto.setTtb(parseDouble(cells.get(2).getText()));
-				    dto.setCash_buy(parseDouble(cells.get(3).getText()));
-				    dto.setCash_sell(parseDouble(cells.get(4).getText()));
-				    dto.setDeal_bas_r(parseDouble(stringCut(cells.get(5).getText())));
-				    dto.setBase_r(parseDouble(cells.get(6).getText()));
-				    
-				    dto.setC_code(curr);
-				    list.add(dto);
+					dto.setRate_date(LocalDate.parse(cells.get(0).getText(), formatter));
+					dto.setTts(parseDouble(cells.get(1).getText()));
+					dto.setTtb(parseDouble(cells.get(2).getText()));
+					dto.setCash_buy(parseDouble(cells.get(3).getText()));
+					dto.setCash_sell(parseDouble(cells.get(4).getText()));
+					dto.setDeal_bas_r(parseDouble(stringCut(cells.get(5).getText())));
+					dto.setBase_r(parseDouble(cells.get(6).getText()));
+
+					dto.setC_code(curr);
+					list.add(dto);
 				}
 				System.out.println(curr + " 완료");
 			}
@@ -157,63 +158,6 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 		}
 		return list;
 	}
-	
-	@Override
-	public int todayExchangeRate(String[] currency) throws Exception {
-		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
-		System.out.println("여기로 들어옴");
-		ArrayList<ExchangeRateDto> list = new ArrayList<ExchangeRateDto>();
-		
-		URL resource = getClass().getClassLoader().getResource("drivers/chromedriver.exe");
-		if (resource == null) {
-			throw new RuntimeException("Chromedriver executable not found.");
-		}
-		String driverPath = Paths.get(resource.toURI()).toString();
-		
-		System.setProperty("webdriver.chrome.driver", driverPath);
-
-		ChromeOptions options = new ChromeOptions();
-
-		options.addArguments("headless"); // 브라우저 안띄움
-
-		WebDriver driver = new ChromeDriver(options);
-
-		String baseUrl = "https://spib.wooribank.com/pib/Dream?withyou=CMCOM0184";
-		driver.get(baseUrl);
-
-		Thread.sleep(300);
-		try {
-			WebElement tbody = driver.findElement(By.xpath("//*[@id=\"fxprint\"]/table/tbody"));
-
-			List<WebElement> trs = tbody.findElements(By.tagName("tr"));
-			String rate_date = driver.findElement(By.xpath("//*[@id=\"fxprint\"]/div/div/dl/dd[2]")).getText();
-			for (WebElement e : trs) {
-			    String c_code = e.findElements(By.tagName("td")).get(0).getText();
-			    if (Arrays.asList(currency).contains(c_code)) {
-			        ExchangeRateDto dto = new ExchangeRateDto();
-
-			        dto.setTts(parseDouble(e.findElements(By.tagName("td")).get(2).getText()));
-			        dto.setTtb(parseDouble(e.findElements(By.tagName("td")).get(3).getText()));
-			        dto.setCash_buy(parseDouble(e.findElements(By.tagName("td")).get(4).getText()));
-			        dto.setCash_sell(parseDouble(e.findElements(By.tagName("td")).get(6).getText()));
-			        dto.setDeal_bas_r(parseDouble(e.findElements(By.tagName("td")).get(8).getText()));
-			        dto.setBase_r(parseDouble(e.findElements(By.tagName("td")).get(9).getText()));
-			        
-			        dto.setRate_date(LocalDate.parse(rate_date, inputFormatter));
-			        dto.setC_code(c_code);
-			        
-			        System.out.println(dto.toString());
-			        list.add(dto);
-			        System.out.println("값 리스트에 들어감");
-			    }
-			}
-		} catch (Exception e) {
-			return list.size();
-		} finally {
-			driver.quit();
-		}
-		return list.size();
-	}
 
 	public double isValidDouble(String str) {
 		try {
@@ -222,10 +166,10 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 			return -1;
 		}
 	}
-	
+
 	public double parseDouble(String value) {
-	    String cleanedValue = value.replaceAll(",", "");
-	    return isValidDouble(cleanedValue) != -1 ? isValidDouble(cleanedValue) : 0;
+		String cleanedValue = value.replaceAll(",", "");
+		return isValidDouble(cleanedValue) != -1 ? isValidDouble(cleanedValue) : 0;
 	}
 
 	public static String stringCut(String input) {
@@ -254,14 +198,9 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 	}
 
 	@Override
-	public ArrayList<ExchangeRateDto> todaySelect(String today) throws Exception {
-		return dao.todaySelect(today);
-	}
-
-	@Override
 	public int exchangeRate_column_checkValue(String c_code) {
 		int checkValue = dao.exchangeRate_column_checkValue(c_code);
-		
+
 		return (checkValue >= 1) ? checkValue : 0;
 	}
 
@@ -274,5 +213,77 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 		}
 	}
 
+	@Override
+	public ArrayList<ExchangeRateDto> yesterDayRate(String[] curr) throws Exception {
+		LocalDate yesterDayLocal = LocalDate.now().minusDays(1);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String yesterDay = yesterDayLocal.format(formatter);
+        
+        String[] yDate = yesterDay.split("-");
+
+		System.out.println("여기로 들어옴");
+		ArrayList<ExchangeRateDto> list = new ArrayList<ExchangeRateDto>();
+
+		URL resource = getClass().getClassLoader().getResource("drivers/chromedriver.exe");
+		if (resource == null) {
+			throw new RuntimeException("Chromedriver executable not found.");
+		}
+		String driverPath = Paths.get(resource.toURI()).toString();
+
+		System.setProperty("webdriver.chrome.driver", driverPath);
+
+		ChromeOptions options = new ChromeOptions();
+
+		options.addArguments("headless"); // 브라우저 안띄움
+
+		WebDriver driver = new ChromeDriver(options);
+
+		String baseUrl = "https://spib.wooribank.com/pib/Dream?withyou=CMCOM0184";
+		driver.get(baseUrl);
+		
+		// 시작 년도 선택
+		Select start_Year = new Select(driver.findElement(By.id("SELECT_DATE_601Y")));
+		start_Year.selectByValue(yDate[0]);
+
+		// 시작 월 선택
+		Select start_Month = new Select(driver.findElement(By.id("SELECT_DATE_601M")));
+		start_Month.selectByValue(yDate[1]);
+
+		// 시작 일 선택
+		Select start_Day = new Select(driver.findElement(By.id("SELECT_DATE_601D")));
+		start_Day.selectByValue(yDate[2]);
+
+		Thread.sleep(300);
+		try {
+			WebElement tbody = driver.findElement(By.xpath("//*[@id=\"fxprint\"]/table/tbody"));
+
+			List<WebElement> trs = tbody.findElements(By.tagName("tr"));
+			for (WebElement e : trs) {
+				String c_code = e.findElements(By.tagName("td")).get(0).getText();
+				if (Arrays.asList(curr).contains(c_code)) {
+					ExchangeRateDto dto = new ExchangeRateDto();
+
+					dto.setTts(parseDouble(e.findElements(By.tagName("td")).get(2).getText()));
+					dto.setTtb(parseDouble(e.findElements(By.tagName("td")).get(3).getText()));
+					dto.setCash_buy(parseDouble(e.findElements(By.tagName("td")).get(4).getText()));
+					dto.setCash_sell(parseDouble(e.findElements(By.tagName("td")).get(6).getText()));
+					dto.setDeal_bas_r(parseDouble(e.findElements(By.tagName("td")).get(8).getText()));
+					dto.setBase_r(parseDouble(e.findElements(By.tagName("td")).get(9).getText()));
+
+					dto.setRate_date(yesterDayLocal);
+					dto.setC_code(c_code);
+
+					System.out.println(dto.toString());
+					list.add(dto);
+					System.out.println("값 리스트에 들어감");
+				}
+			}
+		} catch (Exception e) {
+			return list;
+		} finally {
+			driver.quit();
+		}
+		return list;
+	}
 
 }

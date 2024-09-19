@@ -86,31 +86,6 @@ public class ExChangeController {
 	    return ResponseEntity.ok(groupList);
 	}
 	
-	@RequestMapping(value = "exchange/todayExchange", method = RequestMethod.POST)
-	public ResponseEntity<Map<String,Double>> todayExchange() {
-		Map<String,Double> exchangeList = new HashMap<>();
-		try {
-		int size = 0;
-		LocalDate localDate = LocalDate.now().plusDays(1);
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		ArrayList<ExchangeRateDto> list = new ArrayList<ExchangeRateDto>();
-		while(size == 0) {
-			localDate = localDate.minusDays(1);
-			String today = localDate.format(formatter);
-			list = service.todaySelect(today);
-			size = list.size();
-		}
-		
-		for(ExchangeRateDto dto : list) { exchangeList.put(dto.getC_code(), dto.getBase_r());}
-		
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return ResponseEntity.ok(exchangeList);
-	}
-	
 	@RequestMapping(value = "charts", method = RequestMethod.GET)
 	public void charts(Model model) throws Exception {
 		
