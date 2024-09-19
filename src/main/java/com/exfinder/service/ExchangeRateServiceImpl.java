@@ -7,6 +7,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -121,38 +122,19 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
 				for (int i = trs.size() - 1; i >= 0; i--) {
-					ExchangeRateDto dto = new ExchangeRateDto();
-					String res_date = trs.get(i).findElements(By.tagName("td")).get(0).getText();
-					dto.setRate_date(LocalDate.parse(res_date, formatter));
+				    ExchangeRateDto dto = new ExchangeRateDto();
+				    List<WebElement> cells = trs.get(i).findElements(By.tagName("td"));
 
-					String res_tts = trs.get(i).findElements(By.tagName("td")).get(1).getText().replaceAll(",", "");
-					double tts = isValidDouble(res_tts) != -1 ? isValidDouble(res_tts) : 0;
-					dto.setTts(tts);
-
-					String res_ttb = trs.get(i).findElements(By.tagName("td")).get(2).getText().replaceAll(",", "");
-					double ttb = isValidDouble(res_ttb) != -1 ? isValidDouble(res_ttb) : 0;
-					dto.setTtb(ttb);
-
-					String res_cashBuy = trs.get(i).findElements(By.tagName("td")).get(3).getText().replaceAll(",", "");
-					double cashBuy = isValidDouble(res_cashBuy) != -1 ? isValidDouble(res_cashBuy) : 0;
-					dto.setCash_buy(cashBuy);
-
-					String res_cashSell = trs.get(i).findElements(By.tagName("td")).get(4).getText().replaceAll(",",
-							"");
-					double cashSell = isValidDouble(res_cashSell) != -1 ? isValidDouble(res_cashSell) : 0;
-					dto.setCash_sell(cashSell);
-
-					String res_dealBS = stringCut(
-							trs.get(i).findElements(By.tagName("td")).get(5).getText().replaceAll(",", ""));
-					double dealBs = isValidDouble(res_dealBS) != -1 ? isValidDouble(res_dealBS) : 0;
-					dto.setDeal_bas_r(dealBs);
-
-					String res_baseR = trs.get(i).findElements(By.tagName("td")).get(6).getText().replaceAll(",", "");
-					double baseR = isValidDouble(res_baseR) != -1 ? isValidDouble(res_baseR) : 0;
-					dto.setBase_r(baseR);
-
-					dto.setC_code(curr);
-					list.add(dto);
+				    dto.setRate_date(LocalDate.parse(cells.get(0).getText(), formatter));
+				    dto.setTts(parseDouble(cells.get(1).getText()));
+				    dto.setTtb(parseDouble(cells.get(2).getText()));
+				    dto.setCash_buy(parseDouble(cells.get(3).getText()));
+				    dto.setCash_sell(parseDouble(cells.get(4).getText()));
+				    dto.setDeal_bas_r(parseDouble(stringCut(cells.get(5).getText())));
+				    dto.setBase_r(parseDouble(cells.get(6).getText()));
+				    
+				    dto.setC_code(curr);
+				    list.add(dto);
 				}
 				System.out.println(curr + " 완료");
 			}
@@ -175,6 +157,63 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 		}
 		return list;
 	}
+	
+	@Override
+	public int todayExchangeRate(String[] currency) throws Exception {
+		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+		System.out.println("여기로 들어옴");
+		ArrayList<ExchangeRateDto> list = new ArrayList<ExchangeRateDto>();
+		
+		URL resource = getClass().getClassLoader().getResource("drivers/chromedriver.exe");
+		if (resource == null) {
+			throw new RuntimeException("Chromedriver executable not found.");
+		}
+		String driverPath = Paths.get(resource.toURI()).toString();
+		
+		System.setProperty("webdriver.chrome.driver", driverPath);
+
+		ChromeOptions options = new ChromeOptions();
+
+		options.addArguments("headless"); // 브라우저 안띄움
+
+		WebDriver driver = new ChromeDriver(options);
+
+		String baseUrl = "https://spib.wooribank.com/pib/Dream?withyou=CMCOM0184";
+		driver.get(baseUrl);
+
+		Thread.sleep(300);
+		try {
+			WebElement tbody = driver.findElement(By.xpath("//*[@id=\"fxprint\"]/table/tbody"));
+
+			List<WebElement> trs = tbody.findElements(By.tagName("tr"));
+			String rate_date = driver.findElement(By.xpath("//*[@id=\"fxprint\"]/div/div/dl/dd[2]")).getText();
+			for (WebElement e : trs) {
+			    String c_code = e.findElements(By.tagName("td")).get(0).getText();
+			    if (Arrays.asList(currency).contains(c_code)) {
+			        ExchangeRateDto dto = new ExchangeRateDto();
+
+			        dto.setTts(parseDouble(e.findElements(By.tagName("td")).get(2).getText()));
+			        dto.setTtb(parseDouble(e.findElements(By.tagName("td")).get(3).getText()));
+			        dto.setCash_buy(parseDouble(e.findElements(By.tagName("td")).get(4).getText()));
+			        dto.setCash_sell(parseDouble(e.findElements(By.tagName("td")).get(6).getText()));
+			        dto.setDeal_bas_r(parseDouble(e.findElements(By.tagName("td")).get(8).getText()));
+			        dto.setBase_r(parseDouble(e.findElements(By.tagName("td")).get(9).getText()));
+			        
+			        dto.setRate_date(LocalDate.parse(rate_date, inputFormatter));
+			        dto.setC_code(c_code);
+			        
+			        System.out.println(dto.toString());
+			        list.add(dto);
+			        System.out.println("값 리스트에 들어감");
+			    }
+			}
+		} catch (Exception e) {
+			return list.size();
+		} finally {
+			driver.quit();
+		}
+		return list.size();
+	}
 
 	public double isValidDouble(String str) {
 		try {
@@ -182,6 +221,11 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 		} catch (NumberFormatException e) {
 			return -1;
 		}
+	}
+	
+	public double parseDouble(String value) {
+	    String cleanedValue = value.replaceAll(",", "");
+	    return isValidDouble(cleanedValue) != -1 ? isValidDouble(cleanedValue) : 0;
 	}
 
 	public static String stringCut(String input) {
@@ -229,5 +273,6 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 			return null;
 		}
 	}
+
 
 }

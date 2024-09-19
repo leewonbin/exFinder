@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,9 +45,9 @@
             <li class="board-typeItem" onclick="showSection('myPosts',this)">
                 <span class="board-type">작성글</span>
             </li>
-            <li class="board-typeItem" onclick="showSection('myComments',this)">
+            <!-- <li class="board-typeItem" onclick="showSection('myComments',this)">
                 <span class="board-type">작성댓글</span>
-            </li>
+            </li> -->
         </ul>
         
         <!-- 나의 게시글 목록 -->
@@ -59,17 +61,17 @@
                 <li class="board-item" onclick="window.location.href='/ex/board/read?b_id=${post.b_id}'">
                     <span class="board-kategorie">${post.b_category}</span>
                     <span class="board-title">${post.b_title}</span>
-                    <span class="board-date">${post.b_date}</span>
+                    <span class="board-date">
+        				<fmt:formatDate value="${post.b_date}" pattern="yyyy-MM-dd"/>
+    				</span>
+                    
                 </li>
             </c:forEach>
             <ul class="button-container">
                 <li class="button-write" onclick="window.location.href='/ex/board/create'">
                     <span>글쓰기</span>
                 </li>
-                <li class="button-delete" onclick="window.location.href='/ex/board/'">
-                    <span>삭제</span>
-                </li>
-            </ul>
+        	</ul>
         </ul>
         
         <!-- 나의 댓글 목록 -->

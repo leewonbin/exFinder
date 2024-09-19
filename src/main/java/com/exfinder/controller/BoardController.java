@@ -169,6 +169,7 @@ public class BoardController {
 		
 	}
 	
+
 	@RequestMapping(value = "/user/myBoard", method = RequestMethod.GET)
 	public String myBoard(Model model, HttpSession session) throws Exception {
 	    // 세션에서 UserDto 객체를 가져옴
@@ -203,4 +204,5 @@ public class BoardController {
 	    return "/user/myBoard";  // myBoard.jsp로 이동
 	}
 	
+
 }
