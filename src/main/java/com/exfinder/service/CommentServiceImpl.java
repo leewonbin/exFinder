@@ -40,9 +40,9 @@ public class CommentServiceImpl implements CommentService{
 	}
 	
 	@Override
-	public List<CommentDto> commentList(int comm_id) throws Exception{
+	public List<CommentDto> commentList(int b_id) throws Exception{
 		CommentDao dao = sqlSession.getMapper(CommentDao.class);
-		return dao.commentList(comm_id);
+		return dao.commentList(b_id);
 	}
 	
 	@Override

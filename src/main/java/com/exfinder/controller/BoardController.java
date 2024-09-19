@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.exfinder.dto.BoardDto;
+import com.exfinder.dto.CommentDto;
 import com.exfinder.dto.UserDto;
 import com.exfinder.service.BoardService;
+import com.exfinder.service.CommentService;
 import com.exfinder.vo.BoardVo;
 
 @Controller
@@ -28,6 +30,9 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service;
+	
+	@Autowired
+    private CommentService cs;
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String createGET(BoardDto board, Model model,HttpSession session) throws Exception {
@@ -63,6 +68,9 @@ public class BoardController {
 	    UserDto userDto = (UserDto) session.getAttribute("dto");
 	    model.addAttribute("userDto", userDto);
 	   
+	    // 댓글 리스트 가져오기
+	    List<CommentDto> comments = cs.commentList(b_id);
+	    model.addAttribute("comments", comments);
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
@@ -161,9 +169,6 @@ public class BoardController {
 		
 	}
 	
-	
-	
-
 	@RequestMapping(value = "/user/myBoard", method = RequestMethod.GET)
 	public String myBoard(Model model, HttpSession session) throws Exception {
 	    // 세션에서 UserDto 객체를 가져옴

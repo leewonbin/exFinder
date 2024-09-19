@@ -31,28 +31,38 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		LocalDate localDate = LocalDate.now().plusDays(1);
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		List<CurrencyDto> list = new ArrayList<CurrencyDto>();
-		try {
-			int size = 0;
-			while (size == 0) {
-				localDate = localDate.minusDays(1);
-				String today = localDate.format(formatter);
+	    LocalDate localDate = LocalDate.now().plusDays(1);
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    List<CurrencyDto> list = new ArrayList<CurrencyDto>();
+	    int maxDaysToCheck = 30; // 최대 확인할 날짜 수
+	    int daysChecked = 0;
 
-				list = service.selectExchange(today);
-				size = list.size();
-				System.out.println("size() : " + size);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		model.addAttribute("list", list);
-		return "main/exFinder_main";
+	    try {
+	        int size = 0;
+	        while (size == 0 && daysChecked < maxDaysToCheck) {
+	            localDate = localDate.minusDays(1);
+	            String today = localDate.format(formatter);
+
+	            list = service.selectExchange(today);
+	            size = list.size();
+	            daysChecked++; // 체크한 날짜 수 증가
+	            System.out.println("Checked date: " + today + ", size: " + size);
+	        }
+
+	        if (size == 0) {
+	            System.out.println("No exchange data found in the last " + maxDaysToCheck + " days.");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
+	    model.addAttribute("list", list);
+	    return "main/exFinder_main";
 	}
+	
 	// 접근 방식 : exFinder_Currency?c_code=USD
 	@RequestMapping(value = "/exFinder_Currency", method = RequestMethod.GET)
 	public String exFinder_Currency(Model model, @RequestParam("c_code") String  c_code) throws Exception {

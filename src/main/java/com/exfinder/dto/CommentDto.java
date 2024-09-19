@@ -2,11 +2,14 @@ package com.exfinder.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 public class CommentDto {
 	
 	private int comm_id;
 	private String comm_content;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date comm_date;
 //	private int replyid;
 	private int b_id;

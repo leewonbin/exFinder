@@ -14,7 +14,7 @@ public interface CommentDao {
 	
 	public void commentDelete(int comm_id) throws Exception;	//댓글 삭제
 
-	public List<CommentDto> commentList(int comm_id) throws Exception;	//댓글 조회
+	public List<CommentDto> commentList(int b_id) throws Exception;	//댓글 조회
 	
 	public int commentCount(int comm_id) throws Exception;	//댓글 수
 	
