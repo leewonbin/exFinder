@@ -1,0 +1,262 @@
+/* 페이지 전체 크기와 기본 설정 */
+body, html {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 4000px;
+	font-family: Arial, sans-serif;
+	box-sizing: border-box; /* padding과 border가 포함된 크기를 계산 */
+}
+
+.Currency_view {
+    padding-top: 40px;
+    align-items: center;
+    width: 1100px;
+    height: auto; 
+    margin: 0 auto;
+}
+.Currency_header {
+    display: flex;
+    align-items: center; /* 세로 가운데 정렬 */
+}
+
+.Currency_header img {
+    margin-right: 10px; /* 이미지와 텍스트 사이의 간격 */
+    width: 50px;
+    height: 50px; 
+}
+
+.Currency_header a {
+	width: 150px;
+    font-size: 18px; /* 필요에 따라 텍스트 크기 조정 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: #666;            /* 글자 색상 설정 */
+}
+.Currency_header > a > b {
+    font-size: 20px; /* 필요에 따라 텍스트 크기 조정 */
+    font-weight: bold;
+    color: #000; /* 필요 시 텍스트 색상 설정 */
+}
+.Currency_chart {
+	width: 1100px;
+    height: 300px; 
+    border: 1px solid #000; /* 검정색 1px 테두리 */
+    box-sizing: border-box; /* 패딩과 테두리를 요소의 총 폭과 높이에 포함 */
+    display: flex; /* 자식 요소들을 수평으로 배치 */
+}
+.Currency_left_chart {
+	width: 500px;
+    height: 100%; 
+	
+	padding: 40px 20px;  /* 내부 여백 10px 추가 */
+}
+.Currency_left_chart_header {
+	height: 50px; 
+    display: flex;            /* flexbox 사용 */
+    justify-content: space-between;  /* 요소들 사이의 공간을 균등하게 배치 (왼쪽과 오른쪽) */
+    align-items: center;      /* 수직 가운데 정렬 */
+    width: 100%;
+    cursor: pointer; /* 클릭 가능한 요소로 표시 */
+}
+.Currency_left_chart_header a {
+    font-size: 24px; /* 원하는 글자 크기 */
+    font-weight: bold; /* 글자 굵기 설정 */
+}
+.Currency_left_chart_header div {
+    font-size: 20px; /* 원하는 글자 크기 */
+}
+
+.increased {
+   	color: red;
+   	font-size: 15px; /* 글씨 크기를 살짝 줄여 가독성 개선 */
+   	font-weight: bold;
+   	padding-right: 30px;
+}
+.unchanged {
+    color: gray;
+    font-size: 15px; /* 글씨 크기를 살짝 줄여 가독성 개선 */
+    font-weight: bold;
+    padding-right: 30px;   
+}
+.decreased {
+    color: blue;
+    font-size: 15px; /* 글씨 크기를 살짝 줄여 가독성 개선 */
+    font-weight: bold;
+    padding-right: 30px;  
+}
+.circle {
+    display: inline-block;
+    width: 25px; /* 동그라미의 너비 */
+    height: 25px; /* 동그라미의 높이 */
+    border-radius: 50%; /* 동그라미 모양을 만들기 위한 속성 */
+    background-color: #fff; /* 동그라미의 배경색을 흰색으로 설정 */
+    border: 1px solid #000; /* 선택적으로 테두리 추가 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* 동그라미 내부 텍스트 색상 */
+    text-align: center;
+    font-size: 12px; /* 동그라미 내부 텍스트 크기 */
+    cursor: pointer; /* 클릭 가능한 요소로 표시 */
+}
+
+.arrow-up {
+    display: inline-block;
+    font-size: 20px; /* 화살표의 크기 */
+    color: #000; /* 화살표의 색상 */
+    /* 원하는 화살표 기호 또는 심볼을 삽입 */
+}
+.arrow-up::before {
+    content: '∧'; /* 화살표 기호 */
+    display: inline-block;
+}
+
+.Currency_left_chart_table {
+    width: 100%; /* 테이블 너비를 100%로 설정 */
+    height: 120px; 
+    border-collapse: collapse; /* 테이블 셀의 경계가 겹치지 않게 설정 */
+    margin: 10px 0; /* 상하 여백을 20px로 설정, 좌우 여백은 0으로 설정 */
+}
+
+.Currency_left_chart_table th,
+.Currency_left_chart_table td {
+    border: 1px solid #ddd; /* 연한 회색 경계선 추가 */
+    padding: 8px; /* 셀 안쪽에 여백 추가 */
+    text-align: center; /* 셀 내용 중앙 정렬 */
+}
+
+.Currency_left_chart_table th {
+    background-color: #f4f4f4; /* 헤더 셀 배경색을 연한 회색으로 설정 */
+    font-weight: bold; /* 헤더 텍스트를 굵게 설정 */
+}
+
+.Currency_left_chart_table td {
+    background-color: #fff; /* 데이터 셀 배경색을 흰색으로 설정 */
+}
+
+.Currency_left_chart_table tr:nth-child(even) {
+    background-color: #f9f9f9; /* 짝수 행 배경색을 연한 회색으로 설정 */
+}
+
+
+.Currency_right_chart {
+	width: 600px;
+    height: 100%; 
+	/*  border: 1px solid blue; 검정색 1px 테두리 */	
+}
+.Currency_chart_time_select {
+    display: flex; 
+    height: 49px; 
+    justify-content: center; /* 자식 요소를 중앙으로 정렬 */
+    align-items: center; /* 자식 요소를 수직으로 중앙 정렬 */
+    border-bottom: 1px solid #ccc; /* 밑에 1px 회색 줄 추가 */
+    padding: 15px 0;
+    margin: 0 40px; /* 양 옆에 여백 추가 */
+}
+.Currency_chart_time_select > ul {
+    display: flex; /* 자식 요소를 수평으로 나열 */
+    padding: 0; /* 기본 패딩 제거 */
+    margin: 0; /* 기본 마진 제거 */
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+}
+.Currency_chart_time_select > ul > li {
+    margin-right: 30px; /* 각 리스트 항목 사이의 간격 설정 */
+    border-right: 1px solid #ccc; /* 항목 사이에 회색 선 추가 */
+    padding-right: 30px; /* 선과 텍스트 사이에 여백 추가 */
+}
+
+.Currency_chart_time_select > ul > li:last-child {
+    margin-right: 0; /* 마지막 항목에는 간격을 주지 않음 */
+    border-right: none; /* 마지막 항목에는 선을 추가하지 않음 */
+}
+.Currency_chart_time_select > ul > li:hover {
+    /* 마우스 오버 시 스타일 설정 (선택사항) */
+}
+.Currency_chart_time_select > ul > li > a {
+    text-decoration: none; /* 링크의 기본 밑줄 제거 */
+    color: #000; /* 링크 텍스트 색상 설정 (예: 검정색) */
+    padding: 5px 10px; /* 링크의 패딩 설정 */
+    display: inline-block; /* 링크를 인라인 블록으로 설정 */
+}
+
+.Currency_chart_time_select > ul > li > a:focus {
+    outline: none; /* 포커스 시 기본 아웃라인 제거 */
+}
+.active {
+    font-weight: bold;
+}
+.chart_graph {    
+    width: 90%;
+    height: 248px; /* 차트 높이 조정 */
+    overflow: hidden;
+    margin: 0 auto;
+	/* border: 1px solid yellow; 검정색 1px 테두리 */
+}
+.Currency_news-list{
+	margin-top: 20px;
+	width: 1100px;
+    height: 350px; 
+    border: 1px solid #000; /* 검정색 1px 테두리 */
+}
+
+
+/* 뉴스 리스트 스타일 */
+.news-list {
+	width: 1100px;  
+	height: 100%;       
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2개의 열 설정 */
+}
+
+/* 뉴스 항목 스타일 */
+.news-item {
+    display: flex;
+    flex-direction: column;
+	width: 500px;    
+	height: 150px;
+	margin: 10px 25px;
+}
+.new-header {
+	height: 30px;
+}
+.new-header img { 
+	width: 24px;        
+    height: 24px;
+    margin-right: 10px;
+}
+.new-main {
+	width: 500px;
+	height: 120px;
+    display: flex;
+    align-items: flex-start; /* 위쪽 정렬 */
+    cursor: pointer; /* 클릭 가능 시 cursor 변경 */
+}
+.new-main img { 
+	width: 100px;        
+    height: 100px;
+    border-radius: 10px; /* 이미지 모서리 둥글게 만들기 */
+}
+.new-main-text {
+    margin-right: 10px; /* 이미지와의 간격 조정 */
+    max-width: 390px; /* 최대 너비를 390px로 설정 */
+    overflow: hidden; /* 넘치는 내용 숨기기 */
+    text-overflow: ellipsis; /* 넘치는 텍스트에 '...' 표시 */
+}
+.new-main-text label {
+    font-weight: bold; /* 글씨 굵게 */
+    font-size: 18px; /* 글자 크기 16px */
+    white-space: nowrap; /* 줄 바꿈하지 않고 한 줄로 표시 */
+    height: 24px; /* 고정 높이 설정 (필요에 따라 조정) */
+}
+.new-main-text label:hover {
+    text-decoration: underline; /* 호버 시 밑줄 추가 */
+}
+.new-main-text a {
+    display: -webkit-box; /* Flexbox 기반으로 박스 모델 설정 */
+    -webkit-box-orient: vertical; /* 세로 방향으로 박스 방향 설정 */
+    -webkit-line-clamp: 4; /* 4줄까지 표시 */
+    overflow: hidden; /* 넘치는 내용 숨기기 */
+    text-overflow: ellipsis; /* 넘치는 텍스트에 '...' 표시 */
+    line-height: 1.5; /* 줄 높이 설정 (필요에 따라 조정) */
+    max-height: 6em; /* 4줄 높이에 맞게 설정 (줄 높이와 맞춰야 함) */
+}
