@@ -13,6 +13,7 @@ public interface ExchangeRateService {
 	public double exchangeRateSelect_base_r(String c_code, String rate_date);
 	public String[] currSelect() throws Exception;
 	public ArrayList<ExchangeRateDto> todaySelect(String today) throws Exception;
+	public int todayExchangeRate(String[] currency) throws Exception;
 	
 	public int exchangeRate_column_checkValue(String c_code);
 	
