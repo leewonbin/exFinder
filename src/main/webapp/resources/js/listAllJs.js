@@ -36,6 +36,9 @@
 											+ encodeURIComponent(keyword);
 									window.location.href = url;
 								});
+				$(".csButton").click(function() {
+			        window.location.href = "http://localhost:8082/ex/cs/main";
+			    });
 
 				// 글쓰기 버튼
 				$('.writeBtn').on("click", function(event) {
