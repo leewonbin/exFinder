@@ -238,3 +238,24 @@ document.addEventListener('DOMContentLoaded', function() {
         ajaxData(currencyCode, 'chart_1year', 'one-year'); 
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleList = document.getElementById('toggle-list');
+    const currencyList = document.getElementById('currency-list');
+    const arrow = toggleList.querySelector('.arrow-up');
+
+    toggleList.addEventListener('click', function() {
+        if (currencyList.classList.contains('hidden')) {
+            currencyList.classList.remove('hidden');
+            currencyList.classList.add('visible');
+            arrow.classList.remove('arrow-up');
+            arrow.classList.add('arrow-down'); // 화살표를 아래로 변경
+        } else {
+            currencyList.classList.add('hidden');
+            currencyList.classList.remove('visible');
+            arrow.classList.remove('arrow-down');
+            arrow.classList.add('arrow-up'); // 화살표를 위로 변경
+        }
+    });
+});
