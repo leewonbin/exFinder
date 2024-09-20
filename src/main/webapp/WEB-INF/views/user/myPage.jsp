@@ -21,7 +21,7 @@
 		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/">
 			<img src="${pageContext.request.contextPath}/resources/img/Nalarm.png" id="Img">알림
 		</button>
-		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/">
+		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/bookMark'">
 			<img src="${pageContext.request.contextPath}/resources/img/Nbookmark.png" id="Img">즐겨찾기
 		</button>
 	</div>

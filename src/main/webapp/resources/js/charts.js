@@ -68,6 +68,34 @@ $(document).ready(function() {
 });
 // '2024/09/06'
 
+function ajaxData(c_code, chartDivId) {
+	
+	var rate_date = formattedDate; // 필요한 값으로 수정
+	// var start_date = '2024/08/01'; // 필요한 값으로 수정
+	// var end_date = formattedDate; // 필요한 값으로 수정
+
+	$.ajax({
+		type : "POST",
+		url : "/ex/charts/graph", // contextPath 사용 "${pageContext.request.contextPath}/charts/graph",
+		data : {
+			c_code : c_code,
+			rate_date : rate_date
+			// start_date : start_date,
+			// end_date : end_date
+		},
+		dataType : "json", // Expect JSON response
+		success : function(response) {
+			console.log('응답 데이터 확인 ');
+			console.log(response); // 응답 데이터 확인
+			//drawCharts(response, chartDivId); // 차트 그리기 함수 호출
+			drawTimeCharts(response, chartDivId);
+		},
+		error : function(xhr, status, error) {
+			console.error("AJAX 요청 오류:", status, error);
+		}
+	});
+}
+/*
 // AJAX 요청 함수
 function ajaxData(c_code, chartDivId) {
 
@@ -93,6 +121,54 @@ function ajaxData(c_code, chartDivId) {
 		}
 	});
 }
+*/
+//차트 그리기 함수
+function drawTimeCharts(data, chartDivId) {
+    if (typeof google === 'undefined' || !google.visualization || typeof google.visualization.DataTable !== 'function') {
+        console.error("Google Charts 라이브러리가 로드되지 않았습니다. 재시도합니다.");
+        setTimeout(function() {
+            drawTimeCharts(data, chartDivId);
+        }, 1000);
+        return;
+    }
+
+    var chartData = new google.visualization.DataTable();
+    chartData.addColumn('timeofday', '시간'); // 첫 번째 열: 시간 (시간, 분, 초)
+    chartData.addColumn('number', '값'); // 두 번째 열: 값
+
+    // 응답 데이터를 [시간, 값] 형식으로 변환
+    var formattedData = data.map(function(item) {
+        // annoTime을 [hours, minutes] 형식으로 변환
+        var timeParts = item.annoTime.split(':');
+        var hours = parseInt(timeParts[0], 10);
+        var minutes = parseInt(timeParts[1], 10);
+        var time = [hours, minutes, 0]; // seconds는 0으로 설정
+        return [time, item.deal_bas_r]; // [시간, 값] 형식으로 배열 반환
+    });
+
+    chartData.addRows(formattedData); // DataTable에 데이터 추가
+
+    var options = {
+        hAxis: {
+            format: 'HH:mm', // 시간 형식 지정
+            gridlines: {
+                count: -1
+            },
+            viewWindowMode: 'maximized'
+        },
+        vAxis: {
+            logScale: false
+        },
+        colors: ['#a52714'],
+        legend: {
+            position: 'none'
+        }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById(chartDivId));
+    chart.draw(chartData, options);
+}
+/*
 // 차트 그리기 함수
 function drawCharts(data, chartDivId) {
 	if (typeof google === 'undefined' || !google.visualization || typeof google.visualization.DataTable !== 'function') {
@@ -147,7 +223,7 @@ function drawCharts(data, chartDivId) {
 			.getElementById(chartDivId));
 	chart.draw(chartData, options);
 }
-
+*/
 // 정보 함수
 function fetchExchangeRateData(c_code, rate_date, div_id, flag_id) {
     $.ajax({
