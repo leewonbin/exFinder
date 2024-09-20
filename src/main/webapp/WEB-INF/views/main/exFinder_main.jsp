@@ -614,6 +614,67 @@
 			</table>
 		</div>
 	</div>
+	
+	
+	<h1 class="rate-day">일자별</h1>
+
+<div class="box-contents">
+    <div>
+        <table class="exchange">
+            <thead>
+                <tr class="chart">
+                    <th rowspan="2">날짜</th>
+                    <th rowspan="2">종가</th>
+                    <th rowspan="2">매매기준율</th>
+                    <th rowspan="2">전일비</th>
+                    <th colspan="2">현찰</th>
+                    <th colspan="2">송금(전신환)</th>
+                    <th rowspan="2">기준환율</th>
+                </tr>
+                <tr class="chartB">
+                    <th class="leftL">사실때</th>
+                    <th>파실때</th>
+                    <th>보내실때</th>
+                    <th>받으실때</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:set var="beforeValue" value="0" />
+                <c:forEach var="rate" items="${rates}">
+                    <tr>
+                        <td class="l">${rate.rate_date}</td>
+                        <td class="r">${rate.deal_bas_r}</td>
+
+                        <!-- 전일비 색상 설정 -->
+                        <c:set var="changeClass">
+                            <c:choose>
+                                <c:when test="${beforeValue > 0 && rate.base_r > beforeValue}">
+                                    increase
+                                </c:when>
+                                <c:when test="${beforeValue > 0 && rate.base_r < beforeValue}">
+                                    decrease
+                                </c:when>
+                                <c:otherwise>
+                                    no-change
+                                </c:otherwise>
+                            </c:choose>
+                        </c:set>
+                        <td class="r ${changeClass}">
+                            <fmt:formatNumber type="number" maxFractionDigits="2" 
+                                              value="${rate.base_r - beforeValue}" />
+                        </td>
+                        <td class="r">${rate.cash_buy}</td>
+                        <td class="r">${rate.cash_sell}</td>
+                        <td class="r">${rate.ttb}</td>
+                        <td class="r">${rate.tts}</td>
+                        <td class="r">${rate.base_r}</td>
+                    </tr>
+                    <c:set var="beforeValue" value="${rate.base_r}" />
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>

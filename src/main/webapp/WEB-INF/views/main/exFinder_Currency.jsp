@@ -113,7 +113,7 @@
 						<th rowspan="2">전일비</th>
 						<th colspan="2">현찰</th>
 						<th colspan="2">송금(전신환)</th>
-						<th rowspan="2">환가로율</th>
+						<th rowspan="2">기준환율</th>
 					</tr>
 					<tr class="chartB">
 						<th class="leftL">사실때</th>

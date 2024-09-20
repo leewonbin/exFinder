@@ -111,26 +111,26 @@ public class CommentController {
         return "board/read"; 
     }
     
-    @RequestMapping(value = "/reComment", method = RequestMethod.POST)
-    public String createReComment(@RequestParam("parent_id") int parent_id,
-                                   @RequestParam("comm_content") String comm_content,
-                                   HttpSession session, RedirectAttributes rttr) {
-        try {
-            UserDto userDto = (UserDto) session.getAttribute("dto");
-            if (userDto == null) {
-                return "redirect:/board/read?b_id=" + parent_id; 
-            }
-
-            CommentDto dto = new CommentDto();
-            dto.setComm_content(comm_content);
-            dto.setU_id(userDto.getU_id());
-            dto.setParent_id(parent_id);
-            cs.reCommentCreate(dto);
-
-        } catch (Exception e) {
-            logger.error("Error creating recomment", e);
-        }
-        return "redirect:/board/read?b_id=" + parent_id; 
-    }
+//    @RequestMapping(value = "/reComment", method = RequestMethod.POST)
+//    public String createReComment(@RequestParam("parent_id") int parent_id,
+//                                   @RequestParam("comm_content") String comm_content,
+//                                   HttpSession session, RedirectAttributes rttr) {
+//        try {
+//            UserDto userDto = (UserDto) session.getAttribute("dto");
+//            if (userDto == null) {
+//                return "redirect:/board/read?b_id=" + parent_id; 
+//            }
+//
+//            CommentDto dto = new CommentDto();
+//            dto.setComm_content(comm_content);
+//            dto.setU_id(userDto.getU_id());
+//            dto.setParent_id(parent_id);
+//            cs.reCommentCreate(dto);
+//
+//        } catch (Exception e) {
+//            logger.error("Error creating recomment", e);
+//        }
+//        return "redirect:/board/read?b_id=" + parent_id; 
+//    }
 
 }
