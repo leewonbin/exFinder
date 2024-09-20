@@ -97,7 +97,7 @@ function toggleAnswer(id) {
 		</c:forEach>
 	</div>
 
-	<!-- 챗봇 연습용으로 넣어둠 / 챗봇 버튼 -->
+	<%-- <!-- 챗봇 연습용으로 넣어둠 / 챗봇 버튼 -->
 	<div id="chatbot-button" onclick="toggleChatbot()">
 		<img
 			src="${pageContext.request.contextPath}/resources/images/chatbot-icon.png"
@@ -110,7 +110,7 @@ function toggleAnswer(id) {
 		<iframe src="챗봇 URL"
 			style="width: 300px; height: 400px; border: none;"></iframe>
 	</div>
-
+ --%>
 	
 
 </body>

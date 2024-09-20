@@ -38,8 +38,26 @@ a:hover {
 	font-size: 18px;
 	font-weight: bold;
 }
+.csButton{
+	display: block;
+	width: 100%;
+	margin: 0px;
+	padding: 10px;
+	border: 1px solid white;
+	background-color: white;
+	text-align: left;
+	color: black;
+	font-size: 18px;
+	font-weight: bold;
+}
+
 
 .sidebar .cButton:hover{
+	background-color: white;
+	color: #054184;
+}
+
+.csButton:hover{
 	background-color: white;
 	color: #054184;
 }

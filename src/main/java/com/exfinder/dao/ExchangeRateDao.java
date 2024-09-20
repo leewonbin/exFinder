@@ -1,6 +1,5 @@
 package com.exfinder.dao;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
@@ -12,9 +11,9 @@ public interface ExchangeRateDao {
 	public int exchangeRateInsert(ExchangeRateDto dto) throws Exception;
 	public double exchangeRateSelect_base_r(@Param("c_code")String c_code, @Param("rate_date")String rate_date);
 	public String[] currSelect() throws Exception;
-	public ArrayList<ExchangeRateDto> todaySelect(String today) throws Exception;
 	
 	public int exchangeRate_column_checkValue(@Param("c_code")String c_code);
 	
 	public ExchangeRateDto exchangeRateSelect_today(@Param("c_code")String c_code, @Param("rate_date")String rate_date) throws Exception;
+	public ArrayList<ExchangeRateDto> yesterDayRate(String[] curr) throws Exception;
 }
