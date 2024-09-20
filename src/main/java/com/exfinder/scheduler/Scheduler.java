@@ -3,6 +3,7 @@ package com.exfinder.scheduler;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import com.exfinder.dto.NoticeExchangeRateDto;
 import com.exfinder.service.ExchangeRateService;
 import com.exfinder.service.NoticeExchangeRateService;
 
+@EnableScheduling
 @Component
 public class Scheduler {
 

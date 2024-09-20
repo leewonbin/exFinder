@@ -1,19 +1,6 @@
 $(document).ready(function() {
     updateExchangeRate();
 });
-
-function updateCurrencySelect(selectId, rates) {
-    $(selectId).find('option').each(function() {
-        const currencyCode = $(this).val(); // <option>의 value 값
-        const rate = rates[currencyCode] || (currencyCode === "KRW" ? 1 : undefined);
-        if (rate) {
-            $(this).attr('data-rate', rate);
-        } else {
-            $(this).removeAttr('data-rate'); // 데이터가 없는 경우 data-rate 속성 제거
-        }
-    });
-}
-
 function currencyConvert(amount, fromCurr, toCurr) {
     let exchangeAmount = parseFloat(amount.replace(/,/g, ''));
     
