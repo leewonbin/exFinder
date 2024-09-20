@@ -557,6 +557,8 @@
 	<div class="box-contents">
 		<div>
 			<p class="date-display">기준일 : ${list[0].rate_date}</p>
+			<!-- css 수정 부탁드립니다 -->
+			<p class="date-display">업데이트 시간 : ${list[0].annotime}</p> 
 			<table class="exchange">
 				<thead>
 					<tr class="chart">

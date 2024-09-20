@@ -120,4 +120,10 @@ public class NoticeExchangeRateServiceImpl implements NoticeExchangeRateService 
 	    return isValidDouble(cleanedValue) != -1 ? isValidDouble(cleanedValue) : 0;
 	}
 
+	@Override
+	public ArrayList<NoticeExchangeRateDto> nowSelect() throws Exception {
+		NoticeExchangeRateDao dao = sqlSession.getMapper(NoticeExchangeRateDao.class);
+		return dao.nowSelect();
+	}
+
 }

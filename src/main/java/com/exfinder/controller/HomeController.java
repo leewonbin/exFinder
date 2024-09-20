@@ -39,31 +39,13 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-	    LocalDate localDate = LocalDate.now().plusDays(1);
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	    List<CurrencyDto> list = new ArrayList<CurrencyDto>();
-	    int maxDaysToCheck = 30; // 최대 확인할 날짜 수
-	    int daysChecked = 0;
-
-	    try {
-	        int size = 0;
-	        while (size == 0 && daysChecked < maxDaysToCheck) {
-	            localDate = localDate.minusDays(1);
-	            String today = localDate.format(formatter);
-
-	            list = service.selectExchange(today);
-	            size = list.size();
-	            daysChecked++; // 체크한 날짜 수 증가
-	            System.out.println("Checked date: " + today + ", size: " + size);
-	        }
-
-	        if (size == 0) {
-	            System.out.println("No exchange data found in the last " + maxDaysToCheck + " days.");
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	    
+		List<CurrencyDto> list = new ArrayList<CurrencyDto>();
+		try {
+			list = service.selectExchange();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    model.addAttribute("list", list);
 	    return "main/exFinder_main";
 	}

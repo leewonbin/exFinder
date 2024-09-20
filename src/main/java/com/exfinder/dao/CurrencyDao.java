@@ -12,6 +12,6 @@ public interface CurrencyDao {
 	public List<CurrencyDto> listAll() throws Exception;
 	
 	public CurrencyDto currency_Select(@Param("c_code")String c_code) throws Exception;
-	public List<CurrencyDto> selectExchange(String today) throws Exception;
+	public List<CurrencyDto> selectExchange() throws Exception;
 
 }
