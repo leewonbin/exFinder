@@ -59,6 +59,10 @@ public class NoticeExchangeRateServiceImpl implements NoticeExchangeRateService 
 		ChromeOptions options = new ChromeOptions();
 
 		options.addArguments("headless"); // 브라우저 안띄움
+		options.addArguments("--disable-popup-blocking"); // 팝업 안 띄움
+		options.addArguments("--headless"); // 브라우저 안 띄움
+		options.addArguments("--disable-gpu"); // GPU 비활성화
+		options.addArguments("--blink-settings=imagesEnabled=false"); // 이미지 다운로드 비활성화
 
 		WebDriver driver = new ChromeDriver(options);
 
@@ -103,8 +107,8 @@ public class NoticeExchangeRateServiceImpl implements NoticeExchangeRateService 
 	private String getNowTime() {
 		DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm");
 		LocalTime currentTime = LocalTime.now();
-		LocalTime adjustedTime = LocalTime.of(currentTime.getHour(), 0);
-        return adjustedTime.format(timeformatter);
+//		LocalTime adjustedTime = LocalTime.of(currentTime.getHour(), 0);
+        return currentTime.format(timeformatter);
 	}
 
 	public double isValidDouble(String str) {
@@ -126,4 +130,14 @@ public class NoticeExchangeRateServiceImpl implements NoticeExchangeRateService 
 		return dao.nowSelect();
 	}
 
+	public ArrayList<NoticeExchangeRateDto> charts_selectList(String  c_code, String rate_date) throws Exception {
+		NoticeExchangeRateDao dao = sqlSession.getMapper(NoticeExchangeRateDao.class);
+		try {
+	        return dao.charts_selectList(c_code, rate_date);
+
+	    } catch (Exception e) {
+	        System.out.println("Error occurred while fetching data: " + e.getMessage());
+	        return null;
+	    }
+	}
 }

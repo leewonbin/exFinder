@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exfinder.dto.ExchangeRateDto;
+import com.exfinder.dto.NoticeExchangeRateDto;
 import com.exfinder.service.ExchangeRateService;
+import com.exfinder.service.NoticeExchangeRateService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -30,6 +32,9 @@ public class ExChangeController {
 	
 	@Autowired
 	private ExchangeRateService service;
+	
+	@Autowired
+	private NoticeExchangeRateService n_service;
 	
 	@RequestMapping(value = "exchange/update", method = RequestMethod.GET)
 	public String updatePage() throws Exception {
@@ -179,16 +184,34 @@ public class ExChangeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "charts/graph", method = RequestMethod.POST)
-	public void charts_graph(HttpServletResponse response, @RequestParam("c_code") String  c_code, @RequestParam("start_date") String start_date, @RequestParam("end_date") String end_date) throws Exception {
-		// ((ExchangeRateDto) dto).setC_code("USD");
-		// , @RequestParam String  c_code, @RequestParam String start_date, @RequestParam String end_date
-		//String c_code = "USD";
-		//String start_date = "2024/01/01";
-		//String end_date = "2024/08/31";
-		
-		List<ExchangeRateDto> dto = service.exchangeRateSelect(c_code, start_date, end_date);
-		
-		// model.addAttribute("ExchangeRateDto_list", dto);
+	public void charts_graph(HttpServletResponse response, @RequestParam("c_code") String  c_code, @RequestParam("rate_date") String rate_date) throws Exception {
+		// HttpServletResponse response, @RequestParam("c_code") String  c_code, @RequestParam("start_date") String start_date, @RequestParam("end_date") String end_date
+	    int checkValue = service.exchangeRate_column_checkValue(c_code);
+	    if (checkValue == 0) {
+	        // 값이 0인 경우, 즉시 종료
+	        response.setContentType("application/json");
+	        response.setCharacterEncoding("UTF-8");
+	        System.out.println("해당 통화 코드"+ c_code + " 에 대한 데이터가 없으니 중지합니다.");
+	        return;
+	    }
+	    
+	    // 날짜 포맷 설정
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+	    LocalDate date = LocalDate.parse(rate_date, formatter); // 문자열을 LocalDate로 변환
+	    ArrayList<NoticeExchangeRateDto> dto = null;
+
+	    // 하루씩 빼면서 데이터 조회
+	    while (dto == null || dto.isEmpty()) {
+	        dto = n_service.charts_selectList(c_code, date.format(formatter)); // 데이터 조회
+	        if (dto == null || dto.isEmpty()) {
+	            date = date.minusDays(1); // 하루 빼기
+	        }
+	    }
+	    
+		// List<ExchangeRateDto> dto = service.exchangeRateSelect(c_code, start_date, end_date);
+		//System.out.println("c_code : " + c_code + " rate_date : " + rate_date);
+		// ArrayList<NoticeExchangeRateDto> dto = n_service.charts_selectList(c_code, rate_date);
+		// System.out.println("-결과 c_code : " + c_code + " : " + dto);
 		
 		Gson gson = new Gson();
 		String json = "";

@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.exfinder.dao.NoticeExchangeRateDao">
 	<select id="selectList" resultType="noticeExchangeRateDto">
-		select * from noticeExchangerate
+		select * from noticeExchangeRate
 	</select>
 	<insert id="insert">
 		insert into noticeExchangeRate values(#{c_code},#{rate_date},#{annoTime},#{ttb},#{tts},#{cash_buy},#{cash_sell},#{deal_bas_r},#{base_r})
@@ -15,6 +15,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select c_code,rate_date,annotime,ttb,tts,cash_buy,cash_sell,deal_bas_r,base_r 
 		from (select dense_rank() over (order by rate_date desc, annotime desc) as num,
 		noticeExchangerate.* from noticeExchangerate) where num = 1;
+	</select>
+	
+	<select id="charts_selectList" resultType="noticeExchangeRateDto">
+		select * from noticeExchangeRate
+		WHERE c_code = #{c_code}
+		AND rate_date = #{rate_date}
+		ORDER BY annoTime ASC
 	</select>
 	
 </mapper>

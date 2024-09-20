@@ -22,6 +22,7 @@ public class Scheduler {
 	@Autowired
 	private NoticeExchangeRateService n_service;
 
+//	@Scheduled(cron = "0 * * * * ?")
 	@Scheduled(cron = "0 0 9-23 * * ?")
 	public void hourScheduled() throws Exception {
 		try {
