@@ -25,19 +25,6 @@
 
 	<!-- 중앙에 위치시키기 위한 div -->
 	<div class="Currency_view">
-		<div class="Currency_header">
-			<img
-				src="${pageContext.request.contextPath}/resources/img/gonfalon/${currencyDto.c_code}.png">
-			<a><b>${currencyDto.c_country}</b> ${currencyDto.c_code}</a> <i
-				class="circle" id="toggle-list"> <i class="arrow-up"></i>
-			</i>
-		</div>
-		<div class="Currency_chart">
-			<div class="Currency_left_chart">
-				<div class="Currency_left_chart_header">
-					<a>매매 기준율</a>
-					<div id="value_Currency"></div>
-    <div class="Currency_view">
     	<div class="Currency_header">
     		<img src="${pageContext.request.contextPath}/resources/img/gonfalon/${currencyDto.c_code}.png">
             <a><b>${currencyDto.c_country}</b> ${currencyDto.c_code}</a> 
@@ -87,7 +74,7 @@
             			<th>보낼때</th>
             			<td>${exchangeRateDto.ttb}</td>
         			</tr>
-	        			<tr>
+	        		<tr>
     	        		<th>파실때</th>
         	    		<td>${exchangeRateDto.cash_sell}</td>
             			<th>받을때</th>
@@ -97,25 +84,6 @@
 				<div>
 					기준일 : ${exchangeRateDto.rate_date}
 				</div>
-				<table class="Currency_left_chart_table">
-					<tr>
-						<th colspan="2">현찰</th>
-						<th colspan="2">송금 (전신환)</th>
-					</tr>
-					<tr>
-						<th>사실때</th>
-						<td>${exchangeRateDto.cash_buy}</td>
-						<th>보낼때</th>
-						<td>${exchangeRateDto.ttb}</td>
-					</tr>
-					<tr>
-						<th>파실때</th>
-						<td>${exchangeRateDto.cash_sell}</td>
-						<th>받을때</th>
-						<td>${exchangeRateDto.tts}</td>
-					</tr>
-				</table>
-				<div>기준일 : ${exchangeRateDto.rate_date}</div>
 			</div>
 			<div class="Currency_right_chart">
 				<div class="Currency_chart_time_select">
@@ -188,65 +156,5 @@
 		</div>
 	</div>
 
-
-
-
 </body>
-<script>
-<<<<<<< HEAD
-	/*
-	 <span id="currency-list" class="hidden">
-	 <a>미국 USD</a>
-	 <a>일본 JPY</a>
-	 <a>유럽연합 EUR</a>
-	 <a>중국 CNY</a>
-	 <a>영국 GBP</a>
-	
-	 <a>스위스 CHF</a>
-	 <a>캐나다 CAD</a>
-	 <a>인도 INR</a>
-	 <a>홍콩 HKD</a>
-	 <a>이집트 EGP</a>
-	
-	 <a>사우디 SAR</a>
-	 <a>호주 AUD</a>
-	 <a>태국 THB</a>
-	 <a>러시아 RUB</a>
-	 <a>베트남 VND</a>
-	
-	 <a>남아공 ZAR</a>
-	 <a>멕시코 MXN</a>
-	 <a>브라질 BRL</a>
-	 <a>이스라엘 ILS</a>
-	 <a>뉴질랜드 NZD</a> 		
-	 </span>*/
-=======
-/*
-<span id="currency-list" class="hidden">
-<a href="exFinder_Currency?c_code=USD">미국 USD</a>
-<a href="exFinder_Currency?c_code=JPY">일본 JPY</a>
-<a href="exFinder_Currency?c_code=EUR">유럽연합 EUR</a>
-<a href="exFinder_Currency?c_code=CNY">중국 CNY</a>
-<a href="exFinder_Currency?c_code=GBP">영국 GBP</a>
-		
-<a href="exFinder_Currency?c_code=CHF">스위스 CHF</a>
-<a href="exFinder_Currency?c_code=CAD">캐나다 CAD</a>
-<a href="exFinder_Currency?c_code=INR">인도 INR</a>
-<a href="exFinder_Currency?c_code=HKD">홍콩 HKD</a>
-<a href="exFinder_Currency?c_code=EGP">이집트 EGP</a>
-		
-<a href="exFinder_Currency?c_code=SAR">사우디 SAR</a>
-<a href="exFinder_Currency?c_code=AUD">호주 AUD</a>
-<a href="exFinder_Currency?c_code=THB">태국 THB</a>
-<a href="exFinder_Currency?c_code=RUB">러시아 RUB</a>
-<a href="exFinder_Currency?c_code=VND">베트남 VND</a>
-		
-<a href="exFinder_Currency?c_code=ZAR">남아공 ZAR</a>
-<a href="exFinder_Currency?c_code=MXN">멕시코 MXN</a>
-<a href="exFinder_Currency?c_code=BRL">브라질 BRL</a>
-<a href="exFinder_Currency?c_code=ILS">이스라엘 ILS</a>
-<a href="exFinder_Currency?c_code=NZD">뉴질랜드 NZD</a> 		
-</span>*/
->>>>>>> style
-</script>
 </html>
