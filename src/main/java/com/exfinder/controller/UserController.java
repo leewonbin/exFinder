@@ -334,6 +334,11 @@ public class UserController {
 
 	    return "/user/myBoard";  // myBoard.jsp로 이동
 	}
+	
+	@RequestMapping(value = "/user/bookMark", method = RequestMethod.GET)
+	public void bookMark() throws Exception{
+		
+	}
 
 	
 }
