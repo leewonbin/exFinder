@@ -6,10 +6,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.exfinder.dao.NoticeExchangeRateDao">
 	<select id="selectList" resultType="noticeExchangeRateDto">
-		select * from noticeExchangerate
+		select * from noticeExchangeRate
 	</select>
 	<insert id="insert">
 		insert into noticeExchangeRate values(#{c_code},#{rate_date},#{annoTime},#{ttb},#{tts},#{cash_buy},#{cash_sell},#{deal_bas_r},#{base_r})
 	</insert>
+	
+	<select id="charts_selectList" resultType="noticeExchangeRateDto">
+		select * from noticeExchangeRate
+		WHERE c_code = #{c_code}
+		AND rate_date = #{rate_date}
+		ORDER BY annoTime ASC
+	</select>
 	
 </mapper>

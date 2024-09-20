@@ -88,6 +88,13 @@ public class NoticeExchangeRateDto {
 	public void setBase_r(double base_r) {
 		this.base_r = base_r;
 	}
+
+	@Override
+	public String toString() {
+		return "NoticeExchangeRateDto [c_code=" + c_code + ", rate_date=" + rate_date + ", annoTime=" + annoTime
+				+ ", ttb=" + ttb + ", tts=" + tts + ", cash_buy=" + cash_buy + ", cash_sell=" + cash_sell
+				+ ", deal_bas_r=" + deal_bas_r + ", base_r=" + base_r + "]";
+	}
 	
 	
 }
