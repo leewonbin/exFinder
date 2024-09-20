@@ -366,8 +366,8 @@
 					src="${pageContext.request.contextPath}/resources/img/gonfalon/world_map3.png"
 					class="map-image">
 				<div class="flag map_america" style="top: 175px; left: 910px;">
-					<a class="flag-content" href="exFinder_Currency?c_code=USD"> 
-						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/USD.png">
+					<a class="flag-content" href="exFinder_Currency?c_code=USD"> <img
+						src="${pageContext.request.contextPath}/resources/img/gonfalon/USD.png">
 						<label>미국</label> <span id="flag_USD"></span>
 					</a> <i class="line" style="top: 19px; left: 20px;"></i> <i
 						class="circle" style="top: 65px; left: 13px;"> <i
@@ -375,8 +375,8 @@
 					</i>
 				</div>
 				<div class="flag map_asia" style="top: 300px; left: 485px;">
-					<a class="flag-content" href="exFinder_Currency?c_code=JPY"> 
-						<img src="${pageContext.request.contextPath}/resources/img/gonfalon/JPY.png">
+					<a class="flag-content" href="exFinder_Currency?c_code=JPY"> <img
+						src="${pageContext.request.contextPath}/resources/img/gonfalon/JPY.png">
 						<label>일본</label> <span id="flag_JPY"></span>
 					</a> <i class="line" style="top: -55px; left: 20px;"></i> <i
 						class="circle" style="top: -55px; left: 13px;"> <i
@@ -556,13 +556,11 @@
 
 	<div class="box-contents">
 		<div>
-			<p class="date-display">기준일 : ${list[0].rate_date}</p>
-			<!-- css 수정 부탁드립니다 -->
-			<p class="date-display">업데이트 시간 : ${list[0].annotime}</p> 
+			<p class="date-display">기준일 : ${list[0].rate_date}
+				&nbsp;${list[0].annotime}</p>
 			<table class="exchange">
 				<thead>
 					<tr class="chart">
-
 						<th rowspan="2">국가명</th>
 						<th rowspan="2">통화</th>
 						<th rowspan="2">매매기준율</th>
@@ -579,104 +577,55 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:set var="beforeValue" />
-					<c:forEach var="currency" items="${list}">
+					<c:set var="beforeValue" value="0" />
+					<c:forEach var="currency" items="${list}" >
 						<tr>
-							<td class="l">
-							<img src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png" class="flag-img"/>
-								${currency.c_country}</td>
+							<td class="l"><img
+								src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
+								class="flag-img" /> ${currency.c_country}</td>
 							<td class="l">${currency.c_name}</td>
 							<td class="r">${currency.deal_bas_r}</td>
 
-							<!-- 전일비 색상 설정 + 전일비 계산하는거 수정해야함 !-->
-							<c:set var="changeClass">
+							<!-- 전일비 색상 설정 + 전일비 계산 -->
+						<%-- 	<c:set var="changeClass">
 								<c:choose>
-									<c:when test="${currency.base_r - beforeValue > 0}">
-                            			increase
-                        			</c:when>
-									<c:when test="${currency.base_r - beforeValue < 0}">
-                            			decrease
-                        			</c:when>
+									<c:when test="${baseRDifferences[currency.c_code] != null}">
+										<c:choose>
+											<c:when test="${baseRDifferences[currency.c_code] > 0}">
+                                            increase
+                                        </c:when>
+											<c:when test="${baseRDifferences[currency.c_code] < 0}">
+                                            decrease
+                                        </c:when>
+											<c:otherwise>
+                                            no-change
+                                        </c:otherwise>
+										</c:choose>
+									</c:when>
 									<c:otherwise>
-                            			no-change
-                        			</c:otherwise>
+                                    no-change
+                                </c:otherwise>
 								</c:choose>
-							</c:set>
-							<td class="r ${changeClass}"><fmt:formatNumber type="number"
-									maxFractionDigits="2" value="${currency.base_r - beforeValue}" />
+							</c:set> --%>
+
+							<%-- <td class="r ${changeClass}"><fmt:formatNumber type="number" --%>
+							<td><fmt:formatNumber type="number"
+									maxFractionDigits="2" value="${baseRDifferences[currency.c_code]}" />
+							</td>
 							<td class="r">${currency.cash_buy}</td>
 							<td class="r">${currency.cash_sell}</td>
 							<td class="r">${currency.ttb}</td>
 							<td class="r">${currency.tts}</td>
 							<td class="r">${currency.base_r}</td>
 						</tr>
-						<c:set var="beforeValue" value="${currency.base_r }" />
+						<c:set var="beforeValue" value="${currency.base_r}" />
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	
-	
-	<h1 class="rate-day">일자별</h1>
 
-<div class="box-contents">
-    <div>
-        <table class="exchange">
-            <thead>
-                <tr class="chart">
-                    <th rowspan="2">날짜</th>
-                    <th rowspan="2">종가</th>
-                    <th rowspan="2">매매기준율</th>
-                    <th rowspan="2">전일비</th>
-                    <th colspan="2">현찰</th>
-                    <th colspan="2">송금(전신환)</th>
-                    <th rowspan="2">기준환율</th>
-                </tr>
-                <tr class="chartB">
-                    <th class="leftL">사실때</th>
-                    <th>파실때</th>
-                    <th>보내실때</th>
-                    <th>받으실때</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:set var="beforeValue" value="0" />
-                <c:forEach var="rate" items="${rates}">
-                    <tr>
-                        <td class="l">${rate.rate_date}</td>
-                        <td class="r">${rate.deal_bas_r}</td>
 
-                        <!-- 전일비 색상 설정 -->
-                        <c:set var="changeClass">
-                            <c:choose>
-                                <c:when test="${beforeValue > 0 && rate.base_r > beforeValue}">
-                                    increase
-                                </c:when>
-                                <c:when test="${beforeValue > 0 && rate.base_r < beforeValue}">
-                                    decrease
-                                </c:when>
-                                <c:otherwise>
-                                    no-change
-                                </c:otherwise>
-                            </c:choose>
-                        </c:set>
-                        <td class="r ${changeClass}">
-                            <fmt:formatNumber type="number" maxFractionDigits="2" 
-                                              value="${rate.base_r - beforeValue}" />
-                        </td>
-                        <td class="r">${rate.cash_buy}</td>
-                        <td class="r">${rate.cash_sell}</td>
-                        <td class="r">${rate.ttb}</td>
-                        <td class="r">${rate.tts}</td>
-                        <td class="r">${rate.base_r}</td>
-                    </tr>
-                    <c:set var="beforeValue" value="${rate.base_r}" />
-                </c:forEach>
-            </tbody>
-        </table>
-    </div>
-</div>
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>

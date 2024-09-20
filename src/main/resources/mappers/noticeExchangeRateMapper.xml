@@ -17,4 +17,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		noticeExchangerate.* from noticeExchangerate) where num = 1;
 	</select>
 	
+	<select id="getBaseRDifference" resultType="map">
+        SELECT 
+            n.c_code AS c_code,
+            (n.base_r - e.base_r) AS baseRDifference
+        FROM (
+            SELECT c_code, base_r, DENSE_RANK() OVER (ORDER BY rate_date DESC, annotime DESC) AS num
+            FROM noticeExchangerate
+        ) n
+        JOIN (
+            SELECT c_code, base_r, DENSE_RANK() OVER (ORDER BY rate_date DESC) AS num
+            FROM exchangerate
+        ) e ON n.c_code = e.c_code
+        WHERE n.num = 1 AND e.num = 1
+    </select>
 </mapper>

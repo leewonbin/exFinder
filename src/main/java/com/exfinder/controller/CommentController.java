@@ -118,7 +118,7 @@ public class CommentController {
 //        try {
 //            UserDto userDto = (UserDto) session.getAttribute("dto");
 //            if (userDto == null) {
-//                return "redirect:/board/read?b_id=" + parent_id; 
+//                return "redirect:/board/read?b_id=" + b_id; 
 //            }
 //
 //            CommentDto dto = new CommentDto();

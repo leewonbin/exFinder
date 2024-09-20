@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.openqa.selenium.By;
@@ -125,5 +126,14 @@ public class NoticeExchangeRateServiceImpl implements NoticeExchangeRateService 
 		NoticeExchangeRateDao dao = sqlSession.getMapper(NoticeExchangeRateDao.class);
 		return dao.nowSelect();
 	}
+
+	@Override
+	public ArrayList<Map<String, Object>> getBaseRDifference() throws Exception {
+	    NoticeExchangeRateDao dao = sqlSession.getMapper(NoticeExchangeRateDao.class);
+	    return dao.getBaseRDifference();
+	}
+
+
+	
 
 }

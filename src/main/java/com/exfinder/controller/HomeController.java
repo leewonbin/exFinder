@@ -1,10 +1,13 @@
 package com.exfinder.controller;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,6 +24,7 @@ import com.exfinder.dto.CurrencyDto;
 import com.exfinder.dto.ExchangeRateDto;
 import com.exfinder.service.CurrencyService;
 import com.exfinder.service.ExchangeRateService;
+import com.exfinder.service.NoticeExchangeRateService;
 
 /**
  * Handles requests for the application home page.
@@ -33,20 +37,50 @@ public class HomeController {
 	
 	@Autowired
 	private ExchangeRateService exchangerateservice;
+	
+	@Autowired
+	private NoticeExchangeRateService noticeExchangeRateService;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String home(Model model) {
+//		List<CurrencyDto> list = new ArrayList<CurrencyDto>();
+//		try {
+//			list = service.selectExchange();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	    model.addAttribute("list", list);
+//	    return "main/exFinder_main";
+//	}
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		List<CurrencyDto> list = new ArrayList<CurrencyDto>();
-		try {
-			list = service.selectExchange();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    model.addAttribute("list", list);
+	    List<CurrencyDto> list = new ArrayList<>();
+	    try {
+	        // 통화 목록을 가져옴
+	        list = service.selectExchange();
+	        
+	        // 환율 차이 가져오기
+	        ArrayList<Map<String, Object>> differences = noticeExchangeRateService.getBaseRDifference();
+	        Map<String, BigDecimal> resultMap = new HashMap<>();
+	        for (Map<String, Object> result : differences) {
+	            String currencyCode = (String) result.get("c_code");
+	            System.out.println("currencyCode : "+currencyCode );
+	            BigDecimal baseRDifference = (BigDecimal) result.get("baseRDifference");
+	            resultMap.put(currencyCode, baseRDifference);
+	        }
+	        
+	        // 모델에 데이터 추가
+	        model.addAttribute("list", list);
+	        model.addAttribute("baseRDifferences", resultMap);
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
 	    return "main/exFinder_main";
 	}
 	
