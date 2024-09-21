@@ -65,17 +65,22 @@ public class HomeController {
 	        
 	        // 환율 차이 가져오기
 	        ArrayList<Map<String, Object>> differences = noticeExchangeRateService.getBaseRDifference();
-	        Map<String, BigDecimal> resultMap = new HashMap<>();
+	        Map<String, Double> resultMap = new HashMap<>();
+	        String currentCCode = null;
 	        for (Map<String, Object> result : differences) {
-	            String currencyCode = (String) result.get("c_code");
-	            System.out.println("currencyCode : "+currencyCode );
-	            BigDecimal baseRDifference = (BigDecimal) result.get("baseRDifference");
-	            resultMap.put(currencyCode, baseRDifference);
+	        	  if (result.containsKey("C_CODE")) {
+	                  currentCCode = (String) result.get("C_CODE");
+	              }
+
+	              if (result.containsKey("BASERDIFFERENCE") && currentCCode != null) {
+	                  Double baseRDifference = ((Number) result.get("BASERDIFFERENCE")).doubleValue();
+	                  resultMap.put(currentCCode, baseRDifference);
+	              }
 	        }
 	        
 	        // 모델에 데이터 추가
 	        model.addAttribute("list", list);
-	        model.addAttribute("baseRDifferences", resultMap);
+	        model.addAttribute("resultMap", resultMap);
 	        
 	    } catch (Exception e) {
 	        e.printStackTrace();

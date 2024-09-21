@@ -10,14 +10,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.exfinder.dto.AuthoritiesDto;
 import com.exfinder.dto.BoardDto;
@@ -96,7 +94,6 @@ public class UserController {
 		userService.insert(dto);
 		System.out.println(dto);
 		
-		model.addAttribute("action", "join");
 		
 		AuthoritiesDto authDto = new AuthoritiesDto();
 		String join_id = dto.getU_id();
@@ -111,9 +108,7 @@ public class UserController {
 			authoritiesService.insert(authDto);
 		}
 		
-		System.out.println(authDto);
-		
-		return "/user/complete";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/user/update_pw", method = RequestMethod.GET)
@@ -201,7 +196,7 @@ public class UserController {
 		System.out.println(dto);
 			
 		session.setAttribute("action", "update");
-	    return "/user/complete";
+	    return "redirect:/";
 	}
 	
 	//유저 탈퇴 처리, 비활성화
@@ -212,7 +207,7 @@ public class UserController {
 		String u_id = (String) session.getAttribute("userId");
 		userService.deactivate(u_id);
 		
-		return "/main/exFinder_main";
+		return "/";
 	}
 	
 	@RequestMapping(value = "/user/Logincomplete", method = RequestMethod.GET)
@@ -223,7 +218,7 @@ public class UserController {
 		UserDto dto = (UserDto)session.getAttribute("dto");
 		System.out.println(dto);
 		
-		return "/main/exFinder_main";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/user/myPage", method = RequestMethod.GET)
