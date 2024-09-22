@@ -13,5 +13,8 @@ public interface CurrencyDao {
 	
 	public CurrencyDto currency_Select(@Param("c_code")String c_code) throws Exception;
 	public List<CurrencyDto> selectExchange() throws Exception;
+	public boolean interestCheck(@Param("c_code") String c_code, @Param("userid") String userid) throws Exception;
+	public int interestInsert(@Param("u_id") String u_id, @Param("c_code") String c_code);
+	public int deleteInsert(@Param("u_id") String u_id, @Param("c_code") String c_code);
 
 }

@@ -22,6 +22,11 @@
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 
 	<div style="width: 100%; height: 110px;"></div>
+	<c:set var="interestIcon" value="plus.png"/>
+	<c:if test="${isInterestCheck eq true }">
+		<c:set var="interestIcon" value="check.png"/>
+	</c:if>
+	
 
 	<!-- 중앙에 위치시키기 위한 div -->
 	<div class="Currency_view">
@@ -57,6 +62,7 @@
 			<a href="exFinder_Currency?c_code=ILS">이스라엘 ILS</a>
 			<a href="exFinder_Currency?c_code=NZD">뉴질랜드 NZD</a> 		
 		</span>
+		   	<img class="favorit_img" src="${pageContext.request.contextPath}/resources/img/${interestIcon}" onclick="interestAction(${isInterestCheck},'${currencyDto.c_code }');"/>
     	<div class="Currency_chart">
     	    <div class="Currency_left_chart">
     	    	<div class="Currency_left_chart_header">

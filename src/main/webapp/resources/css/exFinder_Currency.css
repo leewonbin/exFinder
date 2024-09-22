@@ -50,6 +50,7 @@ body, html {
 	
 	padding: 40px 20px;  /* 내부 여백 10px 추가 */
 }
+
 .Currency_left_chart_header {
 	height: 50px; 
     display: flex;            /* flexbox 사용 */
@@ -149,6 +150,11 @@ body, html {
     text-decoration: underline; /* 호버 시 밑줄 생성 */
 }
 
+.favorit_img {
+	width : 50px;
+	height : 50px;
+	position : relative;
+}
 
 .Currency_left_chart_table {
     width: 100%; /* 테이블 너비를 100%로 설정 */

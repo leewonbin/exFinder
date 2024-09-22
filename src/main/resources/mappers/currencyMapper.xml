@@ -38,4 +38,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select * from currency where c_code = #{c_code}
 </select>
 
+<select id="interestCheck" resultType="boolean">
+	select count(*) from interest where u_id=#{userid} and c_code=#{c_code}
+</select>
+
+<insert id="interestInsert">
+	insert into interest values(#{u_id},#{c_code})
+</insert>
+<delete id="deleteInsert">
+	delete from interest where u_id=#{u_id} and c_code=#{c_code}
+</delete>
 </mapper>

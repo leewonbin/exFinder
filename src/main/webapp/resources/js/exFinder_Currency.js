@@ -259,3 +259,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+function interestAction(isCheck,c_code) {
+	var favorit_img = $(".favorit_img");
+	$.ajax({
+		url : "/ex/interestAction",
+		type : "post",
+		data : {
+			isCheck : isCheck,
+			c_code : c_code
+		},
+		success: function(res) {
+			var imgSrc = "plus.png";
+			var isCheckParam = "false";
+			if(res === "FALSE") {
+				alert('로그인 후 이용해주세요');
+				location.href='/ex/user/login';
+			}else if(res === "INSERT") {
+				imgSrc = "check.png";
+				isCheckParam = "true";
+			}
+			favorit_img.attr("src","resources/img/"+imgSrc);
+			favorit_img.attr("onclick","interestAction('"+isCheckParam+"','"+c_code+"');")
+		}
+	})
+}
