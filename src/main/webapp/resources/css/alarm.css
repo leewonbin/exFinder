@@ -1,0 +1,72 @@
+/* alertSettings.css */
+
+#alert-settings {
+    width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border: 2px solid #05203C;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 300px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #05203C;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 8px;
+}
+
+select, input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #05203C;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="text"]::placeholder, input[type="number"]::placeholder {
+    color: #999999;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #05203C;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #054184;
+}
+
+/* 반응형 처리 */
+@media screen and (max-width: 600px) {
+    #alert-settings {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    select, input[type="text"], input[type="number"], .submit-btn {
+        font-size: 14px;
+    }
+}
