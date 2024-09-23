@@ -25,7 +25,7 @@ $(document).ready(function() {
 	fetchExchangeRateData(currencyCode, formattedDate, 'value_Currency');
     // Google Charts 라이브러리가 로드된 후 차트 그리기
     google.charts.setOnLoadCallback(function() {
-        console.log('Google Charts 라이브러리 로드 완료');
+        // console.log('Google Charts 라이브러리 로드 완료');
     });
 });
 
@@ -44,8 +44,8 @@ function ajaxData(c_code, chartDivId, cart_day) {
         },
         dataType: "json", // Expect JSON response
         success: function(response) {
-            console.log('응답 데이터 확인');
-            console.log(response); // 응답 데이터 확인
+            //console.log('응답 데이터 확인');
+            //console.log(response); // 응답 데이터 확인
             drawCharts(response, chartDivId); // 차트 그리기 함수 호출
         },
         error: function(xhr, status, error) {
@@ -57,7 +57,7 @@ function ajaxData(c_code, chartDivId, cart_day) {
 // 차트 그리기 함수
 function drawCharts(data, chartDivId) {
     if (typeof google === 'undefined' || !google.visualization || typeof google.visualization.DataTable !== 'function') {
-        console.error("Google Charts 라이브러리가 로드되지 않았습니다. 재시도합니다.");
+        //console.error("Google Charts 라이브러리가 로드되지 않았습니다. 재시도합니다.");
         setTimeout(function() {
             drawCharts(data, chartDivId);
         }, 1000); // 1초 후 재시도
@@ -161,18 +161,18 @@ function fetchExchangeRateData(c_code, rate_date, div_id) {
                 
             }
 
-            console.log('결과 문자열:', result); // 결과 문자열 확인
-            console.log('CSS 클래스:', cssClass); // CSS 클래스 확인
+            //console.log('결과 문자열:', result); // 결과 문자열 확인
+            //console.log('CSS 클래스:', cssClass); // CSS 클래스 확인
 
             // HTML 콘텐츠 업데이트
             const htmlContent = '<div class="' + cssClass + '">' + result + '</div>';
-            console.log('업데이트할 HTML:', htmlContent); // 업데이트할 HTML 확인               
+            //console.log('업데이트할 HTML:', htmlContent); // 업데이트할 HTML 확인               
 
             // HTML 업데이트
             $('#' + div_id).html(htmlContent);
            
             // 업데이트 후 상태 확인
-            console.log('업데이트된 HTML:', $('#' + div_id).html());
+            //console.log('업데이트된 HTML:', $('#' + div_id).html());
         },
         error: function(xhr, status, error) {
             console.error(c_code,'에 대한 데이터를 가져오는 데 실패했습니다:', error);

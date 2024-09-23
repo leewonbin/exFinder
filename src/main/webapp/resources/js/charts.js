@@ -41,7 +41,7 @@ $(document).ready(function() {
 	
     // Google Charts 라이브러리가 로드된 후 차트 그리기
     google.charts.setOnLoadCallback(function() {
-        console.log('Google Charts 라이브러리 로드 완료');
+        //console.log('Google Charts 라이브러리 로드 완료');
     });
     
 	fetchExchangeRateData('USD', formattedDate, 'value_USD', 'flag_USD');
@@ -85,8 +85,8 @@ function ajaxData(c_code, chartDivId) {
 		},
 		dataType : "json", // Expect JSON response
 		success : function(response) {
-			console.log('응답 데이터 확인 ');
-			console.log(response); // 응답 데이터 확인
+			//console.log('응답 데이터 확인 ');
+			//console.log(response); // 응답 데이터 확인
 			//drawCharts(response, chartDivId); // 차트 그리기 함수 호출
 			drawTimeCharts(response, chartDivId);
 		},
@@ -95,33 +95,7 @@ function ajaxData(c_code, chartDivId) {
 		}
 	});
 }
-/*
-// AJAX 요청 함수
-function ajaxData(c_code, chartDivId) {
 
-	var start_date = '2024/08/01'; // 필요한 값으로 수정
-	var end_date = formattedDate; // 필요한 값으로 수정
-
-	$.ajax({
-		type : "POST",
-		url : "/ex/charts/graph", // contextPath 사용 "${pageContext.request.contextPath}/charts/graph",
-		data : {
-			c_code : c_code,
-			start_date : start_date,
-			end_date : end_date
-		},
-		dataType : "json", // Expect JSON response
-		success : function(response) {
-			console.log('응답 데이터 확인 ');
-			console.log(response); // 응답 데이터 확인
-			drawCharts(response, chartDivId); // 차트 그리기 함수 호출
-		},
-		error : function(xhr, status, error) {
-			console.error("AJAX 요청 오류:", status, error);
-		}
-	});
-}
-*/
 //차트 그리기 함수
 function drawTimeCharts(data, chartDivId) {
     if (typeof google === 'undefined' || !google.visualization || typeof google.visualization.DataTable !== 'function') {
@@ -168,62 +142,7 @@ function drawTimeCharts(data, chartDivId) {
     var chart = new google.visualization.LineChart(document.getElementById(chartDivId));
     chart.draw(chartData, options);
 }
-/*
-// 차트 그리기 함수
-function drawCharts(data, chartDivId) {
-	if (typeof google === 'undefined' || !google.visualization || typeof google.visualization.DataTable !== 'function') {
-        // Google Charts가 로드되지 않았을 경우, 재시도 로직을 실행
-        console.error("Google Charts 라이브러리가 로드되지 않았습니다. 재시도합니다.");
-        setTimeout(function() {
-            // 재시도: 일정 시간 후에 drawCharts를 다시 호출
-            drawCharts(data, chartDivId);
-        }, 1000); // 1초 후 재시도
-        return;
-    }
-	
-	var chartData = new google.visualization.DataTable();
-	chartData.addColumn('date', 'yy년MM월dd일'); // 첫 번째 열: 날짜
-	chartData.addColumn('number', '값'); // 두 번째 열: 값
 
-	// 응답 데이터를 [날짜, 값] 형식으로 변환
-	var formattedData = data.map(function(item) {
-		var date = new Date(item.rate_date.year, item.rate_date.month - 1, item.rate_date.day); // Date 객체 생성
-		return [ date, item.base_r ]; // [날짜, 값] 형식으로 배열 반환
-	});
-	chartData.addRows(formattedData); // DataTable에 데이터 추가
-
-	var options = {
-		hAxis : {
-
-			format : 'yy/MM/dd', // 날짜 형식 지정
-			gridlines : {
-				count : -1
-			}, // 자동 그리드라인 수 조정
-			viewWindowMode : 'maximized',
-			ticks : [
-				new Date(2024,7,1),
-				new Date(2024,7,15),
-				new Date(2024,7,30),
-				new Date(2024,8,6),
-			],
-
-		},
-		vAxis : {
-
-			logScale : false
-		},
-		colors : [ '#a52714' ],
-		legend : {
-			position : 'none'
-		}
-	// 범례를 숨깁니다.
-	};
-
-	var chart = new google.visualization.LineChart(document
-			.getElementById(chartDivId));
-	chart.draw(chartData, options);
-}
-*/
 // 정보 함수
 function fetchExchangeRateData(c_code, rate_date, div_id, flag_id) {
     $.ajax({
@@ -267,12 +186,12 @@ function fetchExchangeRateData(c_code, rate_date, div_id, flag_id) {
                 
             }
 
-            console.log('결과 문자열:', result); // 결과 문자열 확인
-            console.log('CSS 클래스:', cssClass); // CSS 클래스 확인
+            //console.log('결과 문자열:', result); // 결과 문자열 확인
+            //console.log('CSS 클래스:', cssClass); // CSS 클래스 확인
 
             // HTML 콘텐츠 업데이트
             const htmlContent = '<div class="' + cssClass + '">' + result + '</div>';
-            console.log('업데이트할 HTML:', htmlContent); // 업데이트할 HTML 확인
+            //console.log('업데이트할 HTML:', htmlContent); // 업데이트할 HTML 확인
             
             const htmlContent2 = '<span class="' + flag_cssClass + '">' + flag_result + '</span>';
 
@@ -282,7 +201,7 @@ function fetchExchangeRateData(c_code, rate_date, div_id, flag_id) {
             $('#' + flag_id).html(htmlContent2);
 
             // 업데이트 후 상태 확인
-            console.log('업데이트된 HTML:', $('#' + div_id).html());
+            //console.log('업데이트된 HTML:', $('#' + div_id).html());
         },
         error: function(xhr, status, error) {
             console.error(c_code,'에 대한 데이터를 가져오는 데 실패했습니다:', error);

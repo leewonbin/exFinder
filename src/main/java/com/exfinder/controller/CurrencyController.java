@@ -98,7 +98,7 @@ public class CurrencyController {
 		for (int i = 1; i <= 20; i++) { // 총 20개 항목까지 시도
 			// 각각의 뉴스 항목을 선택 (li.bx#sp_nws1, li.bx#sp_nws2, ...)
 			Elements newsElements = rawData.select("li.bx#sp_nws" + i);
-			System.out.println("뉴스 항목 " + i);
+			//System.out.println("뉴스 항목 " + i);
 
 			// 각 뉴스 항목에서 URL과 제목을 추출하여 리스트에 저장
 			for (Element news : newsElements) {
@@ -123,6 +123,7 @@ public class CurrencyController {
 				 */
 
 				// 각 뉴스 URL과 제목을 출력 (디버깅용)
+				/*
 				System.out.println("뉴스 아이콘: " + newsIcon);
 				System.out.println("뉴스 이름: " + newsName);
 				System.out.println("뉴스 시간: " + newsTime);
@@ -131,7 +132,8 @@ public class CurrencyController {
 				System.out.println("뉴스 제목: " + newsTitle);
 				System.out.println("뉴스 내용: " + newsText);
 				System.out.println("뉴스 img: " + newsImg);
-
+				*/
+				
 				newsIcons.add(newsIcon); // URL 리스트에 추가
 				newsNames.add(newsName); // 제목 리스트에 추가
 				newsTimes.add(newsTime); // 이미지 리스트에 추가
@@ -149,6 +151,7 @@ public class CurrencyController {
 		}
 
 		// 크롤링 완료 후 최종 리스트 출력 (디버깅용)
+		/*
 		System.out.println("최종 뉴스 아이콘 리스트: " + newsIcons);
 		System.out.println("최종 뉴스 이름 리스트: " + newsNames);
 		System.out.println("최종 뉴스 시간 리스트: " + newsTimes);
@@ -157,7 +160,8 @@ public class CurrencyController {
 		System.out.println("최종 뉴스 제목 리스트: " + newsTitles);
 		System.out.println("최종 뉴스 내용 리스트: " + newsTexts);
 		System.out.println("최종 뉴스 img 리스트: " + newsImgs);
-
+		*/
+		
 		// Model 객체에 뉴스 URL과 제목을 속성으로 추가하여 JSP에 전달
 		model.addAttribute("newsIcons", newsIcons);
 		model.addAttribute("newsNames", newsNames);

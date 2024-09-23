@@ -116,7 +116,7 @@ public class ExChangeController {
                 currentDate = currentDate.minusDays(1); // 날짜에서 1일을 뺌
             }
         }
-		System.out.println("-" + c_code + " 최신 날짜: " + currentDate.format(formatter) + ", 기준 환율: " + today_base_r);
+		//System.out.println("-" + c_code + " 최신 날짜: " + currentDate.format(formatter) + ", 기준 환율: " + today_base_r);
 		
 		currentDate = currentDate.minusDays(1); // 미리 1일을 뺀다.
         
@@ -132,8 +132,7 @@ public class ExChangeController {
             }
         }
 
-		System.out.println("-" + c_code + " 최종 날짜: " + currentDate.format(formatter) + ", 기준 환율: " + yesterday_base_r);
-		//yesterday_base_r
+		//System.out.println("-" + c_code + " 최종 날짜: " + currentDate.format(formatter) + ", 기준 환율: " + yesterday_base_r);
 		
 		// 두 값 중 큰 값을 선택
 		double largerValue = Math.max(today_base_r, yesterday_base_r);
@@ -141,20 +140,20 @@ public class ExChangeController {
 
 		// 큰 값에서 작은 값을 빼기
 		double difference = largerValue - smallerValue;
-		System.out.println("--" + c_code + " 두 값의 차이 : " + String.format("%.2f", difference));
+		//System.out.println("--" + c_code + " 두 값의 차이 : " + String.format("%.2f", difference));
 		
 		double percent = 0;
 		if (yesterday_base_r != 0) {
 		    if (difference < 0) { // 감소한 경우
 		        percent = ((yesterday_base_r - today_base_r) / yesterday_base_r) * 100;
-		        System.out.println("---" + c_code + " 전날 대비 감소율 : " + String.format("%.2f", percent) + "%");
+		        //System.out.println("---" + c_code + " 전날 대비 감소율 : " + String.format("%.2f", percent) + "%");
 		    } else { // 증가한 경우
 		        percent = ((today_base_r - yesterday_base_r) / yesterday_base_r) * 100;
-		        System.out.println("---" + c_code + " 전날 대비 증가율 : " + String.format("%.2f", percent) + "%");
+		        //System.out.println("---" + c_code + " 전날 대비 증가율 : " + String.format("%.2f", percent) + "%");
 		    }
 		} else {
 			percent = 0;
-		    System.out.println("---" + c_code + " 증가하지도 감소하지도 않았습니다.");
+		    //System.out.println("---" + c_code + " 증가하지도 감소하지도 않았습니다.");
 		}
 		
 	    // Gson 객체 생성
@@ -204,7 +203,7 @@ public class ExChangeController {
 	    }
 	    
 		// List<ExchangeRateDto> dto = service.exchangeRateSelect(c_code, start_date, end_date);
-		//System.out.println("c_code : " + c_code + " rate_date : " + rate_date);
+		// System.out.println("c_code : " + c_code + " rate_date : " + rate_date);
 		// ArrayList<NoticeExchangeRateDto> dto = n_service.charts_selectList(c_code, rate_date);
 		// System.out.println("-결과 c_code : " + c_code + " : " + dto);
 		
@@ -256,26 +255,26 @@ public class ExChangeController {
 	    switch (cart_day) {
 	        case "seven-day":
 	            startDate = validDate.minusDays(6); // 7일 전 날짜
-	            System.out.println("seven-day의 시작 날짜 : "+ startDate);
+	            //System.out.println("seven-day의 시작 날짜 : "+ startDate);
 	            break;
 	        case "one-month":
 	            startDate = validDate.minusMonths(1); // 1개월 전 날짜
-	            System.out.println("one-month의 시작 날짜  : "+ startDate);
+	            //System.out.println("one-month의 시작 날짜  : "+ startDate);
 	            break;
 	        case "three-month":
 	            startDate = validDate.minusMonths(3); // 3개월 전 날짜
-	            System.out.println("three-month의 시작 날짜  : "+ startDate);
+	            //System.out.println("three-month의 시작 날짜  : "+ startDate);
 	            break;
 	        case "one-year":
 	            startDate = LocalDate.of(validDate.getYear(), 1, 1); // 올해 1월 1일
-	            System.out.println("one-year의 시작 날짜  : "+ startDate);
+	            //System.out.println("one-year의 시작 날짜  : "+ startDate);
 	            break;
 	        default:
 	            // 기본값 설정
 	            startDate = LocalDate.now().minusMonths(1); // 기본적으로 1개월 전
 	            break;
 	    }
-	    System.out.println(cart_day + "의 종료 날짜 : "+ validDate);
+	    //System.out.println(cart_day + "의 종료 날짜 : "+ validDate);
 	    // 날짜 포맷 조정
 	    String adjusted_StartDate = startDate.format(formatter);
 	    String adjusted_EndDate = validDate.format(formatter);
