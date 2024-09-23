@@ -3,10 +3,10 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.exfinder.dao.alramDao">
+<mapper namespace="com.exfinder.dao.AlramDao">
 
 <insert id="alramInsert">
-insert into alram values(alram_num.nextval,#{u_id},sysdate,#{c_code},#{target_exchange})
+insert into alram values(alram_num.nextval,#{u_id},SYSDATE,#{c_code},#{target_exchange},'X')
 </insert>
 
 </mapper>

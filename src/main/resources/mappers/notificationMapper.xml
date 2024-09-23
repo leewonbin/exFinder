@@ -13,29 +13,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	insert into notification values(notifi_num.nextval,#{n_id},#{u_id},#{c_code},#{standard_exchange},#{target_exchange})
 </insert>
 
-<select id="exchangeEqulasCheck" resultType="notificationDto">
-	WITH LatestRates AS (
-    SELECT 
-        C_CODE,
-        RATE_DATE,
-        ANNOTIME,
-        BASE_R,
-        ROW_NUMBER() OVER (PARTITION BY C_CODE ORDER BY RATE_DATE DESC, ANNOTIME DESC) AS rn
-    FROM 
-        noticeexchangerate
-)
-SELECT 
-    n.N_ID,
-    n.U_ID,
-    n.C_CODE,
-    n.TARGET_EXCHANGE
+<select id="exchangeEqulasCheck" resultType="com.exfinder.dto.NotificationDto">
+<![CDATA[
+select 
+    n.n_id, n.u_id, n.c_code, n.target_exchange
 FROM 
     notification n
 JOIN 
-    LatestRates lr ON n.C_CODE = lr.C_CODE
-WHERE 
-    lr.rn = 1
-    AND n.TARGET_EXCHANGE BETWEEN lr.BASE_R * 0.95 AND lr.BASE_R * 1.05;
+    (SELECT 
+        C_CODE, BASE_R,
+        ROW_NUMBER() OVER (PARTITION BY C_CODE ORDER BY RATE_DATE DESC, ANNOTIME DESC) AS rn
+     FROM noticeexchangerate
+    ) lr 
+    ON n.C_CODE = lr.C_CODE
+    AND lr.rn = 1
+    AND n.TARGET_EXCHANGE BETWEEN lr.BASE_R * 0.95 AND lr.BASE_R * 1.05
+    ]]>
 </select>
 
 
