@@ -22,12 +22,26 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/charts.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 </head>
 <body>
 	<!-- 헤더 Include -->
 	<div class="include_header">
 		<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	</div>
+	<c:if test="${sessionScope.dto ne null}">
+		<script src="${pageContext.request.contextPath}/resources/js/alram.js"></script>
+		<script>
+			var userId = "${sessionScope.dto.u_id}"; // 로그인한 사용자 ID
+			$(function() {
+				console.log('$(function)에 들어옴');
+				connectWs(userId); // WebSocket 연결
+			});
+		</script>
+	</c:if>
+
+
 
 	<!-- 메인 콘텐츠 -->
 	<div class="content">
@@ -619,7 +633,8 @@
 						<tr>
 							<td class="l"><img
 								src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
-								class="flag-img" /><a href="exFinder_Currency?c_code=${currency.c_code }">${currency.c_country}</a></td>
+								class="flag-img" /><a
+								href="exFinder_Currency?c_code=${currency.c_code }">${currency.c_country}</a></td>
 							<td class="l">${currency.c_name}</td>
 							<td class="r">${currency.deal_bas_r}</td>
 
