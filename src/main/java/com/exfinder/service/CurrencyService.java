@@ -13,4 +13,6 @@ public interface CurrencyService {
 	public boolean interestCheck(String c_code, String userid) throws Exception;
 	public int deleteInsert(String u_id, String c_code) throws Exception;
 	public int interestInsert(String u_id, String c_code) throws Exception;
+	public List<CurrencyDto> getFavoriteCurrencies(String userId) throws Exception;
+	
 }
