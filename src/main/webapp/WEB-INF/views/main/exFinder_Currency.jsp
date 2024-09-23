@@ -109,25 +109,25 @@
 			<!-- 뉴스 리스트 출력 -->
 			<div class="news-list">
 				<!-- EL을 사용하여 newsTitles와 newsURLs 출력 -->
-				<c:forEach var="i" items="${newsTitles}" varStatus="status">
-					<c:if test="${status.index < 4}">
-						<div class="news-item">
-							<div class="new-header">
-								<img src="${newsIcons.get(status.index)}">${newsNames.get(status.index)}
-								- ${newsTimes.get(status.index)}
-							</div>
-							<div class="new-main"
-								onclick="window.location.href='${newsURLs.get(status.index)}';">
-								<div class="new-main-text">
-									<label>${newsTitles.get(status.index)} </label><br> <a>${newsTexts.get(status.index)}</a>
-								</div>
-								<c:if test="${not empty newsImgs.get(status.index)}">
-									<img src="${newsImgs.get(status.index)}" alt="뉴스 이미지">
-								</c:if>
-							</div>
-						</div>
-					</c:if>
-				</c:forEach>
+        <c:forEach var="news" items="${newsList}" varStatus="status">
+            <c:if test="${status.index < 4}">
+                <div class="news-item">
+                    <div class="new-header">
+                        <img src="${news.newsIcon}">${news.newsName}
+                        - ${news.newsTime}
+                    </div>
+                    <div class="new-main" onclick="window.location.href='${news.newsURL}';">
+                        <div class="new-main-text">
+                            <label>${news.newsTitle} </label><br>
+                            <a>${news.newsText}</a>
+                        </div>
+                        <c:if test="${not empty news.newsImg}">
+                            <img src="${news.newsImg}" alt="뉴스 이미지">
+                        </c:if>
+                    </div>
+                </div>
+            </c:if>
+        </c:forEach>
 			</div>
 		</div>
 	</div>

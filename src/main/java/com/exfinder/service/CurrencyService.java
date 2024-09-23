@@ -22,6 +22,8 @@ public interface CurrencyService {
 	public List<ExchangeRateDto> dailyCurrency(@Param("c_code")String c_code) throws Exception;
 	public List<NoticeExchangeRateDto> hourCurrency(@Param("c_code")String c_code) throws Exception;
 
+	public List<CurrencyDto> getFavoriteCurrencies(String userId) throws Exception;
+	
 }
 
 
