@@ -22,22 +22,25 @@
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 
 	<div style="width: 100%; height: 110px;"></div>
-	<c:set var="interestIcon" value="plus.png"/>
+	<c:set var="interestIcon" value="star-before-selection.png"/>
 	<c:if test="${isInterestCheck eq true }">
-		<c:set var="interestIcon" value="check.png"/>
+		<c:set var="interestIcon" value="star-after-selection.png"/>
 	</c:if>
 	
 
 	<!-- 중앙에 위치시키기 위한 div -->
 	<div class="Currency_view">
-    	<div class="Currency_header">
-    		<img src="${pageContext.request.contextPath}/resources/img/gonfalon/${currencyDto.c_code}.png">
-            <a><b>${currencyDto.c_country}</b> ${currencyDto.c_code}</a> 
-            <i class="circle" id="toggle-list">
-        		<i class="arrow-up"></i>
-    		</i>
-    	</div>
-    	<span id="currency-list" class="hidden" >
+		<div class="Currency_high_header">
+    		<div class="Currency_header" id="toggle-list">
+    			<img src="${pageContext.request.contextPath}/resources/img/gonfalon/${currencyDto.c_code}.png">
+            	<a><b>${currencyDto.c_country}</b> ${currencyDto.c_code}</a> 
+            	<i class="circle" >
+        			<i class="arrow-up"></i>
+    			</i>
+    		</div>
+			<img class="favorit_img" src="${pageContext.request.contextPath}/resources/img/${interestIcon}" onclick="interestAction(${isInterestCheck},'${currencyDto.c_code }');"/>
+		</div>
+		<span id="currency-list" class="hidden" >
 			<a href="exFinder_Currency?c_code=USD">미국 USD</a>
 			<a href="exFinder_Currency?c_code=JPY">일본 JPY</a>
 			<a href="exFinder_Currency?c_code=EUR">유럽연합 EUR</a>
@@ -62,7 +65,6 @@
 			<a href="exFinder_Currency?c_code=ILS">이스라엘 ILS</a>
 			<a href="exFinder_Currency?c_code=NZD">뉴질랜드 NZD</a> 		
 		</span>
-		   	<img class="favorit_img" src="${pageContext.request.contextPath}/resources/img/${interestIcon}" onclick="interestAction(${isInterestCheck},'${currencyDto.c_code }');"/>
     	<div class="Currency_chart">
     	    <div class="Currency_left_chart">
     	    	<div class="Currency_left_chart_header">
@@ -122,7 +124,9 @@
 								<div class="new-main-text">
 									<label>${newsTitles.get(status.index)} </label><br> <a>${newsTexts.get(status.index)}</a>
 								</div>
-								<img src="${newsImgs.get(status.index)}" alt="뉴스 이미지">
+								<c:if test="${not empty newsImgs.get(status.index)}">
+									<img src="${newsImgs.get(status.index)}" alt="뉴스 이미지">
+								</c:if>
 							</div>
 						</div>
 					</c:if>

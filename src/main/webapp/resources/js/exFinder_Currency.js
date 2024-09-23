@@ -270,13 +270,13 @@ function interestAction(isCheck,c_code) {
 			c_code : c_code
 		},
 		success: function(res) {
-			var imgSrc = "plus.png";
+			var imgSrc = "star-before-selection.png";
 			var isCheckParam = "false";
 			if(res === "FALSE") {
 				alert('로그인 후 이용해주세요');
 				location.href='/ex/user/login';
 			}else if(res === "INSERT") {
-				imgSrc = "check.png";
+				imgSrc = "star-after-selection.png";
 				isCheckParam = "true";
 			}
 			favorit_img.attr("src","resources/img/"+imgSrc);
