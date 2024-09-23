@@ -91,11 +91,6 @@ public class ExChangeController {
 	    return ResponseEntity.ok(groupList);
 	}
 	
-	@RequestMapping(value = "charts", method = RequestMethod.GET)
-	public void charts(Model model) throws Exception {
-		
-	}
-	
 	@ResponseBody
 	@RequestMapping(value = "charts/value", method = RequestMethod.POST)
 	public void charts_value(HttpServletResponse response, @RequestParam("c_code") String  c_code, @RequestParam("rate_date") String rate_date) throws Exception {
