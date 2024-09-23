@@ -1,5 +1,6 @@
 package com.exfinder.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -13,5 +14,6 @@ public interface CurrencyDao {
 	
 	public CurrencyDto currency_Select(@Param("c_code")String c_code) throws Exception;
 	public List<CurrencyDto> selectExchange() throws Exception;
-
+	
+	public List<CurrencyDto> selectDailyExchangeRates(@Param("c_code") String c_code) throws Exception;
 }

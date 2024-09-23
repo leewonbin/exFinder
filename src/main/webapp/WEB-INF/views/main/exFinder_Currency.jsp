@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <title>통화 상세 정보</title>
@@ -102,33 +102,38 @@
 	<h1 class="rate-day">일자별</h1>
 
 	<div class="box-contents">
-		<div>
-			<table class="exchange">
-				<thead>
-					<tr class="chart">
-
-						<th rowspan="2">날짜</th>
-						<th rowspan="2">종가</th>
-						<th rowspan="2">매매기준율</th>
-						<th rowspan="2">전일비</th>
-						<th colspan="2">현찰</th>
-						<th colspan="2">송금(전신환)</th>
-						<th rowspan="2">기준환율</th>
+		<h2>${currencyCode}일자별 환율</h2>
+		<table class="exchange">
+			<thead>
+				<tr class="chart">
+					<th>날짜</th>
+					<th>종가</th>
+					<th>매매기준율</th>
+					<th>전일비</th>
+					<th>사실때</th>
+					<th>파실때</th>
+					<th>보낼때</th>
+					<th>받을때</th>
+					<th>기준환율</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="dailyCurrency" items="${dailyRates}">
+					<tr>
+						<td>${dailyCurrency.rate_date}</td>
+						<td>${dailyCurrency.deal_bas_r}</td>
+						<td>${dailyCurrency.cash_sell}</td>
+						<td>${dailyCurrency.previous_day_diff}</td>
+						<td>${dailyCurrency.cash_buy}</td>
+						<td>${dailyCurrency.cash_sell}</td>
+						<td>${dailyCurrency.ttb}</td>
+						<td>${dailyCurrency.tts}</td>
+						<td>${dailyCurrency.base_r}</td>
 					</tr>
-					<tr class="chartB">
-						<th class="leftL">사실때</th>
-						<th>파실때</th>
-						<th>보내실때</th>
-						<th>받으실때</th>
-					</tr>
-				</thead>
-				<tbody>
-					
-				</tbody>
-			</table>
-		</div>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
-
 
 
 

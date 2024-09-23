@@ -1,5 +1,6 @@
 package com.exfinder.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -32,4 +33,10 @@ public class CurrencyServiceImpl implements CurrencyService{
 		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);		
 		return dao.currency_Select(c_code);
 	}
+	
+	@Override
+    public List<CurrencyDto> selectDailyExchangeRates(String c_code) throws Exception {
+        CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);        
+        return dao.selectDailyExchangeRates(c_code);
+    }
 }

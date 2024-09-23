@@ -36,6 +36,9 @@ public class HomeController {
 	private CurrencyService service;
 	
 	@Autowired
+    private CurrencyService currencyService;
+	
+	@Autowired
 	private ExchangeRateService exchangerateservice;
 	
 	@Autowired
@@ -225,4 +228,6 @@ public class HomeController {
         
 		return "main/exFinder_Currency";
 	}
+
+	
 }
