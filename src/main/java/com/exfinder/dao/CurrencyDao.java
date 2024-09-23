@@ -16,5 +16,6 @@ public interface CurrencyDao {
 	public boolean interestCheck(@Param("c_code") String c_code, @Param("userid") String userid) throws Exception;
 	public int interestInsert(@Param("u_id") String u_id, @Param("c_code") String c_code);
 	public int deleteInsert(@Param("u_id") String u_id, @Param("c_code") String c_code);
+	public List<CurrencyDto> getFavoriteCurrencies(String userId) throws Exception;
 
 }

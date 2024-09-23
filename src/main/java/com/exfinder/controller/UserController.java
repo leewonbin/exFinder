@@ -19,9 +19,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.exfinder.dto.AuthoritiesDto;
 import com.exfinder.dto.BoardDto;
+import com.exfinder.dto.CurrencyDto;
 import com.exfinder.dto.UserDto;
 import com.exfinder.service.AuthoritiesService;
 import com.exfinder.service.BoardService;
+import com.exfinder.service.CurrencyService;
 import com.exfinder.service.UserService;
 import com.exfinder.util.fileUtil;
 
@@ -39,6 +41,9 @@ public class UserController {
 	
 	@Autowired
 	private BoardService service;
+	
+	@Autowired
+	private CurrencyService currencyService;
 
 	// 유저 로그인
 	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
@@ -243,8 +248,11 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/user/bookMark", method = RequestMethod.GET)
-	public void bookMark() throws Exception{
-		
+	public String getFavoriteCurrencies(HttpSession session, Model model) throws Exception{
+		 String userId = (String) session.getAttribute("userId"); // 세션에서 사용자 ID 가져오기
+	        List<CurrencyDto> favoriteCurrencies = currencyService.getFavoriteCurrencies(userId);
+	        model.addAttribute("userCurrencies", favoriteCurrencies);
+	        return "/user/bookMark"; // JSP 파일 이름
 	}
 
 	

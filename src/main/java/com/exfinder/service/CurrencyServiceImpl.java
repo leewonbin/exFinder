@@ -52,4 +52,10 @@ public class CurrencyServiceImpl implements CurrencyService{
 		return dao.interestInsert(u_id,c_code);
 		
 	}
+
+	@Override
+	public List<CurrencyDto> getFavoriteCurrencies(String userId) throws Exception {
+		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
+		return dao.getFavoriteCurrencies(userId);
+	}
 }

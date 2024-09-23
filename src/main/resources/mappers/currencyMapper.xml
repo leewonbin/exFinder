@@ -48,4 +48,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <delete id="deleteInsert">
 	delete from interest where u_id=#{u_id} and c_code=#{c_code}
 </delete>
+
+<!-- 즐겨찾기 통화 조회 -->
+    <select id="getFavoriteCurrencies" resultType="com.exfinder.dto.CurrencyDto">
+        SELECT c.*
+        FROM currency c
+        JOIN interest i ON c.c_code = i.c_code
+        WHERE i.u_id = #{userId}
+    </select>
 </mapper>
