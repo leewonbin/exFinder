@@ -15,14 +15,9 @@ function currencyConvert(amount, fromCurr, toCurr) {
     // 결과를 도착 통화의 data-rate로 나누기
     let result = exchangeAmount / toRate;
 
-    if (toCurr.val() === 'JPY' && fromCurr.val() === 'VND' || fromCurr.val() === 'JPY' && toCurr.val() === 'VND') {
-        return result;
-    } else if (toCurr.val() === fromCurr.val()) {
-        return result;
-    } else if (toCurr.val() === 'JPY' || toCurr.val() === 'VND' || fromCurr.val() == 'JPY' || fromCurr.val() == 'VND') {
-        result /= 100;
+   if (toCurr.val() === fromCurr.val()) {
+      return result;
     }
-
     return result;
 }
 

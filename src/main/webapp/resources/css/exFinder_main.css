@@ -10,29 +10,29 @@ body, html {
 
 .include_header * {
 	color: #fff; /* 텍스트 색상 설정 */
-    text-shadow: none; /* 텍스트 그림자 제거 */
-    /* 기타 스타일 필요시 추가 */
+	text-shadow: none; /* 텍스트 그림자 제거 */
+	/* 기타 스타일 필요시 추가 */
 }
+
 .include_header {
-	display : none;
-    position: fixed;
-    top: -130px; /* 화면 밖으로 이동 */
-    width: 100%;
-    height: 130px;
-    z-index: 1000; /* 콘텐츠 위에 위치하도록 설정 */
+	display: none;
+	position: fixed;
+	top: -130px; /* 화면 밖으로 이동 */
+	width: 100%;
+	height: 130px;
+	z-index: 1000; /* 콘텐츠 위에 위치하도록 설정 */
 }
 
 /* 헤더가 화면에 보이도록 이동 */
 .include_header.show {
-    transform: translateY(130px); /* 헤더 높이만큼 이동 */
+	transform: translateY(130px); /* 헤더 높이만큼 이동 */
 }
-
 
 .top-content {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height : 130px;
+	height: 130px;
 	background-color: #05203C;
 }
 
@@ -46,59 +46,59 @@ body, html {
 }
 
 .top-content-start {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* 자식 요소들을 왼쪽 정렬 */
-    justify-content: center; /* 세로 방향으로 중앙 정렬 */
-    height: 100%; /* 높이를 100%로 설정하여 부모 요소에 맞춤 */
-    max-width: 250px; /* 최대 너비 제한 */
-    margin-top: 30px; /* 상단 마진 제거 */
-    margin-left : 70px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start; /* 자식 요소들을 왼쪽 정렬 */
+	justify-content: center; /* 세로 방향으로 중앙 정렬 */
+	height: 100%; /* 높이를 100%로 설정하여 부모 요소에 맞춤 */
+	max-width: 250px; /* 최대 너비 제한 */
+	margin-top: 30px; /* 상단 마진 제거 */
+	margin-left: 70px;
 }
 
 /* 이미지 및 리스트 스타일 조정 */
-.top-content-start > img {
-    width: 200px;
-    margin-bottom: 20px; /* 이미지와 리스트 간의 간격 조정 */
+.top-content-start>img {
+	width: 200px;
+	margin-bottom: 20px; /* 이미지와 리스트 간의 간격 조정 */
 }
 
-.top-content-start > ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    gap: 20px; /* li 사이의 간격 조정 */
+.top-content-start>ul {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	gap: 20px; /* li 사이의 간격 조정 */
 }
 
-.top-content-start > ul > li {
-    font-weight: bold;
-    cursor: pointer;
-    color: white;
+.top-content-start>ul>li {
+	font-weight: bold;
+	cursor: pointer;
+	color: white;
 }
 
 .top-content-end {
 	display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* 자식 요소들을 왼쪽 정렬 */
-    justify-content: center; /* 세로 방향으로 중앙 정렬 */
-    height: 100%; /* 높이를 100%로 설정하여 부모 요소에 맞춤 */
-    max-width: 300px; /* 최대 너비 제한 */
-    margin-right : 70px;
+	flex-direction: column;
+	align-items: flex-start; /* 자식 요소들을 왼쪽 정렬 */
+	justify-content: center; /* 세로 방향으로 중앙 정렬 */
+	height: 100%; /* 높이를 100%로 설정하여 부모 요소에 맞춤 */
+	max-width: 300px; /* 최대 너비 제한 */
+	margin-right: 70px;
 }
 
-.top-content-end > ul {
+.top-content-end>ul {
 	display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    gap: 20px; /* li 사이의 간격 조정 */
-	
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	gap: 20px; /* li 사이의 간격 조정 */
 }
 
-.top-content-end > ul > li {
+.top-content-end>ul>li>a {
 	font-weight: bold;
-    cursor: pointer;
-    color: white;
+	cursor: pointer;
+	color: white;
+	text-decoration-line: none;
 }
 
 /* p 태그 스타일 */
@@ -170,7 +170,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	width: 50px; /* 너비 조정 */
 	height: 50px; /* 높이 조정 */
 	text-align: center;
-	margin-top : 170px;
+	margin-top: 170px;
 }
 
 /* selectbox와 input 스타일 */
@@ -181,27 +181,27 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 /* selectBoxWrap을 상대적으로 설정 */
 .selectBoxWrap {
-    position: relative; /* img와 select를 절대 위치로 설정하기 위함 */
-    display: inline-block; /* 콘텐츠가 선택박스와 이미지 둘 다 포함할 수 있도록 설정 */
+	position: relative; /* img와 select를 절대 위치로 설정하기 위함 */
+	display: inline-block; /* 콘텐츠가 선택박스와 이미지 둘 다 포함할 수 있도록 설정 */
 }
 
 /* img를 select박스의 왼쪽에 배치 */
-.selectBoxWrap > img {
-    position: absolute;
-    left: 10px; /* 왼쪽으로 10px 여백 추가 */
-    top: 35%; /* 수직 중앙 정렬 */
-    transform: translateY(-50%); /* 수직 중앙 정렬 보정 */
-    width: 50px; /* 이미지 크기 조정 */
-    height: 50px; /* 이미지 크기 조정 */
-    z-index: 1; /* select 요소보다 위에 배치 */
+.selectBoxWrap>img {
+	position: absolute;
+	left: 10px; /* 왼쪽으로 10px 여백 추가 */
+	top: 35%; /* 수직 중앙 정렬 */
+	transform: translateY(-50%); /* 수직 중앙 정렬 보정 */
+	width: 50px; /* 이미지 크기 조정 */
+	height: 50px; /* 이미지 크기 조정 */
+	z-index: 1; /* select 요소보다 위에 배치 */
 }
 
 /* select 요소에 여백 추가 */
 .selectBoxWrap select {
-    padding-left: 70px; /* 이미지와 겹치지 않도록 왼쪽 패딩 추가 (여백과 크기를 고려하여 조정) */
-    box-sizing: border-box; /* 패딩이 포함된 크기 계산 */
-    position: relative; /* img와의 위치 관계를 위해 상대적 위치 설정 */
-    z-index: 0; /* 이미지보다 뒤에 배치 */
+	padding-left: 70px; /* 이미지와 겹치지 않도록 왼쪽 패딩 추가 (여백과 크기를 고려하여 조정) */
+	box-sizing: border-box; /* 패딩이 포함된 크기 계산 */
+	position: relative; /* img와의 위치 관계를 위해 상대적 위치 설정 */
+	z-index: 0; /* 이미지보다 뒤에 배치 */
 }
 
 /* 기준 통화 selectbox 스타일 */
@@ -232,7 +232,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	height: 37px;
 	background-color: white;
 	position: absolute; /* 절대 위치 설정 */
-	bottom : 1px;
+	bottom: 1px;
 	left: 0;
 	margin: 0;
 	border: none;
@@ -268,7 +268,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	height: 37px;
 	background-color: white;
 	position: absolute; /* 절대 위치 설정 */
-	bottom : 1px;
+	bottom: 1px;
 	left: 0;
 	margin: 0;
 	border: none;
@@ -276,22 +276,11 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	padding-right: 20px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .box-contents {
 	margin: 20px auto;
-    padding: 20px;
-    max-width: 1200px;
-    box-sizing: border-box;
+	padding: 20px;
+	max-width: 1200px;
+	box-sizing: border-box;
 }
 
 .rate-lookup {
@@ -303,77 +292,87 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 /* 기본 테이블 스타일 */
 .exchange {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0; /* 테이블 위아래 여백 */
-    font-family: Arial, sans-serif;
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px 0; /* 테이블 위아래 여백 */
+	font-family: Arial, sans-serif;
 }
 
 .exchange thead {
-    background-color: white;
-    color: #ddd;
+	background-color: white;
+	color: #ddd;
 }
 
 .exchange th, .exchange td {
-    padding: 5px 10px;
-    border: none;
-    vertical-align: middle; /* 수직 가운데 정렬 */
+	padding: 5px 10px;
+	border: none;
+	vertical-align: middle; /* 수직 가운데 정렬 */
 }
 
 .exchange th {
-    font-weight: bold;
-    text-align: center;
+	font-weight: bold;
+	text-align: center;
 }
 
 /* 특정 행마다 가로줄 추가 */
 .exchange tbody tr:nth-child(5n) {
-    border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 }
 
 .exchange thead th {
-    background-color: #f4f4f4;
-    color: #000000; 
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    padding: 8px 10px;
+	background-color: #f4f4f4;
+	color: #000000;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	padding: 8px 10px;
 }
 
 .exchange thead th:first-child {
-    border-left: none;
+	border-left: none;
 }
 
 .exchange thead th:last-child {
-    border-right: none;
+	border-right: none;
 }
 
 /* 헤더의 맨 위에 테두리 추가 */
 .exchange thead {
-    border-top: 1px solid #ddd;
+	border-top: 1px solid #ddd;
 }
 
 /* 두 번째 행의 셀 스타일 (열 제목) */
 .exchange thead tr.chartB th {
-    border-right: 1px solid #ddd; /* 열 제목 셀 사이에 세로줄 */
+	border-right: 1px solid #ddd; /* 열 제목 셀 사이에 세로줄 */
 }
 
 .l {
 	text-align: left;
 }
 
+.l>a {
+	text-decoration: none;
+	color: black;
+}
+
+.l>a:hover {
+	text-decoration: underline;
+}
+	
+
 .r {
 	text-align: right;
 }
 
 .increase {
-    color: #df0000; 
+	color: #df0000;
 }
 
 .decrease {
-    color: #0000bf; 
+	color: #0000bf;
 }
 
 .no-change {
-    color: black; 
+	color: black;
 }
 
 .date-display {
@@ -381,11 +380,10 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 }
 
 .flag-img {
-    width: 24px;
-    height: auto; /* 비율 유지 */
-    vertical-align: middle; /* 이미지와 텍스트의 수직 정렬 맞추기 */
+	width: 24px;
+	height: auto; /* 비율 유지 */
+	vertical-align: middle; /* 이미지와 텍스트의 수직 정렬 맞추기 */
 }
-
 
 /* 슬라이드 쇼 */
 /* li{list-style:none;}

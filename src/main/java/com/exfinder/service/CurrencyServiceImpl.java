@@ -33,10 +33,25 @@ public class CurrencyServiceImpl implements CurrencyService{
 		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);		
 		return dao.currency_Select(c_code);
 	}
-	
+
 	@Override
-    public List<CurrencyDto> selectDailyExchangeRates(String c_code) throws Exception {
-        CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);        
-        return dao.selectDailyExchangeRates(c_code);
-    }
+	public boolean interestCheck(String c_code, String userid) throws Exception {
+		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
+		return dao.interestCheck(c_code, userid);
+	}
+
+	@Override
+	public int deleteInsert(String u_id, String c_code) throws Exception {
+		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
+		return dao.deleteInsert(u_id,c_code);
+		
+	}
+
+	@Override
+	public int interestInsert(String u_id, String c_code) throws Exception {
+		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
+		return dao.interestInsert(u_id,c_code);
+		
+	}
+
 }

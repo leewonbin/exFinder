@@ -10,14 +10,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.exfinder.dto.AuthoritiesDto;
 import com.exfinder.dto.BoardDto;
@@ -96,7 +94,6 @@ public class UserController {
 		userService.insert(dto);
 		System.out.println(dto);
 		
-		model.addAttribute("action", "join");
 		
 		AuthoritiesDto authDto = new AuthoritiesDto();
 		String join_id = dto.getU_id();
@@ -111,97 +108,7 @@ public class UserController {
 			authoritiesService.insert(authDto);
 		}
 		
-		System.out.println(authDto);
-		
-		return "/user/complete";
-	}
-	
-	@RequestMapping(value = "/user/update_pw", method = RequestMethod.GET)
-	public void update_pw() throws Exception{
-	}
-	
-	// 마이 페이지 진입 전 비밀번호 체크 
-	@RequestMapping(value = "/user/update_Check", method = RequestMethod.GET)
-	public String update_Check(Model model, HttpServletRequest request, HttpSession session) throws Exception{
-		String userId = (String) session.getAttribute("userId");
-		System.out.println("userId : " + userId);
-		
-		// 데이터베이스에서 암호화된 비밀번호를 가져옴
-	    String storedEncPassword = userService.getU_pwByU_id(userId);
-	    System.out.println("storedEncPassword : " + storedEncPassword);
-	    
-	    String pw_Check = request.getParameter("pw_Check");
-	    
-	    // 비밀번호 비교
-	    boolean Pw_Check = bcryptPasswordEncoder.matches(pw_Check, storedEncPassword);
-		
-		if (Pw_Check) {
-			System.out.println("비밀번호가 일치합니다. 회원정보 수정 페이지로 이동합니다. ");
-            
-			return "redirect:/user/update";
-	    } else {
-	    	System.out.println("회원정보 확인에 실패했습니다. 비밀번호가 일치하지 않습니다. ");
-	    	return "/user/update_pw";
-	    }
-	}
-	
-	// 유저 정보 수정 페이지 이동
-	@RequestMapping(value = "/user/update", method = RequestMethod.GET)
-	public void update(Model model, HttpSession session) throws Exception{
-		String userId = (String) session.getAttribute("userId");
-		
-		UserDto dto = userService.selectUser(userId);
-		model.addAttribute("UserDto",dto);
-		System.out.println(dto);
-			
-		LocalDate u_birthday = dto.getU_birthday();
-	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	    String u_birthdayStr = sdf.format(u_birthday);
-	    String[] u_birthdayArr = u_birthdayStr.split("-");
-	    model.addAttribute("u_birthdayArr", u_birthdayArr);
-	        
-	    String u_email = dto.getU_email();
-        String[] u_emailArr = u_email.split("@");
-        model.addAttribute("u_emailArr", u_emailArr);
-            
-        String u_phoneNumber = dto.getU_phoneNumber();
-        String[] u_phoneNumberArr = u_phoneNumber.split("-");
-        model.addAttribute("u_phoneNumberArr", u_phoneNumberArr);
-        
-	}
-	
-	// 유저 정보 수정 처리
-	@RequestMapping(value = "/user/updateDB", method = RequestMethod.POST)
-	public String updateDB(UserDto dto, HttpServletRequest request, HttpSession session) throws Exception{
-		System.out.println("User updateDB");
-		
-		String encPassword = bcryptPasswordEncoder.encode(dto.getU_pw());
-		dto.setU_pw(encPassword);
-		
-		// 요청 파라미터를 가져와서 LocalDate로 변환
-		int year = Integer.parseInt(request.getParameter("year"));
-		int month = Integer.parseInt(request.getParameter("month"));
-		int day = Integer.parseInt(request.getParameter("day"));
-
-		// LocalDate를 java.util.Date로 변환
-		LocalDate u_birthday = LocalDate.of(year, month, day);
-			
-		dto.setU_birthday(u_birthday);
-		System.out.println("u_birthday : " + u_birthday);
-			
-		String u_email = request.getParameter("email") + "@" + request.getParameter("select");
-	    System.out.println("u_email : " + u_email);
-	    dto.setU_email(u_email);
-	    	
-		String u_phoneNumber = request.getParameter("phoneNumber1") + "-" + request.getParameter("phoneNumber2") + "-" + request.getParameter("phoneNumber3");
-	    System.out.println("u_phoneNumber : " + u_phoneNumber );
-	    dto.setU_phoneNumber(u_phoneNumber);
-	        
-	    userService.update(dto);
-		System.out.println(dto);
-			
-		session.setAttribute("action", "update");
-	    return "/user/complete";
+		return "redirect:/";
 	}
 	
 	//유저 탈퇴 처리, 비활성화
@@ -212,7 +119,7 @@ public class UserController {
 		String u_id = (String) session.getAttribute("userId");
 		userService.deactivate(u_id);
 		
-		return "/main/exFinder_main";
+		return "/";
 	}
 	
 	@RequestMapping(value = "/user/Logincomplete", method = RequestMethod.GET)
@@ -223,7 +130,7 @@ public class UserController {
 		UserDto dto = (UserDto)session.getAttribute("dto");
 		System.out.println(dto);
 		
-		return "/main/exFinder_main";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/user/myPage", method = RequestMethod.GET)

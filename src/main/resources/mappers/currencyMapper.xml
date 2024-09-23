@@ -39,27 +39,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 
-<!-- 특정 통화의 일자별 환율 조회 -->
-<!-- <select id="selectDailyExchangeRates" resultType="com.exfinder.dto.CurrencyDto">
-    SELECT
-        e.rate_date,
-        c.c_code,
-        c.c_name,
-        c.c_country,
-        e.ttb,
-        e.tts,
-        e.cash_buy,
-        e.cash_sell,
-        e.deal_bas_r,
-        e.base_r
-    FROM
-        exchangerate e
-    JOIN
-        currency c ON e.c_code = c.c_code
-    WHERE
-        e.c_code = #{c_code}
-    ORDER BY
-        e.rate_date DESC
-</select> -->
+<select id="interestCheck" resultType="boolean">
+	select count(*) from interest where u_id=#{userid} and c_code=#{c_code}
+</select>
+
+<insert id="interestInsert">
+	insert into interest values(#{u_id},#{c_code})
+</insert>
+<delete id="deleteInsert">
+	delete from interest where u_id=#{u_id} and c_code=#{c_code}
+</delete>
 
 </mapper>

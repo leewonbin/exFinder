@@ -46,10 +46,38 @@
 					</ul>
 				</div>
 				<div class="top-content-end">
-					<ul>
-						<li>로그인</li>
-						<li>회원가입</li>
-					</ul>
+					<c:choose>
+						<c:when test="${empty dto }">
+							<ul>
+								<!-- 로그인, 마이페이지 등등.. -->
+								<li><a href="/ex/user/login">로그인</a></li>
+								<li><a href="/ex/user/join">회원가입</a></li>
+							</ul>
+						</c:when>
+						<c:otherwise>
+							<div class="header_end_myPage">
+								<!-- 로그인, 마이페이지 등등.. -->
+								<c:choose>
+									<c:when test="${not empty dto.u_profile_img}">
+										<img
+											src="${pageContext.request.contextPath}/resources/profile_img/${dto.u_profile_img}"
+											onclick="location.href='/ex/user/myPage'">
+									</c:when>
+									<c:otherwise>
+										<img
+											src="${pageContext.request.contextPath}/resources/img/Wuser.png"
+											onclick="location.href='/ex/user/myPage'">
+									</c:otherwise>
+								</c:choose>
+
+								<p>
+									<a href="/ex/user/myPage"><c:out value="${dto.u_nickname }" />님</a>
+								</p>
+								<button type="button" id="toggleButton"
+									onclick="toggleMiniMyPage()"></button>
+							</div>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</div>
@@ -65,8 +93,13 @@
 						<option value="KRW" data-rate="1" data-curr="원">대한민국
 							(KRW)</option>
 						<c:forEach var="exchange" items="${list}">
-							<option value="${exchange.c_code}"
-								data-rate="${exchange.base_r }" data-curr="${exchange.c_name }"
+							<c:set var="base_r" value="${exchange.base_r }" />
+							<c:if
+								test="${exchange.c_code eq 'JPY' || exchange.c_code eq 'VND'}">
+								<c:set var="base_r" value="${base_r / 100}" />
+							</c:if>
+							<option value="${exchange.c_code}" data-rate="${base_r }"
+								data-curr="${exchange.c_name }"
 								<c:if test="${exchange.c_code eq 'USD'}">selected</c:if>>
 								${exchange.c_country} (${exchange.c_code})</option>
 						</c:forEach>
@@ -94,9 +127,14 @@
 						<option value="KRW" data-rate="1" data-curr="원" selected>대한민국
 							(KRW)</option>
 						<c:forEach var="exchange" items="${list }">
-							<option value="${exchange.c_code}"
-								data-rate="${exchange.base_r }" data-curr="${exchange.c_name }">
-								${exchange.c_country} (${exchange.c_code})</option>
+							<c:set var="base_r" value="${exchange.base_r }" />
+							<c:if
+								test="${exchange.c_code eq 'JPY' || exchange.c_code eq 'VND'}">
+								<c:set var="base_r" value="${base_r / 100}" />
+							</c:if>
+							<option value="${exchange.c_code}" data-rate="${base_r }"
+								data-curr="${exchange.c_name }">${exchange.c_country}
+								(${exchange.c_code})</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -577,40 +615,31 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:set var="beforeValue" value="0" />
-					<c:forEach var="currency" items="${list}" >
+					<c:forEach var="currency" items="${list}">
 						<tr>
 							<td class="l"><img
 								src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
-								class="flag-img" /> ${currency.c_country}</td>
+								class="flag-img" /><a href="exFinder_Currency?c_code=${currency.c_code }">${currency.c_country}</a></td>
 							<td class="l">${currency.c_name}</td>
 							<td class="r">${currency.deal_bas_r}</td>
 
 							<!-- 전일비 색상 설정 + 전일비 계산 -->
-						<%-- 	<c:set var="changeClass">
+							<c:set var="changeClass">
 								<c:choose>
-									<c:when test="${baseRDifferences[currency.c_code] != null}">
-										<c:choose>
-											<c:when test="${baseRDifferences[currency.c_code] > 0}">
-                                            increase
-                                        </c:when>
-											<c:when test="${baseRDifferences[currency.c_code] < 0}">
+									<c:when test="${resultMap[currency.c_code] > 0}">
+                                         increase
+                                    </c:when>
+									<c:when test="${resultMap[currency.c_code] < 0}">
                                             decrease
                                         </c:when>
-											<c:otherwise>
-                                            no-change
-                                        </c:otherwise>
-										</c:choose>
-									</c:when>
 									<c:otherwise>
-                                    no-change
-                                </c:otherwise>
+                                            no-change
+                                    </c:otherwise>
 								</c:choose>
-							</c:set> --%>
+							</c:set>
 
-							<%-- <td class="r ${changeClass}"><fmt:formatNumber type="number" --%>
-							<td><fmt:formatNumber type="number"
-									maxFractionDigits="2" value="${baseRDifferences[currency.c_code]}" />
+							<td class="r ${changeClass}"><fmt:formatNumber type="number"
+									maxFractionDigits="2" value="${resultMap[currency.c_code]}" />
 							</td>
 							<td class="r">${currency.cash_buy}</td>
 							<td class="r">${currency.cash_sell}</td>
@@ -618,7 +647,6 @@
 							<td class="r">${currency.tts}</td>
 							<td class="r">${currency.base_r}</td>
 						</tr>
-						<c:set var="beforeValue" value="${currency.base_r}" />
 					</c:forEach>
 				</tbody>
 			</table>
