@@ -643,8 +643,8 @@
 							</td>
 							<td class="r">${currency.cash_buy}</td>
 							<td class="r">${currency.cash_sell}</td>
-							<td class="r">${currency.ttb}</td>
 							<td class="r">${currency.tts}</td>
+							<td class="r">${currency.ttb}</td>
 							<td class="r">${currency.base_r}</td>
 						</tr>
 					</c:forEach>

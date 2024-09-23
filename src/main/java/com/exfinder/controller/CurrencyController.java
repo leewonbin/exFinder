@@ -3,6 +3,7 @@ package com.exfinder.controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exfinder.dto.CurrencyDto;
 import com.exfinder.dto.ExchangeRateDto;
+import com.exfinder.dto.NoticeExchangeRateDto;
 import com.exfinder.dto.UserDto;
 import com.exfinder.service.CurrencyService;
 import com.exfinder.service.ExchangeRateService;
@@ -179,6 +181,12 @@ public class CurrencyController {
 			isInterestCheck = service.interestCheck(c_code, dto.getU_id());
 		}
 		model.addAttribute("isInterestCheck", isInterestCheck);
+		
+		List<ExchangeRateDto> list = service.dailyCurrency(c_code);
+		model.addAttribute("dailyCurrency", list);
+		
+		List<NoticeExchangeRateDto> list2 = service.hourCurrency(c_code);
+		model.addAttribute("hourCurrency", list2);
 
 		return "main/exFinder_Currency";
 	}

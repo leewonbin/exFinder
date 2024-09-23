@@ -4,50 +4,78 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.exfinder.dao.CurrencyDao">
-	
-<!-- currency 조회 -->
+
+	<!-- currency 조회 -->
 	<select id="read" resultType="com.exfinder.dto.CurrencyDto">
 		SELECT
-            e.rate_date AS rate_date,
-            c.c_code AS c_code,
-            c.c_name AS c_name,
-            c.c_country AS c_country,
-            e.ttb AS ttb,
-            e.tts AS tts,
-            e.cash_buy AS cash_buy,
-            e.cash_sell AS cash_sell,
-            e.deal_bas_r AS deal_bas_r,
-            e.base_r AS base_r
-        FROM
-            exchangerate e
-        JOIN
-            currency c ON e.c_code = c.c_code
-        WHERE
-            e.c_code = #{c_code}
-            AND e.rate_date = #{rate_date}
+		e.rate_date AS rate_date,
+		c.c_code AS c_code,
+		c.c_name AS c_name,
+		c.c_country AS c_country,
+		e.ttb AS ttb,
+		e.tts AS tts,
+		e.cash_buy AS cash_buy,
+		e.cash_sell AS cash_sell,
+		e.deal_bas_r AS deal_bas_r,
+		e.base_r AS base_r
+		FROM
+		exchangerate e
+		JOIN
+		currency c ON e.c_code = c.c_code
+		WHERE
+		e.c_code = #{c_code}
+		AND e.rate_date = #{rate_date}
 	</select>
 
-<!-- currency 전체 조회 -->
-	<select id="selectExchange" resultType="com.exfinder.dto.CurrencyDto">
-		select c.c_code,c.c_name,c.c_country,rate_date,annotime,ttb,tts,cash_buy,cash_sell,deal_bas_r,base_r 
-		from (select dense_rank() over (order by rate_date desc, annotime desc) as num,
-		noticeExchangerate.* from noticeExchangerate) n,currency c where num = 1 and c.c_code=n.c_code order by c_country
+	<!-- currency 전체 조회 -->
+	<select id="selectExchange"
+		resultType="com.exfinder.dto.CurrencyDto">
+		select
+		c.c_code,c.c_name,c.c_country,rate_date,annotime,ttb,tts,cash_buy,cash_sell,deal_bas_r,base_r
+		from (select dense_rank() over (order by rate_date desc, annotime
+		desc) as num,
+		noticeExchangerate.* from noticeExchangerate) n,currency
+		c where num = 1 and c.c_code=n.c_code order by c_country
 	</select>
 
-<select id="currency_Select" resultType="com.exfinder.dto.CurrencyDto">
-	select * from currency where c_code = #{c_code}
+	<select id="currency_Select"
+		resultType="com.exfinder.dto.CurrencyDto">
+		select * from currency where c_code = #{c_code}
+	</select>
+
+
+	<select id="interestCheck" resultType="boolean">
+		select count(*) from interest where u_id=#{userid} and c_code=#{c_code}
+	</select>
+
+	<insert id="interestInsert">
+		insert into interest values(#{u_id},#{c_code})
+	</insert>
+	<delete id="deleteInsert">
+		delete from interest where u_id=#{u_id} and c_code=#{c_code}
+	</delete>
+
+	<!-- 한 달치 환율 조회 -->
+	<select id="dailyCurrency" resultType="com.exfinder.dto.ExchangeRateDto">
+	<![CDATA[
+		SELECT *
+		FROM exchangerate
+		WHERE c_code = #{c_code}
+		AND rate_date >= ADD_MONTHS(SYSDATE, -1)
+		AND rate_date <= SYSDATE
+		ORDER BY rate_date desc
+		]]>
+	</select>
+
+	<!-- 시간별 환율 조회 -->
+	<select id="hourCurrency" resultType="com.exfinder.dto.NoticeExchangeRateDto">
+    <![CDATA[
+        SELECT *
+        FROM NoticeExchangeRate
+        WHERE c_code = #{c_code}
+        AND rate_date >= SYSDATE - INTERVAL '1' DAY
+        ORDER BY rate_date desc,annotime desc
+    ]]>
 </select>
-
-
-<select id="interestCheck" resultType="boolean">
-	select count(*) from interest where u_id=#{userid} and c_code=#{c_code}
-</select>
-
-<insert id="interestInsert">
-	insert into interest values(#{u_id},#{c_code})
-</insert>
-<delete id="deleteInsert">
-	delete from interest where u_id=#{u_id} and c_code=#{c_code}
-</delete>
 
 </mapper>

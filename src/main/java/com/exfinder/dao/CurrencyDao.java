@@ -1,11 +1,12 @@
 package com.exfinder.dao;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.exfinder.dto.CurrencyDto;
+import com.exfinder.dto.ExchangeRateDto;
+import com.exfinder.dto.NoticeExchangeRateDto;
 
 public interface CurrencyDao {
 	
@@ -18,5 +19,8 @@ public interface CurrencyDao {
 	public boolean interestCheck(@Param("c_code") String c_code, @Param("userid") String userid) throws Exception;
 	public int interestInsert(@Param("u_id") String u_id, @Param("c_code") String c_code);
 	public int deleteInsert(@Param("u_id") String u_id, @Param("c_code") String c_code);
+	
+	public List<ExchangeRateDto> dailyCurrency(@Param("c_code")String c_code) throws Exception;
+	public List<NoticeExchangeRateDto> hourCurrency(@Param("c_code")String c_code) throws Exception;
 
 }
