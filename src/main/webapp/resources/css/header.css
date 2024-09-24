@@ -94,6 +94,8 @@
 	align-items: center;
 	margin-right: 0px;
 	margin-top: 60px;
+	
+	position: relative;
 }
 
 .header_end_myPage img {
@@ -132,8 +134,10 @@
 	display: none; /* 기본적으로 숨김 */
 	
 	/* 마이페이지 위치 설정 */
-	top: 110px; /* 상단에서 110px 떨어지게 설정 */
-	right: 200px; /* 오른쪽에서 200px 떨어지게 설정 */
+    position: absolute; /* .header_end_myPage를 기준으로 위치 설정 */
+    top: 86%; /* 기준 요소의 아래로 배치 */
+    left: 76%; /* 부모 요소와 수평 맞춤 */
+	
 	z-index: 9999; /* 가장 위로 배치되도록 설정 */
 	
 	width: 350px; /* 너비 설정 */
@@ -226,7 +230,11 @@
 	height: 20px; /* 선의 높이 */
 	background-color: #ddd; /* 선의 색상 */
 }
-.header_mini_myPage_bottom ul>li:hover {
+.header_mini_myPage_bottom > ul > li > a {
+    color: #000000; /* 글자 색을 검은색으로 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+.header_mini_myPage_bottom>ul>li>a:hover {
 	color: #007BFF; /* 버튼 호버 시 배경색 회색 */
 }
 
