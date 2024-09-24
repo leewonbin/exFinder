@@ -58,11 +58,6 @@ public class UserController {
 		return "/user/login";
 	}
 	
-	@RequestMapping(value = "/user/index", method = RequestMethod.GET)
-	public void index() throws Exception{
-		
-	}
-	
 	// 회원가입 이동
 	@RequestMapping(value = "/user/join", method = RequestMethod.GET)
 	public void join() throws Exception{
