@@ -26,7 +26,6 @@
 
     <div class="charts_view">
         <div class="charts_container">
-            <div id="chart-container">
                 <!-- 각 통화의 그래프와 정보 표시 -->
                 <div class="chart_graph_box_container" id="USD-chart" style="display: none;">
                     <div class="chart_graph_box">
@@ -244,8 +243,6 @@
 				        <div id="chart_NZD" class="chart_graph"></div>
 				    </div>
 				</div>
-
-            </div>
         </div>
     </div>
 
@@ -306,20 +303,7 @@
 
     <!-- JavaScript 선택한 통화 차트 -->
     <script>
-        $(document).ready(function() {
-            $('#currency').change(function() {
-                // 선택된 통화의 차트 ID
-                var selectedCurrency = $(this).val();
-                
-                // 모든 차트 숨기기
-                $('.chart_graph_box_container').hide();
 
-                // 선택한 통화의 차트 보이기
-                if (selectedCurrency) {
-                    $('#' + selectedCurrency + '-chart').show();
-                }
-            });
-        });
     </script>
 </body>
 </html>
