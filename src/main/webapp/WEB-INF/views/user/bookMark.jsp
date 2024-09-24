@@ -10,8 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bookMark.css">
-    <script>
-    </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/charts.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+    
     
 </head>
 <body>
@@ -31,9 +32,11 @@
                 <li class="board-item" onclick="window.location.href='/ex/exFinder_Currency?c_code=${currency.c_code}'">
                     <img src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
 					class="flag-img" />
+					
 					<span class="board-c_country">${currency.c_country}</span>
                     <span class="board-c_name">${currency.c_name} (${currency.c_code})</span>
 				</li>
+
             </c:forEach>
             
         </ul>

@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 댓글 생성 -->
 	<insert id = "commentCreate">
 	insert into comments(comm_id, comm_content, comm_date, b_id, u_id) 
-	values (comment_seq.nextval, #{comm_content}, #{comm_date,jdbcType=TIMESTAMP}, #{b_id}, #{u_id})
+	values (comment_seq.nextval, #{comm_content}, sysdate, #{b_id}, #{u_id})
 	</insert>
 
 

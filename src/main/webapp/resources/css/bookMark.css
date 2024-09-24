@@ -32,7 +32,10 @@
 .board-header-c_country,
 .board-header-c_name {
     font-weight: 700;
-    margin: 0 30px; /* 좌우 여백 */
+    margin: 0 10px; /* 좌우 여백 */
+}
+.board-c_country{
+	margin-left: 60px;
 }
 
 .board-flag,
@@ -53,7 +56,6 @@
     display: flex; /* Flexbox 사용 */
     justify-content: space-between; /* 제목과 날짜를 좌우로 정렬 */
     padding: 30px; /* 항목의 내부 여백 */
-    margin-bottom: 15px; /* 항목 간의 간격 */
     background-color: #f3f3f3; /* 항목의 배경색 */
     cursor: pointer; /* 마우스 커서 모양 */
     border: 2px solid transparent; /* 기본 상태에서 투명한 테두리 */
@@ -72,6 +74,13 @@
     width: 150px; /* 요소들의 고정된 넓이 */
     text-align: center;
 }
+
+.board-header-c_country, .board-c_country{
+    width: 150px; /* 요소들의 고정된 넓이 */
+    text-align: center;
+}
+
+
 
 
 /* 항목 hover 효과 */

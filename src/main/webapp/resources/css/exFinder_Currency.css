@@ -37,14 +37,14 @@ body, html {
     color: #666;            /* 글자 색상 설정 */
 }
 .Currency_header > a > b {
-    font-size: 20px; /* 필요에 따라 텍스트 크기 조정 */
+    font-size: 25px; /* 필요에 따라 텍스트 크기 조정 */
     font-weight: bold;
-    color: #000; /* 필요 시 텍스트 색상 설정 */
+    color: #05203C; /* 필요 시 텍스트 색상 설정 */
 }
 .Currency_chart {
 	width: 1100px;
     height: 300px; 
-    border: 1px solid #000; /* 검정색 1px 테두리 */
+    border: 1px solid #ddd; /* 검정색 1px 테두리 */
     box-sizing: border-box; /* 패딩과 테두리를 요소의 총 폭과 높이에 포함 */
     display: flex; /* 자식 요소들을 수평으로 배치 */
 }
@@ -95,8 +95,9 @@ body, html {
     height: 25px; /* 동그라미의 높이 */
     border-radius: 50%; /* 동그라미 모양을 만들기 위한 속성 */
     background-color: #fff; /* 동그라미의 배경색을 흰색으로 설정 */
-    border: 1px solid #000; /* 선택적으로 테두리 추가 */
+    border: 1px solid #929292; /* 선택적으로 테두리 추가 */
     display: flex;
+    margin-left: 20px;
     align-items: center;
     justify-content: center;
     color: #fff; /* 동그라미 내부 텍스트 색상 */
@@ -107,8 +108,9 @@ body, html {
 
 .arrow-up {
     display: inline-block;
+    margin-bottom: 8px;
     font-size: 20px; /* 화살표의 크기 */
-    color: #000; /* 화살표의 색상 */
+    color: #929292; /* 화살표의 색상 */
     /* 원하는 화살표 기호 또는 심볼을 삽입 */
 }
 .arrow-up::before {
@@ -118,7 +120,7 @@ body, html {
 .arrow-down {
     display: inline-block;
     font-size: 20px; /* 화살표의 크기 */
-    color: #000; /* 화살표의 색상 */
+    color: #ababab; /* 화살표의 색상 */
     /* 원하는 화살표 기호 또는 심볼을 삽입 */
 }
 .arrow-down::before {
@@ -134,9 +136,9 @@ body, html {
     display: flex;         /* 보일 때 flexbox로 표시 */
     flex-direction: column; /* 세로 방향 정렬 */
     align-items: flex-start; /* 왼쪽 정렬 */
-    width: 220px; 
+    width: 255px; 
     height: 400px; 
-    border: 1px solid #000; /* 선택적으로 테두리 추가 */
+    border: 1px solid #ddd; /* 선택적으로 테두리 추가 */
     position: absolute;     /* 다른 요소 위에 표시되도록 설정 */
     z-index: 10;           /* 다른 요소보다 위에 표시 */
     background-color: white; /* 배경색 흰색 */
@@ -146,7 +148,6 @@ body, html {
 .visible a {
     text-decoration: none; /* 기본 밑줄 제거 */
     color: black;         /* 글씨 색깔 검은색 */
-    font-weight: bold;    /* 글자 굵게 설정 */
     margin: 5px 0;       /* 상하 간격 추가 (원하는 값으로 조절 가능) */
 }
 
@@ -155,10 +156,11 @@ body, html {
 }
 
 .favorit_img {
-	width : 35px;
-	height : 35px;
+	width : 30px;
+	height : 30px;
+	margin-bottom: 5px;
 	position : relative;
-	margin-left: 20px; /* 왼쪽 요소와의 간격 설정 */
+	margin-left: 50px; /* 왼쪽 요소와의 간격 설정 */
 }
 
 .Currency_left_chart_table {
@@ -235,6 +237,13 @@ body, html {
 .active {
     font-weight: bold;
 }
+
+.base-date {
+    text-align: right;
+    margin-top: 10px; 
+    color: #575757;
+}
+
 .chart_graph {    
     width: 90%;
     height: 248px; /* 차트 높이 조정 */
@@ -246,7 +255,7 @@ body, html {
 	margin-top: 20px;
 	width: 1100px;
     height: 350px; 
-    border: 1px solid #000; /* 검정색 1px 테두리 */
+    border: 1px solid #ddd; 
 }
 
 
@@ -309,4 +318,113 @@ body, html {
     text-overflow: ellipsis; /* 넘치는 텍스트에 '...' 표시 */
     line-height: 1.5; /* 줄 높이 설정 (필요에 따라 조정) */
     max-height: 6em; /* 4줄 높이에 맞게 설정 (줄 높이와 맞춰야 함) */
+}
+
+
+
+
+
+
+
+
+
+.box-contents {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+.box-contents2 {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+.rate-day {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-left: 325px; /* x 위치 조정 */
+    margin-top: 100px; /* p 태그와 div 간의 간격 조정 */
+}
+
+.rate-hour {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-left: 325px; /* x 위치 조정 */
+    margin-top: 100px; /* p 태그와 div 간의 간격 조정 */
+}
+
+/* 기본 테이블 스타일 */
+.exchange {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0; /* 테이블 위아래 여백 */
+    font-family: Arial, sans-serif;
+}
+
+.exchange thead {
+    background-color: white;
+    color: #ddd;
+}
+
+.exchange th, .exchange td {
+    padding: 5px 10px;
+    border: none;
+    vertical-align: middle; /* 수직 가운데 정렬 */
+}
+
+.exchange th {
+    font-weight: bold;
+    text-align: center;
+}
+
+/* 특정 행마다 가로줄 추가 */
+.exchange tbody tr:nth-child(5n) {
+    border-bottom: 1px solid #ddd;
+}
+
+.exchange thead th {
+    background-color: #f4f4f4;
+    color: #000000;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 8px 10px;
+}
+
+.exchange thead th:first-child {
+    border-left: none;
+}
+
+.exchange thead th:last-child {
+    border-right: none;
+}
+
+/* 헤더의 맨 위에 테두리 추가 */
+.exchange thead {
+    border-top: 1px solid #ddd;
+}
+
+/* 두 번째 행의 셀 스타일 (열 제목) */
+.exchange thead tr.chartB th {
+    border-right: 1px solid #ddd; /* 열 제목 셀 사이에 세로줄 */
+}
+
+.r {
+	text-align: right;
+}
+
+.c {
+	text-align: center;
+}
+
+.date-display {
+	color: #575757;
+}
+
+.no-data {
+    text-align: center;
+    color: #000000;
+    font-weight: bold;
 }

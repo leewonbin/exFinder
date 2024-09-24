@@ -212,17 +212,23 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 /* 기준 통화 selectbox 스타일 */
 .base-currency-select {
-	width: 350px;
-	height: 100px;
+	width: 250px;
+	height: 60px;
 	margin-bottom: 40px;
 	opacity: 0.8;
 	border: none;
 }
 
+.baseImg {			/* 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 */
+	width: 50px;
+	height: auto;
+	vertical-align: middle;
+}
+
 /* 기준 통화 숫자 입력 input 스타일 */
 .base-amount-input {
 	width: 500px;
-	height: 130px;
+	height: 100px;
 	margin-bottom: 0; /* margin-bottom을 0으로 설정하여 겹치지 않도록 조정 */
 	position: relative; /* 상대 위치 설정 */
 	border: none;
@@ -248,8 +254,8 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 /* 결과 통화 selectbox 스타일 */
 .result-currency-select {
-	width: 350px;
-	height: 100px;
+	width: 250px;
+	height: 60px;
 	margin-bottom: 40px;
 	opacity: 0.8;
 	border: none;
@@ -258,7 +264,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 /* 결과 통화 숫자 입력 input 스타일 */
 .result-amount-input {
 	width: 500px;
-	height: 130px;
+	height: 100px;
 	margin-bottom: 0; /* margin-bottom을 0으로 설정하여 겹치지 않도록 조정 */
 	position: relative; /* 상대 위치 설정 */
 	border: none;
@@ -354,7 +360,9 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .l {
 	text-align: left;
 }
-
+.l>img {
+	margin-right: 10px;
+}
 .l>a {
 	text-decoration: none;
 	color: black;

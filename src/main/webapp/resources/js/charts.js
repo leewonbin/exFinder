@@ -17,55 +17,75 @@ google.charts.load('current', {
 });
 
 $(document).ready(function() {
-	ajaxData('USD', 'chart_USD'); 
-	ajaxData('JPY', 'chart_JPY'); 
-	ajaxData('EUR', 'chart_EUR');
-	ajaxData('CNY', 'chart_CNY');
-	ajaxData('GBP', 'chart_GBP');
-	ajaxData('CHF', 'chart_CHF');
-	ajaxData('INR', 'chart_INR');
-	ajaxData('AUD', 'chart_AUD');
-	ajaxData('SAR', 'chart_SAR');
-	ajaxData('RUB', 'chart_RUB');
-
-	ajaxData('CAD', 'chart_CAD'); 
-	ajaxData('HKD', 'chart_HKD'); 
-	ajaxData('EGP', 'chart_EGP');
-	ajaxData('THB', 'chart_THB');
-	ajaxData('VND', 'chart_VND');
-	ajaxData('ZAR', 'chart_ZAR');
-	ajaxData('MXN', 'chart_MXN');
-	ajaxData('BRL', 'chart_BRL');
-	ajaxData('ILS', 'chart_ILS');
-	ajaxData('NZD', 'chart_NZD');
-	
+    // 통화 정보 배열 정의
+    const currencies_value = [
+        { code: 'USD', valueId: 'value_USD', flagId: 'flag_USD' },
+        { code: 'JPY', valueId: 'value_JPY', flagId: 'flag_JPY' },
+        { code: 'EUR', valueId: 'value_EUR', flagId: 'flag_EUR' },
+        { code: 'CNY', valueId: 'value_CNY', flagId: 'flag_CNY' },
+        { code: 'GBP', valueId: 'value_GBP', flagId: 'flag_GBP' },
+        { code: 'CHF', valueId: 'value_CHF', flagId: 'flag_CHF' },
+        { code: 'INR', valueId: 'value_INR', flagId: 'flag_INR' },
+        { code: 'AUD', valueId: 'value_AUD', flagId: 'flag_AUD' },
+        { code: 'SAR', valueId: 'value_SAR', flagId: 'flag_SAR' },
+        { code: 'RUB', valueId: 'value_RUB', flagId: 'flag_RUB' },
+        { code: 'CAD', valueId: 'value_CAD', flagId: 'flag_CAD' },
+        { code: 'HKD', valueId: 'value_HKD', flagId: 'flag_HKD' },
+        { code: 'EGP', valueId: 'value_EGP', flagId: 'flag_EGP' },
+        { code: 'THB', valueId: 'value_THB', flagId: 'flag_THB' },
+        { code: 'VND', valueId: 'value_VND', flagId: 'flag_VND' },
+        { code: 'ZAR', valueId: 'value_ZAR', flagId: 'flag_ZAR' },
+        { code: 'MXN', valueId: 'value_MXN', flagId: 'flag_MXN' },
+        { code: 'BRL', valueId: 'value_BRL', flagId: 'flag_BRL' },
+        { code: 'ILS', valueId: 'value_ILS', flagId: 'flag_ILS' },
+        { code: 'NZD', valueId: 'value_NZD', flagId: 'flag_NZD' }
+    ];
+    processCurrencies_value(currencies_value);
+    
     // Google Charts 라이브러리가 로드된 후 차트 그리기
     google.charts.setOnLoadCallback(function() {
         //console.log('Google Charts 라이브러리 로드 완료');
     });
     
-	fetchExchangeRateData('USD', formattedDate, 'value_USD', 'flag_USD');
-	fetchExchangeRateData('JPY', formattedDate, 'value_JPY', 'flag_JPY');
-	fetchExchangeRateData('EUR', formattedDate, 'value_EUR', 'flag_EUR');
-	fetchExchangeRateData('CNY', formattedDate, 'value_CNY', 'flag_CNY');
-	fetchExchangeRateData('GBP', formattedDate, 'value_GBP', 'flag_GBP');
-	fetchExchangeRateData('CHF', formattedDate, 'value_CHF', 'flag_CHF');
-	fetchExchangeRateData('INR', formattedDate, 'value_INR', 'flag_INR');
-	fetchExchangeRateData('AUD', formattedDate, 'value_AUD', 'flag_AUD');
-	fetchExchangeRateData('SAR', formattedDate, 'value_SAR', 'flag_SAR');
-	fetchExchangeRateData('RUB', formattedDate, 'value_RUB', 'flag_RUB');
-	
-	fetchExchangeRateData('CAD', formattedDate, 'value_CAD', 'flag_CAD');
-	fetchExchangeRateData('HKD', formattedDate, 'value_HKD', 'flag_HKD');
-	fetchExchangeRateData('EGP', formattedDate, 'value_EGP', 'flag_EGP');
-	fetchExchangeRateData('THB', formattedDate, 'value_THB', 'flag_THB');
-	fetchExchangeRateData('VND', formattedDate, 'value_VND', 'flag_VND');
-	fetchExchangeRateData('ZAR', formattedDate, 'value_ZAR', 'flag_ZAR');
-	fetchExchangeRateData('MXN', formattedDate, 'value_MXN', 'flag_MXN');
-	fetchExchangeRateData('BRL', formattedDate, 'value_BRL', 'flag_BRL');
-	fetchExchangeRateData('ILS', formattedDate, 'value_ILS', 'flag_ILS');
-	fetchExchangeRateData('NZD', formattedDate, 'value_NZD', 'flag_NZD');
+    // 통화 코드와 차트 ID 매핑 배열 정의
+    const currencies_chart = [
+        { code: 'USD', chartId: 'chart_USD' },
+        { code: 'JPY', chartId: 'chart_JPY' },
+        { code: 'EUR', chartId: 'chart_EUR' },
+        { code: 'CNY', chartId: 'chart_CNY' },
+        { code: 'GBP', chartId: 'chart_GBP' },
+        { code: 'CHF', chartId: 'chart_CHF' },
+        { code: 'INR', chartId: 'chart_INR' },
+        { code: 'AUD', chartId: 'chart_AUD' },
+        { code: 'SAR', chartId: 'chart_SAR' },
+        { code: 'RUB', chartId: 'chart_RUB' },
+        { code: 'CAD', chartId: 'chart_CAD' },
+        { code: 'HKD', chartId: 'chart_HKD' },
+        { code: 'EGP', chartId: 'chart_EGP' },
+        { code: 'THB', chartId: 'chart_THB' },
+        { code: 'VND', chartId: 'chart_VND' },
+        { code: 'ZAR', chartId: 'chart_ZAR' },
+        { code: 'MXN', chartId: 'chart_MXN' },
+        { code: 'BRL', chartId: 'chart_BRL' },
+        { code: 'ILS', chartId: 'chart_ILS' },
+        { code: 'NZD', chartId: 'chart_NZD' }
+    ];
+
+    processCurrencies_chart(currencies_chart);
+
 });
+
+function processCurrencies_value(currencies_value) {
+	currencies_value.forEach(currency_value => {
+		 fetchExchangeRateData(currency_value.code, formattedDate, currency_value.valueId, currency_value.flagId);
+	 });
+}
+function processCurrencies_chart(currencies_chart) {
+    currencies_chart.forEach(currency_chart => {
+        ajaxData(currency_chart.code, currency_chart.chartId);
+    });
+}
+
 // '2024/09/06'
 
 function ajaxData(c_code, chartDivId) {

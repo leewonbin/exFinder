@@ -205,7 +205,7 @@ public class ExChangeController {
 		// List<ExchangeRateDto> dto = service.exchangeRateSelect(c_code, start_date, end_date);
 		// System.out.println("c_code : " + c_code + " rate_date : " + rate_date);
 		// ArrayList<NoticeExchangeRateDto> dto = n_service.charts_selectList(c_code, rate_date);
-		// System.out.println("-결과 c_code : " + c_code + " : " + dto);
+		//System.out.println("-결과 c_code : " + c_code + " : " + dto);
 		
 		Gson gson = new Gson();
 		String json = "";
@@ -293,7 +293,5 @@ public class ExChangeController {
 	        e.printStackTrace();
 	    }
 	}
-	// 지원 환율 조회
-	
 
 }

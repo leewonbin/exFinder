@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.exfinder.dao.CurrencyDao;
 import com.exfinder.dto.CurrencyDto;
+import com.exfinder.dto.ExchangeRateDto;
+import com.exfinder.dto.NoticeExchangeRateDto;
 
 @Service
 public class CurrencyServiceImpl implements CurrencyService{
@@ -42,20 +44,30 @@ public class CurrencyServiceImpl implements CurrencyService{
 	@Override
 	public int deleteInsert(String u_id, String c_code) throws Exception {
 		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
-		return dao.deleteInsert(u_id,c_code);
-		
+		return dao.deleteInsert(u_id,c_code);	
 	}
 
 	@Override
 	public int interestInsert(String u_id, String c_code) throws Exception {
 		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
 		return dao.interestInsert(u_id,c_code);
-		
 	}
 
 	@Override
+	public List<ExchangeRateDto> dailyCurrency(String c_code) throws Exception {
+		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
+		return dao.dailyCurrency(c_code);
+	}
+
+	@Override
+	public List<NoticeExchangeRateDto> hourCurrency(String c_code) throws Exception {
+		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
+		return dao.hourCurrency(c_code);
+	}
+	
 	public List<CurrencyDto> getFavoriteCurrencies(String userId) throws Exception {
 		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
 		return dao.getFavoriteCurrencies(userId);
 	}
+
 }
