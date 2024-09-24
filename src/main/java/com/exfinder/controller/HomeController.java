@@ -74,7 +74,4 @@ public class HomeController {
 	    
 	    return "main/exFinder_main";
 	}
-	
-	// 접근 방식 : exFinder_Currency?c_code=USD
-
 }

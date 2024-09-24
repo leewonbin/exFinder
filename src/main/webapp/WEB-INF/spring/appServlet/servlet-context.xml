@@ -28,14 +28,6 @@
     </beans:bean>
     
     	<beans:bean id="echoHandler" class="com.exfinder.Handler.EchoHandler"/>
-	
-	<websocket:handlers>
-    	<websocket:mapping handler="echoHandler" path="/echo"/>
-    		<websocket:handshake-interceptors>
-        		<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
-    		</websocket:handshake-interceptors>
-    	<websocket:sockjs />
-	</websocket:handlers>
     
    	<context:component-scan base-package="com.exfinder.scheduler"/>
 	<context:component-scan base-package="com.exfinder.controller" />

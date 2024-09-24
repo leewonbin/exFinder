@@ -22,26 +22,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/charts.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 </head>
 <body>
 	<!-- 헤더 Include -->
 	<div class="include_header">
 		<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 	</div>
-	<c:if test="${sessionScope.dto ne null}">
-		<script src="${pageContext.request.contextPath}/resources/js/alram.js"></script>
-		<script>
-			var userId = "${sessionScope.dto.u_id}"; // 로그인한 사용자 ID
-			$(function() {
-				console.log('$(function)에 들어옴');
-				connectWs(userId); // WebSocket 연결
-			});
-		</script>
-	</c:if>
-
-
 
 	<!-- 메인 콘텐츠 -->
 	<div class="content">
@@ -55,7 +41,7 @@
 						src="${pageContext.request.contextPath }/resources/img/newLogo.png" />
 					<ul>
 						<li onclick="location.href='/ex/'">홈</li>
-						<li>알림</li>
+						<li class="alram">알림</li>
 						<li onclick="location.href='/ex/board/listAll'">게시판</li>
 					</ul>
 				</div>
