@@ -60,6 +60,7 @@
 					<p><img src="${pageContext.request.contextPath}/resources/img/user.png">${dto.u_name}</p>
 					<p><img src="${pageContext.request.contextPath}/resources/img/free-icon-phone.png">${dto.u_phoneNumber}</p>
 					<p><img src="${pageContext.request.contextPath}/resources/img/free-icon-email.png">${dto.u_email}</p>
+					<p><img src="${pageContext.request.contextPath}/resources/img/cake.png">${dto.u_birthday}</p>
 				</div>
 				<div class="my_info2 type_2" style="display: none;" >
 					<h2 class="profile-title">회원 정보 수정</h2>

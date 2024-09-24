@@ -29,15 +29,15 @@
             <span id="u_id-error" class="error-message"></span>
 			<div id="idChk"></div>
 			
-	<div class="password-container">
-    		<div class="password-input-wrapper">
-        		<input type="password" class="input" name="u_pw" id="u_pw" oninput="validateField('u_pw')" placeholder="비밀번호를 입력하시오">
-        		<button type="button" id="togglePw" onclick="togglePassword('u_pw', 'togglePw')">
-           			<img src="${pageContext.request.contextPath}/resources/img/open.png" id="toggleImg" alt="보기">
-        		</button>
-    		</div>
-    	<span id="u_pw-error" class="error-message"></span>
-	</div>
+			<div class="password-container">
+    			<div class="password-input-wrapper">
+        			<input type="password" class="input" name="u_pw" id="u_pw" oninput="validateField('u_pw')" placeholder="비밀번호를 입력하시오">
+        			<button type="button" id="togglePw" onclick="togglePassword('u_pw', 'togglePw')">
+          				<img src="${pageContext.request.contextPath}/resources/img/open.png" id="toggleImg" alt="보기">
+        			</button>
+    			</div>
+    			<span id="u_pw-error" class="error-message"></span>
+			</div>
             <%-- src="${pageContext.request.contextPath}/resources/img/open.png" --%>
             
          	
