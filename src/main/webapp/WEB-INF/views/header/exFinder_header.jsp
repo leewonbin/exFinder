@@ -20,7 +20,7 @@
 			<div class="header_start">
 				<ul>
 					<li onclick="location.href='/ex/'">홈</li>
-					<li onclick="location.href='/ex/user/alarm'">알림</li>
+					<li onclick="location.href='/ex/user/notification'">알림</li>
 					<li onclick="location.href='/ex/board/listAll'">게시판</li>
 				</ul>
 			</div>
@@ -83,7 +83,7 @@
 		<div class="header_mini_myPage_bottom">
 			<ul>
 				<li><a href="/ex/user/myBoard">나의 게시판</a></li>
-				<li><a href="/ex/user/alarm">알림</a></li>
+				<li><a href="/ex/user/notification">알림</a></li>
 				<li><a href="/ex/user/bookMark">즐겨찾기</a></li>
 			</ul>
 			<button type="button" class="mini_myPage_button" onclick="location.href='/ex/user/myInfo'" >
