@@ -62,4 +62,5 @@ public class CommentServiceImpl implements CommentService{
         CommentDao dao = sqlSession.getMapper(CommentDao.class);
         return dao.getCommentById(comm_id);
     }
+
 }

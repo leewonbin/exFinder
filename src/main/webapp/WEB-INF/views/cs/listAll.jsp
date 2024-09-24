@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="logout-status"
 	content="${sessionScope.userId == null ? 'logged-out' : 'logged-in'}">
-<title>Insert title here</title>
+<title>ExFinder</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 

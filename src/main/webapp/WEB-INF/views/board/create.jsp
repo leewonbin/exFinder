@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta name="logout-status"
 	content="${sessionScope.userId == null ? 'logged-out' : 'logged-in'}">
-<title>게시글 생성</title>
+<title>ExFinder</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/boardCreate.css">
 </head>
@@ -40,7 +40,6 @@
 				<select name="b_category">
 					<option value="공지사항">공지사항</option>
 					<option value="자유게시판">자유게시판</option>
-					<option value="고객센터">고객센터</option>
 				</select>
 			</h2>
 

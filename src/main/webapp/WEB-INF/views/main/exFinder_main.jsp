@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>웹페이지</title>
+<title>ExFinder</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/exFinder_main.css">
 <script
@@ -633,7 +633,7 @@
 						<tr>
 							<td class="l"><img
 								src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
-								class="flag-img" /><a
+								class="flag-img" /> <a
 								href="exFinder_Currency?c_code=${currency.c_code }">${currency.c_country}</a></td>
 							<td class="l">${currency.c_name}</td>
 							<td class="r">${currency.deal_bas_r}</td>

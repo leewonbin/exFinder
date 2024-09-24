@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 수정</title>
+<title>ExFinder</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -26,7 +26,6 @@
 					<select name="b_category">
 						<option value="공지사항">공지사항</option>
 						<option value="자유게시판">자유게시판</option>
-						<option value="고객센터">고객센터</option>
 					</select>
 				</h2>
 

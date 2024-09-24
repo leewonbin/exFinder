@@ -9,15 +9,15 @@
 <meta charset="UTF-8">
 <meta name="logout-status"
 	content="${sessionScope.userId == null ? 'logged-out' : 'logged-in'}">
-<title>게시글 목록</title>
+<title>ExFinder</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/boardList.css">
 
-<script src="${pageContext.request.contextPath}/resources/js/listAllJs.js"></script>
-
+<script
+	src="${pageContext.request.contextPath}/resources/js/listAllJs.js"></script>
 <body>
 	<div>
 		<%@include file="../header/exFinder_header.jsp"%>
@@ -29,7 +29,7 @@
 			<button class="cButton" data-category="">전체글보기</button>
 			<button class="cButton" data-category="공지사항">공지사항</button>
 			<button class="cButton" data-category="자유게시판">자유게시판</button>
-			<button class="csButton" data-category="고객센터" >고객센터</button>
+			<button class="csButton" data-category="고객센터">고객센터</button>
 			<!-- data-category는 커스텀 데이터 속성으로 특정 요소에 추가적인 데이터 저장 가능 -->
 		</div>
 
@@ -41,9 +41,8 @@
 					<option value="-----">-----</option>
 					<option value="공지사항">공지사항</option>
 					<option value="자유게시판">자유게시판</option>
-					<option value="고객센터">고객센터</option>
-				</select> 
-				<input type="text" id="keywordInput" placeholder="검색어 입력">
+
+				</select> <input type="text" id="keywordInput" placeholder="검색어 입력">
 				<button id="searchBtn">검색</button>
 			</div>
 
@@ -63,7 +62,15 @@
 						<tr>
 							<td>${boardDto.b_id }</td>
 							<td>${boardDto.b_category }</td>
-							<td><a href="/ex/board/read?b_id=${boardDto.b_id}">${boardDto.b_title}</a></td>
+							<td><a href="/ex/board/read?b_id=${boardDto.b_id}">
+									${boardDto.b_title}
+										<c:if test="${boardDto.reply_count ne 0}">
+											<small class="red-text">
+												<b>[${boardDto.reply_count}]</b>
+											</small>
+										</c:if>
+								</a>
+							</td>
 							<td>${boardDto.u_id}</td>
 							<td><fmt:formatDate value="${boardDto.b_date}"
 									pattern="yyyy-MM-dd" /></td>

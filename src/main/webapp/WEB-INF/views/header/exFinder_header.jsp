@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="logout-status" content="${sessionScope.userId == null ? 'logged-out' : 'logged-in'}">
-<title>Insert title here</title>
+<title>ExFinder</title>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>통화 상세 정보</title>
+<title>ExFinder</title>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <!-- google charts -->
@@ -88,7 +88,7 @@
 						<td>${exchangeRateDto.tts}</td>
 					</tr>
 				</table>
-				<div>기준일 : ${exchangeRateDto.rate_date}</div>
+				<div class="base-date">기준일 : ${exchangeRateDto.rate_date}</div>
 			</div>
 			<div class="Currency_right_chart">
 				<div class="Currency_chart_time_select">
@@ -116,7 +116,7 @@
                         <img src="${news.newsIcon}">${news.newsName}
                         - ${news.newsTime}
                     </div>
-                    <div class="new-main" onclick="window.location.href='${news.newsURL}';">
+                    <div class="new-main" onclick="window.open('${news.newsURL}', '_blank');">
                         <div class="new-main-text">
                             <label>${news.newsTitle} </label><br>
                             <a>${news.newsText}</a>
