@@ -1,31 +1,19 @@
 package com.exfinder.controller;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exfinder.dto.CurrencyDto;
-import com.exfinder.dto.ExchangeRateDto;
-import com.exfinder.dto.UserDto;
 import com.exfinder.service.CurrencyService;
-import com.exfinder.service.ExchangeRateService;
 import com.exfinder.service.NoticeExchangeRateService;
 
 /**
@@ -36,12 +24,6 @@ public class HomeController {
 	
 	@Autowired
 	private CurrencyService service;
-	
-	@Autowired
-    private CurrencyService currencyService;
-	
-	@Autowired
-	private ExchangeRateService exchangerateservice;
 	
 	@Autowired
 	private NoticeExchangeRateService noticeExchangeRateService;

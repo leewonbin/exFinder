@@ -37,7 +37,7 @@
 									window.location.href = url;
 								});
 				$(".csButton").click(function() {
-			        window.location.href = "http://localhost:8082/ex/cs/main";
+			        window.location.href = "/ex/cs/main";
 			    });
 
 				// 글쓰기 버튼

@@ -633,7 +633,7 @@
 						<tr>
 							<td class="l"><img
 								src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
-								class="flag-img" /><a
+								class="flag-img" onclick="location.href='exFinder_Currency?c_code=${currency.c_code }'" /><a
 								href="exFinder_Currency?c_code=${currency.c_code }">${currency.c_country}</a></td>
 							<td class="l">${currency.c_name}</td>
 							<td class="r">${currency.deal_bas_r}</td>

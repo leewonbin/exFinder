@@ -348,7 +348,9 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .l {
 	text-align: left;
 }
-
+.l>img {
+	margin-right: 10px;
+}
 .l>a {
 	text-decoration: none;
 	color: black;
