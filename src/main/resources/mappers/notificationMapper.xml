@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exfinder.dao.NotificationDao">
+
+<select id="alramCheck" resultType="notificationDto">
+	select * from notification where u_id=#{u_id}
+</select>
+
+<insert id="alramInsert">
+	insert into notification values(notifi_num.nextval,#{n_id},#{u_id},#{c_code},#{standard_exchange},#{target_exchange})
+</insert>
+
+<select id="exchangeEqulasCheck" resultType="com.exfinder.dto.NotificationDto">
+<![CDATA[
+select 
+    n.n_id, n.u_id, n.c_code, n.target_exchange
+FROM 
+    notification n
+JOIN 
+    (SELECT 
+        C_CODE, BASE_R,
+        ROW_NUMBER() OVER (PARTITION BY C_CODE ORDER BY RATE_DATE DESC, ANNOTIME DESC) AS rn
+     FROM noticeexchangerate
+    ) lr 
+    ON n.C_CODE = lr.C_CODE
+    AND lr.rn = 1
+    AND n.TARGET_EXCHANGE BETWEEN lr.BASE_R * 0.95 AND lr.BASE_R * 1.05
+    ]]>
+</select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+

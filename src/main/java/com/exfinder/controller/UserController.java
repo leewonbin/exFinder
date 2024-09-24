@@ -254,6 +254,11 @@ public class UserController {
 	        model.addAttribute("userCurrencies", favoriteCurrencies);
 	        return "/user/bookMark"; // JSP 파일 이름
 	}
-
+	
+	@RequestMapping(value = "/user/alarm", method = RequestMethod.GET)
+	public void alarm() throws Exception{
+		
+	}
+	
 	
 }

@@ -9,8 +9,11 @@ import org.springframework.stereotype.Component;
 
 import com.exfinder.dto.ExchangeRateDto;
 import com.exfinder.dto.NoticeExchangeRateDto;
+import com.exfinder.dto.NotificationDto;
+import com.exfinder.service.AlramService;
 import com.exfinder.service.ExchangeRateService;
 import com.exfinder.service.NoticeExchangeRateService;
+import com.exfinder.service.NotificationService;
 
 @EnableScheduling
 @Component
@@ -21,8 +24,13 @@ public class Scheduler {
 	
 	@Autowired
 	private NoticeExchangeRateService n_service;
+	
+	@Autowired
+	private NotificationService no_service;
+	
+	@Autowired
+	private AlramService al_service;
 
-//	@Scheduled(cron = "0 * * * * ?")
 	@Scheduled(cron = "0 0 9-23 * * ?")
 	public void hourScheduled() throws Exception {
 		try {
@@ -34,6 +42,9 @@ public class Scheduler {
 		} catch (Exception e) {
 			e.printStackTrace(); // 예외 출력
 		}
+		System.out.println("addAlram실행");
+//		addAlram();
+		
 	}
 	
 	@Scheduled(cron = "0 0 0 * * ?")
@@ -44,4 +55,21 @@ public class Scheduler {
 			e_service.exchangeRateInsert(dto);
 		}
 	}
+//	@Scheduled(cron = "0 */2 * * * ?")
+//	public void addAlram() {
+//		System.out.println("addAlram 들어옴");
+//		try {
+//			ArrayList<NotificationDto> list = no_service.exchangeEqulasCheck();
+//			System.out.println("list.size() : " + list.size());
+//			if(list.size() != 0) {
+//				for(NotificationDto dto : list) {
+//					al_service.alramInsert(dto);
+//				}
+//			}
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//	}
 }
