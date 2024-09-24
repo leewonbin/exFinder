@@ -72,5 +72,4 @@ public class BoardServiceImpl implements BoardService {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		return dao.getUserPosts(u_id);
 	}
-
 }

@@ -24,4 +24,5 @@ public interface CommentService {
 	
 	public CommentDto getCommentById(int comm_id) throws Exception;  // 댓글 조회 by ID 추가
 	
+	
 }
