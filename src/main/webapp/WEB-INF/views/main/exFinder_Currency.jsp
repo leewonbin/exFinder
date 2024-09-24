@@ -79,13 +79,13 @@
 						<th>사실때</th>
 						<td>${exchangeRateDto.cash_buy}</td>
 						<th>보낼때</th>
-						<td>${exchangeRateDto.ttb}</td>
+						<td>${exchangeRateDto.tts}</td>
 					</tr>
 					<tr>
 						<th>파실때</th>
 						<td>${exchangeRateDto.cash_sell}</td>
 						<th>받을때</th>
-						<td>${exchangeRateDto.tts}</td>
+						<td>${exchangeRateDto.ttb}</td>
 					</tr>
 				</table>
 				<div class="base-date">기준일 : ${exchangeRateDto.rate_date}</div>
