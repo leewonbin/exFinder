@@ -250,8 +250,8 @@ public class UserController {
 	        return "/user/bookMark"; // JSP 파일 이름
 	}
 	
-	@RequestMapping(value = "/user/alarm", method = RequestMethod.GET)
-	public void alarm() throws Exception{
+	@RequestMapping(value = "/user/notification", method = RequestMethod.GET)
+	public void notification() throws Exception{
 		
 	}
 	
