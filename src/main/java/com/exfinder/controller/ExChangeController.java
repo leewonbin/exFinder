@@ -25,6 +25,7 @@ import com.exfinder.dto.NoticeExchangeRateDto;
 import com.exfinder.service.ExchangeRateService;
 import com.exfinder.service.NoticeExchangeRateService;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 @Controller
@@ -178,47 +179,63 @@ public class ExChangeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "charts/graph", method = RequestMethod.POST)
-	public void charts_graph(HttpServletResponse response, @RequestParam("c_code") String  c_code, @RequestParam("rate_date") String rate_date) throws Exception {
+	public void charts_graph(HttpServletResponse response, @RequestParam("c_codes") List<String> c_codes, @RequestParam("rate_date") String rate_date) throws Exception {
 		// HttpServletResponse response, @RequestParam("c_code") String  c_code, @RequestParam("start_date") String start_date, @RequestParam("end_date") String end_date
-	    int checkValue = service.exchangeRate_column_checkValue(c_code);
-	    if (checkValue == 0) {
-	        // 값이 0인 경우, 즉시 종료
-	        response.setContentType("application/json");
-	        response.setCharacterEncoding("UTF-8");
-	        System.out.println("해당 통화 코드"+ c_code + " 에 대한 데이터가 없으니 중지합니다.");
-	        return;
-	    }
-	    
-	    // 날짜 포맷 설정
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-	    LocalDate date = LocalDate.parse(rate_date, formatter); // 문자열을 LocalDate로 변환
-	    ArrayList<NoticeExchangeRateDto> dto = null;
+	    Gson gson = new Gson();
+	    JsonArray jsonArray = new JsonArray();
 
-	    // 하루씩 빼면서 데이터 조회
-	    while (dto == null || dto.isEmpty()) {
-	        dto = n_service.charts_selectList(c_code, date.format(formatter)); // 데이터 조회
-	        if (dto == null || dto.isEmpty()) {
-	            date = date.minusDays(1); // 하루 빼기
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+	    
+	    for (String c_code : c_codes) {
+		    int checkValue = service.exchangeRate_column_checkValue(c_code);
+		    if (checkValue == 0) {
+		        // 값이 0인 경우, 즉시 종료
+		        response.setContentType("application/json");
+		        response.setCharacterEncoding("UTF-8");
+		        System.out.println("해당 통화 코드"+ c_code + " 에 대한 데이터가 없으니 중지합니다.");
+		        continue; // 데이터가 없는 경우에도 다음 통화 코드를 처리
+		    }
+		    
+		    // 날짜 포맷 설정    
+		    LocalDate date = LocalDate.parse(rate_date, formatter); // 문자열을 LocalDate로 변환
+		    ArrayList<NoticeExchangeRateDto> dto = null;
+
+		    // 하루씩 빼면서 데이터 조회
+		    while (dto == null || dto.isEmpty()) {
+		        dto = n_service.charts_selectList(c_code, date.format(formatter)); // 데이터 조회
+		        if (dto == null || dto.isEmpty()) {
+		            date = date.minusDays(1); // 하루 빼기
+		        }
+		    }
+		    
+	        // 차트 데이터가 있으면 JSON 형식으로 변환
+	        if (dto != null && !dto.isEmpty()) {
+	            JsonObject jsonObject = new JsonObject();
+	            jsonObject.addProperty("c_code", c_code); // 통화 코드 추가
+
+	            JsonArray dataArray = new JsonArray(); // 차트 데이터 배열
+
+	            // dto에 있는 데이터를 차트에 맞게 변환
+	            for (NoticeExchangeRateDto item : dto) {
+	                JsonObject dataObject = new JsonObject();
+	                
+	                // 시간 및 값을 JSON으로 변환하여 추가
+	                dataObject.addProperty("annoTime", item.getAnnoTime());
+	                dataObject.addProperty("deal_bas_r", item.getDeal_bas_r());
+
+	                dataArray.add(dataObject);
+	            }
+
+	            // 차트 데이터를 JSON에 추가
+	            jsonObject.add("data", dataArray);
+	            jsonArray.add(jsonObject); // 최종적으로 jsonArray에 추가
 	        }
 	    }
-	    
-		// List<ExchangeRateDto> dto = service.exchangeRateSelect(c_code, start_date, end_date);
-		// System.out.println("c_code : " + c_code + " rate_date : " + rate_date);
-		// ArrayList<NoticeExchangeRateDto> dto = n_service.charts_selectList(c_code, rate_date);
-		//System.out.println("-결과 c_code : " + c_code + " : " + dto);
-		
-		Gson gson = new Gson();
-		String json = "";
-		json = gson.toJson(dto);
-		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("utf-8");
-		try {
-			response.getWriter().print(json);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+	    //응답으로 JSON 배열 전송
+	    response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
+	    response.getWriter().write(gson.toJson(jsonArray));
 	}
 	
 	@ResponseBody
