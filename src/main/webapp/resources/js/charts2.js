@@ -44,35 +44,66 @@ $(document).ready(function() {
 	fetchExchangeRateData('BRL', formattedDate, 'value_BRL');
 	fetchExchangeRateData('ILS', formattedDate, 'value_ILS');
 	fetchExchangeRateData('NZD', formattedDate, 'value_NZD');
+	
+
 });
 // '2024/09/06'
 
-function ajaxData(c_code, chartDivId) {
-	
-	var rate_date = formattedDate; // 필요한 값으로 수정
-	// var start_date = '2024/08/01'; // 필요한 값으로 수정
-	// var end_date = formattedDate; // 필요한 값으로 수정
+// 통화 코드와 차트 ID 매핑 배열 정의
+const currencies_chart = [
+    { code: 'USD', chartId: 'chart_USD' },
+    { code: 'JPY', chartId: 'chart_JPY' },
+    { code: 'EUR', chartId: 'chart_EUR' },
+    { code: 'CNY', chartId: 'chart_CNY' },
+    { code: 'GBP', chartId: 'chart_GBP' },
+    { code: 'CHF', chartId: 'chart_CHF' },
+    { code: 'INR', chartId: 'chart_INR' },
+    { code: 'AUD', chartId: 'chart_AUD' },
+    { code: 'SAR', chartId: 'chart_SAR' },
+    { code: 'RUB', chartId: 'chart_RUB' },
+    { code: 'CAD', chartId: 'chart_CAD' },
+    { code: 'HKD', chartId: 'chart_HKD' },
+    { code: 'EGP', chartId: 'chart_EGP' },
+    { code: 'THB', chartId: 'chart_THB' },
+    { code: 'VND', chartId: 'chart_VND' },
+    { code: 'ZAR', chartId: 'chart_ZAR' },
+    { code: 'MXN', chartId: 'chart_MXN' },
+    { code: 'BRL', chartId: 'chart_BRL' },
+    { code: 'ILS', chartId: 'chart_ILS' },
+    { code: 'NZD', chartId: 'chart_NZD' }
+];
 
-	$.ajax({
-		type : "POST",
-		url : "/ex/charts/graph", // contextPath 사용 "${pageContext.request.contextPath}/charts/graph",
-		data : {
-			c_code : c_code,
-			rate_date : rate_date
-			// start_date : start_date,
-			// end_date : end_date
-		},
-		dataType : "json", // Expect JSON response
-		success : function(response) {
-			//console.log('응답 데이터 확인 ');
-			//console.log(response); // 응답 데이터 확인
-			//drawCharts(response, chartDivId); // 차트 그리기 함수 호출
-			drawTimeCharts(response, chartDivId);
-		},
-		error : function(xhr, status, error) {
-			console.error("AJAX 요청 오류:", status, error);
-		}
-	});
+function processCurrencies_chart(currencies_chart) {
+    const c_codes = currencies_chart.map(currency_chart => currency_chart.code); // 통화 코드 리스트 추출
+
+    $.ajax({
+        type: "POST",
+        url: "/ex/charts/graph", 
+        data: {
+            c_codes: c_codes, // 통화 코드 리스트를 전송
+            rate_date: formattedDate // 필요한 값으로 수정
+        },
+        traditional: true, // 배열을 전송할 수 있도록 설정
+        dataType: "json",
+        success: function(response) {
+            //console.log("응답 데이터:", response); // 응답 데이터를 확인
+            response.forEach((item, index) => {
+                const data = item.data; // 여기서 각 항목의 data 배열을 가져옴
+                
+                //console.log("현재 처리 중인 데이터:", item); // 각 항목 로그
+                //console.log("데이터 배열:", item.data); // data 배열 로그
+                
+                if (Array.isArray(data) && data.length > 0) {  // 응답이 배열이고 비어있지 않은 경우에만 처리
+                    drawTimeCharts(data, currencies_chart[index].chartId);  // 차트 그리기 함수 호출
+                } else {
+                    console.error(`차트 데이터가 배열이 아닙니다: ${item.c_code}`);
+                }
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("AJAX 요청 오류:", status, error);
+        }
+    });
 }
 
 //차트 그리기 함수
@@ -89,6 +120,12 @@ function drawTimeCharts(data, chartDivId) {
     chartData.addColumn('timeofday', '시간'); // 첫 번째 열: 시간 (시간, 분, 초)
     chartData.addColumn('number', '값'); // 두 번째 열: 값
 
+    // 응답 데이터가 배열인지 확인
+    if (!Array.isArray(data)) {
+        console.error("응답 데이터가 배열이 아닙니다:", data);
+        return;
+    }
+    
     // 응답 데이터를 [시간, 값] 형식으로 변환
     var formattedData = data.map(function(item) {
         // annoTime을 [hours, minutes] 형식으로 변환
@@ -186,30 +223,15 @@ $(document).ready(function() {
         // 모든 차트 숨기기
         $('.chart_graph_box_container').hide();
 
+        
+        
         // 선택한 통화의 차트 보이기
         if (selectedCurrency) {
             $('#' + selectedCurrency + '-chart').show();
-        	ajaxData('USD', 'chart_USD'); 
-        	ajaxData('JPY', 'chart_JPY'); 
-        	ajaxData('EUR', 'chart_EUR');
-        	ajaxData('CNY', 'chart_CNY');
-        	ajaxData('GBP', 'chart_GBP');
-        	ajaxData('CHF', 'chart_CHF');
-        	ajaxData('INR', 'chart_INR');
-        	ajaxData('AUD', 'chart_AUD');
-        	ajaxData('SAR', 'chart_SAR');
-        	ajaxData('RUB', 'chart_RUB');
-
-        	ajaxData('CAD', 'chart_CAD'); 
-        	ajaxData('HKD', 'chart_HKD'); 
-        	ajaxData('EGP', 'chart_EGP');
-        	ajaxData('THB', 'chart_THB');
-        	ajaxData('VND', 'chart_VND');
-        	ajaxData('ZAR', 'chart_ZAR');
-        	ajaxData('MXN', 'chart_MXN');
-        	ajaxData('BRL', 'chart_BRL');
-        	ajaxData('ILS', 'chart_ILS');
-        	ajaxData('NZD', 'chart_NZD');
+            
+            // 선택한 통화의 차트만 재호출
+            const selectedChart = currencies_chart.find(currency => currency.code === selectedCurrency);
+            processCurrencies_chart([selectedChart]); // 배열로 감싸서 전달
         }
     });
 });

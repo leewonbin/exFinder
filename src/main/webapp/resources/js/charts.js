@@ -80,40 +80,38 @@ function processCurrencies_value(currencies_value) {
 		 fetchExchangeRateData(currency_value.code, formattedDate, currency_value.valueId, currency_value.flagId);
 	 });
 }
+
 function processCurrencies_chart(currencies_chart) {
-    currencies_chart.forEach(currency_chart => {
-        ajaxData(currency_chart.code, currency_chart.chartId);
+    const c_codes = currencies_chart.map(currency_chart => currency_chart.code); // 통화 코드 리스트 추출
+
+    $.ajax({
+        type: "POST",
+        url: "/ex/charts/graph", 
+        data: {
+            c_codes: c_codes, // 통화 코드 리스트를 전송
+            rate_date: formattedDate // 필요한 값으로 수정
+        },
+        traditional: true, // 배열을 전송할 수 있도록 설정
+        dataType: "json",
+        success: function(response) {
+            //console.log("응답 데이터:", response); // 응답 데이터를 확인
+            response.forEach((item, index) => {
+                const data = item.data; // 여기서 각 항목의 data 배열을 가져옴
+                
+                //console.log("현재 처리 중인 데이터:", item); // 각 항목 로그
+                //console.log("데이터 배열:", item.data); // data 배열 로그
+                
+                if (Array.isArray(data) && data.length > 0) {  // 응답이 배열이고 비어있지 않은 경우에만 처리
+                    drawTimeCharts(data, currencies_chart[index].chartId);  // 차트 그리기 함수 호출
+                } else {
+                    console.error(`차트 데이터가 배열이 아닙니다: ${item.c_code}`);
+                }
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("AJAX 요청 오류:", status, error);
+        }
     });
-}
-
-// '2024/09/06'
-
-function ajaxData(c_code, chartDivId) {
-	
-	var rate_date = formattedDate; // 필요한 값으로 수정
-	// var start_date = '2024/08/01'; // 필요한 값으로 수정
-	// var end_date = formattedDate; // 필요한 값으로 수정
-
-	$.ajax({
-		type : "POST",
-		url : "/ex/charts/graph", // contextPath 사용 "${pageContext.request.contextPath}/charts/graph",
-		data : {
-			c_code : c_code,
-			rate_date : rate_date
-			// start_date : start_date,
-			// end_date : end_date
-		},
-		dataType : "json", // Expect JSON response
-		success : function(response) {
-			//console.log('응답 데이터 확인 ');
-			//console.log(response); // 응답 데이터 확인
-			//drawCharts(response, chartDivId); // 차트 그리기 함수 호출
-			drawTimeCharts(response, chartDivId);
-		},
-		error : function(xhr, status, error) {
-			console.error("AJAX 요청 오류:", status, error);
-		}
-	});
 }
 
 //차트 그리기 함수
@@ -130,6 +128,12 @@ function drawTimeCharts(data, chartDivId) {
     chartData.addColumn('timeofday', '시간'); // 첫 번째 열: 시간 (시간, 분, 초)
     chartData.addColumn('number', '값'); // 두 번째 열: 값
 
+    // 응답 데이터가 배열인지 확인
+    if (!Array.isArray(data)) {
+        console.error("응답 데이터가 배열이 아닙니다:", data);
+        return;
+    }
+    
     // 응답 데이터를 [시간, 값] 형식으로 변환
     var formattedData = data.map(function(item) {
         // annoTime을 [hours, minutes] 형식으로 변환
