@@ -93,6 +93,65 @@ public class ExChangeController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "charts/values", method = RequestMethod.POST)
+	public void charts_values(HttpServletResponse response, @RequestParam("c_codes") List<String> c_codes, @RequestParam("rate_date") String rate_date) throws Exception {
+	    response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
+
+	    Gson gson = new Gson();
+	    JsonArray jsonArray = new JsonArray(); // JSON 배열을 생성하여 결과를 담을 예정
+
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+	    LocalDate currentDate;
+
+	    for (String c_code : c_codes) {
+	        int checkValue = service.exchangeRate_column_checkValue(c_code);
+	        if (checkValue == 0) {
+	            System.out.println("해당 통화 코드 " + c_code + " 에 대한 데이터가 없으니 중지합니다.");
+	            continue; // 데이터가 없으면 해당 통화 코드는 건너뜁니다.
+	        }
+
+	        currentDate = LocalDate.parse(rate_date, formatter);
+	        double today_base_r = 0;
+
+	        while (today_base_r == 0) {
+	            today_base_r = service.exchangeRateSelect_base_r(c_code, currentDate.format(formatter));
+	            if (today_base_r == 0) {
+	                currentDate = currentDate.minusDays(1);
+	            }
+	        }
+
+	        currentDate = currentDate.minusDays(1);
+	        double yesterday_base_r = 0;
+
+	        while (yesterday_base_r == 0) {
+	            yesterday_base_r = service.exchangeRateSelect_base_r(c_code, currentDate.format(formatter));
+	            if (yesterday_base_r == 0) {
+	                currentDate = currentDate.minusDays(1);
+	            }
+	        }
+
+	        double largerValue = Math.max(today_base_r, yesterday_base_r);
+	        double smallerValue = Math.min(today_base_r, yesterday_base_r);
+	        double difference = largerValue - smallerValue;
+	        double percent = (yesterday_base_r != 0) ? ((today_base_r - yesterday_base_r) / yesterday_base_r) * 100 : 0;
+
+	        // JSON 객체 생성 및 데이터 추가
+	        JsonObject jsonObject = new JsonObject();
+	        jsonObject.addProperty("c_code", c_code);
+	        jsonObject.addProperty("today_base_r", today_base_r);
+	        jsonObject.addProperty("yesterday_base_r", yesterday_base_r);
+	        jsonObject.addProperty("difference", difference);
+	        jsonObject.addProperty("percent", percent);
+
+	        jsonArray.add(jsonObject); // JSON 배열에 추가
+	    }
+
+	    // 응답으로 JSON 배열 전송
+	    response.getWriter().write(gson.toJson(jsonArray));    
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "charts/value", method = RequestMethod.POST)
 	public void charts_value(HttpServletResponse response, @RequestParam("c_code") String  c_code, @RequestParam("rate_date") String rate_date) throws Exception {
 	    int checkValue = service.exchangeRate_column_checkValue(c_code);
@@ -173,8 +232,7 @@ public class ExChangeController {
 	    // 응답 설정
 	    response.setContentType("application/json");
 	    response.setCharacterEncoding("UTF-8");
-	    response.getWriter().write(json);
-	    
+	    response.getWriter().write(json);    
 	}
 	
 	@ResponseBody
