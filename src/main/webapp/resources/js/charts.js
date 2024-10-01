@@ -88,7 +88,7 @@ $(document).ready(function() {
         console.error('요청 중 오류 발생:', error);
     });
 });
-
+/*
 function processCurrencies_value(currencies_value) {
     const requests = currencies_value.map(currency_value => {
         return fetchExchangeRateData(currency_value.code, formattedDate, currency_value.valueId, currency_value.flagId);
@@ -97,6 +97,7 @@ function processCurrencies_value(currencies_value) {
     // 모든 요청을 Promise.all로 처리하여 프로미스 반환
     return Promise.all(requests);
 }
+*/
 function processCurrencies_chart(currencies_chart) {
     const c_codes = currencies_chart.map(currency_chart => currency_chart.code); // 통화 코드 리스트 추출
 
@@ -190,7 +191,7 @@ function drawTimeCharts(data, chartDivId) {
     chart.draw(chartData, options);
 }
 
-
+/*
 //정보 함수
 function fetchExchangeRateData(c_code, rate_date, div_id, flag_id) {
 	return new Promise((resolve, reject) => {
@@ -263,76 +264,79 @@ function fetchExchangeRateData(c_code, rate_date, div_id, flag_id) {
     
 	});
 }
-/*
+*/
 function processCurrencies_value(currencies_value) {
-    const c_codes = currencies_value.map(currency_value => currency_value.code); // 통화 코드 추출
-    const valueIds = currencies_value.map(currency_value => currency_value.valueId); // value ID 추출
-    const flagIds = currencies_value.map(currency_value => currency_value.flagId); // flag ID 추출
-
     return new Promise((resolve, reject) => {
-    	
-    // AJAX 요청
-    $.ajax({
-        url: '/ex/charts/values', // 서버 URL
-        type: 'POST',
-        data: {
-            c_codes: c_codes, // 통화 코드 리스트
-            rate_date: formattedDate // 날짜
-        },
-        traditional: true, // 배열을 전송할 수 있도록 설정
-        success: function(response) {
-            // 응답 데이터가 JSON 객체로 가정
-            currencies_value.forEach((currency_value, index) => {
-                const today_base_r = response[index].today_base_r;
-                const yesterday_base_r = response[index].yesterday_base_r;
-                const difference = response[index].difference;
-                const percent = response[index].percent;
+        // AJAX 요청
+        $.ajax({
+            url: '/ex/charts/values', // 서버 URL
+            type: 'POST',
+            success: function(response) {
+                console.log('응답 데이터:', response); // 응답 데이터 로깅
 
-                let result;
-                let cssClass;
-                let flag_result;
-                let flag_cssClass;
+                // 응답 데이터와 currencies_value를 매칭
+                currencies_value.forEach(currency_value => {
+                    // response에서 통화 코드에 해당하는 데이터 찾기
+                    const matchedData = response.find(item => item.c_code === currency_value.code);
 
-                if (today_base_r > yesterday_base_r) {
-                    result = today_base_r + ' ▲' + difference.toFixed(2) + ' +' + percent.toFixed(2) + '%';
-                    cssClass = 'increased';
-                    flag_result = '+' + percent.toFixed(2) + '%';
-                    flag_cssClass = 'flag-increased';
-                } else if (today_base_r === yesterday_base_r) {
-                    result = today_base_r + ' -' + difference.toFixed(2) + ' ' + percent.toFixed(2) + '%';
-                    cssClass = 'unchanged';
-                    flag_result = ' ' + percent.toFixed(2) + '%';
-                    flag_cssClass = 'flag-unchanged';
-                } else {
-                    result = today_base_r + ' ▼' + difference.toFixed(2) + ' ' + percent.toFixed(2) + '%';
-                    cssClass = 'decreased';
-                    flag_result = ' ' + percent.toFixed(2) + '%';
-                    flag_cssClass = 'flag-decreased';
-                }
+                    if (matchedData) {
+                        const today_base_r = matchedData.deal_bas_r;  // 현재 환율
+                        const difference = matchedData.diff;  // 차이
+                        const percent = matchedData.diff_percent;  // 퍼센트 차이
 
-                // HTML 콘텐츠 업데이트
-                const htmlContent = '<div class="' + cssClass + '">' + result + '</div>';
-                const htmlContent2 = '<span class="' + flag_cssClass + '">' + flag_result + '</span>';
+                        let result;
+                        let cssClass;
+                        let flag_result;
+                        let flag_cssClass;
 
-                // ID로 HTML 업데이트
-                $('#' + currency_value.valueId).html(htmlContent);
-                $('#' + currency_value.flagId).html(htmlContent2);
-            });
-            resolve(); // 프로미스 해결
-        },
-        error: function(xhr, status, error) {
-            console.error('데이터를 가져오는 데 실패했습니다:', error);
-            currencies_value.forEach(currency_value => {
-                $('#' + currency_value.valueId).html('<div>데이터를 가져오는 데 실패했습니다.</div>');
-                $('#' + currency_value.flagId).html('<span>데이터를 가져오는 데 실패했습니다.</span>');
-            });
-            reject(error); // 프로미스 거부
-        }
-    });
-    
+                        const absDifference = Math.abs(difference); // 차이의 절대값
+                        const absPercent = Math.abs(percent); // 퍼센트의 절대값
+
+                        if (difference > 0) {
+                            // 차이가 양수인 경우 (현재 환율이 어제 환율보다 높음)
+                            result = today_base_r + ' ▲' + absDifference.toFixed(2) + ' +' + absPercent.toFixed(2) + '%';
+                            cssClass = 'increased';
+                            flag_result = '+' + absPercent.toFixed(2) + '%';
+                            flag_cssClass = 'flag-increased';
+                        } else if (difference === 0) {
+                            result = today_base_r + ' -' + absDifference.toFixed(2) + ' ' + absPercent.toFixed(2) + '%';
+                            cssClass = 'unchanged';
+                            flag_result = ' ' + absPercent.toFixed(2) + '%';
+                            flag_cssClass = 'flag-unchanged';
+                        } else if (difference < 0) {
+                        	// 차이가 음수인 경우 (현재 환율이 어제 환율보다 낮음)
+                            result = today_base_r + ' ▼' + absDifference.toFixed(2) + ' -' + absPercent.toFixed(2) + '%';
+                            cssClass = 'decreased';
+                            flag_result = ' -' + absPercent.toFixed(2) + '%';
+                            flag_cssClass = 'flag-decreased';
+                        }
+
+                        // HTML 콘텐츠 업데이트
+                        const htmlContent = '<div class="' + cssClass + '">' + result + '</div>';
+                        const htmlContent2 = '<span class="' + flag_cssClass + '">' + flag_result + '</span>';
+
+                        // ID로 HTML 업데이트
+                        $('#' + currency_value.valueId).html(htmlContent);
+                        $('#' + currency_value.flagId).html(htmlContent2);
+                    } else {
+                        // 응답 데이터가 없을 경우 처리 (예: 기본 메시지)
+                        $('#' + currency_value.valueId).html('<div>데이터 없음</div>');
+                        $('#' + currency_value.flagId).html('<span>데이터 없음</span>');
+                    }
+                });
+                resolve(); // 프로미스 해결
+            },
+            error: function(xhr, status, error) {
+                console.error('데이터를 가져오는 데 실패했습니다:', error);
+                currencies_value.forEach(currency_value => {
+                    $('#' + currency_value.valueId).html('<div>데이터를 가져오는 데 실패했습니다.</div>');
+                    $('#' + currency_value.flagId).html('<span>데이터를 가져오는 데 실패했습니다.</span>');
+                });
+                reject(error); // 프로미스 거부
+            }
+        });
     });
 }
-*/
 
 
 document.addEventListener('DOMContentLoaded', function() {
