@@ -47,6 +47,7 @@ public class ExChangeController {
 	public ResponseEntity<String> updateExchange() {
 		try {
 			LocalDate today = LocalDate.now();
+			today.minusDays(1);
 			LocalDate oneYearAgo = today.minusYears(1);
 			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
