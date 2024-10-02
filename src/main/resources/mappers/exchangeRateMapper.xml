@@ -38,7 +38,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE c_code = #{c_code}
       AND rate_date = #{rate_date}
 </select>
-   
+
+
+<select id="today_ComparisonValue" resultType="ExchangeRate_ComparisonValueDto">
+   	WITH comparisonvalue AS (
+    	SELECT 
+        	c_code,
+        	MAX(CASE WHEN source = 'notice' THEN deal_bas_r END) AS n_dr,
+        	MAX(CASE WHEN source = 'exchange' THEN deal_bas_r END) AS e_dr
+    	FROM (
+        	SELECT c_code, deal_bas_r, 'notice' AS source,
+            	   DENSE_RANK() OVER (PARTITION BY c_code ORDER BY rate_date DESC, annotime DESC) AS num
+        	FROM noticeExchangerate
+        	UNION ALL
+        	SELECT c_code, deal_bas_r, 'exchange',
+            	   DENSE_RANK() OVER (PARTITION BY c_code ORDER BY rate_date DESC) AS num
+        	FROM exchangerate
+    	) 
+    	WHERE num = 1
+    	GROUP BY c_code
+	)
+	SELECT 
+    	c_code,
+    	n_dr AS deal_bas_r,
+    	n_dr - e_dr AS diff,
+    	ROUND((n_dr - e_dr) / NULLIF(e_dr, 0) * 100, 2) AS diff_percent
+	FROM comparisonvalue
+</select>
+
+<select id="today_ComparisonValue_code" resultType="ExchangeRate_ComparisonValueDto">
+   	WITH comparisonvalue AS (
+    	SELECT 
+        	c_code,
+        	MAX(CASE WHEN source = 'notice' THEN deal_bas_r END) AS n_dr,
+        	MAX(CASE WHEN source = 'exchange' THEN deal_bas_r END) AS e_dr
+    	FROM (
+        	SELECT c_code, deal_bas_r, 'notice' AS source,
+            	   DENSE_RANK() OVER (PARTITION BY c_code ORDER BY rate_date DESC, annotime DESC) AS num
+        	FROM noticeExchangerate
+        	UNION ALL
+        	SELECT c_code, deal_bas_r, 'exchange',
+            	   DENSE_RANK() OVER (PARTITION BY c_code ORDER BY rate_date DESC) AS num
+        	FROM exchangerate
+    	) 
+    	WHERE num = 1
+    	GROUP BY c_code
+	)
+	SELECT 
+    	c_code,
+    	n_dr AS deal_bas_r,
+    	n_dr - e_dr AS diff,
+    	ROUND((n_dr - e_dr) / NULLIF(e_dr, 0) * 100, 2) AS diff_percent
+	FROM comparisonvalue
+	WHERE c_code = #{c_code}
+</select>
+
 </mapper>
 
 

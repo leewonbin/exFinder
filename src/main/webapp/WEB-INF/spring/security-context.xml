@@ -24,7 +24,8 @@
 	authentication-success-handler-ref="loginSuccess" - 로그인 성공 후에 호출될 핸들러 빈을 지정합니다.
 	--> 
 	<!--해당 주소로 오면 session이 지워지고 로그아웃이 진행됨   --> 
-	<logout logout-url="/user/logout" invalidate-session="true"   /> 
+	<logout logout-url="/user/logout" invalidate-session="true" delete-cookies="JSESSIONID"
+    success-handler-ref="logoutSuccess"  /> 
 	<!--로그인  실패시 이동할 주소 --> 	
 	<access-denied-handler error-page="/user/login" />
 	
@@ -38,8 +39,13 @@
 	permitAll 모든 사용자를 의미 
 	hasAnyRole(‘MEMBER,ADMIN’)  MEMBER,ADMIN 사용자 권한을 의미한다. 
 	hasRole('ADMIN') admin사용자 권한을 의미한다. 
-	--> 
-</http> 
+	--> 	
+	<!-- other configurations -->
+    <headers>
+        <frame-options policy="SAMEORIGIN"/>
+    </headers>
+	
+</http>
 
 <beans:bean id="loginSuccess" class="com.exfinder.Handler.LoginRedirectHandler"/>
 <!-- URL 설정 --> 

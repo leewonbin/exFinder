@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import com.exfinder.dao.ExchangeRateDao;
 import com.exfinder.dto.ExchangeRateDto;
+import com.exfinder.dto.ExchangeRate_ComparisonValueDto;
 import com.exfinder.dto.NoticeExchangeRateDto;
 
 @Service
@@ -284,6 +285,16 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 			driver.quit();
 		}
 		return list;
+	}
+
+	@Override
+	public ArrayList<ExchangeRate_ComparisonValueDto> today_ComparisonValue() throws Exception {
+		return dao.today_ComparisonValue();
+	}
+
+	@Override
+	public ExchangeRate_ComparisonValueDto  today_ComparisonValue_code(String c_code) throws Exception {
+		return dao.today_ComparisonValue_code(c_code);
 	}
 
 }

@@ -46,6 +46,12 @@
 	color: #054184;
 }
 
+@keyframes alram {
+    25% { color: #2196F3; }
+    50% { color: #64B5F6; }
+    75% { color: lightgreen; }
+    }
+
 /* .header_start>ul>li:before {
 	display: inline-block;
 	content: "";
@@ -94,8 +100,6 @@
 	align-items: center;
 	margin-right: 0px;
 	margin-top: 60px;
-	
-	position: relative;
 }
 
 .header_end_myPage img {
@@ -123,6 +127,7 @@
     background-repeat: no-repeat; /* 이미지 반복 방지 */
     margin-left: 3px; 
     margin-top: 2px;
+    
 }
 
 
@@ -133,10 +138,8 @@
 .header_mini_myPage {
 	display: none; /* 기본적으로 숨김 */
 	
-	/* 마이페이지 위치 설정 */
-    position: absolute; /* .header_end_myPage를 기준으로 위치 설정 */
-    top: 86%; /* 기준 요소의 아래로 배치 */
-    left: 76%; /* 부모 요소와 수평 맞춤 */
+	top: 110px; /* 화면 상단에서 20px 아래 */
+	right: 200px; /* 화면 오른쪽에서 20px 왼쪽 */
 	
 	z-index: 9999; /* 가장 위로 배치되도록 설정 */
 	

@@ -11,6 +11,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.exfinder.dto.AlramDto;
+import com.exfinder.service.AlramService;
 import com.exfinder.service.NotificationService;
 
 @Component
@@ -19,6 +21,9 @@ public class EchoHandler extends TextWebSocketHandler{
 	
 	@Autowired
 	private NotificationService service;
+	
+	@Autowired
+	private AlramService a_service;
 	
 	private List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
 	
@@ -42,12 +47,24 @@ public class EchoHandler extends TextWebSocketHandler{
 		sessions.remove(session);
 	}
 	
-	public void sendMessageToUser(String userId, TextMessage message) throws Exception {
-	    for (WebSocketSession session : sessions) {
-	        String sessionUserId = (String) session.getAttributes().get("userId");
-	        if (userId.equals(sessionUserId)) {
-	            session.sendMessage(message);
+	public void notifyClients() throws Exception {
+	    ArrayList<AlramDto> alramList = a_service.alramSelect(); // 알람 목록을 가져옴
+	    System.out.println("alramList.size() : " + alramList.size());
+
+	    for (AlramDto alram : alramList) {
+	        String userId = alram.getU_id();
+	        System.out.println("userId : " + userId);
+	        TextMessage textMessage = new TextMessage("새로운 알람이 있습니다: " + alram.getTarget_exchange());
+	        System.out.println("sessions.size() : " + sessions.size());
+	        for (WebSocketSession session : sessions) {
+	            String sessionUserId = (String) session.getAttributes().get("userId");
+	            System.out.println("sessionUserId : " + sessionUserId);
+	            System.out.println("session.getId() :" + session.getId());
+	            if (userId.equals(sessionUserId)) {
+	                session.sendMessage(textMessage); // 해당 사용자에게만 메시지 전송
+	            }
 	        }
 	    }
 	}
+	
 }

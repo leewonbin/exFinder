@@ -22,12 +22,15 @@ $(document).ready(function() {
 //    ajaxData(`${currencyDto.c_code}`, 'chart_3month', 'three-month'); 
 //    ajaxData(`${currencyDto.c_code}`, 'chart_1year', 'one-year'); 
 
-	fetchExchangeRateData(currencyCode, formattedDate, 'value_Currency');
+    
+	fetchExchangeRateData(currencyCode, 'value_Currency');
     // Google Charts 라이브러리가 로드된 후 차트 그리기
     google.charts.setOnLoadCallback(function() {
         // console.log('Google Charts 라이브러리 로드 완료');
     });
 });
+
+
 
 // AJAX 요청 함수
 function ajaxData(c_code, chartDivId, cart_day) {
@@ -126,58 +129,56 @@ function drawCharts(data, chartDivId) {
 }
 
 //정보 함수
-function fetchExchangeRateData(c_code, rate_date, div_id) {
-    $.ajax({
-        url: '/ex/charts/value',
-        type: 'POST',
-        data: {
-            c_code: c_code,
-            rate_date: rate_date
-        },
-        success: function(response) {
-            // console.log('서버 응답:', response); // 서버 응답 확인
+function fetchExchangeRateData(currencyCode, valueId) {
+    return new Promise((resolve, reject) => {
+        // AJAX 요청
+        $.ajax({
+            url: '/ex/charts/value', // 서버 URL
+            type: 'POST',
+            data: { c_code: currencyCode }, // 통화 코드 전송
+            success: function(response) {
+                console.log('응답 데이터:', response); // 응답 데이터 로깅
 
-            // 응답 데이터가 JSON 객체로 가정
-            const today_base_r = response.today_base_r;
-            const yesterday_base_r = response.yesterday_base_r;
-            const difference = response.difference;
-            const percent = response.percent;
+                // 응답 데이터에서 필요한 정보 추출
+                const today_base_r = response.today_base_r;  // 현재 환율
+                const difference = response.difference;  // 환율 차이
+                const percent = response.percent;  // 퍼센트 차이
 
-            // 결과 문자열 생성
-            let result;
-            let cssClass;
+                let result;
+                let cssClass;
 
-            if (today_base_r > yesterday_base_r) {
-                result = today_base_r + ' ▲' + difference.toFixed(2) + ' +' + percent.toFixed(2) + '%';
-                cssClass = 'increased';
-                
-            } else if (today_base_r === yesterday_base_r) {
-                result = today_base_r + ' -' + difference.toFixed(2) + ' ' + percent.toFixed(2) + '%';
-                cssClass = 'unchanged';
-                
-            } else {
-                result = today_base_r + ' ▼' + difference.toFixed(2) + ' ' + percent.toFixed(2) + '%';
-                cssClass = 'decreased';
-                
+                const absDifference = Math.abs(difference); // 차이의 절대값
+                const absPercent = Math.abs(percent); // 퍼센트의 절대값
+
+                // 차이에 따라 결과 및 CSS 클래스 결정
+                if (difference > 0) {
+                    // 차이가 양수인 경우
+                    result = today_base_r + ' ▲' + absDifference.toFixed(2) + ' +' + absPercent.toFixed(2) + '%';
+                    cssClass = 'increased';
+                } else if (difference === 0) {
+                    // 차이가 0인 경우
+                    result = today_base_r + ' -' + absDifference.toFixed(2) + ' ' + absPercent.toFixed(2) + '%';
+                    cssClass = 'unchanged';
+                } else {
+                    // 차이가 음수인 경우
+                    result = today_base_r + ' ▼' + absDifference.toFixed(2) + ' -' + absPercent.toFixed(2) + '%';
+                    cssClass = 'decreased';
+                }
+
+                // HTML 콘텐츠 업데이트
+                const htmlContent = '<div class="' + cssClass + '">' + result + '</div>';
+
+                // ID로 HTML 업데이트
+                $('#' + valueId).html(htmlContent);
+
+                resolve(); // 프로미스 해결
+            },
+            error: function(xhr, status, error) {
+                console.error('데이터를 가져오는 데 실패했습니다:', error);
+                $('#' + valueId).html('<div>데이터를 가져오는 데 실패했습니다.</div>');
+                reject(error); // 프로미스 거부
             }
-
-            //console.log('결과 문자열:', result); // 결과 문자열 확인
-            //console.log('CSS 클래스:', cssClass); // CSS 클래스 확인
-
-            // HTML 콘텐츠 업데이트
-            const htmlContent = '<div class="' + cssClass + '">' + result + '</div>';
-            //console.log('업데이트할 HTML:', htmlContent); // 업데이트할 HTML 확인               
-
-            // HTML 업데이트
-            $('#' + div_id).html(htmlContent);
-           
-            // 업데이트 후 상태 확인
-            //console.log('업데이트된 HTML:', $('#' + div_id).html());
-        },
-        error: function(xhr, status, error) {
-            console.error(c_code,'에 대한 데이터를 가져오는 데 실패했습니다:', error);
-            $('#' + div_id).html('<div>데이터를 가져오는 데 실패했습니다.</div>');
-        }
+        });
     });
 }
 

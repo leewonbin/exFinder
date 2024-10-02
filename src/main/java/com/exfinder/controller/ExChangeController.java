@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exfinder.dto.ExchangeRateDto;
+import com.exfinder.dto.ExchangeRate_ComparisonValueDto;
 import com.exfinder.dto.NoticeExchangeRateDto;
 import com.exfinder.service.ExchangeRateService;
 import com.exfinder.service.NoticeExchangeRateService;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 @Controller
@@ -45,6 +47,7 @@ public class ExChangeController {
 	public ResponseEntity<String> updateExchange() {
 		try {
 			LocalDate today = LocalDate.now();
+			today.minusDays(1);
 			LocalDate oneYearAgo = today.minusYears(1);
 			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -92,133 +95,113 @@ public class ExChangeController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "charts/value", method = RequestMethod.POST)
-	public void charts_value(HttpServletResponse response, @RequestParam("c_code") String  c_code, @RequestParam("rate_date") String rate_date) throws Exception {
-	    int checkValue = service.exchangeRate_column_checkValue(c_code);
-	    if (checkValue == 0) {
-	        // 값이 0인 경우, 즉시 종료
-	        response.setContentType("application/json");
-	        response.setCharacterEncoding("UTF-8");
-	        System.out.println("해당 통화 코드"+ c_code + " 에 대한 데이터가 없으니 중지합니다.");
-	        return;
+	@RequestMapping(value = "charts/values", method = RequestMethod.POST)
+	public void charts_values(HttpServletResponse response) throws Exception {
+	    response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
+
+	    // 모든 통화의 환율 비교 값을 가져옴
+	    ArrayList<ExchangeRate_ComparisonValueDto> comparisonValues = service.today_ComparisonValue();
+	    System.out.println(comparisonValues);
+	    // Gson 객체 생성
+	    Gson gson = new Gson();
+	    JsonArray jsonArray = new JsonArray(); // JSON 배열 생성
+
+	    // 비교 값을 JSON 배열에 추가
+	    for (ExchangeRate_ComparisonValueDto value : comparisonValues) {
+	        // DTO를 JSON으로 변환 후 JSON 배열에 추가
+	        jsonArray.add(gson.toJsonTree(value));
 	    }
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-		LocalDate currentDate = LocalDate.parse(rate_date, formatter);
-		
-		double today_base_r = 0;
-		
-		while (today_base_r == 0) { // 0을 null에 해당하는 값으로 가정
-			today_base_r = service.exchangeRateSelect_base_r(c_code, currentDate.format(formatter));
-            // System.out.println(c_code + "- today_base_r : " +  today_base_r);
-            
-            if (today_base_r == 0) {
-                currentDate = currentDate.minusDays(1); // 날짜에서 1일을 뺌
-            }
-        }
-		//System.out.println("-" + c_code + " 최신 날짜: " + currentDate.format(formatter) + ", 기준 환율: " + today_base_r);
-		
-		currentDate = currentDate.minusDays(1); // 미리 1일을 뺀다.
-        
-        double yesterday_base_r = 0;
 
-        // null이 아닐 때까지 반복
-        while (yesterday_base_r == 0) { // 0을 null에 해당하는 값으로 가정
-            yesterday_base_r = service.exchangeRateSelect_base_r(c_code, currentDate.format(formatter));
-            // System.out.println(c_code + "- yesterday_base_r : " + yesterday_base_r);
-            
-            if (yesterday_base_r == 0) {
-                currentDate = currentDate.minusDays(1); // 날짜에서 1일을 뺌
-            }
-        }
-
-		//System.out.println("-" + c_code + " 최종 날짜: " + currentDate.format(formatter) + ", 기준 환율: " + yesterday_base_r);
-		
-		// 두 값 중 큰 값을 선택
-		double largerValue = Math.max(today_base_r, yesterday_base_r);
-		double smallerValue = Math.min(today_base_r, yesterday_base_r);
-
-		// 큰 값에서 작은 값을 빼기
-		double difference = largerValue - smallerValue;
-		//System.out.println("--" + c_code + " 두 값의 차이 : " + String.format("%.2f", difference));
-		
-		double percent = 0;
-		if (yesterday_base_r != 0) {
-		    if (difference < 0) { // 감소한 경우
-		        percent = ((yesterday_base_r - today_base_r) / yesterday_base_r) * 100;
-		        //System.out.println("---" + c_code + " 전날 대비 감소율 : " + String.format("%.2f", percent) + "%");
-		    } else { // 증가한 경우
-		        percent = ((today_base_r - yesterday_base_r) / yesterday_base_r) * 100;
-		        //System.out.println("---" + c_code + " 전날 대비 증가율 : " + String.format("%.2f", percent) + "%");
-		    }
-		} else {
-			percent = 0;
-		    //System.out.println("---" + c_code + " 증가하지도 감소하지도 않았습니다.");
-		}
-		
+	    // 응답으로 JSON 배열 전송
+	    response.getWriter().write(gson.toJson(jsonArray));    
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "charts/value", method = RequestMethod.POST)
+	public void charts_value(HttpServletResponse response, @RequestParam("c_code") String c_code) throws Exception {
+	    // 통화 코드에 따라 환율 정보 조회
+	    ExchangeRate_ComparisonValueDto rateDto = service.today_ComparisonValue_code(c_code);
+	    
 	    // Gson 객체 생성
 	    Gson gson = new Gson();
 	    
 	    // JSON 객체 생성 및 데이터 추가
 	    JsonObject jsonObject = new JsonObject();
-	    jsonObject.addProperty("today_base_r", today_base_r);
-	    jsonObject.addProperty("yesterday_base_r", yesterday_base_r);
-	    jsonObject.addProperty("difference", difference);
-	    jsonObject.addProperty("percent", percent);
-
+	    jsonObject.addProperty("c_code", rateDto.getC_code());                  // 통화 코드 가져오기
+	    jsonObject.addProperty("today_base_r", rateDto.getDeal_bas_r());       // 오늘 환율 가져오기
+	    jsonObject.addProperty("difference", rateDto.getDiff());               // 환율 차이 가져오기
+	    jsonObject.addProperty("percent", rateDto.getDiff_percent());          // 퍼센트 변화 가져오기
+	    
 	    // JSON 문자열로 변환
 	    String json = gson.toJson(jsonObject);
 	    
 	    // 응답 설정
 	    response.setContentType("application/json");
 	    response.setCharacterEncoding("UTF-8");
-	    response.getWriter().write(json);
-	    
+	    response.getWriter().write(json);    
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "charts/graph", method = RequestMethod.POST)
-	public void charts_graph(HttpServletResponse response, @RequestParam("c_code") String  c_code, @RequestParam("rate_date") String rate_date) throws Exception {
+	public void charts_graph(HttpServletResponse response, @RequestParam("c_codes") List<String> c_codes, @RequestParam("rate_date") String rate_date) throws Exception {
 		// HttpServletResponse response, @RequestParam("c_code") String  c_code, @RequestParam("start_date") String start_date, @RequestParam("end_date") String end_date
-	    int checkValue = service.exchangeRate_column_checkValue(c_code);
-	    if (checkValue == 0) {
-	        // 값이 0인 경우, 즉시 종료
-	        response.setContentType("application/json");
-	        response.setCharacterEncoding("UTF-8");
-	        System.out.println("해당 통화 코드"+ c_code + " 에 대한 데이터가 없으니 중지합니다.");
-	        return;
-	    }
-	    
-	    // 날짜 포맷 설정
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-	    LocalDate date = LocalDate.parse(rate_date, formatter); // 문자열을 LocalDate로 변환
-	    ArrayList<NoticeExchangeRateDto> dto = null;
+	    Gson gson = new Gson();
+	    JsonArray jsonArray = new JsonArray();
 
-	    // 하루씩 빼면서 데이터 조회
-	    while (dto == null || dto.isEmpty()) {
-	        dto = n_service.charts_selectList(c_code, date.format(formatter)); // 데이터 조회
-	        if (dto == null || dto.isEmpty()) {
-	            date = date.minusDays(1); // 하루 빼기
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+	    
+	    for (String c_code : c_codes) {
+		    int checkValue = service.exchangeRate_column_checkValue(c_code);
+		    if (checkValue == 0) {
+		        // 값이 0인 경우, 즉시 종료
+		        response.setContentType("application/json");
+		        response.setCharacterEncoding("UTF-8");
+		        System.out.println("해당 통화 코드"+ c_code + " 에 대한 데이터가 없으니 중지합니다.");
+		        continue; // 데이터가 없는 경우에도 다음 통화 코드를 처리
+		    }
+		    
+		    // 날짜 포맷 설정    
+		    LocalDate date = LocalDate.parse(rate_date, formatter); // 문자열을 LocalDate로 변환
+		    ArrayList<NoticeExchangeRateDto> dto = null;
+
+		    // 하루씩 빼면서 데이터 조회
+		    while (dto == null || dto.isEmpty()) {
+		        dto = n_service.charts_selectList(c_code, date.format(formatter)); // 데이터 조회
+		        if (dto == null || dto.isEmpty()) {
+		            date = date.minusDays(1); // 하루 빼기
+		        }
+		    }
+		    
+	        // 차트 데이터가 있으면 JSON 형식으로 변환
+	        if (dto != null && !dto.isEmpty()) {
+	            JsonObject jsonObject = new JsonObject();
+	            jsonObject.addProperty("c_code", c_code); // 통화 코드 추가
+
+	            JsonArray dataArray = new JsonArray(); // 차트 데이터 배열
+
+	            // dto에 있는 데이터를 차트에 맞게 변환
+	            for (NoticeExchangeRateDto item : dto) {
+	                JsonObject dataObject = new JsonObject();
+	                
+	                // 시간 및 값을 JSON으로 변환하여 추가
+	                dataObject.addProperty("annoTime", item.getAnnoTime());
+	                dataObject.addProperty("deal_bas_r", item.getDeal_bas_r());
+
+	                dataArray.add(dataObject);
+	            }
+
+	            // 차트 데이터를 JSON에 추가
+	            jsonObject.add("data", dataArray);
+	            jsonArray.add(jsonObject); // 최종적으로 jsonArray에 추가
 	        }
 	    }
-	    
-		// List<ExchangeRateDto> dto = service.exchangeRateSelect(c_code, start_date, end_date);
-		// System.out.println("c_code : " + c_code + " rate_date : " + rate_date);
-		// ArrayList<NoticeExchangeRateDto> dto = n_service.charts_selectList(c_code, rate_date);
-		//System.out.println("-결과 c_code : " + c_code + " : " + dto);
-		
-		Gson gson = new Gson();
-		String json = "";
-		json = gson.toJson(dto);
-		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("utf-8");
-		try {
-			response.getWriter().print(json);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+	    //응답으로 JSON 배열 전송
+	    response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
+	    response.getWriter().write(gson.toJson(jsonArray));
 	}
 	
 	@ResponseBody

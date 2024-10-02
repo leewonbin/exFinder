@@ -16,104 +16,117 @@ google.charts.load('current', {
 	'packages' : [ 'corechart' ]
 });
 
+// 통화 정보 배열 정의
+const currencies_value = [
+    { code: 'USD', valueId: 'value_USD', flagId: 'flag_USD' },
+    { code: 'JPY', valueId: 'value_JPY', flagId: 'flag_JPY' },
+    { code: 'EUR', valueId: 'value_EUR', flagId: 'flag_EUR' },
+    { code: 'CNY', valueId: 'value_CNY', flagId: 'flag_CNY' },
+    { code: 'GBP', valueId: 'value_GBP', flagId: 'flag_GBP' },
+    { code: 'CHF', valueId: 'value_CHF', flagId: 'flag_CHF' },
+    { code: 'INR', valueId: 'value_INR', flagId: 'flag_INR' },
+    { code: 'AUD', valueId: 'value_AUD', flagId: 'flag_AUD' },
+    { code: 'SAR', valueId: 'value_SAR', flagId: 'flag_SAR' },
+    { code: 'RUB', valueId: 'value_RUB', flagId: 'flag_RUB' },
+    { code: 'CAD', valueId: 'value_CAD', flagId: 'flag_CAD' },
+    { code: 'HKD', valueId: 'value_HKD', flagId: 'flag_HKD' },
+    { code: 'EGP', valueId: 'value_EGP', flagId: 'flag_EGP' },
+    { code: 'THB', valueId: 'value_THB', flagId: 'flag_THB' },
+    { code: 'VND', valueId: 'value_VND', flagId: 'flag_VND' },
+    { code: 'ZAR', valueId: 'value_ZAR', flagId: 'flag_ZAR' },
+    { code: 'MXN', valueId: 'value_MXN', flagId: 'flag_MXN' },
+    { code: 'BRL', valueId: 'value_BRL', flagId: 'flag_BRL' },
+    { code: 'ILS', valueId: 'value_ILS', flagId: 'flag_ILS' },
+    { code: 'NZD', valueId: 'value_NZD', flagId: 'flag_NZD' }
+];
+
+// 통화 코드와 차트 ID 매핑 배열 정의
+const currencies_chart = [
+    { code: 'USD', chartId: 'chart_USD' },
+    { code: 'JPY', chartId: 'chart_JPY' },
+    { code: 'EUR', chartId: 'chart_EUR' },
+    { code: 'CNY', chartId: 'chart_CNY' },
+    { code: 'GBP', chartId: 'chart_GBP' },
+    { code: 'CHF', chartId: 'chart_CHF' },
+    { code: 'INR', chartId: 'chart_INR' },
+    { code: 'AUD', chartId: 'chart_AUD' },
+    { code: 'SAR', chartId: 'chart_SAR' },
+    { code: 'RUB', chartId: 'chart_RUB' },
+    { code: 'CAD', chartId: 'chart_CAD' },
+    { code: 'HKD', chartId: 'chart_HKD' },
+    { code: 'EGP', chartId: 'chart_EGP' },
+    { code: 'THB', chartId: 'chart_THB' },
+    { code: 'VND', chartId: 'chart_VND' },
+    { code: 'ZAR', chartId: 'chart_ZAR' },
+    { code: 'MXN', chartId: 'chart_MXN' },
+    { code: 'BRL', chartId: 'chart_BRL' },
+    { code: 'ILS', chartId: 'chart_ILS' },
+    { code: 'NZD', chartId: 'chart_NZD' }
+];
+
+
 $(document).ready(function() {
-    // 통화 정보 배열 정의
-    const currencies_value = [
-        { code: 'USD', valueId: 'value_USD', flagId: 'flag_USD' },
-        { code: 'JPY', valueId: 'value_JPY', flagId: 'flag_JPY' },
-        { code: 'EUR', valueId: 'value_EUR', flagId: 'flag_EUR' },
-        { code: 'CNY', valueId: 'value_CNY', flagId: 'flag_CNY' },
-        { code: 'GBP', valueId: 'value_GBP', flagId: 'flag_GBP' },
-        { code: 'CHF', valueId: 'value_CHF', flagId: 'flag_CHF' },
-        { code: 'INR', valueId: 'value_INR', flagId: 'flag_INR' },
-        { code: 'AUD', valueId: 'value_AUD', flagId: 'flag_AUD' },
-        { code: 'SAR', valueId: 'value_SAR', flagId: 'flag_SAR' },
-        { code: 'RUB', valueId: 'value_RUB', flagId: 'flag_RUB' },
-        { code: 'CAD', valueId: 'value_CAD', flagId: 'flag_CAD' },
-        { code: 'HKD', valueId: 'value_HKD', flagId: 'flag_HKD' },
-        { code: 'EGP', valueId: 'value_EGP', flagId: 'flag_EGP' },
-        { code: 'THB', valueId: 'value_THB', flagId: 'flag_THB' },
-        { code: 'VND', valueId: 'value_VND', flagId: 'flag_VND' },
-        { code: 'ZAR', valueId: 'value_ZAR', flagId: 'flag_ZAR' },
-        { code: 'MXN', valueId: 'value_MXN', flagId: 'flag_MXN' },
-        { code: 'BRL', valueId: 'value_BRL', flagId: 'flag_BRL' },
-        { code: 'ILS', valueId: 'value_ILS', flagId: 'flag_ILS' },
-        { code: 'NZD', valueId: 'value_NZD', flagId: 'flag_NZD' }
-    ];
-    processCurrencies_value(currencies_value);
+	console.time('Total Execution Time');
+
+    //processCurrencies_value(currencies_value);
     
     // Google Charts 라이브러리가 로드된 후 차트 그리기
     google.charts.setOnLoadCallback(function() {
         //console.log('Google Charts 라이브러리 로드 완료');
     });
     
-    // 통화 코드와 차트 ID 매핑 배열 정의
-    const currencies_chart = [
-        { code: 'USD', chartId: 'chart_USD' },
-        { code: 'JPY', chartId: 'chart_JPY' },
-        { code: 'EUR', chartId: 'chart_EUR' },
-        { code: 'CNY', chartId: 'chart_CNY' },
-        { code: 'GBP', chartId: 'chart_GBP' },
-        { code: 'CHF', chartId: 'chart_CHF' },
-        { code: 'INR', chartId: 'chart_INR' },
-        { code: 'AUD', chartId: 'chart_AUD' },
-        { code: 'SAR', chartId: 'chart_SAR' },
-        { code: 'RUB', chartId: 'chart_RUB' },
-        { code: 'CAD', chartId: 'chart_CAD' },
-        { code: 'HKD', chartId: 'chart_HKD' },
-        { code: 'EGP', chartId: 'chart_EGP' },
-        { code: 'THB', chartId: 'chart_THB' },
-        { code: 'VND', chartId: 'chart_VND' },
-        { code: 'ZAR', chartId: 'chart_ZAR' },
-        { code: 'MXN', chartId: 'chart_MXN' },
-        { code: 'BRL', chartId: 'chart_BRL' },
-        { code: 'ILS', chartId: 'chart_ILS' },
-        { code: 'NZD', chartId: 'chart_NZD' }
-    ];
-
-    processCurrencies_chart(currencies_chart);
-
+    // 프로미스 배열 생성
+    const chartPromise = processCurrencies_chart(currencies_chart);
+    const valuePromise = processCurrencies_value(currencies_value);
+    
+    
+    // 모든 요청이 완료될 때까지 대기
+    Promise.all([valuePromise, chartPromise]).then(() => {
+        // 모든 요청 완료 후 종료 시간 기록
+        console.timeEnd('Total Execution Time');
+    }).catch(error => {
+        console.error('요청 중 오류 발생:', error);
+    });
 });
 
-function processCurrencies_value(currencies_value) {
-	currencies_value.forEach(currency_value => {
-		 fetchExchangeRateData(currency_value.code, formattedDate, currency_value.valueId, currency_value.flagId);
-	 });
-}
 function processCurrencies_chart(currencies_chart) {
-    currencies_chart.forEach(currency_chart => {
-        ajaxData(currency_chart.code, currency_chart.chartId);
+    const c_codes = currencies_chart.map(currency_chart => currency_chart.code); // 통화 코드 리스트 추출
+
+    return new Promise((resolve, reject) => {
+    	
+    
+    $.ajax({
+        type: "POST",
+        url: "/ex/charts/graph", 
+        data: {
+            c_codes: c_codes, // 통화 코드 리스트를 전송
+            rate_date: formattedDate // 필요한 값으로 수정
+        },
+        traditional: true, // 배열을 전송할 수 있도록 설정
+        dataType: "json",
+        success: function(response) {
+            //console.log("응답 데이터:", response); // 응답 데이터를 확인
+            response.forEach((item, index) => {
+                const data = item.data; // 여기서 각 항목의 data 배열을 가져옴
+                
+                //console.log("현재 처리 중인 데이터:", item); // 각 항목 로그
+               
+                if (Array.isArray(data) && data.length > 0) {  // 응답이 배열이고 비어있지 않은 경우에만 처리
+                	//console.log("데이터 배열:", item.data); // data 배열 로그
+                    drawTimeCharts(data, currencies_chart[index].chartId);  // 차트 그리기 함수 호출
+                } else {
+                    console.error(`차트 데이터가 배열이 아닙니다: ${item.c_code}`);
+                }
+            });
+            resolve(); // 프로미스 해결
+        },
+        error: function(xhr, status, error) {
+            console.error("AJAX 요청 오류:", status, error);
+            reject(error); // 프로미스 거부
+        }
     });
-}
-
-// '2024/09/06'
-
-function ajaxData(c_code, chartDivId) {
-	
-	var rate_date = formattedDate; // 필요한 값으로 수정
-	// var start_date = '2024/08/01'; // 필요한 값으로 수정
-	// var end_date = formattedDate; // 필요한 값으로 수정
-
-	$.ajax({
-		type : "POST",
-		url : "/ex/charts/graph", // contextPath 사용 "${pageContext.request.contextPath}/charts/graph",
-		data : {
-			c_code : c_code,
-			rate_date : rate_date
-			// start_date : start_date,
-			// end_date : end_date
-		},
-		dataType : "json", // Expect JSON response
-		success : function(response) {
-			//console.log('응답 데이터 확인 ');
-			//console.log(response); // 응답 데이터 확인
-			//drawCharts(response, chartDivId); // 차트 그리기 함수 호출
-			drawTimeCharts(response, chartDivId);
-		},
-		error : function(xhr, status, error) {
-			console.error("AJAX 요청 오류:", status, error);
-		}
-	});
+    
+    });
 }
 
 //차트 그리기 함수
@@ -130,6 +143,12 @@ function drawTimeCharts(data, chartDivId) {
     chartData.addColumn('timeofday', '시간'); // 첫 번째 열: 시간 (시간, 분, 초)
     chartData.addColumn('number', '값'); // 두 번째 열: 값
 
+    // 응답 데이터가 배열인지 확인
+    if (!Array.isArray(data)) {
+        console.error("응답 데이터가 배열이 아닙니다:", data);
+        return;
+    }
+    
     // 응답 데이터를 [시간, 값] 형식으로 변환
     var formattedData = data.map(function(item) {
         // annoTime을 [hours, minutes] 형식으로 변환
@@ -163,74 +182,81 @@ function drawTimeCharts(data, chartDivId) {
     chart.draw(chartData, options);
 }
 
-// 정보 함수
-function fetchExchangeRateData(c_code, rate_date, div_id, flag_id) {
-    $.ajax({
-        url: '/ex/charts/value',
-        type: 'POST',
-        data: {
-            c_code: c_code,
-            rate_date: rate_date
-        },
-        success: function(response) {
-            // console.log('서버 응답:', response); // 서버 응답 확인
 
-            // 응답 데이터가 JSON 객체로 가정
-            const today_base_r = response.today_base_r;
-            const yesterday_base_r = response.yesterday_base_r;
-            const difference = response.difference;
-            const percent = response.percent;
+//정보 함수
+function processCurrencies_value(currencies_value) {
+    return new Promise((resolve, reject) => {
+        // AJAX 요청
+        $.ajax({
+            url: '/ex/charts/values', // 서버 URL
+            type: 'POST',
+            success: function(response) {
+                console.log('응답 데이터:', response); // 응답 데이터 로깅
 
-            // 결과 문자열 생성
-            let result;
-            let cssClass;
+                // 응답 데이터와 currencies_value를 매칭
+                currencies_value.forEach(currency_value => {
+                    // response에서 통화 코드에 해당하는 데이터 찾기
+                    const matchedData = response.find(item => item.c_code === currency_value.code);
 
-            if (today_base_r > yesterday_base_r) {
-                result = today_base_r + ' ▲' + difference.toFixed(2) + ' +' + percent.toFixed(2) + '%';
-                cssClass = 'increased';
-                
-                flag_result = '+' + percent.toFixed(2) + '%';
-                flag_cssClass = 'flag-increased';
-            } else if (today_base_r === yesterday_base_r) {
-                result = today_base_r + ' -' + difference.toFixed(2) + ' ' + percent.toFixed(2) + '%';
-                cssClass = 'unchanged';
-                
-                flag_result = ' ' + percent.toFixed(2) + '%';
-                flag_cssClass = 'flag-unchanged';
-            } else {
-                result = today_base_r + ' ▼' + difference.toFixed(2) + ' ' + percent.toFixed(2) + '%';
-                cssClass = 'decreased';
-                
-                flag_result = ' ' + percent.toFixed(2) + '%';
-                flag_cssClass = 'flag-decreased';
-                
+                    if (matchedData) {
+                        const today_base_r = matchedData.deal_bas_r;  // 현재 환율
+                        const difference = matchedData.diff;  // 차이
+                        const percent = matchedData.diff_percent;  // 퍼센트 차이
+
+                        let result;
+                        let cssClass;
+                        let flag_result;
+                        let flag_cssClass;
+
+                        const absDifference = Math.abs(difference); // 차이의 절대값
+                        const absPercent = Math.abs(percent); // 퍼센트의 절대값
+
+                        if (difference > 0) {
+                            // 차이가 양수인 경우 (현재 환율이 어제 환율보다 높음)
+                            result = today_base_r + ' ▲' + absDifference.toFixed(2) + ' +' + absPercent.toFixed(2) + '%';
+                            cssClass = 'increased';
+                            flag_result = '+' + absPercent.toFixed(2) + '%';
+                            flag_cssClass = 'flag-increased';
+       
+                        } else if (difference === 0) {
+                            result = today_base_r + ' -' + absDifference.toFixed(2) + ' ' + absPercent.toFixed(2) + '%';
+                            cssClass = 'unchanged';
+                            flag_result = ' ' + absPercent.toFixed(2) + '%';
+                            flag_cssClass = 'flag-unchanged';
+                        } else if (difference < 0) {
+                        	// 차이가 음수인 경우 (현재 환율이 어제 환율보다 낮음)
+                            result = today_base_r + ' ▼' + absDifference.toFixed(2) + ' -' + absPercent.toFixed(2) + '%';
+                            cssClass = 'decreased';
+                            flag_result = ' -' + absPercent.toFixed(2) + '%';
+                            flag_cssClass = 'flag-decreased';
+                        }
+
+                        // HTML 콘텐츠 업데이트
+                        const htmlContent = '<div class="' + cssClass + '">' + result + '</div>';
+                        const htmlContent2 = '<span class="' + flag_cssClass + '">' + flag_result + '</span>';
+
+                        // ID로 HTML 업데이트
+                        $('#' + currency_value.valueId).html(htmlContent);
+                        $('#' + currency_value.flagId).html(htmlContent2);
+                    } else {
+                        // 응답 데이터가 없을 경우 처리 (예: 기본 메시지)
+                        $('#' + currency_value.valueId).html('<div>데이터 없음</div>');
+                        $('#' + currency_value.flagId).html('<span>데이터 없음</span>');
+                    }
+                });
+                resolve(); // 프로미스 해결
+            },
+            error: function(xhr, status, error) {
+                console.error('데이터를 가져오는 데 실패했습니다:', error);
+                currencies_value.forEach(currency_value => {
+                    $('#' + currency_value.valueId).html('<div>데이터를 가져오는 데 실패했습니다.</div>');
+                    $('#' + currency_value.flagId).html('<span>데이터를 가져오는 데 실패했습니다.</span>');
+                });
+                reject(error); // 프로미스 거부
             }
-
-            //console.log('결과 문자열:', result); // 결과 문자열 확인
-            //console.log('CSS 클래스:', cssClass); // CSS 클래스 확인
-
-            // HTML 콘텐츠 업데이트
-            const htmlContent = '<div class="' + cssClass + '">' + result + '</div>';
-            //console.log('업데이트할 HTML:', htmlContent); // 업데이트할 HTML 확인
-            
-            const htmlContent2 = '<span class="' + flag_cssClass + '">' + flag_result + '</span>';
-
-            // HTML 업데이트
-            $('#' + div_id).html(htmlContent);
-            
-            $('#' + flag_id).html(htmlContent2);
-
-            // 업데이트 후 상태 확인
-            //console.log('업데이트된 HTML:', $('#' + div_id).html());
-        },
-        error: function(xhr, status, error) {
-            console.error(c_code,'에 대한 데이터를 가져오는 데 실패했습니다:', error);
-            $('#' + div_id).html('<div>데이터를 가져오는 데 실패했습니다.</div>');
-            $('#' + flag_id).html('<span>데이터를 가져오는 데 실패했습니다.</span>');
-        }
+        });
     });
 }
-
 
 
 document.addEventListener('DOMContentLoaded', function() {

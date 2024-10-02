@@ -6,16 +6,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.exfinder.dao.AlramDao">
 
 <insert id="alramInsert">
-insert into alram values(alram_num.nextval,#{u_id},SYSDATE,#{c_code},#{target_exchange},'X')
+	insert into alram values(alram_num.nextval,#{u_id},SYSDATE,#{c_code},#{target_exchange},'X')
 </insert>
 
+<select id="alramSelect" resultType="AlramDto">
+	select * from alram where checked='X'
+</select>
+
+<update id="alramCheck">
+	update alram set checked='O' where a_id=#{a_id}
+</update>
+
+
+
 </mapper>
-
-
-
-
-
-
-
-
 

@@ -15,19 +15,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="exchangeEqulasCheck" resultType="com.exfinder.dto.NotificationDto">
 <![CDATA[
-select 
-    n.n_id, n.u_id, n.c_code, n.target_exchange
+SELECT 
+    n.n_id, n.u_id, n.c_code, n.target_exchange, lr.deal_bas_r
 FROM 
     notification n
 JOIN 
     (SELECT 
-        C_CODE, BASE_R,
+        C_CODE, deal_bas_r,
         ROW_NUMBER() OVER (PARTITION BY C_CODE ORDER BY RATE_DATE DESC, ANNOTIME DESC) AS rn
      FROM noticeexchangerate
     ) lr 
     ON n.C_CODE = lr.C_CODE
     AND lr.rn = 1
-    AND n.TARGET_EXCHANGE BETWEEN lr.BASE_R * 0.95 AND lr.BASE_R * 1.05
+    AND n.TARGET_EXCHANGE BETWEEN lr.deal_bas_r * 0.998 AND lr.deal_bas_r * 1.002
     ]]>
 </select>
 

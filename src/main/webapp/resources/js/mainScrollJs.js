@@ -4,9 +4,9 @@ window.addEventListener('scroll', function() {
 
     if (scrollY >= 330) {
         header.classList.add('show');
-        header.style.setProperty("display","block");
+        header.style.setProperty("display", "block");
     } else {
         header.classList.remove('show');
-        header.style.setProperty("display","none");
+        header.style.setProperty("display", "none");
     }
-});
+}, { passive: true });

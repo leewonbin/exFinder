@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.exfinder.Handler.EchoHandler;
 import com.exfinder.dto.ExchangeRateDto;
 import com.exfinder.dto.NoticeExchangeRateDto;
 import com.exfinder.dto.NotificationDto;
@@ -30,7 +31,11 @@ public class Scheduler {
 	
 	@Autowired
 	private AlramService al_service;
+	
+	@Autowired
+	private EchoHandler echoHandler;
 
+//	@Scheduled(cron = "0 */2 * * * ?")
 	@Scheduled(cron = "0 0 9-23 * * ?")
 	public void hourScheduled() throws Exception {
 		try {
@@ -66,10 +71,10 @@ public class Scheduler {
 //					al_service.alramInsert(dto);
 //				}
 //			}
+//			echoHandler.notifyClients();
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-//		
 //	}
 }
