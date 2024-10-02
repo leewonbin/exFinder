@@ -37,7 +37,6 @@
 
 			<div class="search-container">
 				<select name="searchType">
-					<option value="-----">-----</option>
 					<option value="공지사항">공지사항</option>
 					<option value="자유게시판">자유게시판</option>
 
@@ -62,14 +61,11 @@
 							<td>${boardDto.b_id }</td>
 							<td>${boardDto.b_category }</td>
 							<td><a href="/ex/board/read?b_id=${boardDto.b_id}">
-									${boardDto.b_title}
-										<c:if test="${boardDto.reply_count ne 0}">
-											<small class="red-text">
-												<b>[${boardDto.reply_count}]</b>
-											</small>
-										</c:if>
-								</a>
-							</td>
+									${boardDto.b_title} <c:if test="${boardDto.reply_count ne 0}">
+										<small class="red-text"> <b>[${boardDto.reply_count}]</b>
+										</small>
+									</c:if>
+							</a></td>
 							<td>${boardDto.u_id}</td>
 							<td><fmt:formatDate value="${boardDto.b_date}"
 									pattern="yyyy-MM-dd" /></td>
@@ -83,30 +79,33 @@
 				<button class="writeBtn">글쓰기</button>
 			</div>
 
-			<div class="pagination">
-				<c:if test="${boardVo.page !=1}">
-					<a href='listAll${boardVo.makeSearch(1)}'>&laquo;</a>
-				</c:if>
+			<c:if test="${not empty list}">
+			
+				<div class="pagination">
+					<c:if test="${boardVo.page != 1}">
+						<a href='listAll${boardVo.makeSearch(1)}'>&laquo;</a>
+					</c:if>
 
-				<c:if test="${boardVo.prev }">
-					<a href='listAll${boardVo.makeSearch(boardVo.startPage-1)}'>&lt;</a>
-				</c:if>
+					<c:if test="${boardVo.prev}">
+						<a href='listAll${boardVo.makeSearch(boardVo.startPage - 1)}'>&lt;</a>
+					</c:if>
 
-				<c:forEach begin="${boardVo.startPage }" end="${ boardVo.endPage}"
-					var="idx">
-					<a href='listAll${boardVo.makeSearch(idx)}'
-						<c:out value="${boardVo.page==idx?' class=active ':'' }"/>>
-						${idx}</a>
-				</c:forEach>
+					<c:forEach begin="${boardVo.startPage}" end="${boardVo.endPage}"
+						var="idx">
+						<a href='listAll${boardVo.makeSearch(idx)}'
+							<c:out value="${boardVo.page == idx ? ' class=active ' : ''}"/>>
+							${idx}</a>
+					</c:forEach>
 
-				<c:if test="${boardVo.next }">
-					<a href='listAll${boardVo.makeSearch(boardVo.endPage+1)}'>&gt;</a>
-				</c:if>
+					<c:if test="${boardVo.next}">
+						<a href='listAll${boardVo.makeSearch(boardVo.endPage + 1)}'>&gt;</a>
+					</c:if>
 
-				<c:if test="${boardVo.page != boardVo.totalEndPage}">
-					<a href='listAll${boardVo.makeSearch(boardVo.totalEndPage)}'>&raquo;</a>
-				</c:if>
-			</div>
+					<c:if test="${boardVo.page != boardVo.totalEndPage}">
+						<a href='listAll${boardVo.makeSearch(boardVo.totalEndPage)}'>&raquo;</a>
+					</c:if>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </body>
