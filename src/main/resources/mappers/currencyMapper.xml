@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from (select dense_rank() over (order by rate_date desc, annotime
 		desc) as num,
 		noticeExchangerate.* from noticeExchangerate) n,currency
-		c where num = 1 and c.c_code=n.c_code order by c_country
+		c where num = 1 and c.c_code=n.c_code order by c_id
 	</select>
 
 	<select id="currency_Select"
