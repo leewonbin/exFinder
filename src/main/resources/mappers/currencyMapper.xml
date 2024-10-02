@@ -85,5 +85,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         JOIN interest i ON c.c_code = i.c_code
         WHERE i.u_id = #{userId}
     </select>
+    
+    <!-- 지원 통화 조회 -->
+    <select id="currencyInfoSelect" resultType="com.exfinder.dto.CurrencyInfoDto">
+    	select * from currency order by c_id desc
+    </select>
 
 </mapper>
