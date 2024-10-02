@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public class fileUtil {
 	private static final String filePath = "C:\\Users\\tj-bu-702-10\\Desktop\\exFinder\\src\\main\\webapp\\resources\\profile_img\\"; // 파일이 저장될 위치
-	
+
 	public static String updateImg(MultipartHttpServletRequest mpRequest, String oldImgPath) throws Exception{
 		
 		// 기존 이미지 삭제 로직
