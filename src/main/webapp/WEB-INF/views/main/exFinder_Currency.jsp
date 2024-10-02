@@ -17,6 +17,34 @@
 <script>
 	var currencyCode = '${currencyDto.c_code}';
 </script>
+<script>
+	function togglePopup() {
+	    var popup = document.getElementById("popup");
+	    var iframe = document.getElementById("popupFrame");
+	
+	    // 팝업을 토글합니다.
+	    if (popup.style.display === "none") {
+	        popup.style.display = "block";
+	        
+	    } else {
+	        popup.style.display = "none";
+	    }
+	}
+	
+	function closePopup() {
+	    document.getElementById("popup").style.display = "none";
+	}
+	
+	function adjustPopupHeight() {
+	    var popup = document.getElementById("popup");
+	    var chartContainer = document.getElementById("chartContainer"); // 차트가 포함된 div
+	    if (chartContainer) {
+	        // 차트의 높이에 따라 팝업의 높이를 조정
+	        var chartHeight = chartContainer.offsetHeight; 
+	        popup.style.height = (chartHeight + 50) + "px"; // 여유 공간 추가
+	    }
+	}
+</script>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
@@ -38,9 +66,25 @@
 					class="circle"> <i class="arrow-up"></i>
 				</i>
 			</div>
-			<img class="favorit_img"
-				src="${pageContext.request.contextPath}/resources/img/${interestIcon}"
-				onclick="interestAction(${isInterestCheck},'${currencyDto.c_code }');" />
+			
+				<div class="img">
+					<img class="favorit_img"
+						src="${pageContext.request.contextPath}/resources/img/${interestIcon}"
+						onclick="interestAction(${isInterestCheck},'${currencyDto.c_code }');" />
+						
+					<img class="notification_img"
+						src="${pageContext.request.contextPath}/resources/img/alarm.png"
+						onclick="togglePopup()" />
+				</div>
+				
+				<!-- 숨겨진 iframe 팝업 -->
+<div id="popup" style="display:none; position:fixed; top:50%; left:50%; width:600px; height:600px; border:2px solid #ccc; background-color:white; z-index:1000; transform: translate(-50%, -50%); overflow: hidden;">
+    <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+        <iframe id="popupFrame" src='/ex/user/notification' width="100%" height="100%" frameborder="0" style="overflow: hidden;"></iframe>
+    </div>
+    <button onclick="closePopup()" style="position:absolute; top:5px; right:5px;">닫기</button>
+</div>
+
 		</div>
 		<span id="currency-list" class="hidden"> <a
 			href="exFinder_Currency?c_code=USD">미국 USD</a> <a
@@ -191,7 +235,7 @@
 			<tbody>
 				<c:if test="${empty hourCurrency}">
 					<tr>
-						<td colspan="7" class="no-data">"현재 시간이 반영된 데이터가 없습니다. 잠시 후 다시 확인해 주세요."</td>
+						<td colspan="7" class="no-data"><br><br><br><br>"현재 시간이 반영된 데이터가 없습니다. 잠시 후 다시 확인해 주세요."</td>
 					</tr>
 				</c:if>
 				<c:forEach var="hourCurrency" items="${hourCurrency}">

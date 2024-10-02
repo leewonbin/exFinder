@@ -1,14 +1,13 @@
 package com.exfinder.controller;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -22,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.exfinder.dto.AuthoritiesDto;
 import com.exfinder.dto.BoardDto;
 import com.exfinder.dto.CurrencyDto;
+import com.exfinder.dto.CurrencyInfoDto;
 import com.exfinder.dto.UserDto;
 import com.exfinder.service.AuthoritiesService;
 import com.exfinder.service.BoardService;
@@ -269,8 +269,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/user/notification", method = RequestMethod.GET)
-	public void notification() throws Exception{
-		
+	public void notification(Model model) throws Exception{
+		List<CurrencyInfoDto> list = currencyService.currencyInfoSelect();
+		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping(value="/user/setExchangeAlert", method = RequestMethod.POST)
+	public String notificationDB(@Param("currency")String currency, @Param("targetRate")int targetRate) {
+		return "redirect:/user/notification";
 	}
 	
 	

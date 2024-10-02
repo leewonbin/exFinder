@@ -39,9 +39,13 @@
 	permitAll 모든 사용자를 의미 
 	hasAnyRole(‘MEMBER,ADMIN’)  MEMBER,ADMIN 사용자 권한을 의미한다. 
 	hasRole('ADMIN') admin사용자 권한을 의미한다. 
-	--> 
-</http> 
-<beans:bean id="logoutSuccess" class="com.exfinder.Handler.CustomLogoutSuccessHandler"/>
+	--> 	
+	<!-- other configurations -->
+    <headers>
+        <frame-options policy="SAMEORIGIN"/>
+    </headers>
+	
+</http>
 
 <beans:bean id="loginSuccess" class="com.exfinder.Handler.LoginRedirectHandler"/>
 <!-- URL 설정 --> 
