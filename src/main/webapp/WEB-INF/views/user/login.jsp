@@ -42,7 +42,7 @@
 				value="${_csrf.token }" />
 			<div class="find-input-container">
 				<label>아이디</label> <input type="text" class="find-input" name="u_id"
-					value="${ids}" />
+					value="${id_save}" />
 			</div>
 			<div class="find-input-container">
 				<label>비밀번호</label> <input type="password" class="find-input"
