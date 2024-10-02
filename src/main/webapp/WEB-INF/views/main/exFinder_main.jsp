@@ -109,9 +109,9 @@
 		</div>
 
 
+		<h1 class="rate-lookup">환율조회</h1>
 		<!-- 구분선 -->
 		<hr class="divider">
-		<h1 class="rate-lookup">환율조회</h1>
 
 		<div class="box-contents">
 			<div>
