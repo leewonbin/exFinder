@@ -15,10 +15,10 @@
 	href="${pageContext.request.contextPath}/resources/css/boardCreate.css">
 </head>
 <body>
- 	<c:if test="${sessionScope.dto eq null }">
+	<c:if test="${sessionScope.dto eq null }">
 		<script>
 			alert('로그인이 필요합니다.');
-			location.href= "/ex/user/login";
+			location.href = "/ex/user/login";
 		</script>
 	</c:if>
 	<div>
@@ -43,6 +43,18 @@
 				</select>
 			</h2>
 
+			<%-- <h2 class="b_category">
+				<select name="b_category">
+					<c:if test="${sessionScope.dto.role == 'admin'}">
+						<option value="공지사항">공지사항</option>
+						<option value="자유게시판">자유게시판</option>
+					</c:if>
+					<c:if test="${sessionScope.dto.role != 'admin'}">
+						<option value="자유게시판">자유게시판</option>
+					</c:if>
+				</select>
+			</h2> --%>
+			
 			<h2 class="b_title">
 				<input type="text" name='b_title' placeholder="제목 입력"
 					style="width: 100%">
@@ -56,8 +68,8 @@
 
 
 			<div class="submitBtn">
-                <button type="submit">등록</button>
-            </div>
+				<button type="submit">등록</button>
+			</div>
 
 		</form>
 	</div>
