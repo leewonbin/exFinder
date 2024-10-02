@@ -84,9 +84,7 @@ public class HomeController {
 	    // 쿠키에 저장된 오토 아이디가 있을 경우 세션에 저장
 	    if (auto_login != null) {
 	    	session.setAttribute("dto", userService.selectUser(auto_login));
-			UserDto dto = (UserDto)session.getAttribute("dto");
-			System.out.println(dto);
-	    	
+			UserDto dto = (UserDto)session.getAttribute("dto");	    	
 	    }
 	    return "main/exFinder_main";
 	}

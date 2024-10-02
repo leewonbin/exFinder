@@ -110,7 +110,7 @@
 				</p>
 			</div>
 			<form action="${pageContext.request.contextPath}/user/logout"
-				method="POST">
+				method="GET">
 				<input type="submit" class="mini_myPage_button" value="로그아웃" />
 			</form>
 		</div>
