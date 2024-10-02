@@ -42,19 +42,16 @@
 					<option value="자유게시판">자유게시판</option>
 				</select>
 			</h2>
-
+			
 			<%-- <h2 class="b_category">
-				<select name="b_category">
-					<c:if test="${sessionScope.dto.role == 'admin'}">
+				<select name="b_category" id="b_category">
+					<option value="자유게시판">자유게시판</option>
+					<c:if test="${sessionScope.authority == 'ROLE_ADMIN'}">
 						<option value="공지사항">공지사항</option>
-						<option value="자유게시판">자유게시판</option>
-					</c:if>
-					<c:if test="${sessionScope.dto.role != 'admin'}">
-						<option value="자유게시판">자유게시판</option>
 					</c:if>
 				</select>
 			</h2> --%>
-			
+
 			<h2 class="b_title">
 				<input type="text" name='b_title' placeholder="제목 입력"
 					style="width: 100%">
@@ -73,5 +70,6 @@
 
 		</form>
 	</div>
+
 </body>
 </html>
