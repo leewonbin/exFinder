@@ -88,16 +88,7 @@ $(document).ready(function() {
         console.error('요청 중 오류 발생:', error);
     });
 });
-/*
-function processCurrencies_value(currencies_value) {
-    const requests = currencies_value.map(currency_value => {
-        return fetchExchangeRateData(currency_value.code, formattedDate, currency_value.valueId, currency_value.flagId);
-    });
-    
-    // 모든 요청을 Promise.all로 처리하여 프로미스 반환
-    return Promise.all(requests);
-}
-*/
+
 function processCurrencies_chart(currencies_chart) {
     const c_codes = currencies_chart.map(currency_chart => currency_chart.code); // 통화 코드 리스트 추출
 
@@ -191,80 +182,8 @@ function drawTimeCharts(data, chartDivId) {
     chart.draw(chartData, options);
 }
 
-/*
+
 //정보 함수
-function fetchExchangeRateData(c_code, rate_date, div_id, flag_id) {
-	return new Promise((resolve, reject) => {
-		
-    $.ajax({
-        url: '/ex/charts/value',
-        type: 'POST',
-        data: {
-            c_code: c_code,
-            rate_date: rate_date
-        },
-        success: function(response) {
-            // console.log('서버 응답:', response); // 서버 응답 확인
-
-            // 응답 데이터가 JSON 객체로 가정
-            const today_base_r = response.today_base_r;
-            const yesterday_base_r = response.yesterday_base_r;
-            const difference = response.difference;
-            const percent = response.percent;
-
-            // 결과 문자열 생성
-            let result;
-            let cssClass;
-            let flag_result;
-            let flag_cssClass;
-            
-            if (today_base_r > yesterday_base_r) {
-                result = today_base_r + ' ▲' + difference.toFixed(2) + ' +' + percent.toFixed(2) + '%';
-                cssClass = 'increased';
-                
-                flag_result = '+' + percent.toFixed(2) + '%';
-                flag_cssClass = 'flag-increased';
-            } else if (today_base_r === yesterday_base_r) {
-                result = today_base_r + ' -' + difference.toFixed(2) + ' ' + percent.toFixed(2) + '%';
-                cssClass = 'unchanged';
-                
-                flag_result = ' ' + percent.toFixed(2) + '%';
-                flag_cssClass = 'flag-unchanged';
-            } else {
-                result = today_base_r + ' ▼' + difference.toFixed(2) + ' ' + percent.toFixed(2) + '%';
-                cssClass = 'decreased';
-                
-                flag_result = ' ' + percent.toFixed(2) + '%';
-                flag_cssClass = 'flag-decreased';
-            }
-
-            //console.log('결과 문자열:', result); // 결과 문자열 확인
-            //console.log('CSS 클래스:', cssClass); // CSS 클래스 확인
-
-            // HTML 콘텐츠 업데이트
-            const htmlContent = '<div class="' + cssClass + '">' + result + '</div>';
-            const htmlContent2 = '<span class="' + flag_cssClass + '">' + flag_result + '</span>';
-            //console.log('업데이트할 HTML:', htmlContent); // 업데이트할 HTML 확인               
-
-            // HTML 업데이트
-            $('#' + div_id).html(htmlContent);
-            $('#' + flag_id).html(htmlContent2);
-            
-            // 업데이트 후 상태 확인
-            //console.log('업데이트된 HTML:', $('#' + div_id).html());
-            resolve(); // 프로미스 해결
-        },
-        error: function(xhr, status, error) {
-            console.error(c_code,'에 대한 데이터를 가져오는 데 실패했습니다:', error);
-            $('#' + div_id).html('<div>데이터를 가져오는 데 실패했습니다.</div>');
-            $('#' + flag_id).html('<span>데이터를 가져오는 데 실패했습니다.</span>');
-            reject(error); // 프로미스 거부
-        }
-    });
-    
-	});
-}
-*/
 function processCurrencies_value(currencies_value) {
     return new Promise((resolve, reject) => {
         // AJAX 요청
@@ -298,6 +217,7 @@ function processCurrencies_value(currencies_value) {
                             cssClass = 'increased';
                             flag_result = '+' + absPercent.toFixed(2) + '%';
                             flag_cssClass = 'flag-increased';
+       
                         } else if (difference === 0) {
                             result = today_base_r + ' -' + absDifference.toFixed(2) + ' ' + absPercent.toFixed(2) + '%';
                             cssClass = 'unchanged';
