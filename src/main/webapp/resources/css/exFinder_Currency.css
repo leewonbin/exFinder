@@ -160,8 +160,23 @@ body, html {
 	height : 30px;
 	margin-bottom: 5px;
 	position : relative;
+	margin-left: 70px; /* 왼쪽 요소와의 간격 설정 */
+}
+
+.notification_img {
+	width : 35px;
+	height : 35px;
+	margin-bottom: 5px;
+	position : relative;
 	margin-left: 50px; /* 왼쪽 요소와의 간격 설정 */
 }
+
+.img{
+	margin-left: 650px; 
+	
+}	
+
+
 
 .Currency_left_chart_table {
     width: 100%; /* 테이블 너비를 100%로 설정 */
@@ -428,3 +443,19 @@ body, html {
     color: #000000;
     font-weight: bold;
 }
+
+/* 팝업 스타일 */
+    #popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 600px; /* 너비를 유지 */
+        height: auto; /* 높이를 자동으로 설정 */
+        max-height: 80vh; /* 최대 높이 설정 */
+        overflow-y: auto; /* 세로 스크롤을 허용 */
+        border: 2px solid #ccc;
+        background-color: white;
+        z-index: 1000;
+        transform: translate(-50%, -50%);
+    }

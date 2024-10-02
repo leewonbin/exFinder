@@ -39,7 +39,15 @@
 	hasAnyRole(‘MEMBER,ADMIN’)  MEMBER,ADMIN 사용자 권한을 의미한다. 
 	hasRole('ADMIN') admin사용자 권한을 의미한다. 
 	--> 
-</http> 
+	
+	<!-- other configurations -->
+    <headers>
+        <frame-options policy="SAMEORIGIN"/>
+    </headers>
+	
+</http>
+
+
 
 <beans:bean id="loginSuccess" class="com.exfinder.Handler.LoginRedirectHandler"/>
 <!-- URL 설정 --> 

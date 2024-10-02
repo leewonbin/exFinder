@@ -42,13 +42,14 @@
 			
 		<!-- u_id를 세션에서 가져와 hidden 필드로 전송 -->
 		    <input type="hidden" name="u_id" value="${sessionScope.userId}" />
-		    
-		   <div class="button-container">
-			   <button class="submitBtn">등록</button>
-			   <button class="cancelBtn" onclick = "location.href='/ex/admin/admin'">취소</button>
-		   </div>
 
-			
+			<div class="button-container">
+				<button class="submitBtn" type="submit">등록</button>
+				<button class="cancelBtn" type="button"
+					onclick="event.preventDefault(); location.href='/ex/admin/admin'">취소</button>
+			</div>
+
+
 		</form>
 
 	</div>
