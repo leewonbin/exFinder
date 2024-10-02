@@ -33,7 +33,7 @@
 		
 		<form action="/ex/find/pwInquiryDB" method="post">
 			<div class="find-input-container">
-				<label>이름</label> 
+				<label>아이디</label> 
 				<input type="text" class="find-input" name="u_id" value="${u_id_result}" />
 			</div>
 			<input type="submit" class="find-button" value="확인">
