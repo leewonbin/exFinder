@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.exfinder.dto.CurrencyDto;
+import com.exfinder.dto.CurrencyInfoDto;
 import com.exfinder.dto.ExchangeRateDto;
 import com.exfinder.dto.NoticeExchangeRateDto;
 
@@ -23,6 +24,7 @@ public interface CurrencyService {
 	public List<NoticeExchangeRateDto> hourCurrency(@Param("c_code")String c_code) throws Exception;
 
 	public List<CurrencyDto> getFavoriteCurrencies(String userId) throws Exception;
+	public List<CurrencyInfoDto> currencyInfoSelect() throws Exception;
 	
 }
 

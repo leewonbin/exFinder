@@ -1,12 +1,13 @@
 package com.exfinder.controller;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.exfinder.dto.AuthoritiesDto;
 import com.exfinder.dto.BoardDto;
 import com.exfinder.dto.CurrencyDto;
+import com.exfinder.dto.CurrencyInfoDto;
 import com.exfinder.dto.UserDto;
 import com.exfinder.service.AuthoritiesService;
 import com.exfinder.service.BoardService;
@@ -47,15 +49,31 @@ public class UserController {
 
 	// 유저 로그인
 	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
-	public String login(HttpSession session) throws Exception{
-		
-		String auto_login_Checked = (String) session.getAttribute("auto_login_Checked");
-		
-		if (auto_login_Checked != null && auto_login_Checked.equals("checked")) {
-			System.out.println("자동 로그인이 체크되어있어서, 자동 로그인이 되었습니다.");
-			return "/user/index";
-		}
-		return "/user/login";
+	public String login(Model model, HttpServletRequest request) throws Exception{
+	
+	    // 쿠키에서 저장된 아이디를 가져옴
+	    String savedId = null;
+	    String idSaveChecked = null;
+	    Cookie[] cookies = request.getCookies(); // 클라이언트의 쿠키를 가져옴
+
+	    if (cookies != null) {
+	        for (Cookie cookie : cookies) {
+	            if (cookie.getName().equals("id_save")) {
+	                savedId = cookie.getValue(); // 저장된 아이디를 가져옴        
+	            }
+	            if (cookie.getName().equals("id_save_Checked")) {
+	                idSaveChecked = cookie.getValue(); // 저장된 체크박스 상태를 가져옴
+	            }
+	        }
+	    }
+
+	    // 쿠키에 저장된 아이디가 있을 경우 세션에 저장
+	    if (savedId != null) {
+	    	model.addAttribute("id_save", savedId);
+	        model.addAttribute("id_save_Checked", idSaveChecked);
+	    }
+
+	    return "/user/login"; // 로그인 페이지로 이동
 	}
 	
 	// 회원가입 이동
@@ -141,16 +159,16 @@ public class UserController {
 	public void myInfo(UserDto dto, Model model, HttpSession session) throws Exception{
 		String userid = (String)session.getAttribute("userId");
 		dto = userService.selectUser(userid);
-		model.addAttribute("dto", dto);
+		session.setAttribute("dto", dto);
 		System.out.println("/user/myInfo : " + dto);
 		
 		String u_email = dto.getU_email();
         String[] u_emailArr = u_email.split("@");
-        model.addAttribute("u_emailArr", u_emailArr);
+        session.setAttribute("u_emailArr", u_emailArr);
             
         String u_phoneNumber = dto.getU_phoneNumber();
         String[] u_phoneNumberArr = u_phoneNumber.split("-");
-        model.addAttribute("u_phoneNumberArr", u_phoneNumberArr);
+        session.setAttribute("u_phoneNumberArr", u_phoneNumberArr);
 		
 	}
 	
@@ -168,7 +186,7 @@ public class UserController {
 	    userService.update(dto);
 		System.out.println(dto);
 		
-		return "/user/myPage";
+		return "redirect:/user/myInfo";
 	}
 	
 	@RequestMapping(value = "/user/myInfo/pw_upDB", method = RequestMethod.POST)
@@ -206,7 +224,7 @@ public class UserController {
 	    
 		System.out.println("/user/myInfo/updateImg : " + dto);
 				
-		return "redirect:/user/myInfo?t=" + System.currentTimeMillis();
+		return "redirect:/user/myInfo";
 	}
 	@RequestMapping(value = "/user/myBoard", method = RequestMethod.GET)
 	public String myBoard(Model model, HttpSession session) throws Exception {
@@ -251,8 +269,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/user/notification", method = RequestMethod.GET)
-	public void notification() throws Exception{
-		
+	public void notification(Model model) throws Exception{
+		List<CurrencyInfoDto> list = currencyService.currencyInfoSelect();
+		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping(value="/user/setExchangeAlert", method = RequestMethod.POST)
+	public String notificationDB(@Param("currency")String currency, @Param("targetRate")int targetRate) {
+		return "redirect:/user/notification";
 	}
 	
 	

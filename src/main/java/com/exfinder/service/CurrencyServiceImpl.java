@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.exfinder.dao.CurrencyDao;
 import com.exfinder.dto.CurrencyDto;
+import com.exfinder.dto.CurrencyInfoDto;
 import com.exfinder.dto.ExchangeRateDto;
 import com.exfinder.dto.NoticeExchangeRateDto;
 
@@ -68,6 +69,12 @@ public class CurrencyServiceImpl implements CurrencyService{
 	public List<CurrencyDto> getFavoriteCurrencies(String userId) throws Exception {
 		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
 		return dao.getFavoriteCurrencies(userId);
+	}
+
+	@Override
+	public List<CurrencyInfoDto> currencyInfoSelect() throws Exception {
+		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
+		return dao.currencyInfoSelect();
 	}
 
 }
