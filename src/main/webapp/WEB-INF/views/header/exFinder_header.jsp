@@ -17,11 +17,11 @@
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/resources/js/headerAlram.js"></script>
 </head>
 <body>
 	<c:if test="${sessionScope.dto ne null}">
-		<script src="${pageContext.request.contextPath}/resources/js/alram.js"></script>
+		
 		<script>
 			var userId = "${sessionScope.dto.u_id}"; // 로그인한 사용자 ID
 			$(function() {
@@ -38,7 +38,7 @@
 				<ul>
 					<li onclick="location.href='/ex/'">홈</li>
 
-					<li class="alram" onclick="location.href='/ex/user/notification'">알림</li>
+					<li class="alram" onclick="toggleAlram('알림 1')">알림</li>
 
 					<li onclick="location.href='/ex/board/listAll'">게시판</li>
 				</ul>
@@ -127,30 +127,6 @@
 			</button>
 		</div>
 	</div>
-	<div class="header_mini_alarmPage">
-		<div class="header_mini_alarmPage_top">
-			<p>알림</p>
-		</div>
-		<div class="header_mini_alarmPage_bottom">
-			<div class="alarm_message">
-				<div class="alarm_message_title">
-					<div class="alarm_message_title_letter">알림 1 제목</div>
-					<button type="button" class="alarm_message_button">x</button>
-				</div>
-				<div class="alarm_message_contents">
-				알림 1 내용
-				</div>
-			</div>
-			<div class="alarm_message">
-				<div class="alarm_message_title">
-					<div class="alarm_message_title_letter">알림 2 제목</div>
-					<button type="button" class="alarm_message_button">x</button>
-				</div>
-				<div class="alarm_message_contents">
-				알림 2 내용
-				</div>
-			</div>
-		</div>
-	</div>
+
 </body>
 </html>

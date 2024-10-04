@@ -22,11 +22,13 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/charts.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/alram.js"></script>
 </head>
 <body>
 	<!-- 헤더 Include -->
 	<div class="include_header">
 		<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
+		
 	</div>
 
 	<!-- 메인 콘텐츠 -->
@@ -41,7 +43,7 @@
 						src="${pageContext.request.contextPath }/resources/img/newLogo.png" />
 					<ul>
 						<li onclick="location.href='/ex/'">홈</li>
-						<li class="alram">알림</li>
+						<li class="alram" onclick="toggleAlram('알림 2')">알림</li>
 						<li onclick="location.href='/ex/board/listAll'">게시판</li>
 					</ul>
 				</div>
@@ -81,11 +83,15 @@
 				</div>
 			</div>
 		</div>
-
+    
 		<!-- 환율 계산기 div 영역 -->
 		<div class="calculator-container">
 			<%@include file="/WEB-INF/views/main/calculrator.jsp"%>
 		</div>
+		
+		<!-- 알림을 표시할 div -->
+		<div id="alramContainer" style="display: none;"></div>
+
 
 		<!-- 국가별 차트 p 태그 -->
 		<p class="country-chart">국가별 차트</p>

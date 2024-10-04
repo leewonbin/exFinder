@@ -43,6 +43,7 @@ public class FileUtil {
        
         if (!directory.exists()) {
             directory.mkdirs(); // 디렉토리가 존재하지 않으면 생성
+            System.out.println("생성된 디렉토리 위치 : " + directory);
         }
 
         while (iterator.hasNext()) {

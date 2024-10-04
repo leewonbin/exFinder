@@ -209,9 +209,10 @@ public class UserController {
 		return "/user/myPage";
 	}
 
-	@RequestMapping(value = "/user/myInfo/updateImg", method = RequestMethod.POST)
-	public String updateImg(UserDto dto, MultipartHttpServletRequest mpRequest, Model model, HttpSession session)
-			throws Exception {
+	
+	@RequestMapping(value="/user/myInfo/updateImg", method=RequestMethod.POST)
+	public String updateImg(UserDto dto, MultipartHttpServletRequest mpRequest, Model model, HttpSession session)throws Exception {
+
 		String u_id = (String) session.getAttribute("userId");
 		System.out.println("u_id : " + u_id);
 		dto.setU_id(u_id);
@@ -296,5 +297,10 @@ public class UserController {
 		}
 		return new ResponseEntity<>(msg,HttpStatus.OK);
 	}
+	// 알림 로드 메서드
+    @RequestMapping(value = "/user/loadAlram", method = RequestMethod.POST)
+    public String loadAlram() {
+        return "header/alram"; // JSP 파일 경로 (확장자 제외)
+    }
 
 }
