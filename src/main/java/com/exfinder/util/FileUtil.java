@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public class FileUtil {
 	// private static final String filePath = "C:\\Users\\tj-bu-702-10\\Desktop\\exFinder\\src\\main\\webapp\\resources\\profile_img\\"; // 파일이 저장될 위치
-
+/*
     private static final String projectName = "exFinder";
     private static final String relativePath = "src/main/webapp/resources/profile_img/";
 
@@ -19,8 +19,34 @@ public class FileUtil {
         Path baseDir = Paths.get(System.getProperty("user.dir")).getParent().getParent(); // src/main 밑으로 올라감
         return baseDir.resolve(projectName).resolve(relativePath).toString();
     }
-
     private static final String filePath = getBaseFilePath();
+*/
+    private static final String projectName = "exFinder"; // 프로젝트 이름
+    private static final String fixedSubPath = "src/main/webapp/resources/profile_img/"; // 고정된 하위 경로
+    private static final String fileName = "ex.jpg"; // 찾고자 하는 파일 이름
+
+    // ex.jpg 파일이 있는 디렉토리의 절대 경로
+    private static final String filePath = getBaseFilePath();
+
+    public static String getBaseFilePath() {
+        // 현재 작업 디렉토리에서 시작
+        Path currentDir = Paths.get(System.getProperty("user.dir"));
+        Path baseDir = currentDir;
+
+        // 부모 디렉토리로 이동하면서 "exFinder/src/main/webapp/resources/profile_img/ex.jpg" 경로를 찾기
+        while (baseDir != null) {
+            // 전체 경로를 구성
+            File fileToCheck = baseDir.resolve(projectName).resolve(fixedSubPath).resolve(fileName).toFile();
+            if (fileToCheck.exists()) {
+                // 파일이 존재하면 파일이 있는 디렉토리 경로를 반환
+                return fileToCheck.getParent(); // 부모 디렉토리 경로 반환
+            }
+            baseDir = baseDir.getParent(); // 부모 디렉토리로 이동
+        }
+
+        // 경로를 찾지 못한 경우 예외 처리
+        throw new IllegalStateException("ex.jpg 파일을 찾을 수 없습니다.");
+    }
 
     public static String updateImg(MultipartHttpServletRequest mpRequest, String oldImgPath) throws Exception {
     	File directory = new File(filePath);
