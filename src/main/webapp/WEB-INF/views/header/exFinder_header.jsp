@@ -38,7 +38,7 @@
 				<ul>
 					<li onclick="location.href='/ex/'">홈</li>
 
-					<li class="alram" onclick="toggleAlram('알림 1')">알림</li>
+					<li class="alram" onclick="toggleAlram()">알림</li>
 
 					<li onclick="location.href='/ex/board/listAll'">게시판</li>
 				</ul>

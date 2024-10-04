@@ -33,6 +33,7 @@ public class EchoHandler extends TextWebSocketHandler{
 		String userid= (String) session.getAttributes().get("userId");
 		System.out.println("socket 연결"+userid);
 		sessions.add(session);
+		notifyClients();
 	}
 	
 	// 메시지 처리
