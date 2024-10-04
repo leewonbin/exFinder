@@ -113,6 +113,8 @@ document.addEventListener("DOMContentLoaded", function() {
 					class="circle"> <i class="arrow-up"></i>
 				</i>
 			</div>
+
+		
 		</div>			
 		<div class="img">
 			<img class="favorit_img"
@@ -121,6 +123,12 @@ document.addEventListener("DOMContentLoaded", function() {
 			<img class="notification_img"
 			src="${pageContext.request.contextPath}/resources/img/alarm.png"
 		    onclick="checkLoginAndTogglePopup()" />
+=======
+
+			
+				
+		</div>
+
 
 			<!-- 숨겨진 iframe 팝업 -->
 			<div id="popup"
