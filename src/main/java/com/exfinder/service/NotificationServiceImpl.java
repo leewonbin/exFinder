@@ -15,6 +15,7 @@ public class NotificationServiceImpl implements NotificationService {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	
 
 	@Override
 	public ArrayList<NotificationDto> alramCheck(String u_id) throws Exception {
@@ -37,7 +38,15 @@ public class NotificationServiceImpl implements NotificationService {
 	@Override
 	public List<NotificationDto> getNotificationLists(String userId) throws Exception {
 		NotificationDao dao = sqlSession.getMapper(NotificationDao.class);
-		return dao.getNotificationLists();
+		return dao.getNotificationLists(userId);
 	}
 
+	@Override
+    public int deleteNotification(int n_id) throws Exception {
+        NotificationDao dao = sqlSession.getMapper(NotificationDao.class);
+        return dao.deleteNotification(n_id);
+    }
+		
 }
+
+

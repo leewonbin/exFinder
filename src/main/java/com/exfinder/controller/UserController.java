@@ -287,6 +287,13 @@ public class UserController {
 		return "/user/notificationList";
 		
 	}
+	@RequestMapping(value = "/user/deleteNotification", method = RequestMethod.POST)
+	public String deleteNotification(@RequestParam("n_id") int n_id, HttpSession session) throws Exception {
+	    notificationService.deleteNotification(n_id); // 알림 삭제 서비스 호출
+	    return "redirect:/user/notificationList"; // 삭제 후 알림 목록으로 리다이렉트
+	}
+
+
 
 	@RequestMapping(value = "/user/setExchangeAlert", method = RequestMethod.POST)
 	@ResponseBody

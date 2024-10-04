@@ -12,6 +12,7 @@ public interface NotificationDao {
 	public int notificationInsert(NotificationDto dto) throws Exception;
 	// 알림에 들어가야 할 요소 체크
 	public ArrayList<NotificationDto> exchangeEqulasCheck() throws Exception;
-	public List<NotificationDto> getNotificationLists()throws Exception;
+	public List<NotificationDto> getNotificationLists(String userId)throws Exception;
+	public int deleteNotification(int n_id) throws Exception;
 
 }
