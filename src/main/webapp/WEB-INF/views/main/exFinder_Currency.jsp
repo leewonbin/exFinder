@@ -49,6 +49,9 @@
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 
+	<!-- 알림을 표시할 div -->
+	<div id="alramContainer" style="display: none;"></div>
+
 	<div style="width: 100%; height: 110px;"></div>
 	<c:set var="interestIcon" value="star-before-selection.png" />
 	<c:if test="${isInterestCheck eq true }">

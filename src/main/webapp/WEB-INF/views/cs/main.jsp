@@ -70,6 +70,9 @@ function toggleAnswer(id) {
 
 	<div>
 		<%@include file="../header/exFinder_header.jsp"%>
+		
+		<!-- 알림을 표시할 div -->
+		<div id="alramContainer" style="display: none;"></div>
 	</div>
 	<br>
 	<h1>FAQ</h1>

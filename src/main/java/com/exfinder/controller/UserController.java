@@ -202,8 +202,6 @@ public class UserController {
 		return "/user/myPage";
 	}
 	
-	
-	
 	@RequestMapping(value="/user/myInfo/updateImg", method=RequestMethod.POST)
 	public String updateImg(UserDto dto, MultipartHttpServletRequest mpRequest, Model model, HttpSession session)throws Exception {
 		String u_id = (String) session.getAttribute("userId");
@@ -279,5 +277,9 @@ public class UserController {
 		return "redirect:/user/notification";
 	}
 	
-	
+	// 알림 로드 메서드
+    @RequestMapping(value = "/user/loadAlram", method = RequestMethod.POST)
+    public String loadAlram() {
+        return "header/alram"; // JSP 파일 경로 (확장자 제외)
+    }
 }
