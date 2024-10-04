@@ -30,6 +30,9 @@
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 
+	<!-- 알림을 표시할 div -->
+	<div id="alramContainer" style="display: none;"></div>
+
 	<div style="width: 100%; height: 110px;"></div>
 	<c:set var="interestIcon" value="star-before-selection.png" />
 	<c:if test="${isInterestCheck eq true }">
@@ -47,6 +50,7 @@
 					class="circle"> <i class="arrow-up"></i>
 				</i>
 			</div>
+
 			
 				<div class="img">
 					<img class="favorit_img"
@@ -57,15 +61,19 @@
 				     src="${pageContext.request.contextPath}/resources/img/alarm.png"
 				     onclick="checkLoginAndTogglePopup()" />
 
+
+			<!-- 숨겨진 iframe 팝업 -->
+			<div id="popup"
+				style="display: none; position: fixed; top: 50%; left: 50%; width: 600px; height: 600px; border: 2px solid #ccc; background-color: white; z-index: 1000; transform: translate(-50%, -50%); overflow: hidden;">
+				<div
+					style="display: flex; justify-content: center; align-items: center; width : 100%; height: 100%;">
+					<iframe id="popupFrame" src='/ex/user/notification' width="100%"
+						height="100%" style="overflow: hidden;"></iframe>
+
 				</div>
-				
-				<!-- 숨겨진 iframe 팝업 -->
-<div id="popup" style="display:none; position:fixed; top:50%; left:50%; width:600px; height:600px; border:2px solid #ccc; background-color:white; z-index:1000; transform: translate(-50%, -50%); overflow: hidden;">
-    <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-        <iframe id="popupFrame" src='/ex/user/notification' width="100%" height="100%" frameborder="0" style="overflow: hidden;"></iframe>
-    </div>
-    <button onclick="closePopup()" style="position:absolute; top:5px; right:5px;">닫기</button>
-</div>
+				<button onclick="closePopup()"
+					style="position: absolute; top: 5px; right: 5px;">닫기</button>
+			</div>
 
 		</div>
 		<span id="currency-list" class="hidden"> <a
@@ -135,25 +143,25 @@
 			<!-- 뉴스 리스트 출력 -->
 			<div class="news-list">
 				<!-- EL을 사용하여 newsTitles와 newsURLs 출력 -->
-        <c:forEach var="news" items="${newsList}" varStatus="status">
-            <c:if test="${status.index < 4}">
-                <div class="news-item">
-                    <div class="new-header">
-                        <img src="${news.newsIcon}">${news.newsName}
-                        - ${news.newsTime}
-                    </div>
-                    <div class="new-main" onclick="window.open('${news.newsURL}', '_blank');">
-                        <div class="new-main-text">
-                            <label>${news.newsTitle} </label><br>
-                            <a>${news.newsText}</a>
-                        </div>
-                        <c:if test="${not empty news.newsImg}">
-                            <img src="${news.newsImg}" alt="뉴스 이미지">
-                        </c:if>
-                    </div>
-                </div>
-            </c:if>
-        </c:forEach>
+				<c:forEach var="news" items="${newsList}" varStatus="status">
+					<c:if test="${status.index < 4}">
+						<div class="news-item">
+							<div class="new-header">
+								<img src="${news.newsIcon}">${news.newsName} -
+								${news.newsTime}
+							</div>
+							<div class="new-main"
+								onclick="window.open('${news.newsURL}', '_blank');">
+								<div class="new-main-text">
+									<label>${news.newsTitle} </label><br> <a>${news.newsText}</a>
+								</div>
+								<c:if test="${not empty news.newsImg}">
+									<img src="${news.newsImg}" alt="뉴스 이미지">
+								</c:if>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
@@ -217,7 +225,10 @@
 			<tbody>
 				<c:if test="${empty hourCurrency}">
 					<tr>
-						<td colspan="7" class="no-data"><br><br><br><br>"현재 시간이 반영된 데이터가 없습니다. 잠시 후 다시 확인해 주세요."</td>
+						<td colspan="7" class="no-data"><br>
+						<br>
+						<br>
+						<br>"현재 시간이 반영된 데이터가 없습니다. 잠시 후 다시 확인해 주세요."</td>
 					</tr>
 				</c:if>
 				<c:forEach var="hourCurrency" items="${hourCurrency}">

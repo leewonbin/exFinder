@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class AlramDto {
 	private int a_id;
 	private String u_id;
-	private LocalDateTime create_date;
+	private String create_date;
 	private int target_exchange;
 	private String checked;
 	
@@ -13,7 +13,7 @@ public class AlramDto {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public AlramDto(int a_id, String u_id, LocalDateTime create_date, int target_exchange, String checked) {
+	public AlramDto(int a_id, String u_id, String create_date, int target_exchange, String checked) {
 		super();
 		this.a_id = a_id;
 		this.u_id = u_id;
@@ -34,10 +34,10 @@ public class AlramDto {
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
-	public LocalDateTime getCreate_date() {
+	public String getCreate_date() {
 		return create_date;
 	}
-	public void setCreate_date(LocalDateTime create_date) {
+	public void setCreate_date(String create_date) {
 		this.create_date = create_date;
 	}
 	public int getTarget_exchange() {

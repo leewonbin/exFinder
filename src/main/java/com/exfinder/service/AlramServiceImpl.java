@@ -34,4 +34,10 @@ public class AlramServiceImpl implements AlramService {
 		return dao.alramCheck(a_id);
 	}
 
+	@Override
+	public int noCheckAlramDelete() throws Exception {
+		AlramDao dao = sqlSession.getMapper(AlramDao.class);
+		return dao.noCheckAlramDelete();
+	}
+
 }

@@ -9,8 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select * from notification where u_id=#{u_id}
 </select>
 
-<insert id="alramInsert">
-	insert into notification values(notifi_num.nextval,#{n_id},#{u_id},#{c_code},#{standard_exchange},#{target_exchange})
+<insert id="notificationInsert">
+	insert into notification values(notifi_num.nextval,#{u_id},#{c_code},#{target_exchange})
 </insert>
 
 <select id="exchangeEqulasCheck" resultType="com.exfinder.dto.NotificationDto">

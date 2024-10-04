@@ -9,4 +9,5 @@ public interface AlramService {
 	public ArrayList<AlramDto> alramSelect() throws Exception;
 	public int alramInsert(NotificationDto dto) throws Exception;
 	public int alramCheck(int a_id) throws Exception;
+	public int noCheckAlramDelete() throws Exception;
 }

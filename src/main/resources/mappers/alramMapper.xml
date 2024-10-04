@@ -17,6 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	update alram set checked='O' where a_id=#{a_id}
 </update>
 
+<delete id="noCheckAlramDelete">
+	delete from alram where checked='X'
+</delete>
+
 
 
 </mapper>

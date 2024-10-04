@@ -11,5 +11,6 @@ public interface AlramDao {
 	public ArrayList<AlramDto> alramSelect() throws Exception;
 	public int alramInsert(NotificationDto dto) throws Exception;
 	public int alramCheck(@Param("a_id")int a_id) throws Exception;
+	public int noCheckAlramDelete() throws Exception;
 
 }

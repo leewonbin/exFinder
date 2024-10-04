@@ -16,6 +16,10 @@
 </style>
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
+	
+	<!-- 알림을 표시할 div -->
+	<div id="alramContainer" style="display: none;"></div>
+		
 	<div id="main">
 		<div id="left_main">
 			<div class="sidebar_menu">		
