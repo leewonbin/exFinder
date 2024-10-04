@@ -356,7 +356,6 @@ public class UserController {
 	            list.get(i).setCreate_date(timeMessage);
 	        }
 	        model.addAttribute("alramList", list);
-	        alramService.alramCheck(userId);
 	    }
 	    return "header/alram"; // JSP 파일 경로 (확장자 제외)
 	}
@@ -377,6 +376,14 @@ public class UserController {
 		String msg = result == 1 ? "알림이 삭제되었습니다." : "알림 삭제에 실패했습니다. 다시 시도해주세요.";
 		
 		return new ResponseEntity<>(msg,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/user/alramRead", method= RequestMethod.POST)
+	public ResponseEntity<?> alramRead(HttpSession session) throws Exception {
+		UserDto dto = (UserDto)session.getAttribute("dto");
+		String userid = dto.getU_id();
+        alramService.alramCheck(userid);
+        return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

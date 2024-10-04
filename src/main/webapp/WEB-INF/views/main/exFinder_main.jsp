@@ -22,7 +22,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/charts.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/alram.js"></script>
+	
 </head>
 <body>
 	<!-- 헤더 Include -->

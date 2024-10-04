@@ -13,10 +13,11 @@
 	href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/header.css">
+<script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/header.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/alram.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/headerAlram.js"></script>
 </head>
 <body>
