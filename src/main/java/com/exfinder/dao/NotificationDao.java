@@ -1,6 +1,7 @@
 package com.exfinder.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -11,5 +12,6 @@ public interface NotificationDao {
 	public int notificationInsert(NotificationDto dto) throws Exception;
 	// 알림에 들어가야 할 요소 체크
 	public ArrayList<NotificationDto> exchangeEqulasCheck() throws Exception;
+	public List<NotificationDto> getNotificationLists()throws Exception;
 
 }

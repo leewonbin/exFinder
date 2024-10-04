@@ -117,7 +117,7 @@
 		<div class="header_mini_myPage_bottom">
 			<ul>
 				<li><a href="/ex/user/myBoard">나의 게시판</a></li>
-				<li><a href="/ex/user/notification">알림</a></li>
+				<li><a href="/ex/user/notificationList">알림</a></li>
 				<li><a href="/ex/user/bookMark">즐겨찾기</a></li>
 			</ul>
 

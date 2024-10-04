@@ -459,3 +459,12 @@ body, html {
         z-index: 1000;
         transform: translate(-50%, -50%);
     }
+    
+    
+#page-info {
+    font-size: 16px; /* 원하는 폰트 크기로 설정 */
+    color: #000; /* 글자 색상 설정 */
+    margin: 0 10px; /* 좌우 여백 */
+    display: inline-block; /* 인라인 블록 요소로 설정 */
+}
+
