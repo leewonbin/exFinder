@@ -27,7 +27,7 @@ import com.exfinder.service.AuthoritiesService;
 import com.exfinder.service.BoardService;
 import com.exfinder.service.CurrencyService;
 import com.exfinder.service.UserService;
-import com.exfinder.util.fileUtil;
+import com.exfinder.util.FileUtil;
 
 @Controller
 public class UserController {
@@ -215,7 +215,7 @@ public class UserController {
         String oldImgPath = currentUser.getU_profile_img();
         
 	    
-		String user_Img = fileUtil.updateImg(mpRequest, oldImgPath); 
+		String user_Img = FileUtil.updateImg(mpRequest, oldImgPath); 
 		dto.setU_profile_img(user_Img);
 		userService.updateImg(user_Img, u_id);
 		

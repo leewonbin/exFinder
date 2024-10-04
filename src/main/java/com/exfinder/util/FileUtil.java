@@ -6,7 +6,7 @@ import java.util.Iterator;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-public class fileUtil {
+public class FileUtil {
 	private static final String filePath = "C:\\Users\\tj-bu-702-10\\Desktop\\exFinder\\src\\main\\webapp\\resources\\profile_img\\"; // 파일이 저장될 위치
 
 	public static String updateImg(MultipartHttpServletRequest mpRequest, String oldImgPath) throws Exception{
