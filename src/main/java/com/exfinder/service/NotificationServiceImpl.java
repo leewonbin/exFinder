@@ -22,9 +22,9 @@ public class NotificationServiceImpl implements NotificationService {
 	}
 
 	@Override
-	public int alramInsert(NotificationDto dto) throws Exception {
+	public int notificationInsert(NotificationDto dto) throws Exception {
 		NotificationDao dao = sqlSession.getMapper(NotificationDao.class);
-		return dao.alramInsert(dto);
+		return dao.notificationInsert(dto);
 	}
 
 	@Override

@@ -60,21 +60,22 @@ public class Scheduler {
 			e_service.exchangeRateInsert(dto);
 		}
 	}
-//	@Scheduled(cron = "0 */2 * * * ?")
-//	public void addAlram() {
-//		System.out.println("addAlram 들어옴");
-//		try {
-//			ArrayList<NotificationDto> list = no_service.exchangeEqulasCheck();
-//			System.out.println("list.size() : " + list.size());
-//			if(list.size() != 0) {
-//				for(NotificationDto dto : list) {
-//					al_service.alramInsert(dto);
-//				}
-//			}
-//			echoHandler.notifyClients();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
+	@Scheduled(cron = "0 */2 * * * ?")
+	public void addAlram() {
+		System.out.println("addAlram 들어옴");
+		try {
+			ArrayList<NotificationDto> list = no_service.exchangeEqulasCheck();
+			System.out.println("list.size() : " + list.size());
+			if(list.size() != 0) {
+				for(NotificationDto dto : list) {
+					al_service.noCheckAlramDelete();
+					al_service.alramInsert(dto);
+				}
+			}
+			echoHandler.notifyClients();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

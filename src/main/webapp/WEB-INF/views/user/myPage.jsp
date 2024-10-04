@@ -11,6 +11,10 @@
 </head>
 <body>
 <%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
+
+	<!-- 알림을 표시할 div -->
+	<div id="alramContainer" style="display: none;"></div>
+	
 	<div id="main">
 		<button type="button" class="myPage-button" onclick="location.href='/ex/user/myInfo'">
 			<img src="${pageContext.request.contextPath}/resources/img/Nuser.png" id="Img">계정관리
