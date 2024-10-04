@@ -45,6 +45,70 @@
 	    }
 	}
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const rowsPerPage = 5; // 한 페이지에 보여줄 행 수
+    let currentPage = 1;
+    const rows = document.querySelectorAll("#currencyBody tr"); // 모든 데이터 행
+
+    // 전체 페이지 수 계산
+    const totalPages = Math.ceil(rows.length / rowsPerPage);
+    
+    console.log("Current page:", currentPage);
+    console.log("Total pages:", totalPages);
+
+    function displayTable(page) {
+        const start = (page - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+
+        rows.forEach((row, index) => {
+            row.style.display = (index >= start && index < end) ? "" : "none";
+        });
+
+        // totalPages가 0일 경우 최소값 1을 설정
+        const total = totalPages > 0 ? totalPages : 1;
+
+        // 페이지 정보 업데이트
+        document.getElementById("page-info").textContent = `${page} / ${total}`;
+        
+        document.getElementById('prev').disabled = (page === 1);
+        document.getElementById('first').disabled = (page === 1);
+        document.getElementById('next').disabled = (page === total);
+        document.getElementById('last').disabled = (page === total);
+    }
+
+    // 이전 버튼
+    document.getElementById('prev').addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayTable(currentPage);
+        }
+    });
+
+    // 다음 버튼
+    document.getElementById('next').addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayTable(currentPage);
+        }
+    });
+
+    // 맨앞 버튼
+    document.getElementById('first').addEventListener('click', () => {
+        currentPage = 1;
+        displayTable(currentPage);
+    });
+
+    // 맨끝 버튼
+    document.getElementById('last').addEventListener('click', () => {
+        currentPage = totalPages;
+        displayTable(currentPage);
+    });
+
+    // 초기 데이터 표시
+    displayTable(currentPage);
+});
+</script>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
@@ -66,24 +130,28 @@
 					class="circle"> <i class="arrow-up"></i>
 				</i>
 			</div>
-			
-				<div class="img">
-					<img class="favorit_img"
-						src="${pageContext.request.contextPath}/resources/img/${interestIcon}"
-						onclick="interestAction(${isInterestCheck},'${currencyDto.c_code }');" />
-						
-					<img class="notification_img"
-						src="${pageContext.request.contextPath}/resources/img/alarm.png"
-						onclick="togglePopup()" />
+
+			<div class="img">
+				<img class="favorit_img"
+					src="${pageContext.request.contextPath}/resources/img/${interestIcon}"
+					onclick="interestAction(${isInterestCheck},'${currencyDto.c_code }');" />
+
+				<img class="notification_img"
+					src="${pageContext.request.contextPath}/resources/img/alarm.png"
+					onclick="togglePopup()" />
+			</div>
+
+			<!-- 숨겨진 iframe 팝업 -->
+			<div id="popup"
+				style="display: none; position: fixed; top: 50%; left: 50%; width: 600px; height: 600px; border: 2px solid #ccc; background-color: white; z-index: 1000; transform: translate(-50%, -50%); overflow: hidden;">
+				<div
+					style="display: flex; justify-content: center; align-items: center; height: 100%;">
+					<iframe id="popupFrame" src='/ex/user/notification' width="100%"
+						height="100%" frameborder="0" style="overflow: hidden;"></iframe>
 				</div>
-				
-				<!-- 숨겨진 iframe 팝업 -->
-<div id="popup" style="display:none; position:fixed; top:50%; left:50%; width:600px; height:600px; border:2px solid #ccc; background-color:white; z-index:1000; transform: translate(-50%, -50%); overflow: hidden;">
-    <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-        <iframe id="popupFrame" src='/ex/user/notification' width="100%" height="100%" frameborder="0" style="overflow: hidden;"></iframe>
-    </div>
-    <button onclick="closePopup()" style="position:absolute; top:5px; right:5px;">닫기</button>
-</div>
+				<button onclick="closePopup()"
+					style="position: absolute; top: 5px; right: 5px;">닫기</button>
+			</div>
 
 		</div>
 		<span id="currency-list" class="hidden"> <a
@@ -153,25 +221,25 @@
 			<!-- 뉴스 리스트 출력 -->
 			<div class="news-list">
 				<!-- EL을 사용하여 newsTitles와 newsURLs 출력 -->
-        <c:forEach var="news" items="${newsList}" varStatus="status">
-            <c:if test="${status.index < 4}">
-                <div class="news-item">
-                    <div class="new-header">
-                        <img src="${news.newsIcon}">${news.newsName}
-                        - ${news.newsTime}
-                    </div>
-                    <div class="new-main" onclick="window.open('${news.newsURL}', '_blank');">
-                        <div class="new-main-text">
-                            <label>${news.newsTitle} </label><br>
-                            <a>${news.newsText}</a>
-                        </div>
-                        <c:if test="${not empty news.newsImg}">
-                            <img src="${news.newsImg}" alt="뉴스 이미지">
-                        </c:if>
-                    </div>
-                </div>
-            </c:if>
-        </c:forEach>
+				<c:forEach var="news" items="${newsList}" varStatus="status">
+					<c:if test="${status.index < 4}">
+						<div class="news-item">
+							<div class="new-header">
+								<img src="${news.newsIcon}">${news.newsName} -
+								${news.newsTime}
+							</div>
+							<div class="new-main"
+								onclick="window.open('${news.newsURL}', '_blank');">
+								<div class="new-main-text">
+									<label>${news.newsTitle} </label><br> <a>${news.newsText}</a>
+								</div>
+								<c:if test="${not empty news.newsImg}">
+									<img src="${news.newsImg}" alt="뉴스 이미지">
+								</c:if>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
@@ -196,7 +264,7 @@
 					<th>받으실때</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="currencyBody">
 				<c:forEach var="dailyCurrency" items="${dailyCurrency}">
 					<tr>
 						<td class="c">${dailyCurrency.rate_date}</td>
@@ -210,6 +278,13 @@
 				</c:forEach>
 			</tbody>
 		</table>
+	</div>
+	<div id="pagination">
+		<button id="first" disabled>&laquo;</button>
+		<button id="prev" disabled>&lt;</button>
+		<span id="page-info"></span>
+		<button id="next">&gt;</button>
+		<button id="last">&raquo;</button>
 	</div>
 
 	<h1 class="rate-hour">시간별</h1>
@@ -235,7 +310,8 @@
 			<tbody>
 				<c:if test="${empty hourCurrency}">
 					<tr>
-						<td colspan="7" class="no-data"><br><br><br><br>"현재 시간이 반영된 데이터가 없습니다. 잠시 후 다시 확인해 주세요."</td>
+						<td colspan="7" class="no-data"><br> <br> <br>
+							<br>"현재 시간이 반영된 데이터가 없습니다. 잠시 후 다시 확인해 주세요."</td>
 					</tr>
 				</c:if>
 				<c:forEach var="hourCurrency" items="${hourCurrency}">
