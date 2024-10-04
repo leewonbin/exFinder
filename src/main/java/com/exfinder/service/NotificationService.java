@@ -10,5 +10,6 @@ public interface NotificationService {
 	public int notificationInsert(NotificationDto dto) throws Exception;
 	public ArrayList<NotificationDto> exchangeEqulasCheck() throws Exception;
 	public List<NotificationDto> getNotificationLists(String userId) throws Exception;
+	public int deleteNotification(int n_id)throws Exception;
 
 }
