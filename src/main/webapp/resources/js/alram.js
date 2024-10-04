@@ -18,7 +18,6 @@ function connectWs(userId) {
 
     sock.onopen = function() {
         console.log("연결완료");
-        onLogin(userId);
     };
 
     sock.onmessage = function(event) {

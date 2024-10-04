@@ -43,7 +43,7 @@
 						src="${pageContext.request.contextPath }/resources/img/newLogo.png" />
 					<ul>
 						<li onclick="location.href='/ex/'">홈</li>
-						<li class="alram" onclick="toggleAlram('알림 2')">알림</li>
+						<li class="alram" onclick="toggleAlram()">알림</li>
 						<li onclick="location.href='/ex/board/listAll'">게시판</li>
 					</ul>
 				</div>

@@ -29,15 +29,39 @@ public class AlramServiceImpl implements AlramService {
 	}
 
 	@Override
-	public int alramCheck(int a_id) throws Exception {
+	public int alramCheck(String u_id) throws Exception {
 		AlramDao dao = sqlSession.getMapper(AlramDao.class);
-		return dao.alramCheck(a_id);
+		return dao.alramCheck(u_id);
 	}
 
 	@Override
 	public int noCheckAlramDelete() throws Exception {
 		AlramDao dao = sqlSession.getMapper(AlramDao.class);
 		return dao.noCheckAlramDelete();
+	}
+
+	@Override
+	public ArrayList<AlramDto> userAlramSelect(String u_id) throws Exception {
+		AlramDao dao = sqlSession.getMapper(AlramDao.class);
+		return dao.userAlramSelect(u_id);
+	}
+
+	@Override
+	public int alramDelete(int a_id) throws Exception {
+		AlramDao dao = sqlSession.getMapper(AlramDao.class);
+		return dao.alramDelete(a_id);
+	}
+
+	@Override
+	public int alramDeleteAll(String userid) throws Exception {
+		AlramDao dao = sqlSession.getMapper(AlramDao.class);
+		return dao.alramDeleteAll(userid);
+	}
+
+	@Override
+	public int userAlramCheck(String userid) throws Exception {
+		AlramDao dao = sqlSession.getMapper(AlramDao.class);
+		return dao.userAlramCheck(userid);
 	}
 
 }

@@ -38,7 +38,7 @@
 				<ul>
 					<li onclick="location.href='/ex/'">홈</li>
 
-					<li class="alram" onclick="toggleAlram('알림 1')">알림</li>
+					<li class="alram" onclick="toggleAlram()">알림</li>
 
 					<li onclick="location.href='/ex/board/listAll'">게시판</li>
 				</ul>
@@ -117,7 +117,7 @@
 		<div class="header_mini_myPage_bottom">
 			<ul>
 				<li><a href="/ex/user/myBoard">나의 게시판</a></li>
-				<li><a href="/ex/user/notification">알림</a></li>
+				<li><a href="/ex/user/notificationList">알림</a></li>
 				<li><a href="/ex/user/bookMark">즐겨찾기</a></li>
 			</ul>
 

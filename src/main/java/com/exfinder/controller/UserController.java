@@ -1,5 +1,8 @@
 package com.exfinder.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -19,11 +22,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.exfinder.dto.AlramDto;
 import com.exfinder.dto.AuthoritiesDto;
 import com.exfinder.dto.BoardDto;
 import com.exfinder.dto.CurrencyDto;
 import com.exfinder.dto.NotificationDto;
 import com.exfinder.dto.UserDto;
+import com.exfinder.service.AlramService;
 import com.exfinder.service.AuthoritiesService;
 import com.exfinder.service.BoardService;
 import com.exfinder.service.CurrencyService;
@@ -51,6 +56,9 @@ public class UserController {
 
 	@Autowired
 	private NotificationService notificationService;
+	
+	@Autowired
+	private AlramService alramService;
 
 	// 유저 로그인
 	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
@@ -278,6 +286,22 @@ public class UserController {
 	@RequestMapping(value = "/user/notification", method = RequestMethod.GET)
 	public void notification(Model model) throws Exception {
 	}
+	
+	@RequestMapping(value = "/user/notificationList", method = RequestMethod.GET)
+	public String notificationLists(HttpSession session,Model model) throws Exception {
+		String userId = (String) session.getAttribute("userId"); // 세션에서 사용자 ID 가져오기
+		List<NotificationDto> notificationLists = notificationService.getNotificationLists(userId);
+		model.addAttribute("notificationLists", notificationLists);
+		return "/user/notificationList";
+		
+	}
+	@RequestMapping(value = "/user/deleteNotification", method = RequestMethod.POST)
+	public String deleteNotification(@RequestParam("n_id") int n_id, HttpSession session) throws Exception {
+	    notificationService.deleteNotification(n_id); // 알림 삭제 서비스 호출
+	    return "redirect:/user/notificationList"; // 삭제 후 알림 목록으로 리다이렉트
+	}
+
+
 
 	@RequestMapping(value = "/user/setExchangeAlert", method = RequestMethod.POST)
 	@ResponseBody
@@ -297,10 +321,62 @@ public class UserController {
 		}
 		return new ResponseEntity<>(msg,HttpStatus.OK);
 	}
+	
 	// 알림 로드 메서드
-    @RequestMapping(value = "/user/loadAlram", method = RequestMethod.POST)
-    public String loadAlram() {
-        return "header/alram"; // JSP 파일 경로 (확장자 제외)
-    }
+	@RequestMapping(value = "/user/loadAlram", method = RequestMethod.POST)
+	public String loadAlram(HttpSession session, Model model) throws Exception {
+	    UserDto dto = (UserDto) session.getAttribute("dto");
+	    if (dto != null) {
+	        String userId = dto.getU_id();
+	        List<AlramDto> list = alramService.userAlramSelect(userId);
+	        
+	        // 현재 시간
+	        LocalDateTime now = LocalDateTime.now();
+
+	        // DateTimeFormatter를 사용하여 문자열을 LocalDateTime으로 변환
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	        
+	        for(int i = 0; i < list.size(); i++) {
+	        	LocalDateTime createDate = LocalDateTime.parse(list.get(i).getCreate_date(), formatter);
+	            long secondsElapsed = ChronoUnit.SECONDS.between(createDate, now);
+	            String timeMessage;
+
+	            if (secondsElapsed < 60) {
+	                timeMessage = secondsElapsed + "초 전";
+	            } else if (secondsElapsed < 3600) { // 60초 * 60분
+	                long minutesElapsed = ChronoUnit.MINUTES.between(createDate, now);
+	                timeMessage = minutesElapsed + "분 전";
+	            } else if (secondsElapsed < 86400) { // 3600초 * 24시간
+	                long hoursElapsed = ChronoUnit.HOURS.between(createDate, now);
+	                timeMessage = hoursElapsed + "시간 전";
+	            } else {
+	                long daysElapsed = ChronoUnit.DAYS.between(createDate, now);
+	                timeMessage = daysElapsed + "일 전";
+	            }
+	            list.get(i).setCreate_date(timeMessage);
+	        }
+	        model.addAttribute("alramList", list);
+	        alramService.alramCheck(userId);
+	    }
+	    return "header/alram"; // JSP 파일 경로 (확장자 제외)
+	}
+	
+	@RequestMapping(value = "/user/alramDelete", method= RequestMethod.POST)
+	public ResponseEntity<String> alramDel(@Param("a_id")Integer a_id) throws Exception{
+		int result = alramService.alramDelete(a_id);
+		String msg = result == 1 ? "알림이 삭제되었습니다." : "알림 삭제에 실패했습니다. 다시 시도해주세요.";
+		
+		return new ResponseEntity<>(msg,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/user/alramDeleteAll", method= RequestMethod.POST)
+	public ResponseEntity<String> alramDeleteAll(HttpSession session) throws Exception{
+		UserDto dto = (UserDto)session.getAttribute("dto");
+		String userid = dto.getU_id();
+		int result = alramService.alramDeleteAll(userid);
+		String msg = result == 1 ? "알림이 삭제되었습니다." : "알림 삭제에 실패했습니다. 다시 시도해주세요.";
+		
+		return new ResponseEntity<>(msg,HttpStatus.OK);
+	}
 
 }

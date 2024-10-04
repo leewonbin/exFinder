@@ -31,6 +31,14 @@ JOIN
     ]]>
 </select>
 
+	<select id="getNotificationLists" parameterType="String" resultType="com.exfinder.dto.NotificationDto">
+    	SELECT * FROM notification WHERE u_id = #{u_id} ORDER BY n_id DESC
+    </select>
+     
+     <!-- 알림 삭제 -->
+    <delete id="deleteNotification" parameterType="int">
+        DELETE FROM notification WHERE n_id = #{n_id}
+    </delete>
 
 </mapper>
 
