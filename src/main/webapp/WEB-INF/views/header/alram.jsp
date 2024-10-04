@@ -15,7 +15,9 @@
 	<div class="header_mini_alarmPage">
 		<div class="header_mini_alarmPage_top">
 			<p>알림</p>
-			 <a href="#" class="clear-all-link" onclick="clearAllAlarms()">모두 삭제</a>
+			<c:if test="${not empty dto}">
+				<a href="#" class="clear-all-link" onclick="clearAllAlarms()">모두 삭제</a>
+			</c:if>
 		</div>
 		<c:choose>
 			<c:when test="${not empty dto}">
