@@ -113,34 +113,26 @@ document.addEventListener("DOMContentLoaded", function() {
 					class="circle"> <i class="arrow-up"></i>
 				</i>
 			</div>
-
-
-			
-				<div class="img">
-					<img class="favorit_img"
-						src="${pageContext.request.contextPath}/resources/img/${interestIcon}"
-						onclick="interestAction(${isInterestCheck},'${currencyDto.c_code }');" />
-						
-					<img class="notification_img"
-				     src="${pageContext.request.contextPath}/resources/img/alarm.png"
-				     onclick="checkLoginAndTogglePopup()" />
-
-
+		</div>			
+		<div class="img">
+			<img class="favorit_img"
+			src="${pageContext.request.contextPath}/resources/img/${interestIcon}"
+			onclick="interestAction(${isInterestCheck},'${currencyDto.c_code }');" />						
+			<img class="notification_img"
+			src="${pageContext.request.contextPath}/resources/img/alarm.png"
+		    onclick="checkLoginAndTogglePopup()" />
 
 			<!-- 숨겨진 iframe 팝업 -->
 			<div id="popup"
 				style="display: none; position: fixed; top: 50%; left: 50%; width: 600px; height: 600px; border: 2px solid #ccc; background-color: white; z-index: 1000; transform: translate(-50%, -50%); overflow: hidden;">
 				<div
-
 					style="display: flex; justify-content: center; align-items: center; width : 100%; height: 100%;">
 					<iframe id="popupFrame" src='/ex/user/notification' width="100%"
 						height="100%" style="overflow: hidden;"></iframe>
-
 				</div>
 				<button onclick="closePopup()"
 					style="position: absolute; top: 5px; right: 5px;">닫기</button>
 			</div>
-
 		</div>
 		<span id="currency-list" class="hidden"> <a
 			href="exFinder_Currency?c_code=USD">미국 USD</a> <a
@@ -298,12 +290,10 @@ document.addEventListener("DOMContentLoaded", function() {
 			<tbody>
 				<c:if test="${empty hourCurrency}">
 					<tr>
-
 						<td colspan="7" class="no-data"><br>
 						<br>
 						<br>
 						<br>"현재 시간이 반영된 데이터가 없습니다. 잠시 후 다시 확인해 주세요."</td>
-
 					</tr>
 				</c:if>
 				<c:forEach var="hourCurrency" items="${hourCurrency}">
