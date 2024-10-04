@@ -302,6 +302,7 @@ document.addEventListener("DOMContentLoaded", function() {
 						<td colspan="7" class="no-data"><br>
 						<br>
 						<br>
+						<br>
 						<br>"현재 시간이 반영된 데이터가 없습니다. 잠시 후 다시 확인해 주세요."</td>
 
 					</tr>
