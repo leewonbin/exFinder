@@ -278,6 +278,15 @@ public class UserController {
 	@RequestMapping(value = "/user/notification", method = RequestMethod.GET)
 	public void notification(Model model) throws Exception {
 	}
+	
+	@RequestMapping(value = "/user/notificationList", method = RequestMethod.GET)
+	public String notificationLists(HttpSession session,Model model) throws Exception {
+		String userId = (String) session.getAttribute("userId"); // 세션에서 사용자 ID 가져오기
+		List<NotificationDto> notificationLists = notificationService.getNotificationLists(userId);
+		model.addAttribute("notificationLists", notificationLists);
+		return "/user/notificationList";
+		
+	}
 
 	@RequestMapping(value = "/user/setExchangeAlert", method = RequestMethod.POST)
 	@ResponseBody

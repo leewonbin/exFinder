@@ -22,7 +22,7 @@
 		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/myBoard'">
 			<img src="${pageContext.request.contextPath}/resources/img/Nboard.png" id="Img">나의 게시판
 		</button>
-		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/notification'">
+		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/notificationList'">
 			<img src="${pageContext.request.contextPath}/resources/img/Nalarm.png" id="Img">알림
 		</button>
 		<button type="button" class="myPage-button" onclick="window.location.href='/ex/user/bookMark'">

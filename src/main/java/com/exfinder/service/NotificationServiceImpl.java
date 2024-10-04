@@ -1,6 +1,7 @@
 package com.exfinder.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,12 @@ public class NotificationServiceImpl implements NotificationService {
 	public ArrayList<NotificationDto> exchangeEqulasCheck() throws Exception {
 		NotificationDao dao = sqlSession.getMapper(NotificationDao.class);
 		return dao.exchangeEqulasCheck();
+	}
+
+	@Override
+	public List<NotificationDto> getNotificationLists(String userId) throws Exception {
+		NotificationDao dao = sqlSession.getMapper(NotificationDao.class);
+		return dao.getNotificationLists();
 	}
 
 }

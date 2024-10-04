@@ -31,6 +31,9 @@ JOIN
     ]]>
 </select>
 
+<select id="getNotificationLists" resultType="notificationDto">
+	select * from notification where u_id=#{u_id}
+</select>
 
 </mapper>
 

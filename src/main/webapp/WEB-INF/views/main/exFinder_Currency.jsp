@@ -60,7 +60,7 @@
 					<img class="notification_img"
 				     src="${pageContext.request.contextPath}/resources/img/alarm.png"
 				     onclick="checkLoginAndTogglePopup()" />
-
+	</div>
 
 			<!-- 숨겨진 iframe 팝업 -->
 			<div id="popup"
