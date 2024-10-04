@@ -127,5 +127,30 @@
 			</button>
 		</div>
 	</div>
+	<div class="header_mini_alarmPage">
+		<div class="header_mini_alarmPage_top">
+			<p>알림</p>
+		</div>
+		<div class="header_mini_alarmPage_bottom">
+			<div class="alarm_message">
+				<div class="alarm_message_title">
+					<div class="alarm_message_title_letter">알림 1 제목</div>
+					<button type="button" class="alarm_message_button">x</button>
+				</div>
+				<div class="alarm_message_contents">
+				알림 1 내용
+				</div>
+			</div>
+			<div class="alarm_message">
+				<div class="alarm_message_title">
+					<div class="alarm_message_title_letter">알림 2 제목</div>
+					<button type="button" class="alarm_message_button">x</button>
+				</div>
+				<div class="alarm_message_contents">
+				알림 2 내용
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

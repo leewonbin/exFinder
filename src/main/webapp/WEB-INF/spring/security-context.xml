@@ -48,6 +48,7 @@
 </http>
 
 <beans:bean id="loginSuccess" class="com.exfinder.Handler.LoginRedirectHandler"/>
+<beans:bean id="logoutSuccess" class="com.exfinder.Handler.CustomLogoutSuccessHandler"/>
 <!-- URL 설정 --> 
 	
 
