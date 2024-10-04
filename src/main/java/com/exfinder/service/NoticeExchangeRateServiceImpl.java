@@ -59,7 +59,6 @@ public class NoticeExchangeRateServiceImpl implements NoticeExchangeRateService 
 
 		ChromeOptions options = new ChromeOptions();
 
-		options.addArguments("headless"); // 브라우저 안띄움
 		options.addArguments("--disable-popup-blocking"); // 팝업 안 띄움
 		options.addArguments("--headless"); // 브라우저 안 띄움
 		options.addArguments("--disable-gpu"); // GPU 비활성화

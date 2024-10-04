@@ -3,6 +3,10 @@ html {
     font-family: 'Arial', sans-serif;
 }
 
+body {
+	overflow: hidden;
+}
+
 
 /* 환율 알림 설정 박스 */
 #alert-settings {

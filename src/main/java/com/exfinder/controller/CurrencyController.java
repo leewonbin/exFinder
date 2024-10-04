@@ -20,14 +20,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exfinder.dto.CurrencyDto;
+import com.exfinder.dto.CurrencyInfoDto;
 import com.exfinder.dto.ExchangeRateDto;
-
-import com.exfinder.dto.NoticeExchangeRateDto;
-
 import com.exfinder.dto.NewsDto;
-
+import com.exfinder.dto.NoticeExchangeRateDto;
 import com.exfinder.dto.UserDto;
 import com.exfinder.service.CurrencyService;
 import com.exfinder.service.ExchangeRateService;
@@ -40,7 +39,7 @@ public class CurrencyController {
 
 	@Autowired
 	private ExchangeRateService exchangerateservice;
-
+	
 	@RequestMapping(value = "/exFinder_Currency", method = RequestMethod.GET)
 	public String exFinder_Currency(Model model, HttpSession session, @RequestParam("c_code") String c_code)
 			throws Exception {
@@ -155,6 +154,8 @@ public class CurrencyController {
 		
 		List<NoticeExchangeRateDto> list2 = service.hourCurrency(c_code);
 		model.addAttribute("hourCurrency", list2);
+		List<CurrencyInfoDto> currencyList = service.currencyInfoSelect();
+		model.addAttribute("exchange", currencyList);
 
 		return "main/exFinder_Currency";
 	}
@@ -177,6 +178,20 @@ public class CurrencyController {
 			e.printStackTrace();
 		}
 		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getCurrency", method = RequestMethod.POST)
+	public ResponseEntity<List<CurrencyInfoDto>> getCurrency() {
+		List<CurrencyInfoDto> list = new ArrayList<CurrencyInfoDto>();
+		try {
+			list = service.currencyInfoSelect();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
 
 }
