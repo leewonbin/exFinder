@@ -285,3 +285,33 @@ function interestAction(isCheck,c_code) {
 		}
 	})
 }
+
+
+function checkLoginAndTogglePopup() {
+    // 로그인 여부 확인
+    if (isLoggedIn === 'true') {
+        // 로그인 상태일 경우 팝업창을 열기
+        togglePopup();
+    } else {
+        // 비로그인 상태일 경우 알림 후 로그인 페이지로 리다이렉트
+        alert('로그인 후 이용해주세요');
+        window.location.href = "/ex/user/login"; // 로그인 페이지로 이동
+    }
+}
+
+// 팝업을 토글하는 함수
+function togglePopup() {
+    var popup = document.getElementById("popup");
+
+    // 팝업을 토글합니다.
+    if (popup.style.display === "none" || popup.style.display === "") {
+        popup.style.display = "block"; // 팝업 열기
+    } else {
+        popup.style.display = "none"; // 팝업 닫기
+    }
+}
+
+// 팝업을 닫는 함수
+function closePopup() {
+    document.getElementById("popup").style.display = "none"; // 팝업 닫기
+}

@@ -17,34 +17,15 @@
 <script>
 	var currencyCode = '${currencyDto.c_code}';
 </script>
+
+<!-- 로그인 여부를 JSP에서 JavaScript로 전달 -->
 <script>
-	function togglePopup() {
-	    var popup = document.getElementById("popup");
-	    var iframe = document.getElementById("popupFrame");
-	
-	    // 팝업을 토글합니다.
-	    if (popup.style.display === "none") {
-	        popup.style.display = "block";
-	        
-	    } else {
-	        popup.style.display = "none";
-	    }
-	}
-	
-	function closePopup() {
-	    document.getElementById("popup").style.display = "none";
-	}
-	
-	function adjustPopupHeight() {
-	    var popup = document.getElementById("popup");
-	    var chartContainer = document.getElementById("chartContainer"); // 차트가 포함된 div
-	    if (chartContainer) {
-	        // 차트의 높이에 따라 팝업의 높이를 조정
-	        var chartHeight = chartContainer.offsetHeight; 
-	        popup.style.height = (chartHeight + 50) + "px"; // 여유 공간 추가
-	    }
-	}
+	//sessionScope에 있는 dto가 null이 아니면 로그인 상태로 설정
+	var isLoggedIn = "${sessionScope.dto != null}";
 </script>
+
+
+
 </head>
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
@@ -73,8 +54,9 @@
 						onclick="interestAction(${isInterestCheck},'${currencyDto.c_code }');" />
 						
 					<img class="notification_img"
-						src="${pageContext.request.contextPath}/resources/img/alarm.png"
-						onclick="togglePopup()" />
+				     src="${pageContext.request.contextPath}/resources/img/alarm.png"
+				     onclick="checkLoginAndTogglePopup()" />
+
 				</div>
 				
 				<!-- 숨겨진 iframe 팝업 -->
