@@ -39,6 +39,12 @@ JOIN
     <delete id="deleteNotification" parameterType="int">
         DELETE FROM notification WHERE n_id = #{n_id}
     </delete>
+    
+      <update id="updateNotification" parameterType="com.exfinder.dto.NotificationDto">
+        UPDATE notification
+        SET target_exchange = #{target_exchange}
+        WHERE n_id = #{n_id}
+    </update>
 
 </mapper>
 

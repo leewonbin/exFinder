@@ -46,6 +46,15 @@ public class NotificationServiceImpl implements NotificationService {
         NotificationDao dao = sqlSession.getMapper(NotificationDao.class);
         return dao.deleteNotification(n_id);
     }
+
+	@Override
+	public void updateNotification(NotificationDto notificationDto) throws Exception {
+		NotificationDao dao = sqlSession.getMapper(NotificationDao.class);
+		dao.updateNotification(notificationDto);
+		
+	}
+
+	
 		
 }
 

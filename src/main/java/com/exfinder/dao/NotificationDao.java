@@ -14,5 +14,6 @@ public interface NotificationDao {
 	public ArrayList<NotificationDto> exchangeEqulasCheck() throws Exception;
 	public List<NotificationDto> getNotificationLists(String userId)throws Exception;
 	public int deleteNotification(int n_id) throws Exception;
-
+	public void updateNotification(NotificationDto notificationDto) throws Exception;
+	
 }

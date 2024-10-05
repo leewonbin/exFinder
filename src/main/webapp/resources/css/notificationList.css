@@ -1,141 +1,139 @@
-/* 기본 스타일 설정 */
-html {
-    font-family: 'Arial', sans-serif;
+/* #board 요소의 크기와 정렬 설정 */
+#board {
+    width: 800px; /* 너비를 좁게 설정 */
+    height: auto; /* 자동 높이 조정 */
+    padding: 80px; /* 내부 여백 */
+    margin: 150px auto; /* 상단 여백과 좌우 중앙 정렬 */
+    background-color: #ffffff; /* 배경색 설정 */
+    text-align: left; /* 텍스트 좌측 정렬 */
+    border: 2px solid lightgray; /* 테두리 설정 */
 }
 
-body {
-	overflow: hidden;
+/* 게시판 제목 스타일 */
+#board h1 {
+    text-align: center; /* 제목 중앙 정렬 */
+    font-size: 30px; /* 폰트 크기 */
+    font-weight: 700; /* 글자 두께 설정 */
+    margin-bottom: 40px; /* 제목 아래 여백 */
 }
 
-
-/* 환율 알림 설정 박스 */
-#alert-settings {
-    width: 100%; /* 팝업창에 맞춰 너비를 100%로 설정 */
-    height: auto; /* 자동으로 높이 조정 */
-    margin: 0; /* 중앙 정렬 제거 */
-    padding: 15px; /* 패딩 유지 */
-    background-color: #ffffff;
-    box-shadow: none; /* 그림자 제거 */
-   
+/* 게시판 헤더 스타일 */
+.board-header {
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 제목과 날짜를 좌우로 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    background-color: #05203C; /* 네이비 배경 */
+    color: #fff; /* 텍스트 색상 */
+    padding: 10px 15px; /* 내부 여백 추가 */
+    margin-bottom: 20px; /* 아래 여백 추가 */
 }
 
-#alert-settings h1 {
-    text-align: center;
-    font-size: 24px; /* 크기 줄이기 */
-    color: #05203C;
-    margin-bottom: 15px; /* 여백 줄이기 */
+/* 게시판 헤더의 각 요소 스타일 */
+.board-header-flag,
+.board-header-c_country,
+.board-header-c_money,
+.board-header-c_action {
+    font-weight: 700; /* 글자 두께 설정 */
+    margin-left: 30px; /* 좌우 여백 */
 }
 
-.form-group,
-.checkbox-phone {
-    margin: 0 auto 15px; /* 위쪽 여백 제거, 아래쪽 여백 유지, 수평 중앙 정렬 */
-    width: 400px; /* 너비 300px */
-    height: auto; /* 자동 높이 */
+/* 게시판 헤더의 액션 버튼 스타일 */
+.board-header-c_action {
+    margin-right: 10px; /* 오른쪽 여백 */
 }
 
-label {
-    display: block;
-    font-size: 14px; /* 크기 줄이기 */
-    color: #333333;
-    margin-bottom: 6px; /* 여백 줄이기 */
+/* 국기 이미지 스타일 */
+.flag-img {
+    width: 50px; /* 이미지 너비 설정 */
+    height: auto; /* 자동 높이 조정 */
+    margin-left: 10px; /* 왼쪽 여백 */
 }
 
-select, input[type="text"] {
-    width: 100%;
-    padding: 8px; /* 패딩 줄이기 */
-    font-size: 14px; /* 크기 줄이기 */
-    border: 2px solid #05203C;
-    box-sizing: border-box;
+/* 게시판 국가 스타일 */
+.board-c_country {
+    font-weight: 700; /* 글자 두께 설정 */
+    margin-right: 55px; /* 오른쪽 여백 */
 }
 
-input[type="text"]::placeholder {
-    color: #999999;
+/* 목표 환율 컨테이너 스타일 */
+.target_exchange_container {
+    display: inline-flex; /* 수평으로 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    gap: 15px; /* 요소 간 간격 */
+    margin-right: 10px; /* 오른쪽 여백 */
 }
 
-.submit-btn {
-    width: 100%;
-    padding: 10px; /* 패딩 줄이기 */
-    background-color: #05203C;
-    color: #ffffff;
-    font-size: 16px; /* 크기 줄이기 */
-    border: none;
-    border-radius: 5px; /* 둥근 모서리 추가 */
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* 배경색 변화 효과 */
-    margin-top: 10px; /* 여백 줄이기 */
+/* 아이콘 크기 조정 */
+.edit_button i, 
+.delete i {
+    font-size: 16px; /* 원하는 크기로 조정 (기본 크기보다 더 크게 설정) */
 }
 
-.submit-btn:hover {
-    background-color: #054184;
+/* 게시글 목록 스타일 */
+.board-list {
+    list-style-type: none; /* 목록 스타일 제거 */
+    padding: 0; /* 내부 여백 제거 */
 }
 
-/* 차트 뷰 스타일 */
-.charts_view {
-    display: flex;
-    justify-content: center; /* 중앙 정렬 */
-    flex-wrap: wrap; /* 반응형을 위해 감싸기 */
-    width: 100%;
-    padding: 10px 0; /* 패딩 줄이기 */
+/* 게시글 항목 스타일 */
+.board-item {
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 제목과 날짜를 좌우로 정렬 */
+    padding: 30px; /* 항목의 내부 여백 */
+    background-color: #f3f3f3; /* 항목의 배경색 */
+    cursor: pointer; /* 마우스 커서 모양 */
+    border: 2px solid transparent; /* 기본 상태에서 투명한 테두리 */
+    transition: background-color 0.3s, border 0.3s; /* 배경색과 테두리 전환 효과 */
 }
 
-.charts_container {
-    max-width: 100%; /* 최대 너비 100%로 설정 */
-    width: auto; /* 너비 자동 조정 */
-    margin: 0; /* 여백 제거 */
-    height: auto;
+/* 게시판 헤더와 게시글 항목 공통 스타일 */
+.board-header, .board-item {
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: space-around; /* 가로로 요소들을 고르게 배치 */
+    padding: 10px; /* 내부 여백 */
+    margin-bottom: 10px; /* 아래 여백 */
 }
 
-.chart_graph_box_container {
-    width: 100%;
+/* 금액 컬럼 스타일 */
+.board-header-c_money, .board-c_money {
+    width: 150px; /* 요소들의 고정된 넓이 */
+    text-align: center; /* 텍스트 중앙 정렬 */
 }
 
-.chart_graph_box {
-    width: 100%; /* 차트 박스 너비 조정 */
-    margin: 5px; /* 여백 줄이기 */
-    border: 1px solid #ddd; /* 테두리 추가 */
-    border-radius: 8px; /* 둥근 모서리 추가 */
-    box-shadow: none; /* 그림자 제거 */
-    background-color: #f9f9f9; /* 배경색 추가 */
+/* 국가 컬럼 스타일 */
+.board-header-c_country, .board-c_country {
+    width: 150px; /* 요소들의 고정된 넓이 */
+    text-align: center; /* 텍스트 중앙 정렬 */
 }
 
-.chart_graph_box_top {
-    display: flex;
-    align-items: center;
-    padding: 8px; /* 패딩 줄이기 */
-    gap: 10px; /* 간격 줄이기 */
-    background-color: #05203C; /* 상단 배경색 */
-    color: #ffffff; /* 상단 텍스트 색상 */
+/* 텍스트 박스 스타일 */
+.text_box {
+    width: 70px; /* 너비 설정 */
 }
 
-.chart_graph_box_top img {
-    width: 30px; /* 크기 줄이기 */
-    height: 30px; /* 크기 줄이기 */
-    margin-right: 5px; /* 여백 줄이기 */
+/* 게시글 항목 hover 효과 */
+.board-item:hover {
+    background-color: #e0e0e0; /* 배경색 변경 */
+    border: 2px solid #05203C; /* 테두리 색상 변경 */
 }
 
-.chart_graph {
-    width: 100%;
-    height: 150px; /* 높이 줄이기 */
-    margin: 0 auto;
+/* 게시글 카테고리 스타일 */
+.board-flag {
+    font-size: 16px; /* 폰트 크기 */
+    font-weight: 500; /* 폰트 두께 */
+    color: #333333; /* 텍스트 색상 */
 }
 
-/* 반응형 처리 */
-@media screen and (max-width: 600px) {
-    #alert-settings {
-        width: 100%; /* 모바일에서는 100%로 설정 */
-        height: auto; /* 높이 자동 조정 */
-        padding: 10px; /* 패딩 줄이기 */
-    }
-
-    #alert-settings h1 {
-        font-size: 20px; /* 크기 줄이기 */
-    }
-
-    select, input[type="text"], .submit-btn {
-        font-size: 12px; /* 크기 줄이기 */
-    }
-
-    .chart_graph_box {
-        width: 100%; /* 차트 박스를 전체 너비로 설정 */
-    }
+/* 게시글 제목 스타일 */
+.board-c_name {
+    font-size: 18px; /* 폰트 크기 */
+    font-weight: 500; /* 폰트 두께 */
+    color: #333333; /* 텍스트 색상 */
 }
+
+/* 게시글 날짜 스타일 */
+.board-date {
+    font-size: 15px; /* 폰트 크기 */
+    color: #888888; /* 텍스트 색상 */
+} 

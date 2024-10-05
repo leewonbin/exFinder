@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -300,6 +301,16 @@ public class UserController {
 	    notificationService.deleteNotification(n_id); // 알림 삭제 서비스 호출
 	    return "redirect:/user/notificationList"; // 삭제 후 알림 목록으로 리다이렉트
 	}
+	@RequestMapping(value = "/user/updateNotification", method = RequestMethod.POST)
+    public String updateNotification(@ModelAttribute NotificationDto notificationDto, HttpSession session) throws Exception {
+        // 알림 수정 서비스 호출
+        notificationService.updateNotification(notificationDto);
+        
+        // 수정 후 알림 목록으로 리다이렉트
+        return "redirect:/user/notificationList"; 
+    }
+
+	
 
 
 
