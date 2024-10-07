@@ -43,16 +43,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from currency where c_code = #{c_code}
 	</select>
 
-	<!-- 한 달치 환율 조회 -->
+	<!-- 1년치 환율 조회 -->
 	<select id="dailyCurrency" resultType="com.exfinder.dto.ExchangeRateDto">
-	<![CDATA[
-		SELECT *
-		FROM exchangerate
-		WHERE c_code = #{c_code}
-		AND rate_date >= ADD_MONTHS(SYSDATE, -1)
-		AND rate_date <= SYSDATE
-		ORDER BY rate_date desc
-		]]>
+   	<![CDATA[
+      SELECT *
+      FROM exchangerate
+      WHERE c_code = #{c_code}
+      AND rate_date >= ADD_MONTHS(SYSDATE, -12)
+      AND rate_date <= SYSDATE
+      ORDER BY rate_date DESC
+   	]]>
 	</select>
 
 	<!-- 시간별 환율 조회 -->

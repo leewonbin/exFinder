@@ -111,7 +111,7 @@ body, html {
 .exchange-rate-calculator {
 	font-size: 1.1em;
 	font-weight: bold;
-	margin-left: 325px; /* x 위치 조정 */
+	margin-left: 370px; /* x 위치 조정 */
 	margin-top: 208px; /* y 위치 조정 */
 }
 
@@ -119,7 +119,7 @@ body, html {
 .country-chart {
 	font-size: 1.1em;
 	font-weight: bold;
-	margin-left: 325px; /* x 위치 조정 */
+	margin-left: 370px; /* x 위치 조정 */
 	margin-top: 100px; /* p 태그와 div 간의 간격 조정 */
 }
 
@@ -297,7 +297,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .rate-lookup {
 	font-size: 1.1em;
 	font-weight: bold;
-	margin-left: 325px; /* x 위치 조정 */
+	margin-left: 370px; /* x 위치 조정 */
 	margin-top: 100px; /* p 태그와 div 간의 간격 조정 */
 }
 
@@ -415,5 +415,5 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 }
 
 #topButton:hover {
-  background-color: #64B5F6; /* 호버 시 색상 변경 */
+  background-color: #054184; /* 호버 시 색상 변경 */
 }

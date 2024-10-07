@@ -362,14 +362,14 @@ body, html {
 .rate-day {
     font-size: 1.1em;
     font-weight: bold;
-    margin-left: 325px; /* x 위치 조정 */
+    margin-left: 370px; /* x 위치 조정 */
     margin-top: 100px; /* p 태그와 div 간의 간격 조정 */
 }
 
 .rate-hour {
     font-size: 1.1em;
     font-weight: bold;
-    margin-left: 325px; /* x 위치 조정 */
+    margin-left: 370px; /* x 위치 조정 */
     margin-top: 100px; /* p 태그와 div 간의 간격 조정 */
 }
 
@@ -463,10 +463,44 @@ body, html {
     }
     
     
-#page-info {
-    font-size: 16px; /* 원하는 폰트 크기로 설정 */
-    color: #000; /* 글자 색상 설정 */
-    margin: 0 10px; /* 좌우 여백 */
-    display: inline-block; /* 인라인 블록 요소로 설정 */
+
+
+#pagination {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center;     /* 세로 정렬 */
+    margin-top: 120px;
 }
 
+#pagination button {
+    display: inline-block;   /* 인라인 블록 요소 */
+    color: black; 
+    background-color: white;
+    font-size: 15px;
+    padding: 0;             /* 패딩 제거 */
+    margin: 0 1px;         /* 버튼 간 간격 */
+    width: 40px;
+    height: 40px;
+    line-height: 40px;     /* 텍스트 수직 중앙 정렬 (버튼 높이와 동일) */
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+#pagination button:hover {
+    background-color: #EFF3F8;
+    color: #054184;
+}
+
+#pagination button:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+    cursor: not-allowed; /* 비활성화 상태의 포인터 */
+}
+
+.divider {
+	margin: 20px 0; /* 위 아래 여백 */
+	border: none;
+	height: 1px;
+	background-color: #dcdcdc; /* 밝은 회색 구분선 */
+}
