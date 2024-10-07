@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -23,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import com.exfinder.dto.AlramDto;
 import com.exfinder.dto.AuthoritiesDto;
 import com.exfinder.dto.BoardDto;
@@ -285,6 +285,22 @@ public class UserController {
 
 		return "/user/myBoard"; // myBoard.jsp로 이동
 	}
+	
+	@RequestMapping(value = "/user/deleteMyBoard", method = RequestMethod.POST)
+	@ResponseBody // JSON 응답을 위해 추가
+	public int deleteMyBoard(HttpServletRequest request) throws Exception {
+	    String[] selectedPost = request.getParameterValues("b_ids");
+	    if (selectedPost != null) {
+	        int deleteCount = 0;
+	        for (String b_id : selectedPost) {
+	            deleteCount += service.deletePostByUser(Integer.parseInt(b_id)); // 게시물 삭제
+	        }
+	        return deleteCount; // 성공한 삭제 수를 반환
+	    }
+	    return 0; // 삭제된 게시물이 없을 경우
+	}
+
+
 
 	@RequestMapping(value = "/user/bookMark", method = RequestMethod.GET)
 	public String getFavoriteCurrencies(HttpSession session, Model model) throws Exception {

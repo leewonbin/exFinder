@@ -2,6 +2,7 @@ package com.exfinder.dao;
 
 import java.util.List;
 
+
 import com.exfinder.dto.BoardDto;
 import com.exfinder.vo.BoardVo;
 
@@ -19,4 +20,6 @@ public interface BoardDao {
 	public int getTotalCountByCategory(BoardVo vo) throws Exception;	//카테고리 및 검색 조건에 따른 전체 게시글 수 조회
 	
 	public List<BoardDto> getUserPosts(String u_id) throws Exception;
+	public int deletePostByUser(int b_id) throws Exception;
+	
 }
