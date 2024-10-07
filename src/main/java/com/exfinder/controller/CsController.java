@@ -28,9 +28,6 @@ public class CsController {
 	private CsService service;
 	
 	@Autowired
-	private UserService userService;
-	
-	@Autowired
 	private CsService csService;
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)

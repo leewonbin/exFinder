@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.exfinder.dto.UserDto;
 import com.exfinder.service.CertifiedService;
@@ -83,10 +85,15 @@ public class FindController {
 
 	// 비밀번호 찾기 이동
 	@RequestMapping(value = "/find/pwInquiry", method = RequestMethod.GET)
-	public String pwInquiry(Model model,  @RequestParam(value = "radio", required = false) String u_id) throws Exception {
+	public String pwInquiry(Model model,  @RequestParam(value = "radio", required = false) String u_id, ServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
 		// 아이디 찾은 다음에 비밀번호 찾기로 이동시에 필요한 코드로, 찾은 id 저장
-		//System.out.println(u_id);
+
 		model.addAttribute("u_id_result", u_id);
+		String action = request.getParameter("action");
+		if ("login".equals(action)) {
+			redirectAttributes.addFlashAttribute("u_id_result", u_id);
+			return "redirect:/user/login";
+		} 
 		return "/user/find/pwInquiry";
 	}
 

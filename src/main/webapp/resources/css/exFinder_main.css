@@ -1,31 +1,38 @@
 /* 페이지 전체 크기와 기본 설정 */
-body, html {
+body,
+html {
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	height: auto;
 	font-family: Arial, sans-serif;
-	box-sizing: border-box; /* padding과 border가 포함된 크기를 계산 */
+	box-sizing: border-box;
+	/* padding과 border가 포함된 크기를 계산 */
 }
 
 .include_header * {
-	color: #fff; /* 텍스트 색상 설정 */
-	text-shadow: none; /* 텍스트 그림자 제거 */
+	color: #fff;
+	/* 텍스트 색상 설정 */
+	text-shadow: none;
+	/* 텍스트 그림자 제거 */
 	/* 기타 스타일 필요시 추가 */
 }
 
 .include_header {
 	display: none;
 	position: fixed;
-	top: -130px; /* 화면 밖으로 이동 */
+	top: -130px;
+	/* 화면 밖으로 이동 */
 	width: 100%;
 	height: 130px;
-	z-index: 1000; /* 콘텐츠 위에 위치하도록 설정 */
+	z-index: 1000;
+	/* 콘텐츠 위에 위치하도록 설정 */
 }
 
 /* 헤더가 화면에 보이도록 이동 */
 .include_header.show {
-	transform: translateY(130px); /* 헤더 높이만큼 이동 */
+	transform: translateY(130px);
+	/* 헤더 높이만큼 이동 */
 }
 
 .top-content {
@@ -36,36 +43,58 @@ body, html {
 	background-color: #05203C;
 }
 
-@keyframes alram {
-    25% { color: #2196F3; }
-    50% { color: #64B5F6; }
-    75% { color: lightgreen; }
-  }
+@ keyframes alram {
+	25% {
+		color: #2196F3;
+	}
+
+	50% {
+		color:
+
+			#64B5F6;
+
+	}
+
+	75% {
+		color:
+
+			lightgreen;
+
+	}
+}
 
 .top-content-wrap {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	position: relative;
-	max-width: 1300px; /* 전체 헤더의 최대 너비 제한 */
-	margin: 0 auto; /* 중앙 정렬 */
+	max-width: 1300px;
+	/* 전체 헤더의 최대 너비 제한 */
+	margin: 0 auto;
+	/* 중앙 정렬 */
 }
 
 .top-content-start {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start; /* 자식 요소들을 왼쪽 정렬 */
-	justify-content: center; /* 세로 방향으로 중앙 정렬 */
-	height: 100%; /* 높이를 100%로 설정하여 부모 요소에 맞춤 */
-	max-width: 250px; /* 최대 너비 제한 */
-	margin-top: 30px; /* 상단 마진 제거 */
+	align-items: flex-start;
+	/* 자식 요소들을 왼쪽 정렬 */
+	justify-content: center;
+	/* 세로 방향으로 중앙 정렬 */
+	height: 100%;
+	/* 높이를 100%로 설정하여 부모 요소에 맞춤 */
+	max-width: 250px;
+	/* 최대 너비 제한 */
+	margin-top: 30px;
+	/* 상단 마진 제거 */
 	margin-left: 70px;
 }
 
 /* 이미지 및 리스트 스타일 조정 */
 .top-content-start>img {
 	width: 200px;
-	margin-bottom: 20px; /* 이미지와 리스트 간의 간격 조정 */
+	margin-bottom: 20px;
+	/* 이미지와 리스트 간의 간격 조정 */
 }
 
 .top-content-start>ul {
@@ -73,7 +102,8 @@ body, html {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	gap: 20px; /* li 사이의 간격 조정 */
+	gap: 20px;
+	/* li 사이의 간격 조정 */
 }
 
 .top-content-start>ul>li {
@@ -85,10 +115,14 @@ body, html {
 .top-content-end {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start; /* 자식 요소들을 왼쪽 정렬 */
-	justify-content: center; /* 세로 방향으로 중앙 정렬 */
-	height: 100%; /* 높이를 100%로 설정하여 부모 요소에 맞춤 */
-	max-width: 300px; /* 최대 너비 제한 */
+	align-items: flex-start;
+	/* 자식 요소들을 왼쪽 정렬 */
+	justify-content: center;
+	/* 세로 방향으로 중앙 정렬 */
+	height: 100%;
+	/* 높이를 100%로 설정하여 부모 요소에 맞춤 */
+	max-width: 300px;
+	/* 최대 너비 제한 */
 	margin-right: 70px;
 }
 
@@ -97,7 +131,8 @@ body, html {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	gap: 20px; /* li 사이의 간격 조정 */
+	gap: 20px;
+	/* li 사이의 간격 조정 */
 }
 
 .top-content-end>ul>li>a {
@@ -111,48 +146,60 @@ body, html {
 .exchange-rate-calculator {
 	font-size: 1.1em;
 	font-weight: bold;
-	margin-left: 370px; /* x 위치 조정 */
-	margin-top: 208px; /* y 위치 조정 */
+	margin-left: 370px;
+	/* x 위치 조정 */
+	margin-top: 208px;
+	/* y 위치 조정 */
 }
 
 /* p 태그 스타일 - 국가별 차트 */
 .country-chart {
 	font-size: 1.1em;
 	font-weight: bold;
-	margin-left: 370px; /* x 위치 조정 */
-	margin-top: 100px; /* p 태그와 div 간의 간격 조정 */
+	margin-left: 370px;
+	/* x 위치 조정 */
+	margin-top: 100px;
+	/* p 태그와 div 간의 간격 조정 */
 }
 
 /* 구분선 스타일 */
 .divider {
-	margin: 20px 0; /* 위 아래 여백 */
+	margin: 20px 0;
+	/* 위 아래 여백 */
 	border: none;
 	height: 1px;
-	background-color: #dcdcdc; /* 밝은 회색 구분선 */
+	background-color: #dcdcdc;
+	/* 밝은 회색 구분선 */
 }
 
 /* div 영역 스타일 */
 .calculator-container {
-	width: 100%; /* 화면의 전체 너비 */
+	width: 100%;
+	/* 화면의 전체 너비 */
 	height: 300px;
 	background-color: #05203C;
 	display: flex;
-	justify-content: space-between; /* 왼쪽과 오른쪽으로 배치 */
+	justify-content: space-between;
+	/* 왼쪽과 오른쪽으로 배치 */
 	padding: 20px;
-	box-sizing: border-box; /* padding과 border가 포함된 크기 계산 */
+	box-sizing: border-box;
+	/* padding과 border가 포함된 크기 계산 */
 }
 
 /* 기준 통화와 결과 통화 섹션 스타일 */
 .currency-section {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start; /* 왼쪽 정렬 */
+	align-items: flex-start;
+	/* 왼쪽 정렬 */
 	justify-content: center;
-	position: relative; /* 상대 위치 설정 */
+	position: relative;
+	/* 상대 위치 설정 */
 }
 
 /* input 화살표 없앰 */
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
@@ -172,41 +219,57 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 50px; /* 너비 조정 */
-	height: 50px; /* 높이 조정 */
+	width: 50px;
+	/* 너비 조정 */
+	height: 50px;
+	/* 높이 조정 */
 	text-align: center;
 	margin-top: 170px;
 }
 
 /* selectbox와 input 스타일 */
-.currency-section select, .currency-section input {
+.currency-section select,
+.currency-section input {
 	/* padding: 10px; */
-	box-sizing: border-box; /* padding과 border가 포함된 크기 계산 */
+	box-sizing: border-box;
+	/* padding과 border가 포함된 크기 계산 */
 }
 
 /* selectBoxWrap을 상대적으로 설정 */
 .selectBoxWrap {
-	position: relative; /* img와 select를 절대 위치로 설정하기 위함 */
-	display: inline-block; /* 콘텐츠가 선택박스와 이미지 둘 다 포함할 수 있도록 설정 */
+	position: relative;
+	/* img와 select를 절대 위치로 설정하기 위함 */
+	display: inline-block;
+	/* 콘텐츠가 선택박스와 이미지 둘 다 포함할 수 있도록 설정 */
 }
 
 /* img를 select박스의 왼쪽에 배치 */
 .selectBoxWrap>img {
 	position: absolute;
-	left: 10px; /* 왼쪽으로 10px 여백 추가 */
-	top: 35%; /* 수직 중앙 정렬 */
-	transform: translateY(-50%); /* 수직 중앙 정렬 보정 */
-	width: 50px; /* 이미지 크기 조정 */
-	height: 50px; /* 이미지 크기 조정 */
-	z-index: 1; /* select 요소보다 위에 배치 */
+	left: 10px;
+	/* 왼쪽으로 10px 여백 추가 */
+	top: 35%;
+	/* 수직 중앙 정렬 */
+	transform: translateY(-50%);
+	/* 수직 중앙 정렬 보정 */
+	width: 50px;
+	/* 이미지 크기 조정 */
+	height: 50px;
+	/* 이미지 크기 조정 */
+	z-index: 1;
+	/* select 요소보다 위에 배치 */
 }
 
 /* select 요소에 여백 추가 */
 .selectBoxWrap select {
-	padding-left: 70px; /* 이미지와 겹치지 않도록 왼쪽 패딩 추가 (여백과 크기를 고려하여 조정) */
-	box-sizing: border-box; /* 패딩이 포함된 크기 계산 */
-	position: relative; /* img와의 위치 관계를 위해 상대적 위치 설정 */
-	z-index: 0; /* 이미지보다 뒤에 배치 */
+	padding-left: 70px;
+	/* 이미지와 겹치지 않도록 왼쪽 패딩 추가 (여백과 크기를 고려하여 조정) */
+	box-sizing: border-box;
+	/* 패딩이 포함된 크기 계산 */
+	position: relative;
+	/* img와의 위치 관계를 위해 상대적 위치 설정 */
+	z-index: 0;
+	/* 이미지보다 뒤에 배치 */
 }
 
 /* 기준 통화 selectbox 스타일 */
@@ -218,7 +281,8 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	border: none;
 }
 
-.baseImg {			/* 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 */
+.baseImg {
+	/* 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 */
 	width: 50px;
 	height: auto;
 	vertical-align: middle;
@@ -228,8 +292,10 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .base-amount-input {
 	width: 500px;
 	height: 100px;
-	margin-bottom: 0; /* margin-bottom을 0으로 설정하여 겹치지 않도록 조정 */
-	position: relative; /* 상대 위치 설정 */
+	margin-bottom: 0;
+	/* margin-bottom을 0으로 설정하여 겹치지 않도록 조정 */
+	position: relative;
+	/* 상대 위치 설정 */
 	border: none;
 	text-align: right;
 	font-size: 1.8em;
@@ -242,7 +308,8 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	width: 500px;
 	height: 37px;
 	background-color: white;
-	position: absolute; /* 절대 위치 설정 */
+	position: absolute;
+	/* 절대 위치 설정 */
 	bottom: 1px;
 	left: 0;
 	margin: 0;
@@ -264,8 +331,10 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .result-amount-input {
 	width: 500px;
 	height: 100px;
-	margin-bottom: 0; /* margin-bottom을 0으로 설정하여 겹치지 않도록 조정 */
-	position: relative; /* 상대 위치 설정 */
+	margin-bottom: 0;
+	/* margin-bottom을 0으로 설정하여 겹치지 않도록 조정 */
+	position: relative;
+	/* 상대 위치 설정 */
 	border: none;
 	text-align: right;
 	font-size: 1.8em;
@@ -278,7 +347,8 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	width: 500px;
 	height: 37px;
 	background-color: white;
-	position: absolute; /* 절대 위치 설정 */
+	position: absolute;
+	/* 절대 위치 설정 */
 	bottom: 1px;
 	left: 0;
 	margin: 0;
@@ -297,15 +367,18 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .rate-lookup {
 	font-size: 1.1em;
 	font-weight: bold;
-	margin-left: 370px; /* x 위치 조정 */
-	margin-top: 100px; /* p 태그와 div 간의 간격 조정 */
+	margin-left: 370px;
+	/* x 위치 조정 */
+	margin-top: 100px;
+	/* p 태그와 div 간의 간격 조정 */
 }
 
 /* 기본 테이블 스타일 */
 .exchange {
 	width: 100%;
 	border-collapse: collapse;
-	margin: 20px 0; /* 테이블 위아래 여백 */
+	margin: 20px 0;
+	/* 테이블 위아래 여백 */
 	font-family: Arial, sans-serif;
 }
 
@@ -314,10 +387,12 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	color: #ddd;
 }
 
-.exchange th, .exchange td {
+.exchange th,
+.exchange td {
 	padding: 5px 10px;
 	border: none;
-	vertical-align: middle; /* 수직 가운데 정렬 */
+	vertical-align: middle;
+	/* 수직 가운데 정렬 */
 }
 
 .exchange th {
@@ -353,15 +428,18 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 /* 두 번째 행의 셀 스타일 (열 제목) */
 .exchange thead tr.chartB th {
-	border-right: 1px solid #ddd; /* 열 제목 셀 사이에 세로줄 */
+	border-right: 1px solid #ddd;
+	/* 열 제목 셀 사이에 세로줄 */
 }
 
 .l {
 	text-align: left;
 }
+
 .l>img {
 	margin-right: 10px;
 }
+
 .l>a {
 	text-decoration: none;
 	color: black;
@@ -370,7 +448,6 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .l>a:hover {
 	text-decoration: underline;
 }
-	
 
 .r {
 	text-align: right;
@@ -394,26 +471,80 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 .flag-img {
 	width: 24px;
-	height: auto; /* 비율 유지 */
-	vertical-align: middle; /* 이미지와 텍스트의 수직 정렬 맞추기 */
+	height: auto;
+	/* 비율 유지 */
+	vertical-align: middle;
+	/* 이미지와 텍스트의 수직 정렬 맞추기 */
 }
 
 #topButton {
-  display: none; /* 기본적으로 버튼을 숨김 */
-  position: fixed;
-  bottom: 30px; /* 하단에서 30px 위 */
-  right: 30px; /* 오른쪽에서 30px 떨어짐 */
-  z-index: 99; /* 다른 요소보다 위에 표시되도록 */
-  font-size: 18px;
-  background-color: #05203C; /* 배경색 */
-  color: white; /* 텍스트 색상 */
-  border: none;
-  padding: 15px;
-  border-radius: 50%; /* 원형 버튼 */
-  cursor: pointer;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+	display: none;
+	/* 기본적으로 버튼을 숨김 */
+	position: fixed;
+	bottom: 30px;
+	/* 하단에서 30px 위 */
+	right: 30px;
+	/* 오른쪽에서 30px 떨어짐 */
+	z-index: 99;
+	/* 다른 요소보다 위에 표시되도록 */
+	font-size: 18px;
+	background-color: #05203C;
+	/* 배경색 */
+	color: white;
+	/* 텍스트 색상 */
+	border: none;
+	padding: 15px;
+	border-radius: 50%;
+	/* 원형 버튼 */
+	cursor: pointer;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+	/* 그림자 효과 */
 }
 
-#topButton:hover {
-  background-color: #054184; /* 호버 시 색상 변경 */
+
+#csButton {
+	background-image: url("../img/cs.png");
+	/* 배경 이미지 설정 */
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	/* 이미지 반복 방지 */
+	background-position: center;
+	/* 이미지 위치 조정 */
+	display: none;
+	/* 기본적으로 버튼을 숨김 */
+	position: fixed;
+	bottom: 100px;
+	/* 하단에서 30px 위 */
+	right: 30px;
+	/* 오른쪽에서 30px 떨어짐 */
+	z-index: 99;
+	/* 다른 요소보다 위에 표시되도록 */
+	font-size: 18px;
+	background-color: #05203C;
+	/* 배경색 */
+	color: white;
+	/* 텍스트 색상 */
+	border: none;
+	padding: 15px;
+	border-radius: 50%;
+	/* 원형 버튼 */
+	cursor: pointer;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+	background-position: center;
+	/* 그림자 효과 */
+}
+
+#topButton,
+#csButton {
+	width: 50px;
+	/* 원하는 너비 */
+	height: 50px;
+	/* 원하는 높이 */
+}
+
+#topButton:hover,
+#csButton:hover {
+	background-color: #64B5F6;
+	/* 호버 시 색상 변경 */
+
 }

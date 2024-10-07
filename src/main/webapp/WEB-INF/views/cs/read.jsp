@@ -48,6 +48,5 @@
 				onclick="location.href='/ex/admin/admin'">목록</button>
 		</div>
 
-
 </body>
 </html>

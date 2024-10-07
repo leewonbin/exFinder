@@ -46,6 +46,8 @@
 						<option value="공지사항">공지사항</option>
 					</sec:authorize>
 					<option value="자유게시판">자유게시판</option>
+					<option value="질문게시판">질문게시판</option>
+					<option value="정보공유게시판">정보공유게시판</option>
 				</select>
 			</h2>
 
@@ -77,5 +79,6 @@
 		</form>
 	</div>
 
+<%@include file="/WEB-INF/views/footer/exFinder_footer.jsp"%>
 </body>
 </html>

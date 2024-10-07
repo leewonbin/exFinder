@@ -31,7 +31,8 @@
 			<button class="cButton" data-category="">전체글보기</button>
 			<button class="cButton" data-category="공지사항">공지사항</button>
 			<button class="cButton" data-category="자유게시판">자유게시판</button>
-			<button class="csButton" data-category="고객센터">고객센터</button>
+			<button class="cButton" data-category="질문게시판">질문게시판</button>
+			<button class="cButton" data-category="정보공유게시판">정보공유게시판</button>
 			<!-- data-category는 커스텀 데이터 속성으로 특정 요소에 추가적인 데이터 저장 가능 -->
 		</div>
 
@@ -111,6 +112,7 @@
 			</c:if>
 		</div>
 	</div>
+	<%@include file="/WEB-INF/views/footer/exFinder_footer.jsp"%>
 </body>
 </html>
 
