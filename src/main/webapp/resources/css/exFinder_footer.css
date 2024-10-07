@@ -1,0 +1,71 @@
+.footer {
+    background-color: #f1f1f1; /* 배경색 */
+    padding: 20px; /* 안쪽 여백 */
+    
+    font-size: 14px; /* 글자 크기 */
+    color: #333; /* 글자 색상 */
+    position: relative; /* 위치 설정 */
+    bottom: 0; /* 하단 고정 시 사용 */
+    width: 100%; /* 폭을 화면에 맞춤 */
+    height: 149px; /* 높이 설정 */
+    
+    display: flex; /* 수평 정렬을 위한 flexbox 사용 */
+    border-top: 1px solid #ccc; /* 위쪽에 1px 선 추가 */
+
+}
+.footer_sides{
+	height: 100%; /* 높이 설정 */
+	flex: 1;
+}
+.footer_wrapper {
+    width: 1100px; 
+    height: 100%; /* 높이 설정 */
+    
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    
+    display: flex; /* 수평 정렬을 위한 flexbox 사용 */
+}
+.footer_wrapper_img {
+    width: 200px; /* 이미지 너비 설정 */
+    height: 50px; /* 이미지 높이를 비율에 맞게 자동 조정 */
+}
+
+.footer_left {
+	line-height: 1.3; /* 줄 간격 설정 */
+}
+.footer_left_menu {
+    margin-bottom: 15px; /* 아래쪽 간격 10px */
+}
+.footer_left_menu a {
+    color: #000; /* 링크 글자 색상을 검정으로 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+    margin-right: 10px; /* 오른쪽 간격 추가 */
+}
+.footer_left_menu a:hover {
+    text-decoration: underline; /* 호버 시 밑줄 추가 */
+}
+
+.footer_center{
+	width: 200px; 
+    height: 100%; /* 높이 설정 */
+}
+
+.footer_right {
+    height: 100%; /* 부모 요소의 높이에 맞춤 */
+}
+.footer_right_top {
+    font-weight: bold; /* 글자 굵게 설정 */
+    font-size: 18px; /* 글자 크기 설정 */
+    margin-top: 30px;
+    margin-bottom: 10px; /* 아래쪽 간격 10px */
+}
+.footer_right > P {
+    margin-bottom: 5px; /* 아래쪽 간격 5px */
+}
+.footer_right > P > label {
+    font-weight: bold; /* 글자 굵게 설정 */
+}
+.footer_right > P > a {
+    color: #000; /* 링크 글자 색상을 검정으로 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+}
