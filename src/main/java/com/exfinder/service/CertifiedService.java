@@ -28,7 +28,7 @@ public class CertifiedService {
 		// 이메일 보낼 양식
 		String setFrom = "zzx5678@naver.com"; // 2단계 인증 x, 메일 설정에서 POP/IMAP 사용 설정에서 POP/SMTP 사용함으로 설정o
 		String toMail = Email;
-		String title = "회원가입 인증 이메일 입니다.";
+		String title = "[ExFinder]의 회원가입 인증 이메일 입니다.";
 		String content = "인증 코드는 " + numStr + " 입니다." + "<br>" + "해당 인증 코드를 인증 코드 확인란에 기입하여 주세요.";
 
 		try {
@@ -55,7 +55,7 @@ public class CertifiedService {
         params.put("to", phoneNumber);    // 수신전화번호
         params.put("from", "01056522318");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
         params.put("type", "SMS");
-        params.put("text", "휴대폰 인증 메시지 : 인증번호는 " + "["+numStr+"]" + "입니다.");
+        params.put("text", "[ExFinder]의 휴대폰 인증 메시지 : 인증번호는 " + "["+numStr+"]" + "입니다.");
         params.put("app_version", "test app 1.2"); // application name and version
 
         try {

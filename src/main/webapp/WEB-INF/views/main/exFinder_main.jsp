@@ -184,7 +184,7 @@
 		<button id="topButton" onclick="scrollToTop()">▲</button>
 	</div>
 
-
+	<%@include file="/WEB-INF/views/footer/exFinder_footer.jsp"%>
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>
