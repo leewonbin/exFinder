@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>ExFinder</title>
-
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -14,39 +14,11 @@
 	href="${pageContext.request.contextPath}/resources/css/csMain.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/chatbot.css">
+	href="${pageContext.request.contextPath}/resources/css/chatBot.css">
 
-<script>
-let lastId = null;
-
-function toggleAnswer(id) {
-    var currentA = document.getElementById('answer-' + id);
-    
-    if (lastId !== null && lastId !== id) {
-        var lastA = document.getElementById('answer-' + lastId);
-        lastA.style.display = 'none';
-        var lastQ = document.getElementById('question-' + lastId);
-        lastQ.classList.remove('question-active');
-    }
-    
-    if (currentA.style.display === 'none' || currentA.style.display === '') {
-        currentA.style.display = 'block';
-        var currentQ = document.getElementById('question-' + id);
-        currentQ.classList.add('question-active');
-    } else {
-        currentA.style.display = 'none';
-        var currentQ = document.getElementById('question-' + id);
-        currentQ.classList.remove('question-active');
-    }
-    
-    lastId = (currentA.style.display === 'block') ? id : null;
-}
-	
-function toggleChatbot() {
-    var chatbot = document.getElementById('chatbot');
-    chatbot.style.display = (chatbot.style.display === 'none' || chatbot.style.display === '') ? 'block' : 'none';
-}
-</script>
+<script src="${pageContext.request.contextPath}/resources/js/faqJs.js"></script>
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
+      integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4" crossorigin="anonymous"></script>
 </head>
 <body class="body-container">
 
@@ -61,7 +33,8 @@ function toggleChatbot() {
 	<br>
 	<div id="qna-list" class="qna-container">
 		<c:forEach var="csDto" items="${qnaList}">
-			<div id="question-${csDto.cs_id}" class="question-container" onclick="toggleAnswer(${csDto.cs_id})">
+			<div id="question-${csDto.cs_id}" class="question-container"
+				onclick="toggleAnswer(${csDto.cs_id})">
 				<span class="question-label">Q:</span> ${csDto.cs_title}
 			</div>
 			<div id="answer-${csDto.cs_id}" class="answer-container">
@@ -72,5 +45,6 @@ function toggleChatbot() {
 			</div>
 		</c:forEach>
 	</div>
+	<button id="csButton" onclick="moveKakao()"></button>
 </body>
 </html>
