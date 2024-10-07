@@ -1,6 +1,8 @@
 package com.exfinder.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,11 +13,11 @@ public class CommentDto {
 	private String comm_content;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date comm_date;
-//	private int replyid;
 	private int b_id;
 	private String u_id;
 	private String comm_del="N";
 	private Integer parent_id;
+	private List<CommentDto> reply = new ArrayList<CommentDto>();
 	
 	
 	public CommentDto() {}
@@ -33,6 +35,16 @@ public class CommentDto {
 	}
 	
 	
+	
+	
+	public List<CommentDto> getReply() {
+		return reply;
+	}
+
+	public void setReply(List<CommentDto> reply) {
+		this.reply = reply;
+	}
+
 	public int getComm_id() {
 		return comm_id;
 	}

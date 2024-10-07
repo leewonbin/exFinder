@@ -21,58 +21,63 @@ import com.exfinder.service.NotificationService;
 @EnableScheduling
 @Component
 public class Scheduler {
+	int count = 1;
 
 	@Autowired
 	private ExchangeRateService e_service;
-	
+
 	@Autowired
 	private NoticeExchangeRateService n_service;
-	
+
 	@Autowired
 	private NotificationService no_service;
-	
+
 	@Autowired
 	private AlramService al_service;
-	
+
 	@Autowired
 	private EchoHandler echoHandler;
-	
+
 	@Autowired
 	private CertifiedService c_service;
 
-//	@Scheduled(cron = "0 */2 * * * ?")
+//	@Scheduled(cron = "0 */1 * * * ?")
 	@Scheduled(cron = "0 0 9-23 * * ?")
 	public void hourScheduled() throws Exception {
 		try {
 			String[] curr = e_service.currSelect();
 			ArrayList<NoticeExchangeRateDto> list = n_service.check(curr);
-			for(NoticeExchangeRateDto dto : list) {
+			int count = 1;
+			System.out.println("Scheduler에서 실행됩니다.");
+			for (NoticeExchangeRateDto dto : list) {
 				n_service.insert(dto);
+				System.out.println("exchangerateDto : " + dto + "count : " + count++);
 			}
 		} catch (Exception e) {
 			e.printStackTrace(); // 예외 출력
 		}
 		System.out.println("addAlram실행");
 		addAlram();
-		
+
 	}
-	
+
 	@Scheduled(cron = "0 0 0 * * ?")
 	public void midnightScheduled() throws Exception {
 		String[] curr = e_service.currSelect();
 		ArrayList<ExchangeRateDto> list = e_service.yesterDayRate(curr);
-		for(ExchangeRateDto dto : list) {
+		for (ExchangeRateDto dto : list) {
 			e_service.exchangeRateInsert(dto);
 		}
 	}
+
 //	@Scheduled(cron = "0 */2 * * * ?")
 	public void addAlram() {
 		System.out.println("addAlram 들어옴");
 		try {
 			ArrayList<NotificationDto> list = no_service.exchangeEqulasCheck();
 			System.out.println("list.size() : " + list.size());
-			if(list.size() != 0) {
-				for(NotificationDto dto : list) {
+			if (list.size() != 0) {
+				for (NotificationDto dto : list) {
 					al_service.noCheckAlramDelete();
 					al_service.alramInsert(dto);
 				}
@@ -85,11 +90,11 @@ public class Scheduler {
 		}
 	}
 
-private void sendMsg() throws Exception {
-    ArrayList<AlramDto> alramList = al_service.alramSelect(); // 알람 목록을 가져옴
-    for(AlramDto dto : alramList) {
-    	c_service.sendPhoneAlram(dto);
-    }
-	
-}
+	private void sendMsg() throws Exception {
+		ArrayList<AlramDto> alramList = al_service.alramSelect(); // 알람 목록을 가져옴
+		for (AlramDto dto : alramList) {
+			c_service.sendPhoneAlram(dto);
+		}
+
+	}
 }

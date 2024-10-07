@@ -14,8 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 대댓글 생성 -->
 	<insert id = "reCommentCreate">
-	insert into comments(comm_id, comm_content, comm_date, b_id, u_id, comm_del, parent_id) 
-	values (comment_seq.nextval, #{comm_content}, #{comm_date}, #{b_id}, #{u_id}, #{comm_del}, #{parent_id})
+	insert into comments(comm_id, comm_content, comm_date, b_id, u_id, parent_id) 
+	values (comment_seq.nextval, #{comm_content}, sysdate, #{b_id}, #{u_id}, #{parent_id})
 	</insert>
 
 
@@ -39,8 +39,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 댓글 목록 조회 -->
     <select id="commentList" resultType="CommentDto">
-    SELECT * FROM comments WHERE b_id = #{b_id} AND comm_del = 'N'
-    ORDER BY CASE WHEN parent_id IS NULL THEN comm_id ELSE parent_id END, comm_date
+    SELECT * FROM comments WHERE b_id = #{b_id} AND comm_del = 'N' and parent_id is null order by comm_date
+    </select>
+    
+    <select id="reCommentList" resultType="CommentDto">
+    SELECT * FROM comments WHERE b_id = #{b_id} AND comm_del = 'N' and parent_id is not null order by comm_date
     </select>
 <!-- 부모댓글로 인한 계층적 정렬을 위해서  -->
 

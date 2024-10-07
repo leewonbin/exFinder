@@ -25,6 +25,11 @@ public class AlramDto {
 		this.checked = checked;
 	}
 	
+	@Override
+	public String toString() {
+		return "AlramDto [a_id=" + a_id + ", u_id=" + u_id + ", c_code=" + c_code + ", create_date=" + create_date
+				+ ", target_exchange=" + target_exchange + ", deal_bas_r=" + deal_bas_r + ", checked=" + checked + "]";
+	}
 
 	public double getDeal_bas_r() {
 		return deal_bas_r;

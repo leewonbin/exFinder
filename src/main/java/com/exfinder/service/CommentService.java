@@ -23,6 +23,8 @@ public interface CommentService {
 	public List<CommentDto> selectReply(int comm_id) throws Exception;
 	
 	public CommentDto getCommentById(int comm_id) throws Exception;  // 댓글 조회 by ID 추가
+
+	public List<CommentDto> reCommentList(int b_id)throws Exception;
 	
 	
 }

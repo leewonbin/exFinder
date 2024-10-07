@@ -2,6 +2,8 @@ package com.exfinder.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.exfinder.dto.CommentDto;
 
 public interface CommentDao {
@@ -23,5 +25,7 @@ public interface CommentDao {
 	public List<CommentDto> selectReply(int comm_id);
 	
 	public CommentDto getCommentById(int comm_id) throws Exception;  // 댓글 조회 by ID 추가
+
+	public List<CommentDto> reCommentList(@Param("b_id")int b_id) throws Exception;
 
 }

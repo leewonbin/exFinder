@@ -1,5 +1,6 @@
 package com.exfinder.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -65,12 +66,35 @@ public class BoardController {
 		BoardDto board = service.read(b_id);
 		model.addAttribute("boardDto", board);
 
-		// 현재 로그인한 사용자 정보 추가
-		UserDto userDto = (UserDto) session.getAttribute("dto");
-		model.addAttribute("userDto", userDto);
-
 		// 댓글 리스트 가져오기
 		List<CommentDto> comments = cs.commentList(b_id);
+		
+		// 대댓글 리스트 가져오기
+		List<CommentDto> recomments = cs.reCommentList(b_id);
+		System.out.println("recomment.size() : " + recomments.size());
+		
+		if (recomments.size() > 0) {
+		    for (int i = 0; i < comments.size(); i++) {
+		        Iterator<CommentDto> iterator = recomments.iterator();
+		        while (iterator.hasNext()) {
+		            CommentDto dto = iterator.next();
+		            System.out.println("replay 내용");
+		            System.out.println(dto.getComm_content());
+		            if (comments.get(i).getComm_id() == dto.getParent_id()) {
+		                comments.get(i).getReply().add(dto);
+		                iterator.remove();  // 안전하게 요소 제거
+		            }
+		        }
+		    }
+		}
+
+		System.out.println("대댓글 조회");
+		for(CommentDto dto : comments) {
+			for(CommentDto reply : dto.getReply()) {
+				System.out.println(reply.getComm_content());
+			}
+		}
+		
 		model.addAttribute("comments", comments);
 	}
 
@@ -194,5 +218,7 @@ public class BoardController {
 
 		return "/user/myBoard"; // myBoard.jsp로 이동
 	}
+	
+
 
 }

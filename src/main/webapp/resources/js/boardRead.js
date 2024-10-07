@@ -1,9 +1,21 @@
 function toggleButtons(commId) {
-	var buttonsDiv = document.getElementById("buttons-" + commId);
-	if (buttonsDiv.style.display === "none" || buttonsDiv.style.display === "") {
-		buttonsDiv.style.display = "block";
+	var reCommDiv = document.getElementById("reCommDiv-" + commId);
+	var modifyDiv = document.getElementById("buttons-" + commId);
+	if (modifyDiv.style.display === "none" || modifyDiv.style.display === "") {
+		modifyDiv.style.display = "block";
+		reCommDiv.style.display = "none";
 	} else {
-		buttonsDiv.style.display = "none";
+		modifyDiv.style.display = "none";
+	}
+}
+function toggleRecomm(commId) {
+	var reCommDiv = document.getElementById("reCommDiv-" + commId);
+	var modifyDiv = document.getElementById("buttons-" + commId);
+	if (reCommDiv.style.display === "none" || reCommDiv.style.display === "") {
+		reCommDiv.style.display = "block";
+		modifyDiv.style.display = "none";
+	} else {
+		reCommDiv.style.display = "none";
 	}
 }
 

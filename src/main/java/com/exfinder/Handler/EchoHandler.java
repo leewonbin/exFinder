@@ -49,7 +49,6 @@ public class EchoHandler extends TextWebSocketHandler{
 	public void notifyClients() throws Exception {
 	    ArrayList<AlramDto> alramList = a_service.alramSelect(); // 알람 목록을 가져옴
 	    System.out.println("alramList.size() : " + alramList.size());
-
 	    for (AlramDto alram : alramList) {
 	        String userId = alram.getU_id();
 	        System.out.println("userId : " + userId);

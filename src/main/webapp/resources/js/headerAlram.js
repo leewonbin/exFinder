@@ -60,12 +60,12 @@ function toggleAlram() {
 	// 현재 가시성 상태에 따라 알림 보이기 또는 숨기기
 	if (currentAlramVisible) {
 		// 알림이 보이는 경우 숨김
-		alramRead();
 		alramContainer.style.display = "none"; // 알림 숨김
 		currentAlramVisible = false; // 상태 업데이트
 	} else {
 		// 알림이 보이지 않는 경우 로드 후 보이기
 		loadAlram(); // 알림 로드
+		alramRead();
 		$(".alram").css("animation", "none");
 		alramContainer.style.display = "block"; // 알림 표시
 		currentAlramVisible = true; // 상태 업데이트
