@@ -12,6 +12,7 @@
     display: flex; /* 수평 정렬을 위한 flexbox 사용 */
     border-top: 1px solid #ccc; /* 위쪽에 1px 선 추가 */
 
+ 	z-index: 1000;
 }
 .footer_sides{
 	height: 100%; /* 높이 설정 */

@@ -100,6 +100,7 @@ function toggleAnswer(id) {
 		</c:forEach>
 	</div>
 
+	<%@include file="/WEB-INF/views/footer/exFinder_footer.jsp"%>
 	<%-- <!-- 챗봇 연습용으로 넣어둠 / 챗봇 버튼 -->
 	<div id="chatbot-button" onclick="toggleChatbot()">
 		<img

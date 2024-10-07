@@ -69,6 +69,12 @@ public class UserController {
 	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
 	public String login(Model model, HttpServletRequest request) throws Exception {
 
+	    // "u_id_result"를 모델에서 받을 수 있음
+	    String uIdResult = (String) model.asMap().get("u_id_result");
+	    if (uIdResult != null) {
+	    	model.addAttribute("id_save", uIdResult);
+	    }
+	    
 		// 쿠키에서 저장된 아이디를 가져옴
 		String savedId = null;
 		String idSaveChecked = null;

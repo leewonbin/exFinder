@@ -77,5 +77,6 @@
 		</form>
 	</div>
 
+<%@include file="/WEB-INF/views/footer/exFinder_footer.jsp"%>
 </body>
 </html>
