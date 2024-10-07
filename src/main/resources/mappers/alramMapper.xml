@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.exfinder.dao.AlramDao">
 
 <insert id="alramInsert">
-	insert into alram values(alram_num.nextval,#{u_id},SYSDATE,#{c_code},#{target_exchange},'X')
+	insert into alram values(alram_num.nextval,#{u_id},SYSDATE,#{c_code},#{target_exchange},#{deal_bas_r},'X')
 </insert>
 
 <select id="alramSelect" resultType="AlramDto">
@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </delete>
 
 <select id="userAlramSelect" resultType="AlramDto">
-	select a_id,u_id,to_char(create_date,'YYYY-MM-DD HH24:MI:SS') as create_date,c_code,target_exchange,checked from alram where u_id=#{u_id} order by create_date desc
+	select a_id,u_id,to_char(create_date,'YYYY-MM-DD HH24:MI:SS') as create_date,c_code,target_exchange,deal_bas_r,checked from alram where u_id=#{u_id} order by create_date desc
 </select>
 
 <delete id="alramDelete">

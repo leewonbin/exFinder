@@ -9,12 +9,12 @@
 						<option value="KRW" data-rate="1" data-curr="원">대한민국
 							(KRW)</option>
 						<c:forEach var="exchange" items="${list}">
-							<c:set var="base_r" value="${exchange.base_r }" />
+							<c:set var="deal_bas_r" value="${exchange.deal_bas_r }" />
 							<c:if
 								test="${exchange.c_code eq 'JPY' || exchange.c_code eq 'VND'}">
-								<c:set var="base_r" value="${base_r / 100}" />
+								<c:set var="deal_bas_r" value="${deal_bas_r / 100}" />
 							</c:if>
-							<option value="${exchange.c_code}" data-rate="${base_r }"
+							<option value="${exchange.c_code}" data-rate="${deal_bas_r }"
 								data-curr="${exchange.c_name }"
 								<c:if test="${exchange.c_code eq 'USD'}">selected</c:if>>
 								${exchange.c_country} (${exchange.c_code})</option>
@@ -43,12 +43,12 @@
 						<option value="KRW" data-rate="1" data-curr="원" selected>대한민국
 							(KRW)</option>
 						<c:forEach var="exchange" items="${list }">
-							<c:set var="base_r" value="${exchange.base_r }" />
+							<c:set var="deal_bas_r" value="${exchange.deal_bas_r }" />
 							<c:if
 								test="${exchange.c_code eq 'JPY' || exchange.c_code eq 'VND'}">
-								<c:set var="base_r" value="${base_r / 100}" />
+								<c:set var="deal_bas_r" value="${deal_bas_r / 100}" />
 							</c:if>
-							<option value="${exchange.c_code}" data-rate="${base_r }"
+							<option value="${exchange.c_code}" data-rate="${deal_bas_r }"
 								data-curr="${exchange.c_name }">${exchange.c_country}
 								(${exchange.c_code})</option>
 						</c:forEach>

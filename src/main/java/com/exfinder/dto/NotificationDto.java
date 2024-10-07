@@ -5,24 +5,49 @@ public class NotificationDto {
 	private String u_id;
 	private String c_code;
 	private double target_exchange;
+	private double deal_bas_r;
 
 	public NotificationDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotificationDto(int n_id, String u_id, String c_code, double target_exchange) {
+	
+	public NotificationDto(int n_id, String u_id, String c_code, double target_exchange, double deal_bas_r) {
 		super();
 		this.n_id = n_id;
 		this.u_id = u_id;
 		this.c_code = c_code;
 		this.target_exchange = target_exchange;
+		this.deal_bas_r = deal_bas_r;
 	}
+
+
 	public NotificationDto(String u_id, String c_code, double target_exchange) {
 		super();
 		this.u_id = u_id;
 		this.c_code = c_code;
 		this.target_exchange = target_exchange;
 	}
+	
+	public NotificationDto(String u_id, String c_code, double target_exchange,double deal_bas_r) {
+		super();
+		this.u_id = u_id;
+		this.c_code = c_code;
+		this.target_exchange = target_exchange;
+		this.deal_bas_r = deal_bas_r;
+	}
+	
+	
+
+	public double getDeal_bas_r() {
+		return deal_bas_r;
+	}
+
+
+	public void setDeal_bas_r(double deal_bas_r) {
+		this.deal_bas_r = deal_bas_r;
+	}
+
 
 	public int getN_id() {
 		return n_id;

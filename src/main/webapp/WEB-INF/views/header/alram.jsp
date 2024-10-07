@@ -35,7 +35,7 @@
 							<div class="alarm_message_contents">
 								<img class="alarm_message_img"
 									src="${pageContext.request.contextPath}/resources/img/gonfalon/${alram.c_code }.png">
-								<div class="alarm_message_text">${alram.c_code}가 ${alram.target_exchange }원에 도달했습니다.</div>
+								<div class="alarm_message_text">${alram.c_code}가 ${alram.deal_bas_r }원에 도달했습니다.</div>
 							</div>
 						</div>
 					</c:forEach>

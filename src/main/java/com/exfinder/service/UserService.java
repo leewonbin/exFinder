@@ -26,4 +26,6 @@ public void insert(UserDto dto) throws Exception;
 	public void pw_update(String u_id, String encPassword) throws Exception;
 
 	public String getU_pwByU_id(String userId);
+
+	public String getUserPhoneNumber(String userId) throws Exception;
 }

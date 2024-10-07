@@ -13,14 +13,12 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.exfinder.dto.AlramDto;
 import com.exfinder.service.AlramService;
+import com.exfinder.service.CertifiedService;
 import com.exfinder.service.NotificationService;
 
 @Component
 @RequestMapping("/echo")
 public class EchoHandler extends TextWebSocketHandler{
-	
-	@Autowired
-	private NotificationService service;
 	
 	@Autowired
 	private AlramService a_service;

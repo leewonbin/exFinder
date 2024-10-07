@@ -29,4 +29,5 @@ public interface UserDao {
 	public void pw_update(@Param("u_id")String u_id, @Param("encPassword")String encPassword) throws Exception;
 	
 	public String getU_pwByU_id(String userId);
+	public String getUserPhoneNumber(@Param("userId")String userId) throws Exception;
 }

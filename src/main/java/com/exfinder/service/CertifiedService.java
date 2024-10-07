@@ -1,24 +1,28 @@
 package com.exfinder.service;
 
-import org.json.simple.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Service;
-
-import net.nurigo.java_sdk.api.Message;
-import net.nurigo.java_sdk.exceptions.CoolsmsException;
-
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-
 import java.util.HashMap;
 
 import javax.mail.internet.MimeMessage;
+
+import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+
+import com.exfinder.dto.AlramDto;
+
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Service
 public class CertifiedService {
 	
 	@Autowired
 	private JavaMailSenderImpl mailSender;
+	
+	@Autowired
+	private UserService service;
 
 	public void certifiedEmail(String Email, String numStr) {
 		// 이메일 보낼 양식
@@ -61,7 +65,35 @@ public class CertifiedService {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }
-
     }
+	
+	public void sendPhoneAlram(AlramDto dto) throws Exception {
+		String phoneNumber = service.getUserPhoneNumber(dto.getU_id());
+        String api_key = "NCSRUJSKZFEFFRVF";
+        String api_secret = "IJY6FKWNQMMGTTTQUANNL3HZOKFNN99A";
+        Message coolsms = new Message(api_key, api_secret);
+        String msg = "[ExFinder] %s 통화가 %.2f에 도달했습니다!\n" +
+        		"설정 금액: %.2f\n" +
+        		"범위: %.2f ~ %.2f";
+        System.out.println("phoneNumber : " + phoneNumber);
+        double minValue = dto.getTarget_exchange() * 0.998;
+        double maxValue = dto.getTarget_exchange() * 1.002;
+        msg = String.format(msg, dto.getC_code(),dto.getDeal_bas_r(),dto.getTarget_exchange(),minValue,maxValue);
+        System.out.println("msg : " + msg);
+        HashMap<String,String> params = new HashMap<String,String>();
+        params.put("to", phoneNumber);
+        params.put("from", "01056522318");
+        params.put("type", "SMS");
+        params.put("text", msg);
+        params.put("app_version", "test app 1.2");
+        
+        try {
+            JSONObject obj = (JSONObject) coolsms.send(params);
+            System.out.println(obj.toString());
+        } catch (CoolsmsException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCode());
+        }
+	}
 
 }

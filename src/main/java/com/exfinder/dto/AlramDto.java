@@ -1,27 +1,45 @@
 package com.exfinder.dto;
 
-import java.time.LocalDateTime;
-
 public class AlramDto {
 	private int a_id;
 	private String u_id;
 	private String c_code;
 	private String create_date;
-	private int target_exchange;
+	private double target_exchange;
+	private double deal_bas_r;
 	private String checked;
 
 	public AlramDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AlramDto(int a_id, String u_id, String c_code, String create_date, int target_exchange, String checked) {
+	public AlramDto(int a_id, String u_id, String c_code, String create_date, double target_exchange, double deal_bas_r,
+			String checked) {
 		super();
 		this.a_id = a_id;
 		this.u_id = u_id;
 		this.c_code = c_code;
 		this.create_date = create_date;
 		this.target_exchange = target_exchange;
+		this.deal_bas_r = deal_bas_r;
 		this.checked = checked;
+	}
+	
+
+	public double getDeal_bas_r() {
+		return deal_bas_r;
+	}
+
+	public void setDeal_bas_r(double deal_bas_r) {
+		this.deal_bas_r = deal_bas_r;
+	}
+
+	public void setTarget_exchange(double target_exchange) {
+		this.target_exchange = target_exchange;
+	}
+	
+	public double getTarget_exchange() {
+		return target_exchange;
 	}
 
 	public String getC_code() {
@@ -54,14 +72,6 @@ public class AlramDto {
 
 	public void setCreate_date(String create_date) {
 		this.create_date = create_date;
-	}
-
-	public int getTarget_exchange() {
-		return target_exchange;
-	}
-
-	public void setTarget_exchange(int target_exchange) {
-		this.target_exchange = target_exchange;
 	}
 
 	public String getChecked() {

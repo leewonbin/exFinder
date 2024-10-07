@@ -100,6 +100,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 
+	@Override
+	public String getUserPhoneNumber(String userId) throws Exception {
+		UserDao dao=sqlSession.getMapper(UserDao.class);
+		return dao.getUserPhoneNumber(userId);
+	}
+
+
 	
 
 }
