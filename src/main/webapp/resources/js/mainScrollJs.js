@@ -31,15 +31,23 @@ window.onscroll = function() {
 
   function toggleTopButton() {
     const topButton = document.getElementById("topButton");
+    const csButton = document.getElementById("csButton");
     if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
       topButton.style.display = "block";
+      csButton.style.display = "block";
     } else {
       topButton.style.display = "none";
+      csButton.style.display = "none";
     }
   }
+  
 
   // 버튼 클릭 시 페이지 맨 위로 이동
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
+  function csMove() {
+	  location.href='/ex/cs/main';
   }
 
