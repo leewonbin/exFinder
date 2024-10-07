@@ -11,6 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin.css">
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/admin.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/exchangeUpdate.js"></script>
 </head>
 <style>
 </style>
@@ -44,7 +46,7 @@
 						<li><a href="#" onclick="reg_type_select('1'); return false;" id="profile-link">계정정보 관리</a></li>
         				<li><a href="#" onclick="reg_type_select('2'); return false;" id="info-link">계정권한 관리</a></li>
         				<li><a href="#" onclick="reg_type_select('3'); return false;" id="password-link">고객센터 관리</a></li>
-        				<li><a href="#" onclick="reg_type_select('4'); return false;" id="cancel-account">???</a></li>
+        				<li><a href="#" onclick="reg_type_select('4'); return false;" id="cancel-account">환율 업데이트</a></li>
 					</ul>
 				</div>
 				
@@ -207,8 +209,11 @@
 			</div>
 
 			<div class="my_info2 type_4" style="display: none; height: 550px;">
-					<h2 class="profile-title">???</h2>
-				
+				<h2 class="profile-title">환율 업데이트</h2>
+					통화 1년치 내역 업데이트
+					<button class="update-btn">업데이트</button>
+					<p class="result_p"></p>
+						
 					
 								
 			</div>
