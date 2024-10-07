@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,91 +11,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/myBoard.css">
-    <script>
-    function showSection(sectionId, clickedElement) {
-        // 모든 섹션 숨기기
-        document.getElementById('myPosts').style.display = 'none';
-        document.getElementById('myComments').style.display = 'none';
-        
-        // 모든 탭 비활성화
-        var tabs = document.querySelectorAll('.board-typeItem');
-        tabs.forEach(function(tab) {
-            tab.classList.remove('active');
-        });
-
-        // 선택된 섹션 보이기
-        document.getElementById(sectionId).style.display = 'block';
-        
-        // 클릭된 탭 활성화
-        clickedElement.classList.add('active');
-    }
-
-    window.onload = function() {
-        var defaultTab = document.querySelector('.board-typeItem');
-        showSection('myPosts', defaultTab);
-    }
-    </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/myBoard.js"></script>
 </head>
 <body>
     <%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
-   
-   	<!-- 알림을 표시할 div -->
-	<div id="alramContainer" style="display: none;"></div>
-		
+
     <div id="board">
         <h1>나의 게시판</h1>
-        
-        <ul class="board-list">
-            <li class="board-typeItem" onclick="showSection('myPosts',this)">
-                <span class="board-type">작성글</span>
-            </li>
-            <!-- <li class="board-typeItem" onclick="showSection('myComments',this)">
-                <span class="board-type">작성댓글</span>
-            </li> -->
-        </ul>
-        
-        <!-- 나의 게시글 목록 -->
-        <ul id="myPosts" class="board-list">
-            <li class="board-header">
-                <span class="board-header-kategorie">카테고리</span>
-                <span class="board-header-title">제목</span>
-                <span class="board-header-date">작성일</span>
-            </li>
-            <c:forEach var="post" items="${userPosts}">
-                <li class="board-item" onclick="window.location.href='/ex/board/read?b_id=${post.b_id}'">
-                    <span class="board-kategorie">${post.b_category}</span>
-                    <span class="board-title">${post.b_title}</span>
-                    <span class="board-date">
-        				<fmt:formatDate value="${post.b_date}" pattern="yyyy-MM-dd"/>
-    				</span>
-                    
-                </li>
-            </c:forEach>
+
+        <form id="deletePostsForm" method="post" action="/ex/user/deleteMyBoard">
+            <table class="board-table">
+                <thead>
+                    <tr class="board-header">
+                        <th>
+                            <input type="checkbox"   id="selectAll" onclick="selectAllCheckboxes(this.checked)"> <!-- 전체 선택 체크박스 -->
+                        </th>
+                        <th class="Hcategory">카테고리</th>
+                        <th class="Htitle">제목</th>
+                        <th class="HwroteDate">작성일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="post" items="${userPosts}">
+                        <tr class="board-item">
+                            <td>
+                                <input type="checkbox" class="checkbox" name="b_id" value="${post.b_id}">
+                            </td>
+                            <td class="category">${post.b_category}</td>
+                            <td class="title">
+                                <a href="/ex/board/read?b_id=${post.b_id}">${post.b_title}</a>
+                            </td>
+                            <td class="wroteDate">
+                                <fmt:formatDate value="${post.b_date}" pattern="yyyy-MM-dd"/>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
             <ul class="button-container">
-                <li class="button-write" onclick="window.location.href='/ex/board/create'">
-                    <span>글쓰기</span>
-                </li>
-        	</ul>
-        </ul>
-        
-        <!-- 나의 댓글 목록 -->
-        <ul id="myComments" class="board-list" style="display: none;">
-            <li class="board-header">
-                <span class="board-header-title">댓글</span>
-                <span class="board-header-date">작성일</span>
-            </li>
-            <c:forEach var="comment" items="${userComments}">
-                <li class="board-item" onclick="window.location.href='/ex/comment/read?c_id=${comment.c_id}'">
-                    <span class="board-title">${comment.c_content}</span>
-                    <span class="board-date">${comment.c_date}</span>
-                </li>
-            </c:forEach>
-            <ul class="button-container">
-                <li class="button-delete" onclick="window.location.href='/ex/board/'">
+                <li class="button-write" onclick="submitDeleteForm()">
                     <span>삭제</span>
                 </li>
             </ul>
-        </ul>
+        </form>
     </div>
+
+    <script>
+        function selectAllCheckboxes(checked) {
+            // 체크박스 선택 상태에 따라 모든 체크박스 상태 변경
+            const checkboxes = document.querySelectorAll('input[name="b_id"]');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = checked;
+            });
+        }
+    </script>
 </body>
 </html>
