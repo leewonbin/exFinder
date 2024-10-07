@@ -48,10 +48,6 @@ function submitForm(userId, button) {
     document.getElementById('updateForm').submit();
 }
 
-
-
-	
-
 //주소검색
 function sample4_execDaumPostcode() {
 	new daum.Postcode({

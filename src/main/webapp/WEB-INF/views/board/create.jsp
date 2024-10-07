@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,7 @@
 	</c:if>
 	<div>
 		<%@include file="../header/exFinder_header.jsp"%>
-		
+
 		<!-- 알림을 표시할 div -->
 		<div id="alramContainer" style="display: none;"></div>
 	</div>
@@ -41,11 +42,13 @@
 
 			<h2 class="b_category">
 				<select name="b_category">
-					<option value="공지사항">공지사항</option>
+					<sec:authorize access="hasAnyRole('ADMIN')">
+						<option value="공지사항">공지사항</option>
+					</sec:authorize>
 					<option value="자유게시판">자유게시판</option>
 				</select>
 			</h2>
-			
+
 			<%-- <h2 class="b_category">
 				<select name="b_category" id="b_category">
 					<option value="자유게시판">자유게시판</option>
