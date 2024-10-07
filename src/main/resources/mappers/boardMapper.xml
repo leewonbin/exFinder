@@ -99,4 +99,10 @@ FETCH NEXT #{perPageNum} ROWS ONLY
         ORDER BY b_date DESC
     </select>
     
+    <!-- 게시물 삭제 -->
+    <delete id="deletePostByUser" parameterType="int">
+        DELETE FROM board WHERE b_id = #{b_id}
+    </delete>
+    
+    
 </mapper>

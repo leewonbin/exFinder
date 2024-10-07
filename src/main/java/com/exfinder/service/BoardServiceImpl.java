@@ -72,4 +72,14 @@ public class BoardServiceImpl implements BoardService {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		return dao.getUserPosts(u_id);
 	}
+
+	@Override
+	public int deletePostByUser(int b_id) throws Exception {
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		return dao.deletePostByUser(b_id);
+	}
+
+
+	
+	
 }
