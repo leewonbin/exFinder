@@ -11,6 +11,8 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/exFinder_footer.css">
 </head>
 <body>
+	<div class="footer_margin">
+	</div>
 	<footer class="footer">
 		<div class="footer_sides">
 			<img src="${pageContext.request.contextPath}/resources/img/logo-Photoroom.png" class="footer_wrapper_img">

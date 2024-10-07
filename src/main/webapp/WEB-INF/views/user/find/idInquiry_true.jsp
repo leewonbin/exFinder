@@ -31,7 +31,7 @@
             			<td style="background-color: #ddd; padding-right: 10px;">
             				<input type="radio" name="radio" value="${UserDto_list.u_id}"> 
 						</td> 
-            			<td>아이디 : ${UserDto_list.u_id},  가입 날짜 : ${UserDto_list.u_joinDate}</td> 
+            			<td><label>아이디</label> : ${UserDto_list.u_id},  <label>가입 날짜</label> : ${UserDto_list.u_joinDate}</td> 
             		</tr>
             		</c:forEach>
        			</table>
