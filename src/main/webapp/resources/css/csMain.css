@@ -1,4 +1,5 @@
-body {
+/* 공통 스타일 */
+.body-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,24 +9,21 @@ body {
     padding-top: 150px !important; /* 헤더의 높이에 맞게 조정 */
 }
 
-h1, p {
+/* 제목 스타일 */
+.faq-title, .faq-description {
     text-align: center;
     color: #05203C;
     font-weight: bold !important;
 }
 
-h1 { 
+.faq-title { 
 	font-size: 50px !important;
     margin-top: 20px; /* 헤더의 높이를 고려하여 여백 조정 */
 }
 
-p {
-	font-size: 20px !important;
-}
-
-.question {
+/* 질문 컨테이너 */
+.question-container {
     width: 800px;
-    height: auto; /* 내용에 따라 높이 자동 조정 */
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -33,23 +31,31 @@ p {
     cursor: pointer;
     margin: 10px 0;
     color: black;
-    transition: color;
+    transition: color 0.3s;
 }
 
-.question.active {
+.question-container .question-label {
+    font-weight: bold;
+}
+
+/* 질문 활성화 스타일 */
+.question-active {
 	color: #05203C;
-	font-weight: bold
-	
+	font-weight: bold;
 }
 
-.answer {
+/* 답변 컨테이너 */
+.answer-container {
     max-width: 800px;
-    height: auto; /* 내용에 따라 높이 자동 조정 */
     display: none;
     padding: 10px;
     border: 1px solid #EFF3F8;
     border-radius: 4px;
     background-color: #EFF3F8;
     margin-top: 10px;
-    word-break: break-word; /* 긴 단어를 줄바꿈 */
+    word-break: break-word; /* 긴 단어 줄바꿈 */
+}
+
+.answer-container .answer-label {
+    font-weight: bold;
 }

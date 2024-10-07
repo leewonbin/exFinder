@@ -13,108 +13,64 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/csMain.css">
 
-
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/chatbot.css">
-<!-- 챗봇 연습용으로 넣어둔거 -->
-
-
 
 <script>
 let lastId = null;
 
 function toggleAnswer(id) {
-    // 현재 클릭한 질문의 답변 요소 찾기
     var currentA = document.getElementById('answer-' + id);
     
-    // 이전에 열려 있던 답변이 있다면, 그것을 닫기
     if (lastId !== null && lastId !== id) {
         var lastA = document.getElementById('answer-' + lastId);
         lastA.style.display = 'none';
-        
-        // 이전 질문의 스타일에서 'active' 클래스 제거
         var lastQ = document.getElementById('question-' + lastId);
-        lastQ.classList.remove('active');
+        lastQ.classList.remove('question-active');
     }
     
-    // 현재 클릭한 질문의 답변을 열기
     if (currentA.style.display === 'none' || currentA.style.display === '') {
         currentA.style.display = 'block';
-        // 현재 질문의 스타일에 'active' 클래스 추가
         var currentQ = document.getElementById('question-' + id);
-        currentQ.classList.add('active');
+        currentQ.classList.add('question-active');
     } else {
         currentA.style.display = 'none';
-        // 현재 질문의 스타일에서 'active' 클래스 제거
         var currentQ = document.getElementById('question-' + id);
-        currentQ.classList.remove('active');
+        currentQ.classList.remove('question-active');
     }
     
-    // 현재 질문의 ID를 lastId에 저장
     lastId = (currentA.style.display === 'block') ? id : null;
 }
 	
-	
-	//챗봇 연습용임-------------------------------------------------------
-	function toggleChatbot() {
-        var chatbot = document.getElementById('chatbot');
-        if (chatbot.style.display === 'none' || chatbot.style.display === '') {
-            chatbot.style.display = 'block';
-        } else {
-            chatbot.style.display = 'none';
-        }
-    }
+function toggleChatbot() {
+    var chatbot = document.getElementById('chatbot');
+    chatbot.style.display = (chatbot.style.display === 'none' || chatbot.style.display === '') ? 'block' : 'none';
+}
 </script>
 </head>
-<body>
+<body class="body-container">
 
-	<div>
+	<div class="header-container">
 		<%@include file="../header/exFinder_header.jsp"%>
-		
-		<!-- 알림을 표시할 div -->
 		<div id="alramContainer" style="display: none;"></div>
 	</div>
 	<br>
-	<h1>FAQ</h1>
+	<h1 class="faq-title">FAQ</h1>
 	<br>
+	<p class="faq-description">궁금한 사항은 자주하는 질문을 통해 먼저 알아보세요</p>
 	<br>
-	<p>궁금한 사항은 자주하는 질문을 통해 먼저 알아보세요</p>
-	<br>
-	<br>
-	<br>
-	<div id="qna-list">
+	<div id="qna-list" class="qna-container">
 		<c:forEach var="csDto" items="${qnaList}">
-			<div id="question-${csDto.cs_id}" class="question"
-				onclick="toggleAnswer(${csDto.cs_id})">
-				<span>Q:</span> ${csDto.cs_title}
+			<div id="question-${csDto.cs_id}" class="question-container" onclick="toggleAnswer(${csDto.cs_id})">
+				<span class="question-label">Q:</span> ${csDto.cs_title}
 			</div>
-			
-			<div id="answer-${csDto.cs_id}" class="answer">
-				<span>A:</span> ${csDto.cs_content}
-				
-				<!-- 관리자만 편집 버튼을 볼 수 있음. 예시 코드임 -->
+			<div id="answer-${csDto.cs_id}" class="answer-container">
+				<span class="answer-label">A:</span> ${csDto.cs_content}
 				<c:if test="${isAdmin}">
 					<a href="/cs/update?cs_id=${csDto.cs_id}" class="edit-button">편집</a>
 				</c:if>
 			</div>
 		</c:forEach>
 	</div>
-
-	<%-- <!-- 챗봇 연습용으로 넣어둠 / 챗봇 버튼 -->
-	<div id="chatbot-button" onclick="toggleChatbot()">
-		<img
-			src="${pageContext.request.contextPath}/resources/images/chatbot-icon.png"
-			alt="챗봇">
-	</div>
-
-	<!-- 챗봇 창 -->
-	<div id="chatbot" style="display: none;">
-		<!-- 챗봇 내용 여기에 추가 -->
-		<iframe src="챗봇 URL"
-			style="width: 300px; height: 400px; border: none;"></iframe>
-	</div>
- --%>
-	
-
 </body>
 </html>

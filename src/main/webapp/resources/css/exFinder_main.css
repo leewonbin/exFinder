@@ -36,12 +36,30 @@ body, html {
 	background-color: #05203C;
 }
 
-@keyframes alram {
-    25% { color: #2196F3; }
-    50% { color: #64B5F6; }
-    75% { color: lightgreen; }
-  }
+@
+keyframes alram { 25% {
+	color: #2196F3;
+}
 
+50%
+{
+color
+:
+ 
+#64B5F6
+;
+ 
+}
+75%
+{
+color
+:
+ 
+lightgreen
+;
+ 
+}
+}
 .top-content-wrap {
 	display: flex;
 	align-items: center;
@@ -218,7 +236,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	border: none;
 }
 
-.baseImg {			/* 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 */
+.baseImg { /* 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 안바뀜 */
 	width: 50px;
 	height: auto;
 	vertical-align: middle;
@@ -359,9 +377,11 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .l {
 	text-align: left;
 }
+
 .l>img {
 	margin-right: 10px;
 }
+
 .l>a {
 	text-decoration: none;
 	color: black;
@@ -370,7 +390,6 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .l>a:hover {
 	text-decoration: underline;
 }
-	
 
 .r {
 	text-align: right;
@@ -399,21 +418,47 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 }
 
 #topButton {
-  display: none; /* 기본적으로 버튼을 숨김 */
-  position: fixed;
-  bottom: 30px; /* 하단에서 30px 위 */
-  right: 30px; /* 오른쪽에서 30px 떨어짐 */
-  z-index: 99; /* 다른 요소보다 위에 표시되도록 */
-  font-size: 18px;
-  background-color: #05203C; /* 배경색 */
-  color: white; /* 텍스트 색상 */
-  border: none;
-  padding: 15px;
-  border-radius: 50%; /* 원형 버튼 */
-  cursor: pointer;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+	display: none; /* 기본적으로 버튼을 숨김 */
+	position: fixed;
+	bottom: 30px; /* 하단에서 30px 위 */
+	right: 30px; /* 오른쪽에서 30px 떨어짐 */
+	z-index: 99; /* 다른 요소보다 위에 표시되도록 */
+	font-size: 18px;
+	background-color: #05203C; /* 배경색 */
+	color: white; /* 텍스트 색상 */
+	border: none;
+	padding: 15px;
+	border-radius: 50%; /* 원형 버튼 */
+	cursor: pointer;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
 }
 
-#topButton:hover {
-  background-color: #64B5F6; /* 호버 시 색상 변경 */
+#csButton {
+	background-image: url("../img/cs.png"); /* 배경 이미지 설정 */
+	background-size: 30px 30px;
+	background-repeat: no-repeat; /* 이미지 반복 방지 */ 
+	background-position : center; /* 이미지 위치 조정 */ 
+	display : none; /* 기본적으로 버튼을 숨김 */
+	position: fixed;
+	bottom: 100px; /* 하단에서 30px 위 */
+	right: 30px; /* 오른쪽에서 30px 떨어짐 */
+	z-index: 99; /* 다른 요소보다 위에 표시되도록 */
+	font-size: 18px;
+	background-color: #05203C; /* 배경색 */
+	color: white; /* 텍스트 색상 */
+	border: none;
+	padding: 15px;
+	border-radius: 50%; /* 원형 버튼 */
+	cursor: pointer;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+	background-position: center; /* 그림자 효과 */
+}
+
+#topButton, #csButton {
+	width: 50px; /* 원하는 너비 */
+	height: 50px; /* 원하는 높이 */
+}
+
+#topButton:hover,#csButton:hover {
+	background-color: #64B5F6; /* 호버 시 색상 변경 */
 }

@@ -22,13 +22,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/charts.js"></script>
-	
+
 </head>
 <body>
 	<!-- 헤더 Include -->
 	<div class="include_header">
 		<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
-		
 	</div>
 
 	<!-- 메인 콘텐츠 -->
@@ -83,12 +82,12 @@
 				</div>
 			</div>
 		</div>
-    
+
 		<!-- 환율 계산기 div 영역 -->
 		<div class="calculator-container">
 			<%@include file="/WEB-INF/views/main/calculrator.jsp"%>
 		</div>
-		
+
 		<!-- 알림을 표시할 div -->
 		<div id="alramContainer" style="display: none;"></div>
 
@@ -182,6 +181,8 @@
 			</div>
 		</div>
 		<button id="topButton" onclick="scrollToTop()">▲</button>
+		<button id="csButton" onclick="csMove()"></button>
+
 	</div>
 
 
