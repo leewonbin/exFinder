@@ -33,8 +33,11 @@ public class FileUtil {
         String basePath = context.getRealPath(relativePath);
         File baseDirectory = new File(basePath);
         
-        // 프로젝트 이름이 포함된 경로를 찾을 때까지 반복
-        while (!baseDirectory.getPath().contains(projectName)) {
+        // Tomcat 설치 디렉토리로 이동하는 경우 방지
+        String tomcatPath = System.getProperty("catalina.base"); // Tomcat 기본 설치 경로
+
+        // Tomcat 경로가 포함되지 않고, projectName이 포함된 경로를 찾을 때까지 반복
+        while (!baseDirectory.getPath().contains(projectName) || baseDirectory.getPath().contains(tomcatPath)) {
             baseDirectory = baseDirectory.getParentFile(); // 상위 디렉토리로 이동
             
             if (baseDirectory == null) {
