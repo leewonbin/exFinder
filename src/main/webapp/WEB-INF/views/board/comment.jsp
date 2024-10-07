@@ -87,5 +87,6 @@
                         </c:if>
                     </div>
                 </c:forEach>
+                <%@include file="/WEB-INF/views/footer/exFinder_footer.jsp"%>
 </body>
 </html>

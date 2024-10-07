@@ -26,11 +26,30 @@ public class FileUtil {
     private static final String filePath = getBaseFilePath();
 */
     private static final String relativePath = "/resources/profile_img/";
+    private static final String projectName = "exFinder";
 
     // ServletContext를 통해 실제 파일 저장 경로를 가져옴
     public static String getBaseFilePath(ServletContext context) {
+        String basePath = context.getRealPath(relativePath);
+        File baseDirectory = new File(basePath);
+        
+        // 프로젝트 이름이 포함된 경로를 찾을 때까지 반복
+        while (!baseDirectory.getPath().contains(projectName)) {
+            baseDirectory = baseDirectory.getParentFile(); // 상위 디렉토리로 이동
+            
+            if (baseDirectory == null) {
+                throw new IllegalArgumentException("올바른 경로를 찾을 수 없습니다: " + basePath);
+            }
+        }
+
+        return baseDirectory.getPath(); // 올바른 경로 반환
+    }
+    
+    /*
+    public static String getBaseFilePath(ServletContext context) {
         return context.getRealPath(relativePath); // 실제 파일 시스템 경로 반환
     }
+     */
     
     public static String updateImg(MultipartHttpServletRequest mpRequest, String oldImgPath, ServletContext context) throws Exception {
         String filePath = getBaseFilePath(context); // 파일 저장 경로

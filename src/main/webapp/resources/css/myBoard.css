@@ -1,6 +1,6 @@
 /* #board 요소의 크기와 정렬 설정 */
 #board {
-    width: 1300px; /* 게시판의 너비 */
+    width: 1200px; /* 게시판의 너비 */
     height: auto;
     padding: 50px; /* 내부 여백 */
     margin: 180px auto; /* 상단 여백과 좌우 중앙 정렬 */
@@ -16,15 +16,60 @@
     font-weight: 700;
     margin-bottom: 30px; /* 제목 아래 여백 */
 }
+.board-table{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.board-table th {
+      padding-left: 40px; /* 오른쪽 패딩 추가하여 살짝 오른쪽으로 이동 */
+      font-weight: 700;
+}
+.board-table th, .board-table td{
+	 text-align: center;
+	 vertical-align: middle; /* 수직 정렬을 중앙으로 설정 */
+}
+.board-table td{
+	margin-left:13px;
+}
+
+.board-table .category,.Hcategory{
+	width:200px;
+}
+
+.board-table .category{
+  margin-left:20px;	
+}
+
+.checkbox,.category{
+	margin-left:10px;
+}
+.board-table .title,.Htitle{
+	width:500px;
+}
+.board-table .title{
+	margin-left:5px;
+}
+.board-table .wroteDate,.HwroteDate{
+	width:300px;
+}
+.HwroteDate{
+	margin-left:20px;
+}
 .board-header{
 	display: flex; /* Flexbox 사용 */
-	justify-content: space-between; /* 제목과 날짜를 좌우로 정렬 */
 	border-top: 2px solid #05203C;
+	margin-bottom: 10px;
+	
 }
+
+.board-header th{
+	margin-top: 10px;
+}
+
 
 .board-header-kategorie{
 	font-weight: 700;
-	margin-left: 100px;
 	margin-bottom: 10px;
 	margin-top: 10px;
 	
@@ -32,11 +77,15 @@
 
 .board-header-title{
 	font-weight: 700;
-	margin-right: 60px;
 	margin-bottom: 10px;
 	margin-top: 10px;
 	
 }
+.board-header-kategorie,
+.board-header-title{
+	margin-right: 200px;
+}
+
 .board-header-date{
 	font-weight: 700;
 	margin-right: 35px;
@@ -73,7 +122,7 @@
     align-items: center; /* 수직 중앙 정렬 */
     justify-content: center; /* 수평 중앙 정렬 */
     border-radius: 8px; /* 모서리를 둥글게 설정 */
-    float: right; /* 오른쪽으로 이동 */    
+    float: left; /* 오른쪽으로 이동 */    
     margin-left: 10px; /* 버튼 간의 간격 추가 */
     
 }
@@ -127,12 +176,18 @@ ul.board-list{
 
 
 
+
 /* 게시글 카데고리 스타일 */
 .board-kategorie{
     font-size: 16px; /* 폰트 크기 */
     font-weight: 500; /* 폰트 두께 */
     color: #333333; /* 텍스트 색상 */
-    margin-left: 80px;
+    
+}
+
+.board-kategorie,
+.board-title{
+    margin-right: 225px;
 }
 
 /* 게시글 제목 스타일 */
@@ -140,7 +195,7 @@ ul.board-list{
     font-size: 18px; /* 폰트 크기 */
     font-weight: 500; /* 폰트 두께 */
     color: #333333; /* 텍스트 색상 */
-    margin-right: 50px;
+    
 }
 
 /* 게시글 날짜 스타일 */

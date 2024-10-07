@@ -184,6 +184,18 @@
 	/* 버튼 위에 마우스를 올렸을 때 배경색을 어두운 파란색 (#2f46a2)으로 변경 */
 }
 
+.id-check-result{
+	margin-top: 10px;
+}
+.id-check-result p {
+	font-weight: bold; /* 글자 굵게 설정 */
+	margin-bottom: 5px;
+}
+.id-check-result label{
+	font-weight: bold; /* 글자 굵게 설정 */
+	color: blue; /* 글씨 색깔을 파란색으로 설정 */
+}
+
 /* 테이블 컨테이너 스타일 */
 .table-container {
 	display: flex;
@@ -196,18 +208,25 @@
 	width: 30%; /* 테이블 너비를 전체의 80%로 설정 */
 	max-width: 400px; /* 테이블의 최대 너비 설정 */
 	margin: 0 auto; /* 테이블을 수평 중앙 정렬 */
-	border: 2px solid #aaa; /* 테이블 외부 테두리 추가 */
+	border: 2px solid #05203c; /* 테이블 외부 테두리 추가 */
 }
 
-.table-container th, td {
-	padding: 8px; /* 셀 내부 여백 설정 */
-	text-align: left; /* 텍스트를 왼쪽 정렬 */
-}
+
 /* 헤더 셀 스타일 */
 .table-container th {
+	padding: 12px; /* 셀 내부 여백 설정 */
+	text-align: left; /* 텍스트를 왼쪽 정렬 */
+	
 	background-color: #e0e0e0; /* 헤더 셀 배경색을 더 어두운 회색으로 설정 */
 	color: #333; /* 텍스트 색상을 어두운 회색으로 설정 */
 	font-weight: bold !important; /* 헤더 셀 텍스트를 굵게 설정 */
+}
+.table-container td {
+	padding: 8px; /* 셀 내부 여백 설정 */
+	text-align: left; /* 텍스트를 왼쪽 정렬 */
+}
+.table-container label {
+	font-weight: bold;
 }
 /* 짝수 행의 배경색 */
 .table-container tr:nth-child(even) {
@@ -220,6 +239,12 @@
 /* 행에 마우스를 올렸을 때 배경색 */
 .table-container tr:hover {
 	background-color: #d3d3d3; /* 마우스를 올렸을 때 행의 배경색을 더 두드러지게 설정 */
+}
+.find-button-container {
+    display: flex; /* Flexbox 사용 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 (옵션) */
+    gap: 10px; /* 버튼 간의 간격 (옵션) */	
 }
 
 .inquiry {
