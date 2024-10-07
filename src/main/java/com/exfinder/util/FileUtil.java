@@ -1,10 +1,14 @@
 package com.exfinder.util;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
 
+import javax.servlet.ServletContext;
+
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -21,35 +25,16 @@ public class FileUtil {
     }
     private static final String filePath = getBaseFilePath();
 */
-    private static final String projectName = "exFinder"; // 프로젝트 이름
-    private static final String fixedSubPath = "src/main/webapp/resources/profile_img/"; // 고정된 하위 경로
-    private static final String fileName = "ex.jpg"; // 찾고자 하는 파일 이름
+    private static final String relativePath = "/resources/profile_img/";
 
-    // ex.jpg 파일이 있는 디렉토리의 절대 경로
-    private static final String filePath = getBaseFilePath();
-
-    public static String getBaseFilePath() {
-        // 현재 작업 디렉토리에서 시작
-        Path currentDir = Paths.get(System.getProperty("user.dir"));
-        Path baseDir = currentDir;
-
-        // 부모 디렉토리로 이동하면서 "exFinder/src/main/webapp/resources/profile_img/ex.jpg" 경로를 찾기
-        while (baseDir != null) {
-            // 전체 경로를 구성
-            File fileToCheck = baseDir.resolve(projectName).resolve(fixedSubPath).resolve(fileName).toFile();
-            if (fileToCheck.exists()) {
-                // 파일이 존재하면 파일이 있는 디렉토리 경로를 반환
-                return fileToCheck.getParent(); // 부모 디렉토리 경로 반환
-            }
-            baseDir = baseDir.getParent(); // 부모 디렉토리로 이동
-        }
-
-        // 경로를 찾지 못한 경우 예외 처리
-        throw new IllegalStateException("ex.jpg 파일을 찾을 수 없습니다.");
+    // ServletContext를 통해 실제 파일 저장 경로를 가져옴
+    public static String getBaseFilePath(ServletContext context) {
+        return context.getRealPath(relativePath); // 실제 파일 시스템 경로 반환
     }
-
-    public static String updateImg(MultipartHttpServletRequest mpRequest, String oldImgPath) throws Exception {
-    	File directory = new File(filePath);
+    
+    public static String updateImg(MultipartHttpServletRequest mpRequest, String oldImgPath, ServletContext context) throws Exception {
+        String filePath = getBaseFilePath(context); // 파일 저장 경로
+        File directory = new File(filePath);
     	
     	System.out.println("filePath : " + filePath);
     	System.out.println("directory : " + directory);

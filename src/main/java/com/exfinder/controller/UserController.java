@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -60,6 +61,9 @@ public class UserController {
 	
 	@Autowired
 	private AlramService alramService;
+
+    @Autowired
+    private ServletContext servletContext;
 
 	// 유저 로그인
 	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
@@ -230,7 +234,7 @@ public class UserController {
 		UserDto currentUser = userService.selectUser(u_id);
 		String oldImgPath = currentUser.getU_profile_img();
 
-		String user_Img = FileUtil.updateImg(mpRequest, oldImgPath);
+		String user_Img = FileUtil.updateImg(mpRequest, oldImgPath, servletContext);
 		dto.setU_profile_img(user_Img);
 		userService.updateImg(user_Img, u_id);
 
