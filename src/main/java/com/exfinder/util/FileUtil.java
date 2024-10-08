@@ -35,14 +35,13 @@ public class FileUtil {
         
         // Tomcat 설치 디렉토리로 이동하는 경우 방지
         String tomcatPath = System.getProperty("catalina.base"); // Tomcat 기본 설치 경로
-
-        // Tomcat 경로가 포함되지 않고, projectName이 포함된 경로를 찾을 때까지 반복
-        while (!baseDirectory.getPath().contains(projectName) || baseDirectory.getPath().contains(tomcatPath)) {
-            baseDirectory = baseDirectory.getParentFile(); // 상위 디렉토리로 이동
-            
-            if (baseDirectory == null) {
-                throw new IllegalArgumentException("올바른 경로를 찾을 수 없습니다: " + basePath);
-            }
+        System.out.println("tomcatPath : " + tomcatPath);
+        
+        // 톰캣 기본 경로를 제외한 경로를 찾기
+        if (basePath.startsWith(tomcatPath)) {
+            // 톰캣 경로를 제외한 경로 계산
+            String relativeToTomcatPath = basePath.substring(tomcatPath.length());
+            baseDirectory = new File(relativeToTomcatPath);
         }
 
         return baseDirectory.getPath(); // 올바른 경로 반환
