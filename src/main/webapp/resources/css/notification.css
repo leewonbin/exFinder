@@ -80,8 +80,9 @@ input[type="text"]::placeholder {
 
 .charts_container {
     max-width: 100%; /* 최대 너비 100%로 설정 */
-    width: auto; /* 너비 자동 조정 */
-    margin: 0; /* 여백 제거 */
+    width: 400px; /* 너비 자동 조정 */
+    margin: 0px; /* 여백 제거 */
+    margin-right: 8px; /* 여백 제거 */
     height: auto;
 }
 
