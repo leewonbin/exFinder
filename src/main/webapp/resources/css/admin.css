@@ -186,7 +186,8 @@
 	background-color: white;
 }
 
-.user-table input[type="submit"], .storageBtn {
+.user-table input[type="submit"], .storageBtn,
+input[type="submit"] {
 	width: 50px;
 	height: 30px;
 	background-color: #05203C;
@@ -491,6 +492,7 @@
     font-size: 16px; /* 체크박스가 체크된 상태에서 라벨의 글씨 크기 */
 }
 
+
 .my_info, .my_info2 {
     height: 550px; /* 높이를 더 크게 설정하여 아래로 더 넓게 만듦 */
     overflow-y: auto; /* 세로 스크롤을 활성화 */
@@ -513,3 +515,77 @@
     background-color: #f8f8f8; /* 헤더가 스크롤 시 고정되도록 설정 */
     z-index: 1;
 }
+
+#pagination {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center;     /* 세로 정렬 */
+    margin-top: 60px;
+}
+
+#pagination button {
+    display: inline-block;   /* 인라인 블록 요소 */
+    color: black; 
+    background-color: white;
+    font-size: 15px;
+    padding: 0;             /* 패딩 제거 */
+    margin: 0 1px;         /* 버튼 간 간격 */
+    width: 40px;
+    height: 40px;
+    line-height: 40px;     /* 텍스트 수직 중앙 정렬 (버튼 높이와 동일) */
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+#pagination button:hover {
+    background-color: #EFF3F8;
+    color: #054184;
+}
+
+#pagination button:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+    cursor: not-allowed; /* 비활성화 상태의 포인터 */
+}
+
+.update-section {
+    background-color: #f1f1f1; /* 배경색 */
+    border: 1px solid #dcdcdc; /* 테두리 */
+    border-radius: 10px; /* 둥근 모서리 */
+    padding: 20px; /* 내부 여백 */
+    text-align: center; /* 중앙 정렬 */
+    margin-top: 150px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+.update-description {
+    font-size: 25px; /* 설명 텍스트 크기 */
+    font-weight: 700px;
+    color: #333; /* 설명 텍스트 색상 */
+    margin-bottom: 15px; /* 아래 여백 */
+}
+
+.update-btn {
+    background-color: #05203C; /* 버튼 배경색 */
+    color: #fff; /* 버튼 텍스트 색상 */
+    padding: 10px 25px; /* 버튼 내부 여백 */
+    border: none; /* 테두리 없음 */
+    border-radius: 5px; /* 둥근 모서리 */
+    cursor: pointer; /* 커서 포인터 */
+    font-size: 16px; /* 버튼 텍스트 크기 */
+    transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+    margin-bottom: 10px; /* 아래 여백 */
+}
+
+.update-btn:hover {
+    background-color: #0056b3; /* 호버 시 배경색 */
+}
+
+.result_p {
+    font-size: 14px; /* 결과 텍스트 크기 */
+    color: #28a745; /* 성공 메시지 색상 */
+    margin-top: 10px; /* 위 여백 */
+}
+
+

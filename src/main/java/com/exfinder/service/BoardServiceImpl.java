@@ -79,7 +79,15 @@ public class BoardServiceImpl implements BoardService {
 		return dao.deletePostByUser(b_id);
 	}
 
+	@Override
+	public List<BoardDto> adminBoardList() throws Exception {
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		List<BoardDto> dtos = dao.adminBoardList();
+		return dtos;
+	}
 
+	
+	
 	
 	
 }
