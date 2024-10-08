@@ -46,8 +46,8 @@ public class CertifiedService {
 	
 	public void certifiedPhoneNumber(String phoneNumber, String numStr) {
 
-        String api_key = "NCSRUJSKZFEFFRVF";
-        String api_secret = "IJY6FKWNQMMGTTTQUANNL3HZOKFNN99A";
+        String api_key = "NCSDXWMQBQT55LZH";
+        String api_secret = "PRZDVSVYDR6JJW7J90UKOCSKGLEFEWP7";
         Message coolsms = new Message(api_key, api_secret);
 
         // 4 params(to, from, type, text) are mandatory. must be filled
@@ -69,8 +69,8 @@ public class CertifiedService {
 	
 	public void sendPhoneAlram(AlramDto dto) throws Exception {
 		String phoneNumber = service.getUserPhoneNumber(dto.getU_id());
-        String api_key = "NCSRUJSKZFEFFRVF";
-        String api_secret = "IJY6FKWNQMMGTTTQUANNL3HZOKFNN99A";
+        String api_key = "NCSDXWMQBQT55LZH";
+        String api_secret = "PRZDVSVYDR6JJW7J90UKOCSKGLEFEWP7";
         Message coolsms = new Message(api_key, api_secret);
         String msg = "[ExFinder] %s 통화가 %.2f에 도달했습니다!\n" +
         		"설정 금액: %.2f\n" +
