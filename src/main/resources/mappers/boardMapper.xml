@@ -46,7 +46,7 @@ FROM
 LEFT JOIN 
     comments c ON b.B_ID = c.B_ID AND c.COMM_DEL = 'N'
 WHERE 
-    1=1
+    b_del='N'
     <if test="bCategory != null and bCategory != ''">
         AND b.B_CATEGORY = #{bCategory}
     </if>
@@ -95,14 +95,20 @@ FETCH NEXT #{perPageNum} ROWS ONLY
      <!-- 특정 사용자가 작성한 게시글 목록을 가져오는 쿼리 -->
     <select id="getUserPosts" parameterType="string" resultType="com.exfinder.dto.BoardDto">
         SELECT * FROM board
-        WHERE u_id = #{u_id}
+        WHERE u_id = #{u_id} and b_del='N'
         ORDER BY b_date DESC
     </select>
     
     <!-- 게시물 삭제 -->
     <delete id="deletePostByUser" parameterType="int">
-        DELETE FROM board WHERE b_id = #{b_id}
+        <!-- DELETE FROM board WHERE b_id = #{b_id} -->
+        update board set b_del='Y' where b_id = #{b_id}
     </delete>
+    
+     <!-- 모든 게시판 목록을 조회하는 SQL 쿼리 -->
+    <select id="adminBoardList" resultType="com.exfinder.dto.BoardDto">
+        select * from board
+    </select>
     
     
 </mapper>
