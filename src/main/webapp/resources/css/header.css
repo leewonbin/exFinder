@@ -25,7 +25,7 @@
 	display: flex;
 	align-items: flex-end; /* 아래쪽 정렬 */
 	height: 100%; /* 전체 높이 차지 */
-	max-width: 200px; /* 메뉴의 최대 너비 제한 */
+	max-width: 300px; /* 메뉴의 최대 너비 제한 */
 	margin-right: 100px; /* 로고와의 간격을 더 넓히기 */
 	margin-bottom: 25px;
 }
