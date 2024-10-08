@@ -58,23 +58,23 @@ public class UserController {
 
 	@Autowired
 	private NotificationService notificationService;
-	
+
 	@Autowired
 	private AlramService alramService;
 
-    @Autowired
-    private ServletContext servletContext;
+	@Autowired
+	private ServletContext servletContext;
 
 	// 유저 로그인
 	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
 	public String login(Model model, HttpServletRequest request) throws Exception {
 
-	    // "u_id_result"를 모델에서 받을 수 있음
-	    String uIdResult = (String) model.asMap().get("u_id_result");
-	    if (uIdResult != null) {
-	    	model.addAttribute("id_save", uIdResult);
-	    }
-	    
+		// "u_id_result"를 모델에서 받을 수 있음
+		String uIdResult = (String) model.asMap().get("u_id_result");
+		if (uIdResult != null) {
+			model.addAttribute("id_save", uIdResult);
+		}
+
 		// 쿠키에서 저장된 아이디를 가져옴
 		String savedId = null;
 		String idSaveChecked = null;
@@ -150,7 +150,7 @@ public class UserController {
 			authoritiesService.insert(authDto);
 		}
 
-		return "redirect:/";
+		return "redirect:/user/login?join";
 	}
 
 	// 유저 탈퇴 처리, 비활성화
@@ -167,12 +167,12 @@ public class UserController {
 	@RequestMapping(value = "/user/Logincomplete", method = RequestMethod.GET)
 	public String Logincomplete(HttpSession session) throws Exception {
 		String userid = (String) session.getAttribute("userId");
+		UserDto dto = userService.selectUser(userid);
+		System.out.println("dto : " + dto);
 
-		session.setAttribute("dto", userService.selectUser(userid));
-		UserDto dto = (UserDto) session.getAttribute("dto");
-		System.out.println(dto);
-
+		session.setAttribute("dto", dto);
 		return "redirect:/";
+
 	}
 
 	@RequestMapping(value = "/user/myPage", method = RequestMethod.GET)
@@ -228,9 +228,9 @@ public class UserController {
 		return "/user/myPage";
 	}
 
-	
-	@RequestMapping(value="/user/myInfo/updateImg", method=RequestMethod.POST)
-	public String updateImg(UserDto dto, MultipartHttpServletRequest mpRequest, Model model, HttpSession session)throws Exception {
+	@RequestMapping(value = "/user/myInfo/updateImg", method = RequestMethod.POST)
+	public String updateImg(UserDto dto, MultipartHttpServletRequest mpRequest, Model model, HttpSession session)
+			throws Exception {
 
 		String u_id = (String) session.getAttribute("userId");
 		System.out.println("u_id : " + u_id);
@@ -285,22 +285,20 @@ public class UserController {
 
 		return "/user/myBoard"; // myBoard.jsp로 이동
 	}
-	
+
 	@RequestMapping(value = "/user/deleteMyBoard", method = RequestMethod.POST)
 	@ResponseBody // JSON 응답을 위해 추가
 	public int deleteMyBoard(HttpServletRequest request) throws Exception {
-	    String[] selectedPost = request.getParameterValues("b_ids");
-	    if (selectedPost != null) {
-	        int deleteCount = 0;
-	        for (String b_id : selectedPost) {
-	            deleteCount += service.deletePostByUser(Integer.parseInt(b_id)); // 게시물 삭제
-	        }
-	        return deleteCount; // 성공한 삭제 수를 반환
-	    }
-	    return 0; // 삭제된 게시물이 없을 경우
+		String[] selectedPost = request.getParameterValues("b_ids");
+		if (selectedPost != null) {
+			int deleteCount = 0;
+			for (String b_id : selectedPost) {
+				deleteCount += service.deletePostByUser(Integer.parseInt(b_id)); // 게시물 삭제
+			}
+			return deleteCount; // 성공한 삭제 수를 반환
+		}
+		return 0; // 삭제된 게시물이 없을 경우
 	}
-
-
 
 	@RequestMapping(value = "/user/bookMark", method = RequestMethod.GET)
 	public String getFavoriteCurrencies(HttpSession session, Model model) throws Exception {
@@ -313,114 +311,113 @@ public class UserController {
 	@RequestMapping(value = "/user/notification", method = RequestMethod.GET)
 	public void notification(Model model) throws Exception {
 	}
-	
+
 	@RequestMapping(value = "/user/notificationList", method = RequestMethod.GET)
-	public String notificationLists(HttpSession session,Model model) throws Exception {
+	public String notificationLists(HttpSession session, Model model) throws Exception {
 		String userId = (String) session.getAttribute("userId"); // 세션에서 사용자 ID 가져오기
 		List<NotificationDto> notificationLists = notificationService.getNotificationLists(userId);
 		model.addAttribute("notificationLists", notificationLists);
 		return "/user/notificationList";
-		
+
 	}
+
 	@RequestMapping(value = "/user/deleteNotification", method = RequestMethod.POST)
 	public String deleteNotification(@RequestParam("n_id") int n_id, HttpSession session) throws Exception {
-	    notificationService.deleteNotification(n_id); // 알림 삭제 서비스 호출
-	    return "redirect:/user/notificationList"; // 삭제 후 알림 목록으로 리다이렉트
+		notificationService.deleteNotification(n_id); // 알림 삭제 서비스 호출
+		return "redirect:/user/notificationList"; // 삭제 후 알림 목록으로 리다이렉트
 	}
+
 	@RequestMapping(value = "/user/updateNotification", method = RequestMethod.POST)
-    public String updateNotification(@ModelAttribute NotificationDto notificationDto, HttpSession session) throws Exception {
-        // 알림 수정 서비스 호출
-        notificationService.updateNotification(notificationDto);
-        
-        // 수정 후 알림 목록으로 리다이렉트
-        return "redirect:/user/notificationList"; 
-    }
+	public String updateNotification(@ModelAttribute NotificationDto notificationDto, HttpSession session)
+			throws Exception {
+		// 알림 수정 서비스 호출
+		notificationService.updateNotification(notificationDto);
 
-	
-
-
+		// 수정 후 알림 목록으로 리다이렉트
+		return "redirect:/user/notificationList";
+	}
 
 	@RequestMapping(value = "/user/setExchangeAlert", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<String> notificationDB(@Param("currency") String currency, @Param("targetRate") double targetRate,
-			HttpSession session) {
+	public ResponseEntity<String> notificationDB(@Param("currency") String currency,
+			@Param("targetRate") double targetRate, HttpSession session) {
 		String msg = "";
 		try {
 			UserDto dto = (UserDto) session.getAttribute("dto");
 			String userId = dto.getU_id();
 
 			int result = notificationService.notificationInsert(new NotificationDto(userId, currency, targetRate));
-			
-			msg = result == 1 ? "success" : "fail"; 
+
+			msg = result == 1 ? "success" : "fail";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return new ResponseEntity<>(msg,HttpStatus.OK);
+		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
-	
+
 	// 알림 로드 메서드
 	@RequestMapping(value = "/user/loadAlram", method = RequestMethod.POST)
 	public String loadAlram(HttpSession session, Model model) throws Exception {
-	    UserDto dto = (UserDto) session.getAttribute("dto");
-	    if (dto != null) {
-	        String userId = dto.getU_id();
-	        List<AlramDto> list = alramService.userAlramSelect(userId);
-	        
-	        // 현재 시간
-	        LocalDateTime now = LocalDateTime.now();
+		UserDto dto = (UserDto) session.getAttribute("dto");
+		if (dto != null) {
+			String userId = dto.getU_id();
+			List<AlramDto> list = alramService.userAlramSelect(userId);
 
-	        // DateTimeFormatter를 사용하여 문자열을 LocalDateTime으로 변환
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-	        
-	        for(int i = 0; i < list.size(); i++) {
-	        	LocalDateTime createDate = LocalDateTime.parse(list.get(i).getCreate_date(), formatter);
-	            long secondsElapsed = ChronoUnit.SECONDS.between(createDate, now);
-	            String timeMessage;
+			// 현재 시간
+			LocalDateTime now = LocalDateTime.now();
 
-	            if (secondsElapsed < 60) {
-	                timeMessage = secondsElapsed + "초 전";
-	            } else if (secondsElapsed < 3600) { // 60초 * 60분
-	                long minutesElapsed = ChronoUnit.MINUTES.between(createDate, now);
-	                timeMessage = minutesElapsed + "분 전";
-	            } else if (secondsElapsed < 86400) { // 3600초 * 24시간
-	                long hoursElapsed = ChronoUnit.HOURS.between(createDate, now);
-	                timeMessage = hoursElapsed + "시간 전";
-	            } else {
-	                long daysElapsed = ChronoUnit.DAYS.between(createDate, now);
-	                timeMessage = daysElapsed + "일 전";
-	            }
-	            list.get(i).setCreate_date(timeMessage);
-	        }
-	        model.addAttribute("alramList", list);
-	    }
-	    return "header/alram"; // JSP 파일 경로 (확장자 제외)
+			// DateTimeFormatter를 사용하여 문자열을 LocalDateTime으로 변환
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+			for (int i = 0; i < list.size(); i++) {
+				LocalDateTime createDate = LocalDateTime.parse(list.get(i).getCreate_date(), formatter);
+				long secondsElapsed = ChronoUnit.SECONDS.between(createDate, now);
+				String timeMessage;
+
+				if (secondsElapsed < 60) {
+					timeMessage = secondsElapsed + "초 전";
+				} else if (secondsElapsed < 3600) { // 60초 * 60분
+					long minutesElapsed = ChronoUnit.MINUTES.between(createDate, now);
+					timeMessage = minutesElapsed + "분 전";
+				} else if (secondsElapsed < 86400) { // 3600초 * 24시간
+					long hoursElapsed = ChronoUnit.HOURS.between(createDate, now);
+					timeMessage = hoursElapsed + "시간 전";
+				} else {
+					long daysElapsed = ChronoUnit.DAYS.between(createDate, now);
+					timeMessage = daysElapsed + "일 전";
+				}
+				list.get(i).setCreate_date(timeMessage);
+			}
+			model.addAttribute("alramList", list);
+		}
+		return "header/alram"; // JSP 파일 경로 (확장자 제외)
 	}
-	
-	@RequestMapping(value = "/user/alramDelete", method= RequestMethod.POST)
-	public ResponseEntity<String> alramDel(@Param("a_id")Integer a_id) throws Exception{
+
+	@RequestMapping(value = "/user/alramDelete", method = RequestMethod.POST)
+	public ResponseEntity<String> alramDel(@Param("a_id") Integer a_id) throws Exception {
 		int result = alramService.alramDelete(a_id);
 		String msg = result == 1 ? "알림이 삭제되었습니다." : "알림 삭제에 실패했습니다. 다시 시도해주세요.";
-		
-		return new ResponseEntity<>(msg,HttpStatus.OK);
+
+		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value = "/user/alramDeleteAll", method= RequestMethod.POST)
-	public ResponseEntity<String> alramDeleteAll(HttpSession session) throws Exception{
-		UserDto dto = (UserDto)session.getAttribute("dto");
+
+	@RequestMapping(value = "/user/alramDeleteAll", method = RequestMethod.POST)
+	public ResponseEntity<String> alramDeleteAll(HttpSession session) throws Exception {
+		UserDto dto = (UserDto) session.getAttribute("dto");
 		String userid = dto.getU_id();
 		int result = alramService.alramDeleteAll(userid);
 		String msg = result == 1 ? "알림이 삭제되었습니다." : "알림 삭제에 실패했습니다. 다시 시도해주세요.";
-		
-		return new ResponseEntity<>(msg,HttpStatus.OK);
+
+		return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value="/user/alramRead", method= RequestMethod.POST)
+
+	@RequestMapping(value = "/user/alramRead", method = RequestMethod.POST)
 	public ResponseEntity<?> alramRead(HttpSession session) throws Exception {
-		UserDto dto = (UserDto)session.getAttribute("dto");
+		UserDto dto = (UserDto) session.getAttribute("dto");
 		String userid = dto.getU_id();
-        alramService.alramCheck(userid);
-        return new ResponseEntity<>(HttpStatus.OK);
+		alramService.alramCheck(userid);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }
