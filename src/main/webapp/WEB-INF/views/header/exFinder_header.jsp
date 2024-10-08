@@ -131,7 +131,6 @@
 
 			<button type="button" class="mini_myPage_button" onclick="location.href='/ex/user/myInfo'" >
 				설정<img src="${pageContext.request.contextPath}/resources/img/Nsetup1.png">
-
 			</button>
 		</div>
 	</div>

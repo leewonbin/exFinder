@@ -44,6 +44,7 @@
 </head>
 <body>
 <%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
+<div id="alramContainer" style="display: none;"></div>
 
 <div id="board">
     <h1>알림내역</h1>

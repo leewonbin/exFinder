@@ -17,6 +17,7 @@
    	</head>
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
+	<div id="alramContainer" style="display: none;"></div>
 	
 	<div id="main">
 		<h1>회원가입</h1><br> 
