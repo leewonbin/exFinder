@@ -35,20 +35,31 @@ public class FileUtil {
         
         // Tomcat 설치 디렉토리로 이동하는 경우 방지
         String tomcatPath = System.getProperty("catalina.base"); // Tomcat 기본 설치 경로
-
-        // Tomcat 경로가 포함되지 않고, projectName이 포함된 경로를 찾을 때까지 반복
-        while (!baseDirectory.getPath().contains(projectName) || baseDirectory.getPath().contains(tomcatPath)) {
-            baseDirectory = baseDirectory.getParentFile(); // 상위 디렉토리로 이동
-            
-            if (baseDirectory == null) {
-                throw new IllegalArgumentException("올바른 경로를 찾을 수 없습니다: " + basePath);
-            }
+        System.out.println("tomcatPath : " + tomcatPath);
+        
+        // 톰캣 경로가 포함된 경우 처리
+        if (basePath.startsWith(tomcatPath)) {
+            // 경로 재설정: Tomcat 외부의 실제 프로젝트 경로를 지정
+            String userDir = System.getProperty("user.dir"); // 현재 프로젝트의 기본 경로
+            basePath = userDir + relativePath; // 프로젝트 경로로 설정
+            baseDirectory = new File(basePath);
+            System.out.println("user.dir: " + userDir);
+            System.out.println("TomcatPath 제외하고 경로 재설정: " + basePath);
         }
+        
+        
 
         return baseDirectory.getPath(); // 올바른 경로 반환
     }
     
     /*
+     * // 톰캣 기본 경로를 제외한 경로를 찾기
+        if (basePath.startsWith(tomcatPath)) {
+            // 톰캣 경로를 제외한 경로 계산
+            String relativeToTomcatPath = basePath.substring(tomcatPath.length());
+            baseDirectory = new File(relativeToTomcatPath);
+            System.out.println("tomcatPath 제외");
+        }
     public static String getBaseFilePath(ServletContext context) {
         return context.getRealPath(relativePath); // 실제 파일 시스템 경로 반환
     }
