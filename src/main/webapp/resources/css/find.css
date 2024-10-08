@@ -205,21 +205,29 @@
 /* .table-container 내의 테이블 스타일 설정 */
 .table-container table {
 	border-collapse: collapse; /* 테이블 셀의 경계가 겹치지 않게 설정 */
-	width: 30%; /* 테이블 너비를 전체의 80%로 설정 */
-	max-width: 400px; /* 테이블의 최대 너비 설정 */
+	
+	width: 500px; /* 테이블의 최대 너비 설정 */
 	margin: 0 auto; /* 테이블을 수평 중앙 정렬 */
-	border: 2px solid #05203c; /* 테이블 외부 테두리 추가 */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* 그림자 효과 추가 */
 }
 
 
 /* 헤더 셀 스타일 */
 .table-container th {
-	padding: 12px; /* 셀 내부 여백 설정 */
+	padding: 14px; /* 셀 내부 여백 설정 */
 	text-align: left; /* 텍스트를 왼쪽 정렬 */
 	
-	background-color: #e0e0e0; /* 헤더 셀 배경색을 더 어두운 회색으로 설정 */
-	color: #333; /* 텍스트 색상을 어두운 회색으로 설정 */
-	font-weight: bold !important; /* 헤더 셀 텍스트를 굵게 설정 */
+	background-color: #eeeeee; /* 헤더 셀 배경색을 더 어두운 회색으로 설정 */
+	color: black; /* 텍스트 색상을 검은색으로 설정 */
+    font-weight: bold; /* 텍스트를 굵게 설정 */
+
+	border-bottom: 2px solid #054184; /* 첫 번째 tr 아래에 검정색 두께 2px 선 추가 */
+}
+.th-colspan{
+	border-bottom: 2px solid #054184; /* 첫 번째 tr 아래에 검정색 두께 2px 선 추가 */
+}
+.td-line{
+	border-left: 1px solid #eeeeee; /* 첫 번째 tr 아래에 검정색 두께 2px 선 추가 */
 }
 .table-container td {
 	padding: 8px; /* 셀 내부 여백 설정 */
@@ -227,6 +235,10 @@
 }
 .table-container label {
 	font-weight: bold;
+	padding-left: 2px;
+}
+.table-container tr:first-child {
+    
 }
 /* 짝수 행의 배경색 */
 .table-container tr:nth-child(even) {
@@ -244,7 +256,8 @@
     display: flex; /* Flexbox 사용 */
     justify-content: center; /* 수평 중앙 정렬 */
     align-items: center; /* 수직 중앙 정렬 (옵션) */
-    gap: 10px; /* 버튼 간의 간격 (옵션) */	
+    gap: 40px; /* 버튼 간의 간격 (옵션) */	
+    margin-top: 20px;
 }
 
 .inquiry {
