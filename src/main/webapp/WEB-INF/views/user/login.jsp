@@ -24,17 +24,27 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
+	<div id="alramContainer" style="display: none;"></div>
 	<div id="main">
 
 		<h1>회원 로그인</h1>
 		<p>회원님의 아이디와 비밀번호를 입력해 주세요.</p>
 		<br>
-
-		<c:if test="${param.error != null}">
-			<p>아이디와 비밀번호가 잘못되었습니다.</p>
+		
+		<c:if test="${param.join ne null }">
+			<script>
+				alert('회원가입이 완료되었습니다.');
+			</script>
 		</c:if>
-		<c:if test="${param.logout != null}">
-			<p>로그아웃 하였습니다.</p>
+		
+		<c:if test="${param.msg eq 'enabled' }">
+			<p>탈퇴 혹은 비활성화 된 계정 입니다.</p>
+		</c:if>
+		<c:if test="${param.msg eq 'error' }">
+			<p>아이디 혹은 비밀번호가 일치하지 않습니다.</p>
+		</c:if>
+		<c:if test="${param.msg eq 'wrong' }">
+			<p>로그인 시도 후 오류가 발생했습니다. 다시 시도 해주세요.</p>
 		</c:if>
 
 		<c:url value="/login" var="loginUrl" />

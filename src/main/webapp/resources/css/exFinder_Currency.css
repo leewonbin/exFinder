@@ -31,7 +31,7 @@ body, html {
 }
 
 .Currency_header a {
-	width: 150px;
+	width: 220px;
     font-size: 18px; /* 필요에 따라 텍스트 크기 조정 */
     text-decoration: none; /* 링크 밑줄 제거 */
     color: #666;            /* 글자 색상 설정 */
@@ -172,7 +172,7 @@ body, html {
 }
 
 .img{
-	margin-left: 650px; 
+	margin-left: 580px; 
 	
 }	
 

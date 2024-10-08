@@ -18,6 +18,7 @@
    	</head>
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
+	<div id="alramContainer" style="display: none;"></div>
 	
 	<div id="main">
 		<h1>회원가입</h1><br> 
@@ -25,14 +26,14 @@
 		<form name="signupForm" action="/ex/user/joinDB" method="post" onsubmit="return validateForm()">
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
 			<br>
-			<input type="text" class ="input" id="u_id" name="u_id" oninput="validateField('u_id')" placeholder="아이디를 입력하시오">
+			<input type="text" class ="input" id="u_id" name="u_id" oninput="validateField('u_id')" placeholder="아이디를 입력하시오" maxlength=20>
 			<button type="button" name="button" onclick="id_check()">중복 검사</button><br>
             <span id="u_id-error" class="error-message"></span>
 			<div id="idChk"></div>
 			
 			<div class="password-container">
     			<div class="password-input-wrapper">
-        			<input type="password" class="input" name="u_pw" id="u_pw" oninput="validateField('u_pw')" placeholder="비밀번호를 입력하시오">
+        			<input type="password" class="input" name="u_pw" id="u_pw" oninput="validateField('u_pw')" placeholder="비밀번호를 입력하시오" maxlength=20>
         			<button type="button" id="togglePw" onclick="togglePassword('u_pw', 'togglePw')">
           				<img src="${pageContext.request.contextPath}/resources/img/open.png" id="toggleImg" alt="보기">
         			</button>
@@ -42,19 +43,19 @@
             <%-- src="${pageContext.request.contextPath}/resources/img/open.png" --%>
             
          	
-         	<input type="password" class="input" name="u_pw_check" oninput="validateField('u_pw_check')" placeholder="비밀번호를 한번 더 입력하시오"><br>
+         	<input type="password" class="input" name="u_pw_check" oninput="validateField('u_pw_check')" placeholder="비밀번호를 한번 더 입력하시오" maxlength=20><br>
          	<span id="u_pw_check-error" class="error-message"></span><br> 
         
 			
-			<input type="text" class="input" name="u_nickname" oninput="validateField('u_nickname')" placeholder="별명을 입력하시오"><br>
+			<input type="text" class="input" name="u_nickname" oninput="validateField('u_nickname')" placeholder="별명을 입력하시오" maxlength=10><br>
             <span id="u_nickname-error" class="error-message"></span><br>
           
 			
-			<input type="text" class="input" name="u_name" oninput="validateField('u_name')" placeholder="이름을 입력하시오"><br>
+			<input type="text" class="input" name="u_name" oninput="validateField('u_name')" placeholder="이름을 입력하시오" maxlength=10><br>
            	<span id="u_name-error" class="error-message"></span><br><br>
            
 			
-			남자<input type="radio" name="u_gender" class="u_gender" value="남성" oninput="validateField('u_gender')">
+			남자<input type="radio" name="u_gender" class="u_gender" value="남성" oninput="validateField('u_gender')" checked>
           	여자<input type="radio" name="u_gender" class="u_gender" value="여성" oninput="validateField('u_gender')"><br><br>
      		<span id="u_gender-error" class="error-message"></span><br>
      		
@@ -63,7 +64,7 @@
             <span id="u_birthday-error" class="error-message"></span><br>
 	      
 	       	
-	       	<input type="text" class="input" name="email" id="email" oninput="validateField('email')"placeholder="이메일을 입력하시오">
+	       	<input type="text" class="input" name="email" id="email" oninput="validateField('email')"placeholder="이메일을 입력하시오" maxlength=15>
             <label> @ </label>
             <select class="input" name="select" id="select">
                 <option value="naver.com">naver.com</option>
@@ -73,7 +74,7 @@
             <span id="email-error" class="error-message"></span><br>
             
 	      	
-	      	<input type="text" class="input" name="phoneNumber1" id="phoneNumber" maxlength="3" placeholder="010"> - 
+	      	<input type="text" class="input" name="phoneNumber1" id="phoneNumber" maxlength="3" placeholder="010" value="010"> - 
 	      	<input class="input" type="text" name="phoneNumber2" id="phoneNumber" maxlength="4"> - 
 	      	<input class="input" type="text" name="phoneNumber3" id="phoneNumber" maxlength="4" oninput="validateField('phoneNumber3')"><br>
             <span id="phoneNumber3-error" class="error-message"></span><br>

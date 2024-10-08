@@ -31,13 +31,13 @@
 			<div class="find-box-container">
 				<div class="find-box" onclick="selectBox(this)">
 					<a href="#" onclick="reg_type_select('email'); return false;"> 
-						<img src="${pageContext.request.contextPath}/resources/img/free-icon-email.png"
+						<img src="${pageContext.request.contextPath}/resources/img/icons8-email.png"
 						alt="" style="width: 40px; height: auto;"> 이메일 확인
 					</a>
 				</div>
 				<div class="find-box" onclick="selectBox(this)">
 					<a href="#" onclick="reg_type_select('pcs'); return false;"> 
-						<img src="${pageContext.request.contextPath}/resources/img/free-icon-phone.png"
+						<img src="${pageContext.request.contextPath}/resources/img/icons8-phone.png"
 						alt="" style="width: 40px; height: auto;"> 휴대폰 확인
 					</a>
 				</div>

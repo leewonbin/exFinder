@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +22,7 @@
 <!-- jQuery -->
 <script src="${pageContext.request.contextPath}/resources/js/alram.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/headerAlram.js"></script>
+
 </head>
 <body>
 	<c:if test="${sessionScope.dto ne null}">
@@ -42,6 +46,9 @@
 					<li class="alram" onclick="toggleAlram()">알림</li>
 
 					<li onclick="location.href='/ex/board/listAll'">게시판</li>
+					<sec:authorize access="hasAnyRole('ADMIN')">
+						<li onclick="location.href='/ex/admin/admin'">관리자</li>
+					</sec:authorize>
 				</ul>
 			</div>
 			<div class="header_center">
@@ -124,7 +131,6 @@
 
 			<button type="button" class="mini_myPage_button" onclick="location.href='/ex/user/myInfo'" >
 				설정<img src="${pageContext.request.contextPath}/resources/img/Nsetup1.png">
-
 			</button>
 		</div>
 	</div>

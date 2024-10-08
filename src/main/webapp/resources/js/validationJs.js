@@ -1,26 +1,36 @@
-    function id_check() {
-        $.ajax({
-            url: "/ex/user/id_duplicate_check",
-            type: "POST",
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",  // 폼 데이터 형식
-            data: { "u_id": $("#u_id").val() },  // 쿼리 파라미터 형식으로 데이터 전송
-            success: function(data) {
-                // 문자열 "true" 또는 "false"를 반환 받음
-                if (data === "true") {
-                    //alert("중복된 아이디입니다.");
-                    $("#idChk").text("중복된 아이디입니다.").css("color", "red");  // idChk div에 텍스트 추가
-                } else {
-                    //alert("사용 가능한 아이디입니다.");
-                    $("#idChk").text("사용 가능한 아이디입니다.").css("color", "green");  // idChk div에 텍스트 추가
-                }
-            },
-            error: function() {
-                alert("서버 오류 발생");
-            }
-        });
-    }
+function id_check() {
+	$.ajax({
+		url : "/ex/user/id_duplicate_check",
+		type : "POST",
+		contentType : "application/x-www-form-urlencoded; charset=UTF-8", // 폼
+																			// 데이터
+																			// 형식
+		data : {
+			"u_id" : $("#u_id").val()
+		}, // 쿼리 파라미터 형식으로 데이터 전송
+		success : function(data) {
+			// 문자열 "true" 또는 "false"를 반환 받음
+			if (data === "true") {
+				// alert("중복된 아이디입니다.");
+				$("#idChk").text("중복된 아이디입니다.").css("color", "red"); // idChk
+																		// div에
+																		// 텍스트
+																		// 추가
+			} else {
+				// alert("사용 가능한 아이디입니다.");
+				$("#idChk").text("사용 가능한 아이디입니다.").css("color", "green"); // idChk
+																			// div에
+																			// 텍스트
+																			// 추가
+			}
+		},
+		error : function() {
+			alert("서버 오류 발생");
+		}
+	});
+}
 
-//주소검색
+// 주소검색
 function sample4_execDaumPostcode() {
 	new daum.Postcode({
 		oncomplete : function(data) {
@@ -45,19 +55,21 @@ function sample4_execDaumPostcode() {
 
 // 비밀번호 가리기/보기 기능
 function togglePassword(fieldId, buttonId) {
-    const passwordField = document.getElementById(fieldId);
-    const toggleImg = document.getElementById('toggleImg');
-    /*const contextPath = '${pageContext.request.contextPath}';*/
-    
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-        toggleImg.src = contextPath + "/resources/img/close.png"; // 비밀번호가 보일 때 이미지
-        toggleImg.alt = "가리기";
-    } else {
-        passwordField.type = "password";
-        toggleImg.src = contextPath + "/resources/img/open.png"; // 비밀번호가 가려질 때 이미지
-        toggleImg.alt = "보기";
-    }
+	const passwordField = document.getElementById(fieldId);
+	const toggleImg = document.getElementById('toggleImg');
+	/* const contextPath = '${pageContext.request.contextPath}'; */
+
+	if (passwordField.type === "password") {
+		passwordField.type = "text";
+		toggleImg.src = contextPath + "/resources/img/close.png"; // 비밀번호가 보일
+																	// 때 이미지
+		toggleImg.alt = "가리기";
+	} else {
+		passwordField.type = "password";
+		toggleImg.src = contextPath + "/resources/img/open.png"; // 비밀번호가 가려질
+																	// 때 이미지
+		toggleImg.alt = "보기";
+	}
 }
 
 function validateField(fieldName) {
@@ -94,15 +106,17 @@ function validateField(fieldName) {
 
 	if (fieldName === 'u_pw_check') {
 		const pw = document.forms["signupForm"]["u_pw"].value;
-		if (value !== pw) {
-			errorSpan.textContent = "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
-			errorSpan.classList.remove('correct-message');
-			errorSpan.classList.add('error-message');
-			isValid = false;
-		} else {
-			errorSpan.textContent = "비밀번호가 일치합니다"
-			errorSpan.classList.remove('error-message');
-			errorSpan.classList.add('correct-message');
+		if (pw !== "") {
+			if (value !== pw) {
+				errorSpan.textContent = "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
+				errorSpan.classList.remove('correct-message');
+				errorSpan.classList.add('error-message');
+				isValid = false;
+			} else {
+				errorSpan.textContent = "비밀번호가 일치합니다"
+				errorSpan.classList.remove('error-message');
+				errorSpan.classList.add('correct-message');
+			}
 		}
 	}
 
