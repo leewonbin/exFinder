@@ -42,6 +42,7 @@ public class FileUtil {
             // 톰캣 경로를 제외한 경로 계산
             String relativeToTomcatPath = basePath.substring(tomcatPath.length());
             baseDirectory = new File(relativeToTomcatPath);
+            System.out.println("tomcatPath 제외");
         }
 
         return baseDirectory.getPath(); // 올바른 경로 반환
