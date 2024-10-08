@@ -16,7 +16,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/exchangeUpdate.js"></script>
 	<script>
 	document.addEventListener("DOMContentLoaded", function () {
-	    const rowsPerPage = 6; // 한 페이지에 보여줄 행 수
+	    const rowsPerPage = 8; // 한 페이지에 보여줄 행 수
 	    let currentBoardPage = 1;
 	    const boardRows = document.querySelectorAll("#boardBody tr"); // 모든 데이터 행
 
@@ -246,7 +246,7 @@
 				        </thead>
 				        <tbody>
 				            <c:forEach var="auth" items="${authorityList}">
-				                <tr>
+				                <tr class="auth">
 				                    <td>${auth.u_id}</td>
 				                    <td>
 				                    	<form action="${pageContext.request.contextPath}/admin/updateAuthority" method="post">
