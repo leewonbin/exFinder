@@ -13,6 +13,103 @@
 	<script src="${pageContext.request.contextPath}/resources/js/admin.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/exchangeUpdate.js"></script>
+	<script>
+	document.addEventListener("DOMContentLoaded", function () {
+	    const rowsPerPage = 6; // 한 페이지에 보여줄 행 수
+	    let currentBoardPage = 1;
+	    const boardRows = document.querySelectorAll("#boardBody tr"); // 모든 데이터 행
+
+	    // 전체 페이지 수 계산
+	    const totalBoardPages = Math.ceil(boardRows.length / rowsPerPage);
+
+	    function displayBoardTable(page) {
+	        const start = (page - 1) * rowsPerPage;
+	        const end = start + rowsPerPage;
+
+	        // 테이블 행을 모두 숨긴 후 해당 페이지의 행만 보이게 함
+	        boardRows.forEach((row, index) => {
+	            row.style.display = (index >= start && index < end) ? "" : "none";
+	        });
+
+	        // 페이지 버튼 동적 생성
+	        createBoardPageButtons();
+
+	        // 버튼 상태 업데이트
+	        document.getElementById('boardPrev').disabled = (page === 1);
+	        document.getElementById('boardFirst').disabled = (page === 1);
+	        document.getElementById('boardNext').disabled = (page === totalBoardPages);
+	        document.getElementById('boardLast').disabled = (page === totalBoardPages);
+
+	        // 버튼 보이기/숨기기
+	        document.getElementById('boardFirst').style.display = (page === 1) ? 'none' : 'inline-block';
+	        document.getElementById('boardPrev').style.display = (page === 1) ? 'none' : 'inline-block';
+	        document.getElementById('boardNext').style.display = (page === totalBoardPages) ? 'none' : 'inline-block';
+	        document.getElementById('boardLast').style.display = (page === totalBoardPages) ? 'none' : 'inline-block';
+	    }
+
+	    // 페이지 번호 버튼을 동적으로 생성하는 함수
+	    function createBoardPageButtons() {
+	        const boardPageButtonsDiv = document.getElementById("boardPageButtons");
+	        boardPageButtonsDiv.innerHTML = ""; // 기존 버튼들을 모두 제거
+
+	        const groupSize = 10; // 그룹당 버튼 수
+	        const currentGroup = Math.ceil(currentBoardPage / groupSize);
+	        const startPage = (currentGroup - 1) * groupSize + 1;
+	        const endPage = Math.min(startPage + groupSize - 1, totalBoardPages);
+
+	        // 버튼 생성
+	        for (let i = startPage; i <= endPage; i++) {
+	            const pageButton = document.createElement("button");
+	            pageButton.textContent = i;
+	            pageButton.classList.add("page-btn");
+
+	            if (i === currentBoardPage) {
+	                pageButton.classList.add("active");
+	            }
+
+	            // 페이지 버튼 클릭 이벤트
+	            pageButton.addEventListener("click", function () {
+	                currentBoardPage = i;
+	                displayBoardTable(currentBoardPage);
+	            });
+
+	            boardPageButtonsDiv.appendChild(pageButton);
+	        }
+	    }
+
+	    // 이전 버튼 클릭 이벤트
+	    document.getElementById('boardPrev').addEventListener('click', function () {
+	        if (currentBoardPage > 1) {
+	            currentBoardPage--;
+	            displayBoardTable(currentBoardPage);
+	        }
+	    });
+
+	    // 다음 버튼 클릭 이벤트
+	    document.getElementById('boardNext').addEventListener('click', function () {
+	        if (currentBoardPage < totalBoardPages) {
+	            currentBoardPage++;
+	            displayBoardTable(currentBoardPage);
+	        }
+	    });
+
+	    // 첫 페이지 버튼 클릭 이벤트
+	    document.getElementById('boardFirst').addEventListener('click', function () {
+	        currentBoardPage = 1;
+	        displayBoardTable(currentBoardPage);
+	    });
+
+	    // 마지막 페이지 버튼 클릭 이벤트
+	    document.getElementById('boardLast').addEventListener('click', function () {
+	        currentBoardPage = totalBoardPages;
+	        displayBoardTable(currentBoardPage);
+	    });
+
+	    // 초기 테이블 및 버튼 표시
+	    displayBoardTable(currentBoardPage);
+	});
+
+	</script>
 </head>
 <style>
 </style>
@@ -46,7 +143,8 @@
 						<li><a href="#" onclick="reg_type_select('1'); return false;" id="profile-link">계정정보 관리</a></li>
         				<li><a href="#" onclick="reg_type_select('2'); return false;" id="info-link">계정권한 관리</a></li>
         				<li><a href="#" onclick="reg_type_select('3'); return false;" id="password-link">고객센터 관리</a></li>
-        				<li><a href="#" onclick="reg_type_select('4'); return false;" id="cancel-account">환율 업데이트</a></li>
+        				<li><a href="#" onclick="reg_type_select('4'); return false;" id="board-link">게시판 관리</a></li>
+        				<li><a href="#" onclick="reg_type_select('5'); return false;" id="cancel-account">환율 업데이트</a></li>
 					</ul>
 				</div>
 				
@@ -207,12 +305,66 @@
 
 
 			</div>
+			<div class="my_info type_4" style="display: none; height: 550px;">
+				<h2 class="profile-title">게시판 관리</h2>
+					<table border="1" class="user-table" id="boardTable">
+					    <thead>
+					        <tr>
+					            <th>게시판 번호</th>
+					            <th>제목</th>
+					            <th>작성자</th>
+					            <th>활성화 여부</th>
+					            <th>게시글 삭제</th>
+					        </tr>
+					    </thead>
+					    <tbody id="boardBody">
+					        <!-- 게시판 목록 출력 -->
+					        <c:forEach var="board" items="${boardList}">
+					            <tr>
+					                <td>${board.b_id}</td>
+					                <td>${board.b_title}</td>
+					                <td>${board.u_id}</td>
+					                <td>
+					                    <form action="${pageContext.request.contextPath}/admin/updateBoardStatus" method="post">
+					                        <input type="hidden" name="b_id" value="${board.b_id}" />
+					                        <select name="b_del">
+					                            <option value="Y" <c:if test="${board.b_del == 'Y'}">selected</c:if>>Y</option>
+					                            <option value="N" <c:if test="${board.b_del == 'N'}">selected</c:if>>N</option>
+					                        </select>
+					                        <input type="submit" value="변경" />
+					                    </form>
+					                </td>
+					                <td>
+					                    <form action="${pageContext.request.contextPath}/admin/deleteBoardAdmin" method="post" style="display:inline;">
+					                        <input type="hidden" name="b_id" value="${board.b_id}" />
+					                        <input type="submit" value="삭제" onclick="return confirm('정말 삭제하시겠습니까?');" />
+					                    </form>
+					                </td>
+					            </tr>
+					        </c:forEach>
+					    </tbody>
+					</table>
+					
+					<div id="pagination">
+					    <button id="boardFirst" disabled>&laquo;</button>
+					    <button id="boardPrev" disabled>&lt;</button>
+					    <span id="boardPageInfo"></span>
+					    <div id="boardPageButtons"></div>
+					    <button id="boardNext">&gt;</button>
+					    <button id="boardLast">&raquo;</button>
+					</div>
+				    				
+								
+			</div>
 
-			<div class="my_info2 type_4" style="display: none; height: 550px;">
+			<div class="my_info2 type_5" style="display: none; height: 550px;">
 				<h2 class="profile-title">환율 업데이트</h2>
-					통화 1년치 내역 업데이트
-					<button class="update-btn">업데이트</button>
-					<p class="result_p"></p>
+					<div class="update-section">
+					    <p class="update-description">통화 1년치 내역 업데이트</p>
+					    <button class="update-btn">업데이트</button>
+					    <p class="result_p"></p>
+					</div>
+
 						
 					
 								

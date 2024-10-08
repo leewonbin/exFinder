@@ -4,6 +4,7 @@ function reg_type_select(type) {
 	document.querySelector('.type_2').style.display = 'none';
 	document.querySelector('.type_3').style.display = 'none';
 	document.querySelector('.type_4').style.display = 'none';
+	document.querySelector('.type_5').style.display = 'none';
 	
 
 	// 모든 링크에서 active 클래스를 제거
@@ -23,6 +24,9 @@ function reg_type_select(type) {
 		document.getElementById('password-link').classList.add('active');
 	} else if (type === '4') {
 		document.querySelector('.type_4').style.display = 'block';
+		document.getElementById('board-link').classList.add('active');
+	} else if (type === '5') {
+		document.querySelector('.type_5').style.display = 'block';
 		document.getElementById('cancel-account').classList.add('active');
 	}
 }

@@ -17,6 +17,10 @@ public interface AdminService {
 
 	public void updateUser(UserDto userDto) throws Exception;
 
+	public void updateBoardStatus(int b_id, String b_del) throws Exception;
+
+	public void deleteBoardAdmin(int b_id) throws Exception;
+
 
 	
 

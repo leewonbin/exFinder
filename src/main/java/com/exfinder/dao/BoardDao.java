@@ -21,5 +21,6 @@ public interface BoardDao {
 	
 	public List<BoardDto> getUserPosts(String u_id) throws Exception;
 	public int deletePostByUser(int b_id) throws Exception;
+	public List<BoardDto> adminBoardList() throws Exception;
 	
 }

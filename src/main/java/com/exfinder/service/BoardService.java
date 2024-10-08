@@ -19,4 +19,5 @@ public interface BoardService {
 	public int getTotalCountByCategory(BoardVo vo) throws Exception;	//카테고리 및 검색 조건에 따른 전체 게시글 수 조회
 	public List<BoardDto> getUserPosts(String u_id) throws Exception; //나의 게시판
 	public int deletePostByUser(int b_id) throws Exception;
+	public List<BoardDto> adminBoardList() throws Exception; //관리자 게시판
 }

@@ -58,6 +58,20 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
+	@Override
+	public void updateBoardStatus(int b_id, String b_del) throws Exception {
+		AdminDao dao = sqlSession.getMapper(AdminDao.class);
+		dao.updateBoardStatus(b_id, b_del);
+		
+	}
+
+	@Override
+	public void deleteBoardAdmin(int b_id) throws Exception {
+		AdminDao dao = sqlSession.getMapper(AdminDao.class);
+		dao.deleteBoardAdmin(b_id);
+		
+	}
+
 	
 	
 

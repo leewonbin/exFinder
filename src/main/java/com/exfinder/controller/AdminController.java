@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.exfinder.dto.AuthoritiesDto;
+import com.exfinder.dto.BoardDto;
 import com.exfinder.dto.CsDto;
 import com.exfinder.dto.UserDto;
 import com.exfinder.service.AdminService;
+import com.exfinder.service.BoardService;
 import com.exfinder.service.CsService;
 import com.exfinder.service.UserService;
 
@@ -38,6 +40,10 @@ public class AdminController {
 	@Autowired
 	private CsService service;
 
+	@Autowired
+	private BoardService boardService;
+
+
 	@RequestMapping(value = "/admin/admin", method = RequestMethod.GET)
 	public String admin(Model model,HttpSession session) throws Exception {
 		String userid = (String)session.getAttribute("userId");
@@ -51,6 +57,13 @@ public class AdminController {
 	    
 	    List<CsDto> list = service.listAll(); 
 	    model.addAttribute("list", list);
+	    
+	    // 게시판 목록을 가져오는 서비스 호출 (BoardService 사용)
+        List<BoardDto> boardList = boardService.adminBoardList();
+        
+        // 가져온 목록을 모델에 추가하여 뷰로 전달
+        model.addAttribute("boardList", boardList);
+        
 		return "/admin/admin";
 	}
 	
@@ -91,8 +104,31 @@ public class AdminController {
         }
         return "redirect:/admin/admin";
     }
-    
-    
+    @RequestMapping(value = "/admin/updateBoardStatus", method = RequestMethod.POST)
+    public String updateBoardStatus(@RequestParam("b_id") int b_id,@RequestParam String b_del,RedirectAttributes redirectAttributes) throws Exception {
+    	try {
+            adminService.updateBoardStatus(b_id,b_del);
+            redirectAttributes.addFlashAttribute("message", "상태변경 성공!");
+        } catch (Exception e) {
+            logger.error("Error updating status", e);	
+            redirectAttributes.addFlashAttribute("error", "상태변경 실패.");
+        }
+        
+        // 관리자 게시판 목록을 보여줄 뷰 이름 리턴 (예: adminBoardList.jsp)
+        return "redirect:/admin/admin";
+    }
+    @RequestMapping(value = "/admin/deleteBoardAdmin", method = RequestMethod.POST)
+    public String deleteBoardAdmin(@RequestParam("b_id") int b_id,RedirectAttributes redirectAttributes) throws Exception  {
+    	try {
+            // 게시물 삭제 서비스 호출
+            adminService.deleteBoardAdmin(b_id);
+            redirectAttributes.addFlashAttribute("message", "게시물 삭제 성공!");
+        } catch (Exception e) {
+            logger.error("게시물 삭제 실패", e);
+            redirectAttributes.addFlashAttribute("error", "게시물 삭제 실패.");
+        }
+        return "redirect:/admin/admin";  // 게시판 목록으로 리다이렉트
+    }
 }
     
 
