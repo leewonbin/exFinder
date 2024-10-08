@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link rel="icon" href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico" type="image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/join.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

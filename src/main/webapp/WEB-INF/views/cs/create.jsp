@@ -10,7 +10,8 @@
 <meta charset="UTF-8">
 <meta name="logout-status"
 	content="${sessionScope.userId == null ? 'logged-out' : 'logged-in'}">
-<title>ExFinder</title>
+<title>FAQ-작성</title>
+<link rel="icon" href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico" type="image/x-icon">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/csCreate.css">
 </head>

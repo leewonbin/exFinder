@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>알림내역</title>
+<title>알림 관리</title>
+<link rel="icon" href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css"
     href="${pageContext.request.contextPath}/resources/css/notificationList.css">
     
@@ -46,7 +47,7 @@
 <%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
 
 <div id="board">
-    <h1>알림내역</h1>
+    <h1>알림 관리</h1>
     
     <!-- 나의 게시글 목록 -->
     <ul id="myPosts" class="board-list">

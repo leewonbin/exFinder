@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>ExFinder</title>
+<title>환율 상세페이지</title>
+<link rel="icon" href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico" type="image/x-icon">
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <!-- google charts -->

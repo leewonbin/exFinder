@@ -59,3 +59,7 @@
 .answer-container .answer-label {
     font-weight: bold;
 }
+
+.qna-container {
+	margin-bottom: 80px;
+}

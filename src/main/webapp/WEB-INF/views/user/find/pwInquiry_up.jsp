@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>비밀번호 찾기</title>
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/find.css">
 	
 	<style>

@@ -8,8 +8,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>ExFinder</title>
-
+    <title>게시판</title>
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/boardRead.css">
     <script src="${pageContext.request.contextPath}/resources/js/boardRead.js"></script>

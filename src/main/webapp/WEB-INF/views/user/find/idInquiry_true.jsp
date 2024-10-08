@@ -7,6 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>아이디 조회 결과</title>
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/find.css">
 	
 </head>
