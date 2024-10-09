@@ -107,7 +107,7 @@ FETCH NEXT #{perPageNum} ROWS ONLY
     
      <!-- 모든 게시판 목록을 조회하는 SQL 쿼리 -->
     <select id="adminBoardList" resultType="com.exfinder.dto.BoardDto">
-        select * from board
+        select * from board ORDER BY b_id DESC
     </select>
     
     
