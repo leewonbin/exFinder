@@ -12,105 +12,13 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin.css">
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/admin.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/admin_board.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/admin_cs.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/admin_auth.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/admin_users.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/exchangeUpdate.js"></script>
-	<script>
-	document.addEventListener("DOMContentLoaded", function () {
-	    const rowsPerPage = 8; // 한 페이지에 보여줄 행 수
-	    let currentBoardPage = 1;
-	    const boardRows = document.querySelectorAll("#boardBody tr"); // 모든 데이터 행
-
-	    // 전체 페이지 수 계산
-	    const totalBoardPages = Math.ceil(boardRows.length / rowsPerPage);
-
-	    function displayBoardTable(page) {
-	        const start = (page - 1) * rowsPerPage;
-	        const end = start + rowsPerPage;
-
-	        // 테이블 행을 모두 숨긴 후 해당 페이지의 행만 보이게 함
-	        boardRows.forEach((row, index) => {
-	            row.style.display = (index >= start && index < end) ? "" : "none";
-	        });
-
-	        // 페이지 버튼 동적 생성
-	        createBoardPageButtons();
-
-	        // 버튼 상태 업데이트
-	        document.getElementById('boardPrev').disabled = (page === 1);
-	        document.getElementById('boardFirst').disabled = (page === 1);
-	        document.getElementById('boardNext').disabled = (page === totalBoardPages);
-	        document.getElementById('boardLast').disabled = (page === totalBoardPages);
-
-	        // 버튼 보이기/숨기기
-	        document.getElementById('boardFirst').style.display = (page === 1) ? 'none' : 'inline-block';
-	        document.getElementById('boardPrev').style.display = (page === 1) ? 'none' : 'inline-block';
-	        document.getElementById('boardNext').style.display = (page === totalBoardPages) ? 'none' : 'inline-block';
-	        document.getElementById('boardLast').style.display = (page === totalBoardPages) ? 'none' : 'inline-block';
-	    }
-
-	    // 페이지 번호 버튼을 동적으로 생성하는 함수
-	    function createBoardPageButtons() {
-	        const boardPageButtonsDiv = document.getElementById("boardPageButtons");
-	        boardPageButtonsDiv.innerHTML = ""; // 기존 버튼들을 모두 제거
-
-	        const groupSize = 10; // 그룹당 버튼 수
-	        const currentGroup = Math.ceil(currentBoardPage / groupSize);
-	        const startPage = (currentGroup - 1) * groupSize + 1;
-	        const endPage = Math.min(startPage + groupSize - 1, totalBoardPages);
-
-	        // 버튼 생성
-	        for (let i = startPage; i <= endPage; i++) {
-	            const pageButton = document.createElement("button");
-	            pageButton.textContent = i;
-	            pageButton.classList.add("page-btn");
-
-	            if (i === currentBoardPage) {
-	                pageButton.classList.add("active");
-	            }
-
-	            // 페이지 버튼 클릭 이벤트
-	            pageButton.addEventListener("click", function () {
-	                currentBoardPage = i;
-	                displayBoardTable(currentBoardPage);
-	            });
-
-	            boardPageButtonsDiv.appendChild(pageButton);
-	        }
-	    }
-
-	    // 이전 버튼 클릭 이벤트
-	    document.getElementById('boardPrev').addEventListener('click', function () {
-	        if (currentBoardPage > 1) {
-	            currentBoardPage--;
-	            displayBoardTable(currentBoardPage);
-	        }
-	    });
-
-	    // 다음 버튼 클릭 이벤트
-	    document.getElementById('boardNext').addEventListener('click', function () {
-	        if (currentBoardPage < totalBoardPages) {
-	            currentBoardPage++;
-	            displayBoardTable(currentBoardPage);
-	        }
-	    });
-
-	    // 첫 페이지 버튼 클릭 이벤트
-	    document.getElementById('boardFirst').addEventListener('click', function () {
-	        currentBoardPage = 1;
-	        displayBoardTable(currentBoardPage);
-	    });
-
-	    // 마지막 페이지 버튼 클릭 이벤트
-	    document.getElementById('boardLast').addEventListener('click', function () {
-	        currentBoardPage = totalBoardPages;
-	        displayBoardTable(currentBoardPage);
-	    });
-
-	    // 초기 테이블 및 버튼 표시
-	    displayBoardTable(currentBoardPage);
-	});
-
-	</script>
+	
 </head>
 <style>
 </style>
@@ -156,11 +64,11 @@
 	</div>
 	<div id="right_main">
 		<div class="right_menu">
-			<div class="my_info type_1">
+			<div class="my_info type_1" style= "height: auto;">
 				<h2 class="profile-title">계정 목록</h2>
 				<form id="updateForm"
 					action="${pageContext.request.contextPath}/admin/updateUser"
-					method="post" style="display: none;">
+					method="post" style="display: none; ">
 					<input type="hidden" name="u_id" id="u_id"> 
 					<input type="hidden" name="u_nickname" id="u_nickname"> 
 					<input type="hidden" name="u_name" id="u_name"> 
@@ -172,7 +80,7 @@
 				</form>
 
 				<!-- 기존 테이블 코드 유지 -->
-				<table class="user-table">
+				<table class="user-table" id="users-table">
 					<thead>
 						<tr>
 							<th>아이디</th>
@@ -232,22 +140,30 @@
 						</c:forEach>
 					</tbody>
 				</table>
+			<!-- 페이징 버튼 -->
+					<div id="pagination">
+					    <button id="firstUsers">&laquo;</button>
+					    <button id="prevUsers">&lt;</button>
+					    <span id="pageUsersNumbers"></span>
+					    <button id="nextUsersPage">&gt;</button>
+					    <button id="lastUsersPage">&raquo;</button>
+					</div>
 			</div>
 		
-				<div class="my_info type_2" style="display: none;">
+				<div class="my_info type_2" style="display: none; height: auto;">
 				    <h2 class="profile-title">계정 권한</h2>
-				    <table class="user-table">
+				    <table class="user-table" id="auth-table">
 				        <thead>
 				            <tr>
-				                <th>아이디</th>
-				                <th>권한</th>
-				                <th>작업</th>
+				                <th style="width:200px">아이디</th>
+				                <th style="width:150px">권한</th>
+				                <th style="width:100px">작업</th>
 				            </tr>
 				        </thead>
 				        <tbody>
 				            <c:forEach var="auth" items="${authorityList}">
 				                <tr class="auth">
-				                    <td>${auth.u_id}</td>
+				                    <td style="font-size:20px; font-weight:700px;">${auth.u_id}</td>
 				                    <td>
 				                    	<form action="${pageContext.request.contextPath}/admin/updateAuthority" method="post">
 				                            <input type="hidden" name="u_id" value="${auth.u_id}" />
@@ -262,18 +178,27 @@
 				            </c:forEach>
 				        </tbody>
 				    </table>
+				    <!-- 페이징 버튼 -->
+					<div id="pagination">
+					    <button id="firstAuth">&laquo;</button>
+					    <button id="prevAuth">&lt;</button>
+					    <span id="pageAuthNumbers"></span>
+					    <button id="nextAuthPage">&gt;</button>
+					    <button id="lastAuthPage">&raquo;</button>
+					</div>
+				    
 				</div>
 
-			<div class="my_info type_3" style="display: none;">
+			<div class="my_info type_3" style="display: none; height:auto;" >
 				<h2 class="profile-title">고객센터</h2>
 					<div class="content">
 						<table id="cs" class="user-table">
 							<thead>
 								<tr>
-									<th style="width: 20px;">NO.</th>
-									<th style="width: 200px;">제목</th>
-									<th style="width: 30px;">관리자ID</th>
-									<th style="width: 30px;">글 상태</th>
+									<th style="width:100px;">NO.</th>
+									<th style="width:300px;">제목</th>
+									<th style="width:100px;">관리자ID</th>
+									<th style="width:200px;">글 상태</th>
 	
 								</tr>
 							</thead>
@@ -301,21 +226,32 @@
 					</div>
 	
 					<div class="box-footer">
-						<button type="submit" class="writeBtn"onclick="location.href='/ex/cs/create'">글쓰기</button>
+					    <button type="submit" class="writeBtn" onclick="location.href='/ex/cs/create'">글쓰기</button>
+					</div>
+					
+					<!-- 페이징 버튼 -->
+					<div id="pagination">
+					    <button id="firstPage">&laquo;</button>
+					    <button id="prevPage">&lt;</button>
+					    <span id="pageNumbers"></span>
+					    <button id="nextPage">&gt;</button>
+					    <button id="lastPage">&raquo;</button>
 					</div>
 
+					
+					
 
 			</div>
-			<div class="my_info type_4" style="display: none; height: 550px;">
+			<div class="my_info type_4" style="display: none; height: auto;">
 				<h2 class="profile-title">게시판 관리</h2>
 					<table border="1" class="user-table" id="boardTable">
 					    <thead>
 					        <tr>
-					            <th>게시판 번호</th>
-					            <th>제목</th>
-					            <th>작성자</th>
-					            <th>활성화 여부</th>
-					            <th>게시글 삭제</th>
+					            <th style="width:100px;">게시판 번호</th>
+					            <th style="width:300px;">제목</th>
+					            <th style="width:100px;">작성자</th>
+					            <th style="width:100px;">활성화 여부</th>
+					            <th style="width:50px;">게시글 삭제</th>
 					        </tr>
 					    </thead>
 					    <tbody id="boardBody">
@@ -346,15 +282,14 @@
 					    </tbody>
 					</table>
 					
-					<div id="pagination">
-					    <button id="boardFirst" disabled>&laquo;</button>
-					    <button id="boardPrev" disabled>&lt;</button>
-					    <span id="boardPageInfo"></span>
-					    <div id="boardPageButtons"></div>
-					    <button id="boardNext">&gt;</button>
-					    <button id="boardLast">&raquo;</button>
-					</div>
-				    				
+			<!-- 페이징 버튼 -->
+			    <div id="pagination">
+			        <button id="boardFirst" disabled>&laquo;</button>
+			        <button id="boardPrev" disabled>&lt;</button>
+			        <div id="boardPageButtons"></div>
+			        <button id="boardNext">&gt;</button>
+			        <button id="boardLast">&raquo;</button>
+			    </div>				    				
 								
 			</div>
 

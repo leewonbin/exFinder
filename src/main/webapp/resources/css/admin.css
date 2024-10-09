@@ -312,18 +312,18 @@ input[type="submit"] {
 }
 .writeBtn{
 	
-    margin-left: 10px; /* 버튼들 사이에 여백 추가 */
+    /* margin-left: 10px; */ /* 버튼들 사이에 여백 추가 */
     width: 80px;
     height: 35px;
-    margin: 0 5px;
+    /* margin: 0 5px; */
     background-color: #05203C;
     color: white;
     font-size: 15px;
     cursor: pointer;
     border: none;
     border-radius: 5px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	/* margin-top: 30px; */
+	/* margin-bottom: 10px; */
 	
 }
 
@@ -492,16 +492,6 @@ input[type="submit"] {
     font-size: 16px; /* 체크박스가 체크된 상태에서 라벨의 글씨 크기 */
 }
 
- .type_1,
-.type_2,
-.type_3{
-	height: 500px;
-	overflow-y: auto; /* 세로 스크롤을 활성화 */
-	position: sticky;
-    top: 0;
-    background-color: #f8f8f8; /* 헤더가 스크롤 시 고정되도록 설정 */
-    z-index: 1;
-}
 
 /* .auth{
 	height: 100px;
@@ -530,23 +520,23 @@ input[type="submit"] {
     z-index: 1;
 }
  */
-#pagination {
+/* #pagination {
     display: flex;
-    justify-content: center; /* 가로 중앙 정렬 */
-    align-items: center;     /* 세로 정렬 */
+    justify-content: center; 가로 중앙 정렬
+    align-items: center;     세로 정렬
     margin-top: 60px;
 }
 
 #pagination button {
-    display: inline-block;   /* 인라인 블록 요소 */
+    display: inline-block;   인라인 블록 요소
     color: black; 
     background-color: white;
     font-size: 15px;
-    padding: 0;             /* 패딩 제거 */
-    margin: 0 1px;         /* 버튼 간 간격 */
+    padding: 0;             패딩 제거
+    margin: 0 1px;         버튼 간 간격
     width: 40px;
     height: 40px;
-    line-height: 40px;     /* 텍스트 수직 중앙 정렬 (버튼 높이와 동일) */
+    line-height: 40px;     텍스트 수직 중앙 정렬 (버튼 높이와 동일)
     text-align: center;
     border: none;
     cursor: pointer;
@@ -560,9 +550,55 @@ input[type="submit"] {
 #pagination button:disabled {
     background-color: #f0f0f0;
     color: #a0a0a0;
-    cursor: not-allowed; /* 비활성화 상태의 포인터 */
+    cursor: not-allowed; 비활성화 상태의 포인터
+}
+ */
+ 
+ #pagination {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center;     /* 세로 정렬 */
+    margin-top: 40px;        /* 위쪽 여백 */
+    gap: 5px;                /* 버튼 간의 간격 */
 }
 
+#pagination button {
+    display: inline-block;   /* 인라인 블록 요소 */
+    color: #333;             /* 기본 글자색 */
+    background-color: #f8f9fa; /* 연한 배경색 */
+    font-size: 15px;         /* 폰트 크기 */
+    padding: 8px 12px;       /* 적당한 패딩 */
+    margin: 0 2px;           /* 버튼 간 간격 */
+    border-radius: 4px;      /* 둥근 모서리 */
+    border: 1px solid #dee2e6; /* 버튼 테두리 */
+    cursor: pointer;         /* 클릭 가능한 포인터 */
+    transition: background-color 0.3s ease, color 0.3s ease; /* 애니메이션 */
+}
+
+#pagination button:hover {
+    background-color: #05203C; /* 호버 시 파란색 배경 */
+    color: white;              /* 글자색을 흰색으로 변경 */
+}
+
+#pagination button:disabled {
+    background-color: #e9ecef;  /* 비활성화 시 연한 회색 */
+    color: #adb5bd;             /* 비활성화된 글자색 */
+    border: 1px solid #ced4da;  /* 테두리 색 변경 */
+    cursor: not-allowed;        /* 비활성화된 버튼의 포인터 */
+}
+
+#pagination button:active {
+    background-color: #0056b3;  /* 클릭 시 더 짙은 파란색 */
+    color: white;
+}
+
+#pagination .current-page {
+    font-weight: bold;          /* 현재 페이지는 굵게 표시 */
+    background-color: #007bff;  /* 파란 배경 */
+    color: white;               /* 흰색 글자 */
+    border: 1px solid #007bff;  /* 파란 테두리 */
+}
+ 
 .update-section {
     background-color: #f1f1f1; /* 배경색 */
     border: 1px solid #dcdcdc; /* 테두리 */
