@@ -66,7 +66,7 @@
 								<c:choose>
 									<c:when test="${not empty dto.u_profile_img}">
 										<img
-											src="${pageContext.request.contextPath}/resources/profile_img/${dto.u_profile_img}"
+											src="${pageContext.request.contextPath}/../exFinder_server/profile_img/${dto.u_profile_img}"
 											onerror="this.src='${pageContext.request.contextPath}/resources/img/Wuser.png';"
 											onclick="location.href='/ex/user/myPage'">
 									</c:when>

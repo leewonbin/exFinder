@@ -240,7 +240,7 @@ public class UserController {
 		UserDto currentUser = userService.selectUser(u_id);
 		String oldImgPath = currentUser.getU_profile_img();
 
-		String user_Img = FileUtil.updateImg(mpRequest, oldImgPath, servletContext);
+		String user_Img = FileUtil.updateImg(u_id, mpRequest, oldImgPath, servletContext);
 		dto.setU_profile_img(user_Img);
 		userService.updateImg(user_Img, u_id);
 

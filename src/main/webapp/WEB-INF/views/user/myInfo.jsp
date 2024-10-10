@@ -27,7 +27,7 @@
 				<c:choose>
     				<c:when test="${not empty sessionScope.dto.u_profile_img}">
     					<div class="menu_user_container">
-        					<img class="menu_user" src="${pageContext.request.contextPath}/resources/profile_img/${sessionScope.dto.u_profile_img}" 
+        					<img class="menu_user" src="${pageContext.request.contextPath}/../exFinder_server/profile_img/${dto.u_profile_img}"
         					onerror="this.src='${pageContext.request.contextPath}/resources/img/user.png';"
         					onclick="reg_type_select('img'); return false;" id="profile_img"  >
         					<img class="menu_user_change" src="${pageContext.request.contextPath}/resources/img/Bsetup.png"

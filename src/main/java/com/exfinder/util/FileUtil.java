@@ -14,37 +14,29 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public class FileUtil {
-	// private static final String filePath = "C:\\Users\\tj-bu-702-10\\Desktop\\exFinder\\src\\main\\webapp\\resources\\profile_img\\"; // 파일이 저장될 위치
-/*
-    private static final String projectName = "exFinder";
-    private static final String relativePath = "src/main/webapp/resources/profile_img/";
 
-    private static String getBaseFilePath() {
-        // 현재 작업 디렉토리에서 프로젝트 이름을 기준으로 경로를 찾기
-        Path baseDir = Paths.get(System.getProperty("user.dir")).getParent().getParent(); // src/main 밑으로 올라감
-        return baseDir.resolve(projectName).resolve(relativePath).toString();
-    }
-    private static final String filePath = getBaseFilePath();
-*/
-    
-    private static final String projectName = "exFinder";
-
-    private static final String relativePath = "resources/profile_img/";
-    
     public static String getBaseFilePath(ServletContext context) {
-        // 현재 프로젝트의 기본 경로
-        String basePath = context.getRealPath("/"); // 톰캣의 실제 경로를 가져옴
-        String imagePath = basePath + relativePath; // 최종 경로 결합
-
-        File baseDirectory = new File(imagePath);
+        // 톰캣의 webapps 디렉토리 경로를 가져옴
+        String basePath = context.getRealPath("/"); // 현재 애플리케이션(exFinder)의 루트
+        // wtpwebapps를 webapps로 변경
+        String imagePath = basePath.replace("wtpwebapps", "webapps").replace("exFinder\\", "exFinder_server\\") + "profile_img/";
         
-        return baseDirectory.getPath(); // 올바른 경로 반환
+        // 디버그 로그
+        System.out.println("imagePath : " + imagePath);
+        File baseDirectory = new File(imagePath);
+
+        // 이미지 경로가 존재하지 않으면 생성
+        if (!baseDirectory.exists()) {
+            baseDirectory.mkdirs(); // 디렉토리가 존재하지 않으면 생성
+        }
+
+        return baseDirectory.getPath();
     }
 
-
     
-    public static String updateImg(MultipartHttpServletRequest mpRequest, String oldImgPath, ServletContext context) throws Exception {
-        String filePath = getBaseFilePath(context); // 파일 저장 경로
+    public static String updateImg(String u_id, MultipartHttpServletRequest mpRequest, String oldImgPath, ServletContext context) throws Exception {
+        
+		String filePath = getBaseFilePath(context); // 파일 저장 경로
         File directory = new File(filePath);
     	
     	System.out.println("filePath : " + filePath);
@@ -72,7 +64,7 @@ public class FileUtil {
             multipartFile = mpRequest.getFile(iterator.next());
             if (!multipartFile.isEmpty()) {
                 // UUID 생성하여 파일 이름으로 사용
-                storedFileName = getRandomString() + getFileExtension(multipartFile.getOriginalFilename());
+                storedFileName = u_id + "_" +  getRandomString() + getFileExtension(multipartFile.getOriginalFilename());
                 File file = new File(directory, storedFileName);
                 multipartFile.transferTo(file); // 파일 저장
             }
