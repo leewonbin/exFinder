@@ -101,8 +101,10 @@ public class HomeController {
 	    	// 실제 서버에 저장된 이미지 파일의 절대 경로
 	    	String realPath = servletContext.getRealPath("/resources/profile_img/" + profileImage);
 	    	System.out.println("Real image path: " + realPath);
+	    	
+
 	    }
-	    
+
 	    return "main/exFinder_main";
 	}
 }

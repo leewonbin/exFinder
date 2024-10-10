@@ -105,7 +105,7 @@
 .header_end_myPage img {
 	margin-right: 10px;
 	width: 35px;
-	height: auto;
+	height: 35px;
 	/* margin-left: 10px; */
 	border-radius: 50%;
 }
@@ -178,7 +178,7 @@
 .header_mini_myPage_top img {
 	margin-right: 10px; /* 이미지와 다음 요소 사이의 간격 */
 	width: 50px;
-	height: auto;
+	height: 50px;
 	border-radius: 50%;
 }
 .header_mini_myPage_top p {

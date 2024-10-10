@@ -38,7 +38,7 @@
 }
 
 .menu_user {
-	width: 100%; /* 컨테이너에 맞게 이미지 너비 조정 */
+	width: 200px; /* 컨테이너에 맞게 이미지 너비 조정 */
 	height: 200px;
 	display: block;
 	cursor: pointer;
