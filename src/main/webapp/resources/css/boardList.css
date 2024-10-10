@@ -17,7 +17,7 @@ a:hover {
 .sidebar{
 	width: 200px;
 	position: fixed;
-	top: 100px;
+	top: 150px;
 	left: 0;
 	height: calc(100vh - 100px); /*헤더 높이만큼 제외 */
 	background-color: white;
