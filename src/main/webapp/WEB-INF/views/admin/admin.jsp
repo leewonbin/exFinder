@@ -250,7 +250,7 @@
 					            <th style="width:100px;">게시판 번호</th>
 					            <th style="width:300px;">제목</th>
 					            <th style="width:100px;">작성자</th>
-					            <th style="width:100px;">활성화 여부</th>
+					            <th style="width:100px;">비활성화 여부</th>
 					            <th style="width:50px;">게시글 삭제</th>
 					        </tr>
 					    </thead>
