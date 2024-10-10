@@ -37,8 +37,6 @@ public class HomeController {
 	@Autowired
 	private NoticeExchangeRateService noticeExchangeRateService;
 	
-    @Autowired
-    private ServletContext servletContext; // ServletContext 주입
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
@@ -91,19 +89,6 @@ public class HomeController {
 			UserDto dto = (UserDto)session.getAttribute("dto");	    	
 	    }
 	    
-	    UserDto dto = (UserDto) session.getAttribute("dto");
-
-	    if (dto != null) {
-	    	
-	    	// 프로필 이미지 경로 확인 후 출력
-	    	String profileImage = dto.getU_profile_img(); // 프로필 이미지 경로 (DB에서 가져온 값)
-	    
-	    	// 실제 서버에 저장된 이미지 파일의 절대 경로
-	    	String realPath = servletContext.getRealPath("/resources/profile_img/" + profileImage);
-	    	System.out.println("Real image path: " + realPath);
-	    	
-
-	    }
 
 	    return "main/exFinder_main";
 	}

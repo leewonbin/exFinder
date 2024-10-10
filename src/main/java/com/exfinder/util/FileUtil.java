@@ -1,15 +1,10 @@
 package com.exfinder.util;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Iterator;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
