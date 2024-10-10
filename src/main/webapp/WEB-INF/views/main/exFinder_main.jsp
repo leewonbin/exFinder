@@ -109,7 +109,7 @@
 		</div>
 
 		<!-- 국가별 차트 p 태그 -->
-		<p class="country-chart">오늘의 세계 증시</p>
+		<p class="country-chart">세계 환율 변동률</p>
 
 		<!-- 구분선 -->
 		<hr class="divider">
