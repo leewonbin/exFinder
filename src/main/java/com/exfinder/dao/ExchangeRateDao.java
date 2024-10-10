@@ -20,4 +20,5 @@ public interface ExchangeRateDao {
 	
 	public ArrayList<ExchangeRate_ComparisonValueDto> today_ComparisonValue() throws Exception;
 	public ExchangeRate_ComparisonValueDto today_ComparisonValue_code(@Param("c_code")String c_code) throws Exception;
+	public int deleteAllCurr() throws Exception;
 }

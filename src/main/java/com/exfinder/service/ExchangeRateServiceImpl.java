@@ -297,4 +297,9 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 		return dao.today_ComparisonValue_code(c_code);
 	}
 
+	@Override
+	public int deleteAllCurr() throws Exception {
+		return dao.deleteAllCurr();
+	}
+
 }
