@@ -49,6 +49,7 @@
 
 	            if (i === currentBoardPage) {
 	                pageButton.classList.add("active");
+	                pageButton.style.fontWeight = "bold"; // 현재 페이지 굵게 표시
 	            }
 
 	            // 페이지 버튼 클릭 이벤트

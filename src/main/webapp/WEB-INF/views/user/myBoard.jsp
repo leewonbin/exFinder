@@ -35,18 +35,26 @@
                 </thead>
                 <tbody>
                     <c:forEach var="post" items="${userPosts}">
-                        <tr class="board-item">
-                            <td>
-                                <input type="checkbox" class="checkbox" name="b_id" value="${post.b_id}">
-                            </td>
-                            <td class="category">${post.b_category}</td>
-                            <td class="title">
-                                <a href="/ex/board/read?b_id=${post.b_id}">${post.b_title}</a>
-                            </td>
-                            <td class="wroteDate">
-                                <fmt:formatDate value="${post.b_date}" pattern="yyyy-MM-dd"/>
-                            </td>
-                        </tr>
+                        <tr class="board-item" onclick="handleRowClick(event, '${post.b_id}')">
+						    <td>
+						        <input type="checkbox" class="checkbox" name="b_id" value="${post.b_id}" onclick="event.stopPropagation();">
+						    </td>
+						    <td class="category">${post.b_category}</td>
+						    <td class="title">${post.b_title}</td>
+						    <td class="wroteDate">
+						        <fmt:formatDate value="${post.b_date}" pattern="yyyy-MM-dd"/>
+						    </td>
+						</tr>
+						
+						<script>
+						function handleRowClick(event, postId) {
+						    if (!event.target.classList.contains('checkbox')) {
+						        location.href = '/ex/board/read?b_id=' + postId;
+						    }
+						}
+						</script>
+
+
                     </c:forEach>
                 </tbody>
             </table>
