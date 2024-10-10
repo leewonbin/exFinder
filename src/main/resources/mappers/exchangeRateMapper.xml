@@ -92,6 +92,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	FROM comparisonvalue
 	WHERE c_code = #{c_code}
 </select>
+<delete id="deleteAllCurr">
+	delete from exchangerate
+</delete>
 
 </mapper>
 
