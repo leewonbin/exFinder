@@ -271,3 +271,15 @@
     border-radius: 50%; /* 원형으로 만듦 */
     z-index: 9;
 }
+
+
+/*최현웅님 통화 값 스타일 변경 하려면 수정 */
+.all-increased {
+   	color: red;
+}
+.all-unchanged {
+    color: gray;
+}
+.all-decreased {
+    color: blue;
+}
