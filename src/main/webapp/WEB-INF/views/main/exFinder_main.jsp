@@ -29,7 +29,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/charts.js"></script>
-
 </head>
 <body>
 	<!-- 헤더 Include -->
@@ -85,15 +84,19 @@
 								<p>
 									<a href="/ex/user/myPage"><c:out value="${dto.u_nickname }" />님</a>
 								</p>
-								<button type="button" id="toggleButton"
+								<button type="button" id="toggleButton2"
 									onclick="toggleMiniMyPage()"></button>
 							</div>
 						</c:otherwise>
 					</c:choose>
 				</div>
+				
 			</div>
 		</div>
-
+  		<div id="mini_myPage_view">
+			<%@include file="/WEB-INF/views/header/exFinder_mini_myPage.jsp"%>
+		</div>
+				
 		<!-- 환율 계산기 div 영역 -->
 		<div class="calculator-container">
 			<%@include file="/WEB-INF/views/main/calculrator.jsp"%>

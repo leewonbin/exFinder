@@ -97,7 +97,10 @@
     text-decoration: none; /* 링크 밑줄 제거 */
     color: inherit; /* 링크 색깔 제거 */
 }
-
+.chart_loading{
+	margin-top: 120px;
+	
+}
 .chart_graph {
     
 	width: 90%; 

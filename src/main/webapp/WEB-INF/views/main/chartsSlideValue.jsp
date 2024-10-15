@@ -15,7 +15,7 @@
 							<c:if test="${status.index % 2 == 0 }">
 								<div class="chart_graph_box_container">
 							</c:if>
-
+							
 							<div class="chart_graph_box">
 								<div class="chart_graph_box_top">
 									<img
@@ -24,6 +24,7 @@
 										${exchange.c_code}</a>
 									<div id="value_${exchange.c_code}"></div>
 								</div>
+								
 								<div id="chart_${exchange.c_code}" class="chart_graph"></div>
 							</div>
 							<c:if test="${status.index % 2 == 1 || status.last}">
