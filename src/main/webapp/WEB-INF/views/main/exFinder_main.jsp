@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ExFinder</title>
-<link rel="icon" href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico" type="image/x-icon">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico"
+	type="image/x-icon">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/exFinder_main.css">
-<link rel="icon" href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico" type="image/x-icon">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico"
+	type="image/x-icon">
 <script
 	src="${pageContext.request.contextPath}/resources/js/mainScrollJs.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -93,6 +98,53 @@
 		<div class="calculator-container">
 			<%@include file="/WEB-INF/views/main/calculrator.jsp"%>
 		</div>
+
+		<!-- 자주 조회하는 통화 표시 영역 -->
+		<c:if test="${not empty userId}">
+			<c:if test="${not empty frequentCurrencies}">
+				<h3>${userId}님,</h3>
+				<br>
+				<h3>자주 조회한 통화</h3>
+				<ul>
+					<c:set var="count" value="0" />
+					<c:forEach var="currency" items="${frequentCurrencies}"
+						varStatus="status">
+						<c:if test="${count < 5}">
+							<li>${currency.c_code}(전일비:${resultMap[currency.c_code]} ) </li>
+							<c:set var="count" value="${count + 1}" />
+						</c:if>
+					</c:forEach>
+				</ul>
+				<br>
+				<br>
+
+				<h3>판매 좋은 통화</h3>
+				<ul>
+					<c:set var="buyCount" value="0" />
+					<c:forEach var="currency" items="${frequentCurrencies}"
+						varStatus="status">
+						<c:if test="${resultMap[currency.c_code] > 0 && buyCount < 2}">
+							<li>${currency.c_code}(전일비:${resultMap[currency.c_code]}, : )</li>
+							<c:set var="buyCount" value="${buyCount + 1}" />
+						</c:if>
+					</c:forEach>
+				</ul>
+				<br>
+				<br>
+
+				<h3>구매 좋은 통화</h3>
+				<ul>
+					<c:set var="sellCount" value="0" />
+					<c:forEach var="currency" items="${frequentCurrencies}"
+						varStatus="status">
+						<c:if test="${resultMap[currency.c_code] < 0 && sellCount < 2}">
+							<li>${currency.c_code}(전일비:${resultMap[currency.c_code]})</li>
+							<c:set var="sellCount" value="${sellCount + 1}" />
+						</c:if>
+					</c:forEach>
+				</ul>
+			</c:if>
+		</c:if>
 
 		<!-- 알림을 표시할 div -->
 		<div id="alramContainer" style="display: none;"></div>
