@@ -110,7 +110,7 @@
 					<c:forEach var="currency" items="${frequentCurrencies}"
 						varStatus="status">
 						<c:if test="${count < 5}">
-							<li>${currency.c_code}(전일비:${resultMap[currency.c_code]}, <i id="often_${currency.c_code}"></i>) </li>
+							<li>${currency.c_code}(<i id="often_${currency.c_code}"></i>) </li>
 							<c:set var="count" value="${count + 1}" />
 						</c:if>
 					</c:forEach>
@@ -124,7 +124,7 @@
 					<c:forEach var="currency" items="${frequentCurrencies}"
 						varStatus="status">
 						<c:if test="${resultMap[currency.c_code] > 0 && buyCount < 2}">
-							<li>${currency.c_code}(전일비:${resultMap[currency.c_code]}, <i id="sale_${currency.c_code}"></i>)</li>
+							<li>${currency.c_code}(<i id="sale_${currency.c_code}"></i>)</li>
 							<c:set var="buyCount" value="${buyCount + 1}" />
 						</c:if>
 					</c:forEach>
@@ -138,7 +138,7 @@
 					<c:forEach var="currency" items="${frequentCurrencies}"
 						varStatus="status">
 						<c:if test="${resultMap[currency.c_code] < 0 && sellCount < 2}">
-							<li>${currency.c_code}(전일비:${resultMap[currency.c_code]}, <i id="purchase_${currency.c_code}"></i>)</li>
+							<li>${currency.c_code}(<i id="purchase_${currency.c_code}"></i>)</li>
 							<c:set var="sellCount" value="${sellCount + 1}" />
 						</c:if>
 					</c:forEach>
