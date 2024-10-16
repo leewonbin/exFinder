@@ -171,7 +171,7 @@ public class UserController {
 		System.out.println("dto : " + dto);
 
 		session.setAttribute("dto", dto);
-		return "redirect:/";
+		return "redirect:/?popup=true";						//팝업창 때문에 return "redirect:/";에서 수정했어요
 
 	}
 

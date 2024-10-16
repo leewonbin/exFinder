@@ -90,64 +90,83 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
-				
+
 			</div>
 		</div>
-  		<div id="mini_myPage_view">
+		<div id="mini_myPage_view">
 			<%@include file="/WEB-INF/views/header/exFinder_mini_myPage.jsp"%>
 		</div>
-				
+
 		<!-- 환율 계산기 div 영역 -->
 		<div class="calculator-container">
 			<%@include file="/WEB-INF/views/main/calculrator.jsp"%>
 		</div>
 
-		<!-- 자주 조회하는 통화 표시 영역 -->
-		<c:if test="${not empty userId}">
-			<c:if test="${not empty frequentCurrencies}">
-				<h3>${userId}님,</h3>
-				<br>
-				<h3>자주 조회한 통화</h3>
-				<ul>
-					<c:set var="count" value="0" />
-					<c:forEach var="currency" items="${frequentCurrencies}"
-						varStatus="status">
-						<c:if test="${count < 5}">
-							<li>${currency.c_code}(<i id="often_${currency.c_code}"></i>) </li>
-							<c:set var="count" value="${count + 1}" />
-						</c:if>
-					</c:forEach>
-				</ul>
-				<br>
-				<br>
+		<!-- 사용자 맞춤 정보 팝업 창 -->
+		<div id="popup" class="popup" style="display: none;">
+			<div class="popup-content">
+				<span class="close" onclick="closePopup()">X 닫기</span><br>
+				<div class="popup-body">
+					<c:if test="${not empty userId}">
+						<c:if test="${not empty frequentCurrencies}">
+							<h3 style="font-weight: bold;">${userId}님의</h3>
+							<br>
+							<h3 style="font-weight: bold;">자주 조회한 통화</h3>
+							<br>
+							<ul>
+								<c:set var="count" value="0" />
+								<c:forEach var="currency" items="${frequentCurrencies}"
+									varStatus="status">
+									<c:if test="${count < 5}">
+										<li><img
+											src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
+											class="flag-img" /> ${currency.c_code} <i
+											id="often_${currency.c_code}"></i></li>
+										<c:set var="count" value="${count + 1}" />
+									</c:if>
+								</c:forEach>
+							</ul>
+							<br>
+							<br>
 
-				<h3>판매 좋은 통화</h3>
-				<ul>
-					<c:set var="buyCount" value="0" />
-					<c:forEach var="currency" items="${frequentCurrencies}"
-						varStatus="status">
-						<c:if test="${resultMap[currency.c_code] > 0 && buyCount < 2}">
-							<li>${currency.c_code}(<i id="sale_${currency.c_code}"></i>)</li>
-							<c:set var="buyCount" value="${buyCount + 1}" />
-						</c:if>
-					</c:forEach>
-				</ul>
-				<br>
-				<br>
+							<h3 style="font-weight: bold;">판매하기 좋은 통화</h3>
+							<br>
+							<ul>
+								<c:set var="buyCount" value="0" />
+								<c:forEach var="currency" items="${frequentCurrencies}"
+									varStatus="status">
+									<c:if test="${resultMap[currency.c_code] > 0 && buyCount < 2}">
+										<li><img
+											src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
+											class="flag-img" /> ${currency.c_code} <i
+											id="sale_${currency.c_code}"></i></li>
+										<c:set var="buyCount" value="${buyCount + 1}" />
+									</c:if>
+								</c:forEach>
+							</ul>
+							<br>
+							<br>
 
-				<h3>구매 좋은 통화</h3>
-				<ul>
-					<c:set var="sellCount" value="0" />
-					<c:forEach var="currency" items="${frequentCurrencies}"
-						varStatus="status">
-						<c:if test="${resultMap[currency.c_code] < 0 && sellCount < 2}">
-							<li>${currency.c_code}(<i id="purchase_${currency.c_code}"></i>)</li>
-							<c:set var="sellCount" value="${sellCount + 1}" />
+							<h3 style="font-weight: bold;">구매하기 좋은 통화</h3>
+							<br>
+							<ul>
+								<c:set var="sellCount" value="0" />
+								<c:forEach var="currency" items="${frequentCurrencies}"
+									varStatus="status">
+									<c:if test="${resultMap[currency.c_code] < 0 && sellCount < 2}">
+										<li><img
+											src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
+											class="flag-img" /> ${currency.c_code} <i
+											id="purchase_${currency.c_code}"></i></li>
+										<c:set var="sellCount" value="${sellCount + 1}" />
+									</c:if>
+								</c:forEach>
+							</ul>
 						</c:if>
-					</c:forEach>
-				</ul>
-			</c:if>
-		</c:if>
+					</c:if>
+				</div>
+			</div>
+		</div>
 
 		<!-- 알림을 표시할 div -->
 		<div id="alramContainer" style="display: none;"></div>
@@ -250,6 +269,30 @@
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/calculraterJs.js"></script>
+
+
+
+
+
+
+	<!-- <div id="popup" class="popup" style="display: none;">
+		<div class="popup-content">
+			<span class="close" onclick="closePopup()">&times;</span>
+		</div>
+	</div>
+ -->
+	<script>
+		window.onload = function() {
+			const showPopup = '${param.popup}'; // 파라미터로 팝업 표시 여부 결정
+			if (showPopup) {
+				document.getElementById('popup').style.display = 'flex'; // 팝업을 표시
+			}
+		};
+
+		function closePopup() {
+			document.getElementById('popup').style.display = 'none'; // 팝업 닫기
+		}
+	</script>
 
 </body>
 </html>
