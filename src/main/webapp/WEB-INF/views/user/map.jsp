@@ -65,7 +65,7 @@ function getCurrentLocation() {
 function moveToCurrentLocation() {
     if (currentLocation) {
         map.setCenter(currentLocation); // 지도 중심을 내 위치로 이동
-        alert('현재 위치로 이동합니다.');
+        
     } else {
         alert('현재 위치 정보가 없습니다. 위치를 먼저 가져와 주세요.');
     }
