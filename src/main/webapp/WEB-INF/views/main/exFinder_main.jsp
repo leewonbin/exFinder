@@ -169,30 +169,29 @@
 
 		</div>
 		
-		<!-- 맵 팝업창 HTML -->
-		<div id="mapPopup" class="mapPopup" style="display:none;">
-		    <div class="mapPopup-content">
-		        <span class="mapClose" onclick="closeMapPopup()">&times;</span>
-		        <p>지도 위치를 이동합니다!</p>
-		        <button onclick="moveMap()">이동하기</button> <!-- 지도 이동 버튼 -->
-		    </div>
-		</div>
 		
-		<script>
-			function openMapPopup() {
-			    document.getElementById("mapPopup").style.display = "flex"; // 팝업 열기
-			}
-			
-			function closeMapPopup() {
-			    document.getElementById("mapPopup").style.display = "none"; // 팝업 닫기
-			}
-			
-			function moveMap() {
-			    // 지도 이동 기능을 구현
-			    alert('지도 위치를 이동합니다!');
-			    closeMapPopup(); // 팝업 닫기
-			}
-		</script>
+		 <!-- 지도 팝업 -->
+    <div id="mapPopup">
+        <button onclick="closeMapPopup()">닫기</button>
+			<%@include file="/WEB-INF/views/main/map.jsp"%>
+    </div>
+    
+    <script>
+        // 팝업창 열기
+        function openMapPopup() {
+            document.getElementById('mapPopup').style.display = 'block';
+            document.getElementById('popupBackground').style.display = 'block';
+            loadMap();  // 지도 로드
+        }
+
+        // 팝업창 닫기
+        function closeMapPopup() {
+            document.getElementById('mapPopup').style.display = 'none';
+            document.getElementById('popupBackground').style.display = 'none';
+        }
+        
+    </script>
+		
 
 		<!-- 알림을 표시할 div -->
 		<div id="alramContainer" style="display: none;"></div>
@@ -286,6 +285,7 @@
 				</table>
 			</div>
 		</div>
+	<div>
 		<button id="topButton" onclick="scrollToTop()">▲</button>
 		<button id="csButton" onclick="csMove()"></button>
 		<button id="mapButton" onclick="mapMove()"></button>
@@ -319,6 +319,9 @@
 		function closePopup() {
 			document.getElementById('popup').style.display = 'none'; // 팝업 닫기
 		}
+		function mapMove() {
+			  window.open('/ex/main/map', 'popup', 'width=900,height=500,left=170,top=55');
+			}
 	</script>
 
 </body>

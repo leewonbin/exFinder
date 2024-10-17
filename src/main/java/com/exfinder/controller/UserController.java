@@ -420,9 +420,10 @@ public class UserController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/user/map", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/map", method = RequestMethod.GET)
 	public void map(Model model) throws Exception {
 	}
+	
 
 }
 

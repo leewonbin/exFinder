@@ -4,24 +4,46 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>카테고리로 주변 장소 검색하기</title>
+    <title>주변검색</title>
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/map.css">
 </head>
-<body>
-<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
+<body>
+		<div class="ment">
+		 	주변 은행, 환전소를 찾아보세요!
+		</div>
+		
+        <div class="buttons">
+            <button type="button" class="Bbutton" onclick="setActive(this); searchBanks()">은행 보기</button>
+            <button type="button" class="Ebutton" onclick="setActive(this); searchCurrencyExchanges()">환전소 보기</button>
+        	<button class="Lbutton" onclick="moveToCurrentLocation()">
+		        <img src="${pageContext.request.contextPath}/resources/img/myLocation.png" alt="내 위치 보기" />
+		    </button>
+       	</div>
+       	
+       	<script>
+		    function setActive(button) {
+		        // 모든 버튼에서 active 클래스를 제거
+		        const buttons = document.querySelectorAll('.Bbutton, .Ebutton');
+		        buttons.forEach(btn => btn.classList.remove('active'));
+		
+		        // 클릭한 버튼에 active 클래스 추가
+		        button.classList.add('active');
+		    }
+		</script>
+<div class="map_wrap">
+	
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+	
     <div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <button type="button" class="button" onclick="searchBanks()">은행 보기</button>
-            <button type="button" class="button" onclick="searchCurrencyExchanges()">환전소 보기</button>
-        </div>
+        
         <hr>
         <ul id="placesList"></ul>
         <div id="pagination"></div>
     </div>
     <!-- 현재 위치 보기 버튼 추가 -->
-    <button class="current-location-button" onclick="moveToCurrentLocation()">내 위치 보기</button>
+    
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=abdcd2cf7081c6a96785335b69d49326&libraries=services"></script>
