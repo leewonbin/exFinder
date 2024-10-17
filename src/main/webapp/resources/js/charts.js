@@ -170,7 +170,7 @@ function drawTimeCharts(data, chartDivId) {
 
 //정보 함수
 function processCurrencies_value(currencies_value) {
-    return new Promise((resolve, reject) => {
+
         // AJAX 요청
         $.ajax({
             url: '/ex/charts/values', // 서버 URL
@@ -251,7 +251,7 @@ function processCurrencies_value(currencies_value) {
                         $('#' + currency_value.purchase_value).html('<i>데이터 없음</i>');
                     }
                 });
-                resolve(); // 프로미스 해결
+
             },
             error: function(xhr, status, error) {
                 console.error('데이터를 가져오는 데 실패했습니다:', error);
@@ -263,10 +263,10 @@ function processCurrencies_value(currencies_value) {
                     $('#' + currency_value.sale_value).html('<i>데이터를 가져오는 데 실패했습니다.</i>');
                     $('#' + currency_value.purchase_value).html('<i>데이터를 가져오는 데 실패했습니다.</i>');
                 });
-                reject(error); // 프로미스 거부
+
             }
         });
-    });
+
 }
 
 
