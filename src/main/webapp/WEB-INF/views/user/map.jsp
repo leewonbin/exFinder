@@ -1,223 +1,308 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Places SearchBox Example</title>
-    <style>
-        /* 검색 박스 스타일 */
-        #searchBox {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-        /* 버튼 스타일 */
-        #refreshButton {
-            position: absolute;
-            top: 10px;
-            left: 60%; /* 검색 박스 옆에 위치 */
-            transform: translateX(-50%);
-            z-index: 10;
-            padding: 10px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        #refreshButton:hover {
-            background: #45a049;
-        }
-    </style>
+    <meta charset="utf-8">
+    <title>카테고리로 주변 장소 검색하기</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/map.css">
 </head>
 <body>
-    <!-- 검색 박스 -->
-    <input id="searchBox" type="text" value="환전은행" placeholder="검색할 장소 입력" />
+<div class="map_wrap">
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
-    <!-- 위치 재조회 버튼 -->
-    <button id="refreshButton">내 위치</button>
+    <div id="menu_wrap" class="bg_white">
+        <div class="option">
+            <button type="button" class="button" onclick="searchBanks()">은행 보기</button>
+            <button type="button" class="button" onclick="searchCurrencyExchanges()">환전소 보기</button>
+        </div>
+        <hr>
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
+    </div>
+    <!-- 현재 위치 보기 버튼 추가 -->
+    <button class="current-location-button" onclick="moveToCurrentLocation()">내 위치 보기</button>
+</div>
 
-    <!-- 지도 표시할 DIV -->
-    <div id="googleMap" style="width: 100%; height: 700px;"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=abdcd2cf7081c6a96785335b69d49326&libraries=services"></script>
+<script>
+var markers = [];
+var mapContainer = document.getElementById('map'),
+    mapOption = {
+        center: new kakao.maps.LatLng(37.4989, 126.7213),
+        level: 10
+    };
 
-    <script>
-        let map;
-        let markers = []; // 마커 배열
-        let infowindow;
-        let currentLocationMarker; // 현재 위치 마커
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+var ps = new kakao.maps.services.Places();  
+var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+var currentLocationMarker;
 
-        // 지도를 초기화하는 함수
-        function initMap() {
-            const mapOptions = { 
-                center: new google.maps.LatLng(37.5665, 126.978), // 서울 중심
-                zoom: 10
+// 페이지가 로드되면 현재 위치를 가져옵니다
+window.onload = function() {
+    getCurrentLocation();
+};
+
+function getCurrentLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var lat = position.coords.latitude + 0.004456;
+            var lon = position.coords.longitude - 0.0193794;
+            console.log("lat :" + lat);
+            console.log("lon :" + lon);
+            currentLocation = new kakao.maps.LatLng(lat, lon);
+            map.setCenter(currentLocation); // 지도 중심을 내 위치로 이동
+            addCurrentLocationMarker(currentLocation); // 내 위치 마커 표시
+        }, function() {
+            alert('위치 정보를 가져오는 데 실패했습니다.');
+        });
+    } else {
+        alert('Geolocation을 지원하지 않는 브라우저입니다.');
+    }
+}
+
+//현재 위치로 이동하는 함수
+function moveToCurrentLocation() {
+    if (currentLocation) {
+        map.setCenter(currentLocation); // 지도 중심을 내 위치로 이동
+        alert('현재 위치로 이동합니다.');
+    } else {
+        alert('현재 위치 정보가 없습니다. 위치를 먼저 가져와 주세요.');
+    }
+}
+
+//현재 위치를 나타내는 마커를 추가하는 함수
+function addCurrentLocationMarker(position) {
+    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png', // 카카오맵 기본 위치 마커 이미지
+        imageSize = new kakao.maps.Size(24, 35), // 마커 이미지 크기
+        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+    if (currentLocationMarker) {
+        currentLocationMarker.setPosition(position);
+    } else {
+        currentLocationMarker = new kakao.maps.Marker({
+            position: position,
+            image: markerImage
+        });
+        currentLocationMarker.setMap(map);
+    }
+}
+
+// 카테고리 은행 검색
+function searchBanks() {
+    if (!currentLocation) {
+        alert('먼저 내 위치를 설정해주세요!');
+        return false;
+    }
+
+    ps.categorySearch('BK9', function(data, status, pagination) {
+        placesSearchCB(data, status, pagination);
+    }, {
+        location: currentLocation, // 현재 위치
+        radius: 10000 // 검색 반경 설정 (미터 단위)
+    });
+}
+
+// 환전소 검색
+function searchCurrencyExchanges() {
+    if (!currentLocation) {
+        alert('먼저 내 위치를 설정해주세요!');
+        return false;
+    }
+
+    // 환전소 검색을 위해 고정된 키워드 설정
+    var keyword = "환전소";
+    
+    ps.keywordSearch(keyword, function(data, status, pagination) {
+        placesSearchCB(data, status, pagination);
+    }, {
+        location: currentLocation, // 현재 위치
+        radius: 5000 // 검색 반경 설정 (미터 단위)
+    });
+}
+
+function placesSearchCB(data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+        // 각 장소에 대해 현재 위치와의 거리 계산 후 정렬
+        var placesWithDistance = data.map(place => ({
+            ...place,
+            distance: calculateDistance(currentLocation.getLat(), currentLocation.getLng(), place.y, place.x)
+        }));
+
+        // 거리 순으로 정렬
+        placesWithDistance.sort((a, b) => a.distance - b.distance);
+        
+        displayPlaces(placesWithDistance); // 정렬된 검색 결과를 표시합니다.
+        displayPagination(pagination);
+    } else {
+        alert('검색 결과가 존재하지 않습니다.');
+    }
+}
+//두 지점 간의 거리 계산 (단위: 미터)
+function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371000; // 지구의 반지름 (미터)
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // 두 지점 간의 거리
+    return distance; // 미터 단위로 반환
+}
+
+function displayPlaces(places) {
+    var listEl = document.getElementById('placesList'), 
+        menuEl = document.getElementById('menu_wrap'),
+        fragment = document.createDocumentFragment(), 
+        bounds = new kakao.maps.LatLngBounds();
+
+    removeAllChildNods(listEl);
+    removeMarker();
+
+    for (var i = 0; i < places.length; i++) {
+        var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
+            marker = addMarker(placePosition, i), 
+            itemEl = getListItem(i, places[i], places[i].distance); // 거리 정보 전달
+
+        bounds.extend(placePosition);
+
+        (function(marker, title, itemEl, placePosition) {
+            kakao.maps.event.addListener(marker, 'click', function() {
+                highlightItem(itemEl); // 리스트 항목 강조
+                displayInfowindow(marker, title); // 인포윈도우 표시
+                itemEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // 강조된 항목이 보이도록 스크롤
+            });
+
+            itemEl.onclick = function() { // 리스트 항목 클릭 이벤트 추가
+                highlightItem(itemEl); // 리스트 항목 강조
+                map.setCenter(placePosition); // 지도 중심을 해당 장소로 이동
+                displayInfowindow(marker, title); // 인포윈도우 표시
             };
 
-            map = new google.maps.Map(
-                document.getElementById("googleMap"),
-                mapOptions
-            );
-
-            // 검색 박스 생성
-            const input = document.getElementById("searchBox");
-            const searchBox = new google.maps.places.SearchBox(input);
-
-            // 인포윈도우 설정
-            infowindow = new google.maps.InfoWindow();
-
-            // 현재 위치 가져오기
-            getCurrentLocation();
-
-            // 검색 박스의 장소가 변경될 때 이벤트 리스너 추가
-            searchBox.addListener("places_changed", () => {
-                const places = searchBox.getPlaces();
-
-                // 검색 결과가 없는 경우
-                if (places.length == 0) {
-                    return;
-                }
-
-                // 마커를 지우고 새로 생성하기 위해 배열 초기화
-                markers.forEach(marker => marker.setMap(null));
-                markers = [];
-
-                // 모든 장소에 대해 마커와 인포윈도우 설정
-                places.forEach(place => {
-                    if (!place.geometry) {
-                        console.log("Returned place contains no geometry");
-                        return;
-                    }
-
-                    // 마커 생성
-                    const marker = new google.maps.Marker({
-                        map: map,
-                        position: place.geometry.location,
-                    });
-
-                    // 클릭 시 Google Maps로 이동
-                    google.maps.event.addListener(marker, 'click', () => {
-                        // 장소의 URL을 생성
-                        const placeUrl = `https://www.google.com/maps/place/?q=place_id:${place.place_id}`;
-                        // 클릭 시 Google Maps로 이동
-                        window.open(placeUrl, '_blank'); // 새 탭에서 열기
-                    });
-
-                    markers.push(marker); // 생성된 마커를 배열에 추가
-
-                    // 지도를 해당 장소로 이동
-                    if (place.geometry.viewport) {
-                        map.fitBounds(place.geometry.viewport);
-                    } else {
-                        map.setCenter(place.geometry.location);
-                        map.setZoom(15);
-                    }
-                });
-            });
-        }
-
-        // 현재 위치 가져오기
-        function getCurrentLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    const currentLocation = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-
-                    // 지도를 현재 위치로 이동
-                    map.setCenter(currentLocation); 
-
-                    // 현재 위치 마커 표시
-                    if (currentLocationMarker) {
-                        currentLocationMarker.setMap(null); // 이전 마커 제거
-                    }
-
-                    currentLocationMarker = new google.maps.Marker({
-                        position: currentLocation,
-                        map: map,
-                        title: "내 위치",
-                        icon: {
-                            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // 파란 점 아이콘
-                        }
-                    });
-
-                    searchNearbyPlaces(currentLocation); // 주변 장소 검색
-                }, () => {
-                    handleLocationError(true, map.getCenter());
-                });
-            } else {
-                handleLocationError(false, map.getCenter());
-            }
-        }
-
-        // 현재 위치 주변에 "환전은행" 검색
-        function searchNearbyPlaces(location) {
-            const request = {
-                location: location,
-                radius: '5000', // 반경 5km
-                keyword: '환전은행' // 고정된 검색어
+            itemEl.onmouseover = function() {
+                displayInfowindow(marker, title);
             };
 
-            const service = new google.maps.places.PlacesService(map);
-            service.nearbySearch(request, (results, status) => {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    markers.forEach(marker => marker.setMap(null)); // 이전 마커 제거
-                    markers = []; // 배열 초기화
+            itemEl.onmouseout = function() {
+                infowindow.close();
+            };
+        })(marker, places[i].place_name, itemEl, placePosition);
 
-                    results.forEach(place => {
-                        // 마커 생성
-                        const marker = new google.maps.Marker({
-                            map: map,
-                            position: place.geometry.location,
-                        });
+        fragment.appendChild(itemEl);
+    }
 
-                        // 클릭 시 Google Maps로 이동
-                        google.maps.event.addListener(marker, 'click', () => {
-                            // 장소의 URL을 생성
-                            const placeUrl = `https://www.google.com/maps/place/?q=place_id:${place.place_id}`;
-                            // 클릭 시 Google Maps로 이동
-                            window.open(placeUrl, '_blank'); // 새 탭에서 열기
-                        });
+    listEl.appendChild(fragment);
+    menuEl.scrollTop = 0;
+    map.setBounds(bounds);
+}
 
-                        markers.push(marker); // 생성된 마커를 배열에 추가
-                    });
-                } else {
-                    console.error('Nearby search failed: ' + status);
+function getListItem(index, places, distance) { // 거리 정보 추가
+    var el = document.createElement('li'),
+        itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
+                   '<div class="info">' +
+                   '   <h5>' + places.place_name + '</h5>';
+
+    if (places.road_address_name) {
+        itemStr += '    <span>' + places.road_address_name + '</span>' +
+                    '   <span class="jibun gray">' + places.address_name + '</span>';
+    } else {
+        itemStr += '    <span>' + places.address_name + '</span>'; 
+    }
+
+    
+    
+    
+ // 거리 정보 표시: 1km 이상일 때는 km, 1km 이하일 때는 m 단위로 표시
+ 	let distanceText;
+    if(distance>=1000){
+    	distanceText = (distance / 1000).toFixed(2) + ' km';
+    	
+    }else{
+    	distanceText = Math.floor(distance) + ' m';
+    }
+    
+    itemStr += '  <span class="tel">' + places.phone + '</span>' +
+                '  <span class="distance">거리: ' + distanceText + '</span>' + // 거리 정보 표시
+                '</div>';           
+
+    el.innerHTML = itemStr;
+    el.className = 'item';
+
+    return el;
+}
+
+function addMarker(position, idx) {
+    var imageSrc = '${pageContext.request.contextPath}/resources/img/marker.png', // 변경된 이미지 URL
+        imageSize = new kakao.maps.Size(36, 37),
+        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize),
+        marker = new kakao.maps.Marker({
+            position: position,
+            image: markerImage
+        });
+
+    marker.setMap(map);
+    markers.push(marker); // 마커 저장
+    return marker;
+}
+
+function removeMarker() {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    markers = [];
+}
+
+function removeAllChildNods(el) {
+    while (el.hasChildNodes()) {
+        el.removeChild(el.lastChild);
+    }
+}
+
+function displayPagination(pagination) {
+    var paginationEl = document.getElementById('pagination'),
+        fragment = document.createDocumentFragment(),
+        current = pagination.current,
+        total = pagination.totalPages;
+
+    removeAllChildNods(paginationEl);
+
+    for (var i = 1; i <= total; i++) {
+        var el = document.createElement('a');
+        el.href = "#";
+        el.innerHTML = i;
+
+        if (current === i) {
+            el.className = 'on';
+        } else {
+            el.onclick = (function(index) {
+                return function() {
+                    pagination.gotoPage(index);
                 }
-            });
+            })(i);
         }
 
-        // 위치 오류 처리
-        function handleLocationError(browserHasGeolocation, pos) {
-            infowindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
-            infowindow.setPosition(pos);
-            infowindow.open(map);
-        }
+        fragment.appendChild(el);
+    }
+    paginationEl.appendChild(fragment);
+}
 
-        // 위치 재조회 버튼 클릭 시 현재 위치 재조회
-        document.getElementById('refreshButton').addEventListener('click', () => {
-            getCurrentLocation();
-        });
+function displayInfowindow(marker, title) {
+    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
+    infowindow.setContent(content);
+    infowindow.open(map, marker);
+}
 
-        // Google Maps 스크립트가 로드된 후 호출
-        window.addEventListener('DOMContentLoaded', (event) => {
-            // Google Maps API 로드
-            const script = document.createElement('script');
-            script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDFufL6lOYJtGe4s2iz3zlDQTkQQeb8bOw&libraries=places&callback=initMap";
-            script.async = true;
-            script.defer = true;
-            document.body.appendChild(script);
-        });
-    </script>
+//리스트 항목 강조하는 함수
+function highlightItem(itemEl) {
+    var listItems = document.querySelectorAll('#placesList .item');
+    listItems.forEach(function(item) {
+        item.classList.remove('highlight');
+        item.style.backgroundColor = ''; // 배경색 초기화
+    });
+    itemEl.classList.add('highlight');
+    /* itemEl.style.backgroundColor = '#05203C'; */ // 강조색 변경
+}
+</script>
 </body>
 </html>
