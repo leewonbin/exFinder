@@ -103,13 +103,12 @@
 		</div>
 
 		<!-- 사용자 맞춤 정보 팝업 창 -->
-		<div id="popup" class="popup" style="display: none;">
-			<div class="popup-content">
-				<span class="close" onclick="closePopup()">X 닫기</span><br>
-				<div class="popup-body">
-					<c:if test="${not empty userId}">
-						<c:if test="${not empty frequentCurrencies}">
-							<h3 style="font-weight: bold;">${userId}님의</h3>
+		<c:if test="${not empty frequentCurrencies}">
+			<div id="popup" class="popup" style="display: none;">
+				<div class="popup-content">
+					<span class="close" onclick="closePopup()">X 닫기</span><br>
+					<div class="popup-body">
+						<c:if test="${not empty userId}">
 							<br>
 							<h3 style="font-weight: bold;">자주 조회한 통화</h3>
 							<br>
@@ -163,10 +162,10 @@
 								</c:forEach>
 							</ul>
 						</c:if>
-					</c:if>
+					</div>
 				</div>
 			</div>
-		</div>
+		</c:if>
 
 		<!-- 알림을 표시할 div -->
 		<div id="alramContainer" style="display: none;"></div>
