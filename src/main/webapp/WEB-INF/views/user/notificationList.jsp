@@ -21,7 +21,7 @@
     src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- JavaScript -->
 <script type="text/javascript"
-    src="${pageContext.request.contextPath}/resources/js/charts2.js"></script>
+    src="${pageContext.request.contextPath}/resources/js/alram_charts.js"></script>
 <script type="text/javascript"
     src="${pageContext.request.contextPath}/resources/js/notificationList.js"></script>
 <script type="text/javascript"
