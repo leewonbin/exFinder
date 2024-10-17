@@ -12,8 +12,7 @@
 </head>
 <body>
 	<c:set value="${sessionScope.dto }" var="dto" />
-	
-	<div class="header_mini_myPage miniMyPage">
+	<div class="header_mini_myPage miniMyPage" style="display: none;";>
 		<div class="header_mini_myPage_top">
 			<c:choose>
 				<c:when test="${not empty dto.u_profile_img}">
