@@ -66,80 +66,52 @@ const currencies_chart = [
 
 
 $(document).ready(function() {
-	console.time('Total Execution Time');
+	   console.time('Total Execution Time');
 
-    //processCurrencies_value(currencies_value);
-    
-    // Google Charts 라이브러리가 로드된 후 차트 그리기
-    google.charts.setOnLoadCallback(function() {
-        //console.log('Google Charts 라이브러리 로드 완료');
-    	
-    	// AJAX 요청을 위한 가치 프로미스
-        const valuePromise = processCurrencies_value(currencies_value);
-        
-        // 프로미스 배열 생성
-        const chartPromise = processCurrencies_chart(currencies_chart);
-        
-        // 모든 요청이 완료될 때까지 대기
-        Promise.all([valuePromise, chartPromise]).then(() => {
-            // 모든 요청 완료 후 종료 시간 기록
-            console.timeEnd('Total Execution Time');
-        }).catch(error => {
-            console.error('요청 중 오류 발생:', error);
-        });
-    });
-    
+	    //processCurrencies_value(currencies_value);
+	    
+	    // Google Charts 라이브러리가 로드된 후 차트 그리기
+	    google.charts.setOnLoadCallback(function () {
+	        processCurrencies_value(currencies_value);
+	        processCurrencies_chart(currencies_chart);
+	        console.timeEnd('Total Execution Time');
+	    });
+	    
 
-    
-});
-/*<div class="chart_loading" id="loadingMessage_${exchange.c_code}"></div>
- * 
- * const loadingMessage = document.getElementById('loadingMessage_' + currency_chart.code);
-            loadingMessage.innerText = '차트를 불러오고 있습니다...'; // 로딩 메시지 텍스트 설정
-            loadingMessage.style.display = 'flex'; // 로딩 메시지 표시
-*/
-function processCurrencies_chart(currencies_chart) {
-    const c_codes = currencies_chart.map(currency_chart => currency_chart.code); // 통화 코드 리스트 추출
+	    
+	});
 
-    return new Promise((resolve, reject) => {
-        // AJAX 요청을 한 번에 전송하기 위해, 로딩 메시지를 설정하는 부분을 수정
-        const ajaxPromises = currencies_chart.map((currency_chart, index) => {
-            
+	function processCurrencies_chart(currencies_chart) {
+	   const c_codes = currencies_chart.map(currency => currency.code);
 
-            return new Promise((ajaxResolve, ajaxReject) => {
-                $.ajax({
-                    type: "POST",
-                    url: "/ex/charts/graph",
-                    data: {
-                        c_codes: c_codes, // 통화 코드 리스트를 전송
-                        rate_date: formattedDate // 필요한 값으로 수정
-                    },
-                    traditional: true,
-                    dataType: "json",
-                }).done(response => {
-                    const data = response[index].data; // 성공적으로 응답 받은 데이터를 가져오기
-
-                    if (Array.isArray(data) && data.length > 0) {
-                        drawTimeCharts(data, currency_chart.chartId); // 차트 그리기 함수 호출
-                    } else {
-                        console.error(`차트 데이터가 배열이 아닙니다: ${currency_chart.code}`);
-                    }
-                    //loadingMessage.style.display = 'none'; // 로딩 메시지 숨기기
-                    ajaxResolve(); // 프로미스 해결
-                }).fail((xhr, status, error) => {
-                    console.error("AJAX 요청 오류:", error);
-                    //loadingMessage.style.display = 'none'; // 에러 발생 시 로딩 메시지 숨기기
-                    ajaxReject(error); // 프로미스 거부
-                });
-            });
-        });
-
-        // 모든 AJAX 요청이 완료되기를 기다림
-        Promise.all(ajaxPromises)
-            .then(resolve)
-            .catch(reject);
-    });
-}
+	    $.ajax({
+	        type: "POST",
+	        url: "/ex/charts/graph",
+	        data: {
+	            c_codes: c_codes,
+	            rate_date: formattedDate
+	        },
+	        traditional: true,
+	        dataType: "json",
+	        success: function (response) {
+	           console.log("응답 데이터:", response); // 응답 데이터 로그 확인
+	           
+	            currencies_chart.forEach(currency => {
+	               const matchingData = response.find(item => item.c_code === currency.code);
+	                if (!matchingData) {
+	                    console.error(`매칭되는 데이터가 없습니다: ${currency.code}`);
+	                } else if (!Array.isArray(matchingData.data) || matchingData.data.length === 0) {
+	                    console.error(`차트 데이터가 유효하지 않습니다: ${currency.code}`);
+	                } else {
+	                    drawTimeCharts(matchingData.data, currency.chartId);
+	                }
+	            });
+	        },
+	        error: function (xhr, status, error) {
+	            console.error("AJAX 요청 오류:", error);
+	        }
+	    });
+	}
 
 
 //차트 그리기 함수
@@ -198,7 +170,7 @@ function drawTimeCharts(data, chartDivId) {
 
 //정보 함수
 function processCurrencies_value(currencies_value) {
-    return new Promise((resolve, reject) => {
+
         // AJAX 요청
         $.ajax({
             url: '/ex/charts/values', // 서버 URL
@@ -279,7 +251,7 @@ function processCurrencies_value(currencies_value) {
                         $('#' + currency_value.purchase_value).html('<i>데이터 없음</i>');
                     }
                 });
-                resolve(); // 프로미스 해결
+
             },
             error: function(xhr, status, error) {
                 console.error('데이터를 가져오는 데 실패했습니다:', error);
@@ -291,10 +263,10 @@ function processCurrencies_value(currencies_value) {
                     $('#' + currency_value.sale_value).html('<i>데이터를 가져오는 데 실패했습니다.</i>');
                     $('#' + currency_value.purchase_value).html('<i>데이터를 가져오는 데 실패했습니다.</i>');
                 });
-                reject(error); // 프로미스 거부
+
             }
         });
-    });
+
 }
 
 
