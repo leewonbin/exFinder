@@ -187,6 +187,12 @@ lightgreen
 	text-decoration-line: none;
 }
 
+.topMyPage {
+	margin-top : 0px;
+    margin-bottom: 10px;
+	
+}
+
 /* p 태그 스타일 */
 .exchange-rate-calculator {
 	font-size: 1.1em;

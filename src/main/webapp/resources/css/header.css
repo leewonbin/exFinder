@@ -115,8 +115,7 @@ lightgreen
 .header_end_myPage {
 	display: flex;
 	align-items: center;
-	margin-right: 0px;
-	margin-top: 60px;
+	z-index : 30;
 }
 
 .header_end_myPage img {

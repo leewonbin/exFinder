@@ -1,5 +1,5 @@
 .footer_margin {
-    flex-grow: 1; /* 남은 공간을 모두 차지 */
+    height: 100px;
     width: 100%; /* 폭을 100%로 설정 */
 }
 .footer {
