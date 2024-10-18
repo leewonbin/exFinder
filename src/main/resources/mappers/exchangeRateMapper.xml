@@ -63,7 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	n_dr AS deal_bas_r,
     	n_dr - e_dr AS diff,
     	ROUND((n_dr - e_dr) / NULLIF(e_dr, 0) * 100, 2) AS diff_percent
-	FROM comparisonvalue
+	FROM comparisonvalue order by diff_percent desc
 </select>
 
 <select id="today_ComparisonValue_code" resultType="ExchangeRate_ComparisonValueDto">

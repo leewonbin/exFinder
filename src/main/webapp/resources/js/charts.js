@@ -237,7 +237,7 @@ function processCurrencies_value(currencies_value) {
                         $('#' + currency_value.valueId).html(htmlContent);
                         $('#' + currency_value.flagId).html(htmlContent2);
                         
-                        $('#' + currency_value.often_value).html(htmlContent3);
+                        $('.' + currency_value.often_value).html(htmlContent3);
                         $('#' + currency_value.sale_value).html(htmlContent3);
                         $('#' + currency_value.purchase_value).html(htmlContent3);
                         

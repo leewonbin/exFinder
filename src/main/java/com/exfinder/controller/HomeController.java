@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.exfinder.dto.CurrencyDto;
+import com.exfinder.dto.ExchangeRate_ComparisonValueDto;
 import com.exfinder.dto.UserActivityDto;
 import com.exfinder.dto.UserDto;
 import com.exfinder.service.CurrencyService;
+import com.exfinder.service.ExchangeRateService;
 import com.exfinder.service.NoticeExchangeRateService;
 import com.exfinder.service.UserActivityService;
 import com.exfinder.service.UserService;
@@ -41,6 +42,9 @@ public class HomeController {
 
 	@Autowired
 	private UserActivityService userActivityService;
+	
+	@Autowired
+	private ExchangeRateService exchangerateService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -69,17 +73,34 @@ public class HomeController {
 				}
 			}
 			String userId = (String) session.getAttribute("userId"); // 세션에 저장된 사용자 ID 가져오기
-			System.out.println("hgfdgfd");
 			
 			// 자주 조회하는 통화 가져오기
 	        if (userId != null) {
 	            try {
 	                System.out.println("User ID는: " + userId);
 	                List<UserActivityDto> frequentCurrencies = userActivityService.getFrequentCurrencies(userId);
-	                for (UserActivityDto dto : frequentCurrencies) {
-	                    System.out.println(dto);
+	                List<ExchangeRate_ComparisonValueDto> comparisonV = exchangerateService.today_ComparisonValue();
+	                
+	                List<ExchangeRate_ComparisonValueDto> firstList = new ArrayList<>();
+	                List<ExchangeRate_ComparisonValueDto> secondList = new ArrayList<>();
+
+	                // 인덱스 0, 1, 2의 요소 추가
+	                if (comparisonV.size() > 2) {
+	                    firstList.add(comparisonV.get(0));
+	                    firstList.add(comparisonV.get(1));
+	                    firstList.add(comparisonV.get(2));
+	                }
+
+	                // 인덱스 19, 18, 17의 요소 추가
+	                int size = comparisonV.size();
+	                if (size > 19) {
+	                    secondList.add(comparisonV.get(size - 1)); // 인덱스 19
+	                    secondList.add(comparisonV.get(size - 2)); // 인덱스 18
+	                    secondList.add(comparisonV.get(size - 3)); // 인덱스 17
 	                }
 	                model.addAttribute("frequentCurrencies", frequentCurrencies);
+	                model.addAttribute("firstList", firstList);
+	                model.addAttribute("secondList", secondList);
 	            } catch (Exception e) {
 	                e.printStackTrace();
 	                // 에러 처리 로직 추가 가능
