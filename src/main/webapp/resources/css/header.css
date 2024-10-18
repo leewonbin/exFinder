@@ -116,8 +116,12 @@ lightgreen
 	display: flex;
 	align-items: center;
 	z-index : 30;
+	
 }
-
+.myPage_origin_location{
+	margin-right: 45px;
+    margin-top: 70px;
+}
 .header_end_myPage img {
 	margin-right: 10px;
 	width: 35px;
@@ -269,6 +273,7 @@ lightgreen
 	background-color: #6c757d; /* 버튼 호버 시 배경색 회색 */
 }
 
+
 /* 알림 페이지 */
 .header_mini_alarmPage {
 	width: 300px; /* 너비 설정 */
@@ -279,7 +284,7 @@ lightgreen
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* 그림자 효과 추가 */
 	border-radius: 10px; /* 둥글게 만들기 */
 	position: fixed; /* 화면에 고정되도록 설정 */
-	z-index: 999; /* 가장 위에 표시되도록 설정 */
+	z-index: 9999; /* 가장 위에 표시되도록 설정 */
 	display: none; /* 기본적으로 숨김 */
 }
 

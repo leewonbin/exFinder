@@ -12,6 +12,8 @@
 	src="${pageContext.request.contextPath}/resources/js/headerAlram.js"></script>
 </head>
 <body>
+121<br>
+323
 	<div class="header_mini_alarmPage">
 		<div class="header_mini_alarmPage_top">
 			<p>알림</p>

@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     try {
         var miniMyPageElements = document.getElementsByClassName('miniMyPage');
@@ -35,4 +36,9 @@ function toggleMiniMyPage() {
     let backgroundImage = isHidden ? "url('/ex/resources/img/up.png')" : "url('/ex/resources/img/down.png')";
     toggleButton.style.backgroundImage = backgroundImage;
     toggleButton2.style.backgroundImage = backgroundImage;
+    
+    var mini_myPage_view = document.getElementById("mini_myPage_view");
+    
+	var headerMiniMyPage = mini_myPage_view.querySelector(".header_mini_myPage");
+    headerMiniMyPage.style.top = '165px';
 }

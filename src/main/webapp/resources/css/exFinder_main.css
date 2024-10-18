@@ -58,7 +58,10 @@ color
 
 
 
+
+
 :
+
 
 
 
@@ -70,7 +73,10 @@ color
 
 
 
+
 #64B5F6
+
+
 
 
 
@@ -92,7 +98,10 @@ color
 
 
 
+
+
 :
+
 
 
 
@@ -104,7 +113,10 @@ color
 
 
 
+
 lightgreen
+
+
 
 
 
@@ -128,14 +140,15 @@ lightgreen
 }
 
 .top-content-start {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    height: 100%;
-    max-width: 250px;
-    margin-top: 50px;
-    margin-left: 70px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	height: 100%;
+	max-width: 250px;
+	margin-top: 50px;
+	margin-left: 70px;
+	z-index: 30;
 }
 
 /* 이미지 및 리스트 스타일 조정 */
@@ -161,14 +174,14 @@ lightgreen
 }
 
 .top-content-end {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    height: 100%;
-    max-width: 300px;
-    margin-right: 70px;
-    margin-top: 125px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	height: 100%;
+	max-width: 300px;
+	margin-right: 70px;
+	margin-top: 125px;
 }
 
 .top-content-end>ul {
@@ -185,12 +198,6 @@ lightgreen
 	cursor: pointer;
 	color: white;
 	text-decoration-line: none;
-}
-
-.topMyPage {
-	margin-top : 0px;
-    margin-bottom: 10px;
-	
 }
 
 /* p 태그 스타일 */
