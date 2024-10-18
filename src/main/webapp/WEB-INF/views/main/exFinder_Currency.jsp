@@ -358,8 +358,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			</tbody>
 		</table>
 	</div>
-
+	<footer>
 	<%@include file="/WEB-INF/views/footer/exFinder_footer.jsp"%>
+	</footer>
 
 </body>
 </html>

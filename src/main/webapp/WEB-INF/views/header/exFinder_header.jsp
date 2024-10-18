@@ -70,7 +70,7 @@
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div class="header_end_myPage">
+					<div class="header_end_myPage myPage_origin_location">
 						<!-- 로그인, 마이페이지 등등.. -->
 						<c:choose>
 							<c:when test="${not empty dto.u_profile_img}">

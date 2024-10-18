@@ -335,14 +335,6 @@ body, html {
     max-height: 6em; /* 4줄 높이에 맞게 설정 (줄 높이와 맞춰야 함) */
 }
 
-
-
-
-
-
-
-
-
 .box-contents {
     margin: 20px auto;
     padding: 20px;
@@ -355,7 +347,7 @@ body, html {
     margin: 20px auto;
     padding: 20px;
     max-width: 1200px;
-    height: 400px;
+    height: 500px;
     box-sizing: border-box;
 }
 

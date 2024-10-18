@@ -12,6 +12,7 @@
 	src="${pageContext.request.contextPath}/resources/js/headerAlram.js"></script>
 </head>
 <body>
+
 	<div class="header_mini_alarmPage">
 		<div class="header_mini_alarmPage_top">
 			<p>알림</p>
@@ -26,7 +27,7 @@
 						<div class="alarm_message">
 							<div class="alarm_message_title">
 							<c:if test="${alram.checked eq 'X' }">
-								<span class="red-dot"></span> <!-- 빨간 점 추가 -->
+								<span class="red-dot"></span> 
 							</c:if>
 								<div class="alarm_message_title_nation">${alram.c_code} -</div>
 								<div class="alarm_message_title_time">${alram.create_date}</div>
