@@ -1,5 +1,6 @@
 .footer_margin {
-    height: 100px;
+    min-height: 100px;
+    height:auto;
     width: 100%; /* 폭을 100%로 설정 */
 }
 .footer {
@@ -17,13 +18,14 @@
     border-top: 1px solid #ccc; /* 위쪽에 1px 선 추가 */
 
  	z-index: 50;
+ 	flex-shrink: 0; /* 푸터가 축소되지 않도록 설정 */
 }
 .footer_sides{
 	height: 100%; /* 높이 설정 */
 	flex: 1;
 }
 .footer_wrapper {
-    width: 1100px; 
+    width: 1200px; 
     height: 100%; /* 높이 설정 */
     
     text-align: left; /* 텍스트 왼쪽 정렬 */
@@ -36,10 +38,17 @@
 }
 
 .footer_left {
-	line-height: 1.3; /* 줄 간격 설정 */
+	
+	display: flex; /* 수평 정렬을 위한 flexbox 사용 */
+	align-items: center; /* 수직 중앙 정렬 */
+}
+
+.footer_left_high_menu {
+    margin-right: 50px; /* 오른쪽 간격 추가 */
 }
 .footer_left_menu {
     margin-bottom: 15px; /* 아래쪽 간격 10px */
+   
 }
 .footer_left_menu a {
     color: #000; /* 링크 글자 색상을 검정으로 설정 */
@@ -50,8 +59,11 @@
     text-decoration: underline; /* 호버 시 밑줄 추가 */
 }
 
+.footer_left_text{
+	line-height: 1.3; /* 줄 간격 설정 */
+}
 .footer_center{
-	width: 200px; 
+	flex-grow: 1;
     height: 100%; /* 높이 설정 */
 }
 

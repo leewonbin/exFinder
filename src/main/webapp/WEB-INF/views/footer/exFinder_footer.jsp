@@ -15,16 +15,23 @@
 	</div>
 	<footer class="footer">
 		<div class="footer_sides">
-			<img src="${pageContext.request.contextPath}/resources/img/logo-Photoroom.png" class="footer_wrapper_img">
+			
 		</div>
 		<div class="footer_wrapper">
+		
 			<div class="footer_left">
-				<div class="footer_left_menu">
-					<a href="/ex/board/listAll?bCategory=공지사항">공지사항</a>
-					<a href="/ex/cs/main">고객센터</a>
+				<div class="footer_left_high_menu">
+					<img src="${pageContext.request.contextPath}/resources/img/logo-Photoroom.png" class="footer_wrapper_img">
+					
 				</div>
-				<p>exFinder에서 제공하는 환율 정보는 단순히 정보의 제공을 목적으로 하고 있으며, </p> <p>사이트에서 제공되는 정보는 오류 및 지연이 발생될 수 있습니다.</p> 
-				<p>제공된 정보이용에 따르는 책임은 이용자 본인에게 있으며, </p>  <p>exFinder는 이용자의 투자결과에 따른 법적 책임을 지지 않습니다.</p>
+				<div class="footer_left_text">
+					<div class="footer_left_menu">
+						<a href="/ex/board/listAll?bCategory=공지사항">공지사항</a>
+						<a href="/ex/cs/main">고객센터</a>
+					</div>
+					<p>exFinder에서 제공하는 환율 정보는 단순히 정보의 제공을 목적으로 하고 있으며, </p> <p>사이트에서 제공되는 정보는 오류 및 지연이 발생될 수 있습니다.</p> 
+					<p>제공된 정보이용에 따르는 책임은 이용자 본인에게 있으며, </p>  <p>exFinder는 이용자의 투자결과에 따른 법적 책임을 지지 않습니다.</p>
+				</div>
 			</div>
 			<div class="footer_center"></div>
 			<div class="footer_right">
