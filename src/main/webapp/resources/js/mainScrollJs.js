@@ -25,7 +25,7 @@ window.addEventListener('scroll', function() {
         
         // 알림 위치 변경 (예: 위쪽으로 이동)
         alramContainer.style.position = 'fixed'; // 고정 위치로 설정
-        alramContainer.style.top = '10px'; // 상단 10px 위치로 이동
+        alramContainer.style.top = '45px'; // 상단 10px 위치로 이동
         alramContainer.style.transform = 'translateX(-50%)'; // 중앙 정렬을 위한 변환
         alramContainer.style.zIndex = '9999'; // 가장 위로 배치되도록 설정
         

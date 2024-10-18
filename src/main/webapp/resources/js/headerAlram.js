@@ -66,7 +66,8 @@ function toggleAlram() {
 	} else {
 		// 알림이 보이지 않는 경우 로드 후 보이기
 		console.log("보이기");
-		loadAlram(); // 알림 로드
+		loadAlram(); // 알림 로드		 
+		alramContainer.style.top = '45px'; // 상단 10px 위치로 이동
 		$(".alram").css("animation", "none");
 		alramContainer.style.display = "block"; // 알림 표시
 		currentAlramVisible = true; // 상태 업데이트

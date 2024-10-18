@@ -102,7 +102,7 @@
 			<%@include file="/WEB-INF/views/main/calculrator.jsp"%>
 		</div>
 
-		<!-- 사용자 맞춤 정보 팝업 창 -->
+		<!-- 팝업창 -->
 		<c:if test="${not empty frequentCurrencies}">
 			<div id="popup" class="popup" style="display: none;">
 				<div class="popup-content">
@@ -110,181 +110,152 @@
 					<div class="popup-body">
 						<c:if test="${not empty userId}">
 							<br>
+							<c:set var="hasFrequentCurrencies" value="false" />
 							<h3 style="font-weight: bold;">자주 조회한 통화</h3>
 							<br>
-							<ul>
+							<ul style="list-style-type: none; padding: 0; white-space: nowrap;">
 								<c:set var="count" value="0" />
 								<c:forEach var="currency" items="${frequentCurrencies}"
 									varStatus="status">
-									<c:if test="${count < 5}">
-										<li><img
+									<c:if test="${currency.view_count >= 5 && count < 6}">
+										<li style="display: inline-block; text-align: center; margin: 10px;"><img
 											src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
-											class="flag-img" /> ${currency.c_code} <i
+											class="popup-flag" style="width: 70px; height: auto; display: block; margin: 0 auto;"/> ${currency.c_code} <i
 											id="often_${currency.c_code}"></i></li>
 										<c:set var="count" value="${count + 1}" />
+										<c:set var="hasFrequentCurrencies" value="true" />
 									</c:if>
 								</c:forEach>
+								<c:if test="${not hasFrequentCurrencies}">
+									<li>현재 자주 조회한 통화가 없습니다.</li>
+								</c:if>
 							</ul>
 							<br>
-							<br>
-
-							<h3 style="font-weight: bold;">판매하기 좋은 통화</h3>
-							<br>
-							<ul>
-								<c:set var="buyCount" value="0" />
-								<c:forEach var="currency" items="${frequentCurrencies}"
-									varStatus="status">
-									<c:if test="${resultMap[currency.c_code] > 0 && buyCount < 2}">
-										<li><img
-											src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
-											class="flag-img" /> ${currency.c_code} <i
-											id="sale_${currency.c_code}"></i></li>
-										<c:set var="buyCount" value="${buyCount + 1}" />
-									</c:if>
-								</c:forEach>
-							</ul>
-							<br>
-							<br>
-
-							<h3 style="font-weight: bold;">구매하기 좋은 통화</h3>
-							<br>
-							<ul>
-								<c:set var="sellCount" value="0" />
-								<c:forEach var="currency" items="${frequentCurrencies}"
-									varStatus="status">
-									<c:if test="${resultMap[currency.c_code] < 0 && sellCount < 2}">
-										<li><img
-											src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
-											class="flag-img" /> ${currency.c_code} <i
-											id="purchase_${currency.c_code}"></i></li>
-										<c:set var="sellCount" value="${sellCount + 1}" />
-									</c:if>
-								</c:forEach>
-							</ul>
 						</c:if>
 					</div>
 				</div>
 			</div>
 		</c:if>
 
-		</div>
-		
-		
-		 <!-- 지도 팝업 -->
-    <div id="mapPopup">
-        <button onclick="closeMapPopup()">닫기</button>
-			<%@include file="/WEB-INF/views/main/map.jsp"%>
-    </div>
-    
-    <script>
-        // 팝업창 열기
-        function openMapPopup() {
-            document.getElementById('mapPopup').style.display = 'block';
-            document.getElementById('popupBackground').style.display = 'block';
-            loadMap();  // 지도 로드
-        }
-
-        // 팝업창 닫기
-        function closeMapPopup() {
-            document.getElementById('mapPopup').style.display = 'none';
-            document.getElementById('popupBackground').style.display = 'none';
-        }
-        
-    </script>
-		
-
-		<!-- 알림을 표시할 div -->
-		<div id="alramContainer" style="display: none;"></div>
 
 
-		<!-- 국가별 차트 p 태그 -->
-		<p class="country-chart">국가별 차트</p>
 
-		<!-- 구분선 -->
-		<hr class="divider">
-
-		<!-- 중앙에 위치시키기 위한 div -->
-		<div class="charts_view">
-			<%@include file="/WEB-INF/views/main/chartsSlideValue.jsp"%>
-		</div>
-
-		<!-- 국가별 차트 p 태그 -->
-		<p class="country-chart">세계 환율 변동률</p>
-
-		<!-- 구분선 -->
-		<hr class="divider">
-
-		<div class="world_map_view">
-			<%@include file="/WEB-INF/views/main/worldMapValue.jsp"%>
-		</div>
+	</div>
 
 
-		<h1 class="rate-lookup">환율조회</h1>
-		<!-- 구분선 -->
-		<hr class="divider">
+	<!-- 지도 팝업 -->
+	<div id="mapPopup">
+		<button onclick="closeMapPopup()">닫기</button>
+		<%@include file="/WEB-INF/views/main/map.jsp"%>
+	</div>
 
-		<div class="box-contents">
-			<div>
-				<p class="date-display">기준일 : ${list[0].rate_date}
-					&nbsp;${list[0].annotime}</p>
-				<table class="exchange">
-					<thead>
-						<tr class="chart">
-							<th rowspan="2">국가명</th>
-							<th rowspan="2">통화</th>
-							<th rowspan="2">매매기준율</th>
-							<th rowspan="2">전일비</th>
-							<th colspan="2">현찰</th>
-							<th colspan="2">송금(전신환)</th>
-							<th rowspan="2">기준환율</th>
-						</tr>
-						<tr class="chartB">
-							<th class="leftL">사실때</th>
-							<th>파실때</th>
-							<th>보내실때</th>
-							<th>받으실때</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="currency" items="${list}">
-							<tr>
-								<td class="l"><img
-									src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
-									class="flag-img"
-									onclick="location.href='exFinder_Currency?c_code=${currency.c_code }'" /><a
-									href="exFinder_Currency?c_code=${currency.c_code }">${currency.c_country}</a></td>
-								<td class="l">${currency.c_name}</td>
-								<td class="r">${currency.deal_bas_r}</td>
+	<script>
+		// 팝업창 열기
+		function openMapPopup() {
+			document.getElementById('mapPopup').style.display = 'block';
+			document.getElementById('popupBackground').style.display = 'block';
+			loadMap(); // 지도 로드
+		}
 
-								<!-- 전일비 색상 설정 + 전일비 계산 -->
-								<c:set var="changeClass">
-									<c:choose>
-										<c:when test="${resultMap[currency.c_code] > 0}">
+		// 팝업창 닫기
+		function closeMapPopup() {
+			document.getElementById('mapPopup').style.display = 'none';
+			document.getElementById('popupBackground').style.display = 'none';
+		}
+	</script>
+
+
+	<!-- 알림을 표시할 div -->
+	<div id="alramContainer" style="display: none;"></div>
+
+
+	<!-- 국가별 차트 p 태그 -->
+	<p class="country-chart">국가별 차트</p>
+
+	<!-- 구분선 -->
+	<hr class="divider">
+
+	<!-- 중앙에 위치시키기 위한 div -->
+	<div class="charts_view">
+		<%@include file="/WEB-INF/views/main/chartsSlideValue.jsp"%>
+	</div>
+
+	<!-- 국가별 차트 p 태그 -->
+	<p class="country-chart">세계 환율 변동률</p>
+
+	<!-- 구분선 -->
+	<hr class="divider">
+
+	<div class="world_map_view">
+		<%@include file="/WEB-INF/views/main/worldMapValue.jsp"%>
+	</div>
+
+
+	<h1 class="rate-lookup">환율조회</h1>
+	<!-- 구분선 -->
+	<hr class="divider">
+
+	<div class="box-contents">
+		<div>
+			<p class="date-display">기준일 : ${list[0].rate_date}
+				&nbsp;${list[0].annotime}</p>
+			<table class="exchange">
+				<thead>
+					<tr class="chart">
+						<th rowspan="2">국가명</th>
+						<th rowspan="2">통화</th>
+						<th rowspan="2">매매기준율</th>
+						<th rowspan="2">전일비</th>
+						<th colspan="2">현찰</th>
+						<th colspan="2">송금(전신환)</th>
+						<th rowspan="2">기준환율</th>
+					</tr>
+					<tr class="chartB">
+						<th class="leftL">사실때</th>
+						<th>파실때</th>
+						<th>보내실때</th>
+						<th>받으실때</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="currency" items="${list}">
+						<tr>
+							<td class="l"><img
+								src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
+								class="flag-img"
+								onclick="location.href='exFinder_Currency?c_code=${currency.c_code }'" /><a
+								href="exFinder_Currency?c_code=${currency.c_code }">${currency.c_country}</a></td>
+							<td class="l">${currency.c_name}</td>
+							<td class="r">${currency.deal_bas_r}</td>
+
+							<!-- 전일비 색상 설정 + 전일비 계산 -->
+							<c:set var="changeClass">
+								<c:choose>
+									<c:when test="${resultMap[currency.c_code] > 0}">
                                          increase
                                     </c:when>
-										<c:when test="${resultMap[currency.c_code] < 0}">
+									<c:when test="${resultMap[currency.c_code] < 0}">
                                             decrease
                                         </c:when>
-										<c:otherwise>
+									<c:otherwise>
                                             no-change
                                     </c:otherwise>
-									</c:choose>
-								</c:set>
+								</c:choose>
+							</c:set>
 
-								<td class="r ${changeClass}"><fmt:formatNumber
-										type="number" maxFractionDigits="2"
-										value="${resultMap[currency.c_code]}" /></td>
-								<td class="r">${currency.cash_buy}</td>
-								<td class="r">${currency.cash_sell}</td>
-								<td class="r">${currency.tts}</td>
-								<td class="r">${currency.ttb}</td>
-								<td class="r">${currency.base_r}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+							<td class="r ${changeClass}"><fmt:formatNumber type="number"
+									maxFractionDigits="2" value="${resultMap[currency.c_code]}" /></td>
+							<td class="r">${currency.cash_buy}</td>
+							<td class="r">${currency.cash_sell}</td>
+							<td class="r">${currency.tts}</td>
+							<td class="r">${currency.ttb}</td>
+							<td class="r">${currency.base_r}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
+	</div>
 	<div>
 		<button id="topButton" onclick="scrollToTop()">▲</button>
 		<button id="csButton" onclick="csMove()"></button>
@@ -299,18 +270,11 @@
 
 
 
-
-
-
-	<!-- <div id="popup" class="popup" style="display: none;">
-		<div class="popup-content">
-			<span class="close" onclick="closePopup()">&times;</span>
-		</div>
-	</div>
- -->
 	<script>
 		window.onload = function() {
-			const showPopup = '${param.popup}'; // 파라미터로 팝업 표시 여부 결정
+			const showPopup = '${showPopup}'; // 플래시 속성에서 값 가져오기
+
+			// showPopup이 true일 때 팝업을 표시
 			if (showPopup) {
 				document.getElementById('popup').style.display = 'flex'; // 팝업을 표시
 			}
@@ -319,9 +283,11 @@
 		function closePopup() {
 			document.getElementById('popup').style.display = 'none'; // 팝업 닫기
 		}
+
 		function mapMove() {
-			  window.open('/ex/main/map', 'popup', 'width=1300,height=775,top=120,left=300');
-			}
+			window.open('/ex/main/map', 'popup',
+					'width=1300,height=775,top=120,left=300');
+		}
 	</script>
 
 </body>

@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.exfinder.dto.AlramDto;
 import com.exfinder.dto.AuthoritiesDto;
 import com.exfinder.dto.BoardDto;
@@ -165,13 +167,15 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/Logincomplete", method = RequestMethod.GET)
-	public String Logincomplete(HttpSession session) throws Exception {
+	public String Logincomplete(HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
 		String userid = (String) session.getAttribute("userId");
 		UserDto dto = userService.selectUser(userid);
 		System.out.println("dto : " + dto);
 
 		session.setAttribute("dto", dto);
-		return "redirect:/?popup=true";						//팝업창 때문에 return "redirect:/";에서 수정했어요
+		redirectAttributes.addFlashAttribute("showPopup", true);
+
+	    return "redirect:/";
 
 	}
 
