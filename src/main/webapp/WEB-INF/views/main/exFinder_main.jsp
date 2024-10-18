@@ -320,7 +320,7 @@
 			document.getElementById('popup').style.display = 'none'; // 팝업 닫기
 		}
 		function mapMove() {
-			  window.open('/ex/main/map', 'popup', 'width=900,height=500,left=170,top=55');
+			  window.open('/ex/main/map', 'popup', 'width=1300,height=775,top=120,left=300');
 			}
 	</script>
 

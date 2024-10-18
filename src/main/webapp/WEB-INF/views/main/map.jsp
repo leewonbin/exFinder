@@ -10,6 +10,7 @@
 </head>
 
 <body>
+	<div class="all">
 		<div class="ment">
 		 	주변 은행, 환전소를 찾아보세요!
 		</div>
@@ -21,7 +22,7 @@
 		        <img src="${pageContext.request.contextPath}/resources/img/myLocation.png" alt="내 위치 보기" />
 		    </button>
        	</div>
-       	
+     </div>
        	<script>
 		    function setActive(button) {
 		        // 모든 버튼에서 active 클래스를 제거
