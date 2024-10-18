@@ -1,6 +1,5 @@
 /* 페이지 전체 크기와 기본 설정 */
-body,
-html {
+body, html {
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -43,26 +42,80 @@ html {
 	background-color: #05203C;
 }
 
-@ keyframes alram {
-	25% {
-		color: #2196F3;
-	}
-
-	50% {
-		color:
-
-			#64B5F6;
-
-	}
-
-	75% {
-		color:
-
-			lightgreen;
-
-	}
+@
+keyframes alram { 25% {
+	color: #2196F3;
 }
 
+50%
+{
+color
+
+
+
+
+
+
+
+
+:
+
+
+
+
+
+
+			
+
+
+
+
+#64B5F6
+
+
+
+
+
+
+
+
+;
+}
+75%
+{
+color
+
+
+
+
+
+
+
+
+:
+
+
+
+
+
+
+			
+
+
+
+
+lightgreen
+
+
+
+
+
+
+
+
+;
+}
+}
 .top-content-wrap {
 	display: flex;
 	align-items: center;
@@ -75,19 +128,14 @@ html {
 }
 
 .top-content-start {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	/* 자식 요소들을 왼쪽 정렬 */
-	justify-content: center;
-	/* 세로 방향으로 중앙 정렬 */
-	height: 100%;
-	/* 높이를 100%로 설정하여 부모 요소에 맞춤 */
-	max-width: 250px;
-	/* 최대 너비 제한 */
-	margin-top: 30px;
-	/* 상단 마진 제거 */
-	margin-left: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    max-width: 250px;
+    margin-top: 50px;
+    margin-left: 70px;
 }
 
 /* 이미지 및 리스트 스타일 조정 */
@@ -113,17 +161,14 @@ html {
 }
 
 .top-content-end {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	/* 자식 요소들을 왼쪽 정렬 */
-	justify-content: center;
-	/* 세로 방향으로 중앙 정렬 */
-	height: 100%;
-	/* 높이를 100%로 설정하여 부모 요소에 맞춤 */
-	max-width: 300px;
-	/* 최대 너비 제한 */
-	margin-right: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    max-width: 300px;
+    margin-right: 70px;
+    margin-top: 125px;
 }
 
 .top-content-end>ul {
@@ -175,15 +220,12 @@ html {
 /* div 영역 스타일 */
 .calculator-container {
 	width: 100%;
-	/* 화면의 전체 너비 */
-	height: 300px;
+	height: 350px;
 	background-color: #05203C;
 	display: flex;
 	justify-content: space-between;
-	/* 왼쪽과 오른쪽으로 배치 */
-	padding: 20px;
+	padding: 5px;
 	box-sizing: border-box;
-	/* padding과 border가 포함된 크기 계산 */
 }
 
 /* 기준 통화와 결과 통화 섹션 스타일 */
@@ -198,8 +240,7 @@ html {
 }
 
 /* input 화살표 없앰 */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
@@ -220,16 +261,13 @@ input::-webkit-inner-spin-button {
 	align-items: center;
 	justify-content: center;
 	width: 50px;
-	/* 너비 조정 */
 	height: 50px;
-	/* 높이 조정 */
 	text-align: center;
-	margin-top: 170px;
+	margin-top: 220px;
 }
 
 /* selectbox와 input 스타일 */
-.currency-section select,
-.currency-section input {
+.currency-section select, .currency-section input {
 	/* padding: 10px; */
 	box-sizing: border-box;
 	/* padding과 border가 포함된 크기 계산 */
@@ -246,30 +284,23 @@ input::-webkit-inner-spin-button {
 /* img를 select박스의 왼쪽에 배치 */
 .selectBoxWrap>img {
 	position: absolute;
-	left: 10px;
-	/* 왼쪽으로 10px 여백 추가 */
-	top: 35%;
-	/* 수직 중앙 정렬 */
+	left: 15px;
+	top: 33%;
 	transform: translateY(-50%);
-	/* 수직 중앙 정렬 보정 */
 	width: 50px;
-	/* 이미지 크기 조정 */
 	height: 50px;
-	/* 이미지 크기 조정 */
 	z-index: 1;
-	/* select 요소보다 위에 배치 */
 }
 
 /* select 요소에 여백 추가 */
 .selectBoxWrap select {
 	padding-left: 70px;
-	/* 이미지와 겹치지 않도록 왼쪽 패딩 추가 (여백과 크기를 고려하여 조정) */
 	box-sizing: border-box;
-	/* 패딩이 포함된 크기 계산 */
 	position: relative;
-	/* img와의 위치 관계를 위해 상대적 위치 설정 */
 	z-index: 0;
-	/* 이미지보다 뒤에 배치 */
+	width: 300px;
+	height: 80px;
+	font-size: 15px;
 }
 
 /* 기준 통화 selectbox 스타일 */
@@ -309,8 +340,7 @@ input::-webkit-inner-spin-button {
 	height: 37px;
 	background-color: white;
 	position: absolute;
-	/* 절대 위치 설정 */
-	bottom: 1px;
+	bottom: 35px;
 	left: 0;
 	margin: 0;
 	border: none;
@@ -349,7 +379,7 @@ input::-webkit-inner-spin-button {
 	background-color: white;
 	position: absolute;
 	/* 절대 위치 설정 */
-	bottom: 1px;
+	bottom: 35px;
 	left: 0;
 	margin: 0;
 	border: none;
@@ -387,8 +417,7 @@ input::-webkit-inner-spin-button {
 	color: #ddd;
 }
 
-.exchange th,
-.exchange td {
+.exchange th, .exchange td {
 	padding: 5px 10px;
 	border: none;
 	vertical-align: middle;
@@ -501,7 +530,6 @@ input::-webkit-inner-spin-button {
 	/* 그림자 효과 */
 }
 
-
 #csButton {
 	background-image: url("../img/cs.png");
 	/* 배경 이미지 설정 */
@@ -533,6 +561,7 @@ input::-webkit-inner-spin-button {
 	background-position: center;
 	/* 그림자 효과 */
 }
+
 #mapButton {
 	background-image: url("../img/map.png");
 	/* 배경 이미지 설정 */
@@ -565,86 +594,110 @@ input::-webkit-inner-spin-button {
 	/* 그림자 효과 */
 }
 
-#topButton,
-#csButton,
-#mapButton {
+#topButton, #csButton, #mapButton {
 	width: 50px;
 	/* 원하는 너비 */
 	height: 50px;
 	/* 원하는 높이 */
 }
 
-#topButton:hover,
-#csButton:hover,
-#mapButton:hover {
+#topButton:hover, #csButton:hover, #mapButton:hover {
 	background-color: #64B5F6;
 	/* 호버 시 색상 변경 */
-
 }
 
-
 .mapPopup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .mapPopup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
+	background-color: white;
+	padding: 20px;
+	border-radius: 5px;
+	text-align: center;
 }
 
 .mapClose {
-    cursor: pointer;
-    float: right;
+	cursor: pointer;
+	float: right;
 }
 
-
-
-
 .popup {
-    display: none; /* 기본적으로 숨김 */
-    position: fixed; /* 화면에 고정 */
-    top: 50%; /* 수직 중앙 정렬 */
-    left: 50%; /* 수평 중앙 정렬 */
-    transform: translate(-50%, -50%); /* 정확히 중앙으로 조정 */
-    width: 20%; /* 팝업 너비 */
-    max-width: 600px; /* 최대 너비 */
-    height: 55%; /* 팝업 높이 */
-    max-height: 70%; /* 최대 높이 */
-    background-color: white; /* 배경색 */
-    border: 1px solid #ccc; /* 테두리 */
-    border-radius: 8px; /* 모서리 둥글게 */
-    z-index: 1000; /* 다른 요소 위에 위치 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
-    overflow: auto; /* 내용이 넘칠 경우 스크롤 */
+	display: none; /* 기본적으로 숨김 */
+	position: fixed; /* 화면에 고정 */
+	top: 50%; /* 수직 중앙 정렬 */
+	left: 50%; /* 수평 중앙 정렬 */
+	transform: translate(-50%, -50%); /* 정확히 중앙으로 조정 */
+	width: 20%; /* 팝업 너비 */
+	max-width: 600px; /* 최대 너비 */
+	height: 55%; /* 팝업 높이 */
+	max-height: 70%; /* 최대 높이 */
+	background-color: white; /* 배경색 */
+	border: 1px solid #ccc; /* 테두리 */
+	border-radius: 8px; /* 모서리 둥글게 */
+	z-index: 1000; /* 다른 요소 위에 위치 */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+	overflow: auto; /* 내용이 넘칠 경우 스크롤 */
 }
 
 .popup-content {
-    width: 100%; /* 내용 너비 */
-    padding: 20px; /* 패딩 */
-    box-sizing: border-box; /* 박스 크기 계산 방식 */
-    position: relative; /* 상대 위치 */
+	width: 100%; /* 내용 너비 */
+	padding: 20px; /* 패딩 */
+	box-sizing: border-box; /* 박스 크기 계산 방식 */
+	position: relative; /* 상대 위치 */
 }
 
 .popup-body {
 	border-top: 1px solid #ccc; /* 테두리 */
-    padding-top: 10px; /* 닫기 버튼과 내용 사이 간격 */
-    text-align: center; /* 중앙 정렬 */
+	padding-top: 10px; /* 닫기 버튼과 내용 사이 간격 */
+	text-align: center; /* 중앙 정렬 */
 }
 
 .close {
-    position: absolute; /* 절대 위치 */
-    top: 12px; /* 위에서 10px 떨어짐 */
-    right: 20px; /* 오른쪽에서 20px 떨어짐 */
-    font-size: 12px; /* 글자 크기 */
-    cursor: pointer; /* 커서 모양 변경 */
+	position: absolute; /* 절대 위치 */
+	top: 12px; /* 위에서 10px 떨어짐 */
+	right: 20px; /* 오른쪽에서 20px 떨어짐 */
+	font-size: 12px; /* 글자 크기 */
+	cursor: pointer; /* 커서 모양 변경 */
+}
+
+/* 팝업창을 기본적으로 숨김 */
+#mapPopup {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 1200px;
+	height: 750px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	z-index: 1000;
+}
+
+/* 팝업창을 열 때 배경 흐리게 */
+#popupBackground {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 999;
+}
+
+/* 닫기 버튼 스타일 */
+#mapPopup button {
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }

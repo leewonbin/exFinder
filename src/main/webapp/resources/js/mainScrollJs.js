@@ -60,6 +60,6 @@ window.onscroll = function() {
   }
   
   function mapMove() {
-	  location.href='/ex/cs/main';
+	  location.href='/ex/main/map';
   }
 
