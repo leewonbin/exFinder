@@ -1,8 +1,8 @@
 body {
-	font-family: Arial, sans-serif;
-	color: #333;
-	margin: 0;
-	padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 a {
@@ -14,60 +14,45 @@ a:hover {
     text-decoration: underline; 
 }
 
-.sidebar{
-	width: 200px;
-	position: fixed;
-	top: 150px;
-	left: 0;
-	height: calc(100vh - 100px); /*헤더 높이만큼 제외 */
-	background-color: white;
-	padding: 20px;
-	z-index: 10;
-	padding: 70px 20px 20px;
-	margin-left: 340px;
+.sidebar {
+    width: 200px;
+    position: fixed;
+    top: 150px;
+    left: 20px; /* 왼쪽 여백 추가 */
+    height: calc(100vh - 100px); /* 헤더 높이만큼 제외 */
+    background-color: white;
+    padding: 70px 20px 20px; /* 패딩 조정 */
+    z-index: 10;
+    margin-left: 320px;
 }
 
-.sidebar .cButton{
-	display: block;
-	width: 100%;
-	margin: 0px;
-	padding: 10px;
-	border: 1px solid white;
-	background-color: white;
-	text-align: left;
-	color: black;
-	font-size: 18px;
-	font-weight: bold;
-}
-.csButton{
-	display: block;
-	width: 100%;
-	margin: 0px;
-	padding: 10px;
-	border: 1px solid white;
-	background-color: white;
-	text-align: left;
-	color: black;
-	font-size: 18px;
-	font-weight: bold;
+.sidebar .cButton,
+.csButton {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid white;
+    background-color: white;
+    text-align: left;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-
-.sidebar .cButton:hover{
-	background-color: white;
-	color: #054184;
+.sidebar .cButton:hover,
+.csButton:hover {
+    background-color: white;
+    color: #054184;
 }
 
-.csButton:hover{
-	background-color: white;
-	color: #054184;
-}
-
-.main-content{
-	margin-left: 200px;
-	margin-right: 160px;
-	margin-top: 150px;
-	padding: 0 130px;
+.main-content {
+    margin-left: 200px; /* 사이드바 너비 */
+    margin-right: 160px;
+    margin-top: 150px;
+    padding: 0 130px;
+    display: flex; /* flexbox 사용 */
+    flex-direction: column; /* 세로 방향 정렬 */
 }
 
 .main {
@@ -78,45 +63,47 @@ a:hover {
 }
 
 .writeBtn {
-	background-color: #05203C;
-	color: white;
-	cursor: pointer;
-	font-size: 15px;
-	margin-top: 20px;
-	display: flex; /* Flexbox 레이아웃 활성화 */
-	justify-content: center; /* 수평 중앙 정렬 */
+    background-color: #05203C;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 20px;
+    display: flex; /* Flexbox 레이아웃 활성화 */
+    justify-content: center; /* 수평 중앙 정렬 */
     align-items: center; /* 수직 중앙 정렬 */
-	width: 70px;
-	height: 35px;
-	border: none; /*기본 버튼 테두리 제거*/
+    width: 70px;
+    height: 35px;
+    border: none; /* 기본 버튼 테두리 제거 */
 }
 
 .writeBtn:hover {
-	background-color: #054184;
+    background-color: #054184;
 }
 
 .writeBtn-container {
-	display: flex;
-	justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 #searchBtn {
-	width: 50px;
-	background-color: #05203C;
-	color: white;
-	cursor: pointer;
-	font-size: 15px;
-	border: none;
+    width: 50px;
+    background-color: #05203C;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    border: none;
 }
 
 #searchBtn:hover {
-	background-color: #054184;
+    background-color: #054184;
 }
-
 
 #customers {
     width: 100%;
+    max-width: 1000px; /* 전체 테이블의 최대 너비 설정 */
     border-collapse: collapse;
+    margin-left: auto; /* 자동으로 왼쪽 여백을 설정하여 중앙 정렬 */
+    margin-right: 0; /* 오른쪽 여백은 0으로 설정 */
 }
 
 #customers th, #customers td {
@@ -131,30 +118,24 @@ a:hover {
 }
 
 #customers th {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 #customers tr:hover {
-	background-color: #EFF3F8;
+    background-color: #EFF3F8;
 }
 
 .search-container {
-	display: flex;
-	justify-content: flex-end;
-	margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
 }
 
-.search-container select {
-
+.search-container select,
+.search-container #keywordInput {
     margin-right: 5px;
     height: 35px;
     padding: 0 10px;
-}
-
-.search-container #keywordInput {
-    margin-right: 5px;
-    padding: 0 10px;
-
 }
 
 .pagination {
@@ -190,4 +171,35 @@ a:hover {
 
 .red-text {
     color: red;
+}
+
+/* 미디어 쿼리 추가 */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 150px; /* 사이드바 너비 조정 */
+        top: 150px; /* 기존 위치 유지 */
+        left: 20px; /* 왼쪽 여백 유지 */
+        margin-left: 0; /* margin-left 제거 */
+    }
+
+    .main-content {
+        margin-left: 170px; /* 사이드바 너비 + 여백 */
+        margin-right: 20px; /* 오른쪽 여백 조정 */
+        padding: 0 20px; /* 패딩 조정 */
+    }
+
+    .main {
+        padding: 15px; /* 패딩 조정 */
+    }
+
+    .writeBtn,
+    #searchBtn {
+        width: 100%; /* 버튼 너비 조정 */
+        margin-top: 10px; /* 여백 조정 */
+    }
+
+    .search-container {
+        flex-direction: column; /* 세로 방향으로 정렬 */
+        align-items: flex-start; /* 왼쪽 정렬 */
+    }
 }
