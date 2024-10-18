@@ -97,12 +97,32 @@
     text-decoration: none; /* 링크 밑줄 제거 */
     color: inherit; /* 링크 색깔 제거 */
 }
-.chart_loading{
-	margin-top: 120px;
-	
+
+.chart_loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%; 
+    height: 200px; /* 차트의 예상 높이 */
+    background-color: #ffffff;
+    border-radius: 8px;
+    position: relative;
 }
+
+.spinner_img {
+    width: 50px;  /* 이미지 너비 */
+    height: 50px; /* 이미지 높이 */
+    animation: spin 1.5s linear infinite; /* 이미지 회전 애니메이션 */
+    opacity: 0.8; /* 살짝 투명하게 처리 (선택사항) */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .chart_graph {
-    
+    display: none; 
 	width: 90%; 
 	height: 200px;
 	margin: 0 auto;

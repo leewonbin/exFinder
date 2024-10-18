@@ -25,7 +25,14 @@
 									<div id="value_${exchange.c_code}"></div>
 								</div>
 								
-								<div id="chart_${exchange.c_code}" class="chart_graph"></div>
+								<!-- 로딩 애니메이션과 차트 영역 -->
+    							<div class="chart_loading" id="loading_${exchange.c_code}">
+        							<div class="spinner">
+        								<img src="${pageContext.request.contextPath}/resources/img/loading.png" class="spinner_img" alt="Loading">
+        							</div>
+    							</div>
+    							
+								<div id="chart_${exchange.c_code}" class="chart_graph" style="display: none;"></div>
 							</div>
 							<c:if test="${status.index % 2 == 1 || status.last}">
 					</div>

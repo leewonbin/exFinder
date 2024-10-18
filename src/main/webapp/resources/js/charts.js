@@ -66,52 +66,57 @@ const currencies_chart = [
 
 
 $(document).ready(function() {
-	   console.time('Total Execution Time');
+	console.time('Total Execution Time');
 
-	    //processCurrencies_value(currencies_value);
+	//processCurrencies_value(currencies_value);
 	    
-	    // Google Charts 라이브러리가 로드된 후 차트 그리기
-	    google.charts.setOnLoadCallback(function () {
-	        processCurrencies_value(currencies_value);
-	        processCurrencies_chart(currencies_chart);
-	        console.timeEnd('Total Execution Time');
-	    });
-	    
-
-	    
+	// Google Charts 라이브러리가 로드된 후 차트 그리기
+	google.charts.setOnLoadCallback(function () {
+		processCurrencies_value(currencies_value);
+	    processCurrencies_chart(currencies_chart);
+	    console.timeEnd('Total Execution Time');
 	});
+	    
+});
 
-	function processCurrencies_chart(currencies_chart) {
-	   const c_codes = currencies_chart.map(currency => currency.code);
+function processCurrencies_chart(currencies_chart) {
+	const c_codes = currencies_chart.map(currency => currency.code);
 
-	    $.ajax({
-	        type: "POST",
-	        url: "/ex/charts/graph",
-	        data: {
-	            c_codes: c_codes,
-	            rate_date: formattedDate
-	        },
-	        traditional: true,
-	        dataType: "json",
-	        success: function (response) {
-	           console.log("응답 데이터:", response); // 응답 데이터 로그 확인
+	$.ajax({
+		type: "POST",
+	    url: "/ex/charts/graph",
+	    data: {
+	    	c_codes: c_codes,
+	        rate_date: formattedDate
+	    },
+        traditional: true,
+        dataType: "json",
+        beforeSend: function() {
+            // 로딩 이미지 표시
+            currencies_chart.forEach(currency => {
+                $(`#loading_${currency.code}`).show();
+                $(`#chart_${currency.code}`).hide();
+            });
+        },
+        success: function (response) {
+           console.log("응답 데이터:", response); // 응답 데이터 로그 확인
 	           
-	            currencies_chart.forEach(currency => {
-	               const matchingData = response.find(item => item.c_code === currency.code);
-	                if (!matchingData) {
+           currencies_chart.forEach(currency => {
+        	   const matchingData = response.find(item => item.c_code === currency.code);
+        	   		if (!matchingData) {
 	                    console.error(`매칭되는 데이터가 없습니다: ${currency.code}`);
 	                } else if (!Array.isArray(matchingData.data) || matchingData.data.length === 0) {
 	                    console.error(`차트 데이터가 유효하지 않습니다: ${currency.code}`);
 	                } else {
 	                    drawTimeCharts(matchingData.data, currency.chartId);
 	                }
-	            });
+	        	});
 	        },
 	        error: function (xhr, status, error) {
 	            console.error("AJAX 요청 오류:", error);
 	        }
-	    });
-	}
+	});
+}
 
 
 //차트 그리기 함수
@@ -164,6 +169,18 @@ function drawTimeCharts(data, chartDivId) {
     };
 
     var chart = new google.visualization.LineChart(document.getElementById(chartDivId));
+    
+    google.visualization.events.addListener(chart, 'ready', function() {
+        console.log(`${chartDivId} 차트가 준비되었습니다.`); // 추가된 로그
+        
+        // 'chart_' 접두사를 제거한 ID를 사용하여 로딩 이미지 숨기기
+        var loadingId = chartDivId.replace('chart_', 'loading_');
+        $(`#${loadingId}`).hide();
+        $(`#${chartDivId}`).show();
+        
+    });
+    // 차트 크기 재조정
+    google.visualization.events.trigger(chart, 'ready');
     chart.draw(chartData, options);
 }
 
@@ -342,3 +359,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
