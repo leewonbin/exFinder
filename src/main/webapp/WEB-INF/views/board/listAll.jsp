@@ -55,8 +55,8 @@
 						<th style="width: 20px;">No.</th>
 						<th style="width: 50px;">카테고리</th>
 						<th style="width: 200px;">제목</th>
-						<th style="width: 30px;">작성자</th>
-						<th style="width: 50px;">작성일</th>
+						<th style="width: 20px;">작성자</th>
+						<th style="width: 30px;">작성일</th>
 						<th style="width: 20px;">조회</th>
 					</tr>
 				</thead>
