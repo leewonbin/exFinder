@@ -415,8 +415,10 @@ public class UserController {
 	@RequestMapping(value = "/user/alramRead", method = RequestMethod.POST)
 	public ResponseEntity<?> alramRead(HttpSession session) throws Exception {
 		UserDto dto = (UserDto) session.getAttribute("dto");
-		String userid = dto.getU_id();
-		alramService.alramCheck(userid);
+		if(dto != null) {
+			String userid = dto.getU_id();
+			alramService.alramCheck(userid);
+		}
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	

@@ -42,92 +42,18 @@ body, html {
 	background-color: #05203C;
 }
 
-@
-keyframes alram { 25% {
-	color: #2196F3;
+@keyframes alram {
+    25% {
+        color: #2196F3;
+    }
+    50% {
+        color: #64B5F6;
+    }
+    75% {
+        color: lightgreen;
+    }
 }
 
-50%
-{
-color
-
-
-
-
-
-
-
-
-
-
-:
-
-
-
-
-
-
-
-			
-
-
-
-
-
-#64B5F6
-
-
-
-
-
-
-
-
-
-
-;
-}
-75%
-{
-color
-
-
-
-
-
-
-
-
-
-
-:
-
-
-
-
-
-
-
-			
-
-
-
-
-
-lightgreen
-
-
-
-
-
-
-
-
-
-
-;
-}
-}
 .top-content-wrap {
 	display: flex;
 	align-items: center;
