@@ -1,0 +1,188 @@
+.all {
+    /* background-color:#05203C; */
+}
+
+.ment {
+	font-weight: 900;
+	font-size: 30px;
+	color: black;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	top: 10px;
+	
+}
+
+.buttons {
+    display: flex;                  /* Flexbox 사용 */
+    align-items: center;            /* 세로 중앙 정렬 */
+    gap: 10px;
+}
+
+.Lbutton {
+    margin-left: auto; /* 왼쪽 마진을 자동으로 설정하여 오른쪽으로 밀어냄 */
+    background: none; /* 배경색 없애기 */
+    border: none; /* 테두리 없애기 */
+    padding: 0; /* 패딩 없애기 */
+    cursor: pointer; /* 마우스 커서 변경 */
+}
+
+.Lbutton img {
+    width: 40px; /* 원하는 너비로 설정 */
+    height: auto; /* 비율 유지 */
+    vertical-align: middle; /* 텍스트와 정렬 */
+}
+
+.Bbutton,
+.Ebutton{
+    background-color: transparent;  /* 기본 배경색 투명 */
+    color: #05203C;                 /* 텍스트 색상 설정 */
+    border: 2px solid #05203C;     /* 테두리 색상 설정 */
+    padding: 10px 20px;            /* 패딩 추가 */
+    font-size: 16px;                /* 글자 크기 설정 */
+    cursor: pointer;                /* 커서 모양 변경 */
+    margin-right: 10px;            /* 버튼 간의 간격 */
+    border-radius: 5px;            /* 테두리 둥글게 */
+    transition: background-color 0.3s, color 0.3s; /* 부드러운 호버 효과 */
+}
+
+.Bbutton:hover,
+.Ebutton:hover,
+.Bbutton.active,
+.Ebutton.active {
+    background-color: #05203C;      /* 호버 시 배경색 변화 */
+    color: #ffffff;                 /* 호버 시 텍스트 색상 흰색으로 변경 */
+}
+
+
+
+.map_wrap, .map_wrap * {
+	margin: 0;
+	padding: 0;
+	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	font-size: 12px;
+}
+
+.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
+	color: #000;
+	text-decoration: none;
+}
+
+.map_wrap {
+    position: relative;
+    top: 7px;
+    width: 100%;
+    height: 670px;
+    margin: 0 auto; /* 수평 가운데 정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#menu_wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 250px;
+	margin: 10px 0 30px 10px;
+	padding: 5px;
+	overflow-y: auto;
+	background: rgba(255, 255, 255, 0.7);
+	z-index: 1;
+	font-size: 12px;
+	border-radius: 10px;
+}
+
+.bg_white {
+	background: #fff;
+}
+
+#menu_wrap hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 2px solid #5F5F5F;
+	margin: 3px 0;
+}
+
+#placesList li {
+	list-style: none;
+}
+
+#placesList .item {
+	position: relative;
+	border-bottom: 1px solid #888;
+	overflow: hidden;
+	cursor: pointer;
+	min-height: 65px;
+}
+
+#placesList .item span {
+	display: block;
+	margin-top: 4px;
+}
+
+#placesList .item h5, #placesList .item .info {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#placesList .item .info {
+	padding: 10px 0 10px 55px;
+}
+
+#placesList .info .gray {
+	color: #8a8a8a;
+}
+
+#placesList .info .jibun {
+	padding-left: 26px;
+	background:
+		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
+		no-repeat;
+}
+
+#placesList .info .tel {
+	color: #009900;
+}
+
+#placesList .item .markerbg {
+		float: left;
+		position: absolute;
+		width: 36px;
+		height: 37px;
+		margin: 10px 0 0 10px;
+		background:
+			url('${pageContext.request.contextPath}/resources/img/marker.png')
+			no-repeat;
+	}
+
+#pagination {
+	margin: 10px auto;
+	text-align: center;
+}
+
+#pagination a {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+#pagination .on {
+	font-weight: bold;
+	cursor: default;
+	color: #777;
+}
+
+.highlight {
+	background-color: #05203C; /* 강조할 때의 배경 색상 */
+    color: #fff; /* 강조할 때의 텍스트 색상 */
+    transition: background-color 0.3s; /* 부드러운 효과 */
+} /* 강조 표시를 위한 스타일 */
+
+
+

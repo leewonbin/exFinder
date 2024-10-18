@@ -37,12 +37,15 @@ window.onscroll = function() {
   function toggleTopButton() {
     const topButton = document.getElementById("topButton");
     const csButton = document.getElementById("csButton");
+    const mapButton = document.getElementById("mapButton");
     if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
       topButton.style.display = "block";
       csButton.style.display = "block";
+      mapButton.style.display = "block";
     } else {
       topButton.style.display = "none";
       csButton.style.display = "none";
+      mapButton.style.display = "none";
     }
   }
   
@@ -54,5 +57,9 @@ window.onscroll = function() {
   
   function csMove() {
 	  location.href='/ex/cs/main';
+  }
+  
+  function mapMove() {
+	  location.href='/ex/main/map';
   }
 
