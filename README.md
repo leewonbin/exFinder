@@ -17,6 +17,7 @@
 - <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#erd-">ERD
 - <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-">주요 기능
 - <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-">후기
+
 <br/>
 <br/>
 
@@ -73,7 +74,7 @@
 ![image](https://github.com/user-attachments/assets/ba926848-da59-4b63-a4d3-54a3a458e0b6)
 
 
-<br/>
+<br/><br/>
 
 # ERD 📝
 
