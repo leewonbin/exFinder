@@ -309,14 +309,17 @@ function togglePopup() {
     // 팝업을 토글합니다.
     if (popup.style.display === "none" || popup.style.display === "") {
         popup.style.display = "block"; // 팝업 열기
+        document.getElementById('popup-overlay').style.display = 'block'; 
     } else {
         popup.style.display = "none"; // 팝업 닫기
+        document.getElementById('popup-overlay').style.display = 'none'; 
     }
 }
 
 // 팝업을 닫는 함수
 function closePopup() {
     document.getElementById("popup").style.display = "none"; // 팝업 닫기
+    document.getElementById('popup-overlay').style.display = 'none'; 
 }
 
 
