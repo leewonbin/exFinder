@@ -25,9 +25,11 @@ h2 {
 }
 
 .b_category select {
-	width: 110px;
+	margin-bottom: 10px;
+    font-size: 15px;
+    width: 120px;
     height: 35px;
-    padding: 0 15px;
+    padding: 0 10px;
 }
 
 

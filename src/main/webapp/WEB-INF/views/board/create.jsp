@@ -48,18 +48,9 @@
 					</sec:authorize>
 					<option value="자유게시판">자유게시판</option>
 					<option value="질문게시판">질문게시판</option>
-					<option value="정보공유게시판">정보공유게시판</option>
+					<option value="정보게시판">정보게시판</option>
 				</select>
 			</h2>
-
-			<%-- <h2 class="b_category">
-				<select name="b_category" id="b_category">
-					<option value="자유게시판">자유게시판</option>
-					<c:if test="${sessionScope.authority == 'ROLE_ADMIN'}">
-						<option value="공지사항">공지사항</option>
-					</c:if>
-				</select>
-			</h2> --%>
 
 			<h2 class="b_title">
 				<input type="text" name='b_title' placeholder="제목 입력"

@@ -47,8 +47,6 @@
 				</i>
 			</div>
 
-
-
 			<div class="img">
 				<img class="favorit_img"
 					src="${pageContext.request.contextPath}/resources/img/${interestIcon}"
@@ -58,11 +56,11 @@
 					src="${pageContext.request.contextPath}/resources/img/alarm.png"
 					onclick="checkLoginAndTogglePopup()" />
 			</div>
-
-
+			
+			<div id="popup-overlay" class="popup-overlay" style="display: none;"></div>
 			<!-- 숨겨진 iframe 팝업 -->
 			<div id="popup"
-				style="display: none; position: fixed; top: 50%; left: 50%; width: 600px; height: 600px; border: 2px solid #ccc; background-color: white; z-index: 1000; transform: translate(-50%, -50%); overflow: hidden;">
+				style="display: none; position: fixed; top: 50%; left: 50%; width: 600px; height: 600px; border: 2px solid #ccc; background-color: white; z-index: 1001; transform: translate(-50%, -50%); overflow: hidden;">
 				<div
 					style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
 					<iframe id="popupFrame" src='/ex/user/notification' width="100%"
