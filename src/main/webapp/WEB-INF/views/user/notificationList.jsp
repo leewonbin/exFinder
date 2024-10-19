@@ -77,7 +77,7 @@
                 <!-- 수정 폼 -->
                 <form action="${pageContext.request.contextPath}/user/updateNotification" method="post" style="display:none;" id="target_exchange_${notification.n_id}">
                     <input type="hidden" name="n_id" value="${notification.n_id}" />
-                    <input type="number" name="target_exchange" class="text_box" value="${notification.target_exchange}" required />
+                    <input type="number" name="target_exchange" class="text_box" step="0.01" min="0" value="${notification.target_exchange}" required />
                     <button type="submit">
                     	<i class="fas fa-check" style="color: green;"></i>
                     </button>

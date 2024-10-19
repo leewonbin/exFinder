@@ -33,7 +33,7 @@
 			<button class="cButton" data-category="공지사항">공지사항</button>
 			<button class="cButton" data-category="자유게시판">자유게시판</button>
 			<button class="cButton" data-category="질문게시판">질문게시판</button>
-			<button class="cButton" data-category="정보공유게시판">정보공유게시판</button>
+			<button class="cButton" data-category="정보게시판">정보게시판</button>
 			<!-- data-category는 커스텀 데이터 속성으로 특정 요소에 추가적인 데이터 저장 가능 -->
 		</div>
 
@@ -44,6 +44,8 @@
 				<select name="searchType">
 					<option value="공지사항">공지사항</option>
 					<option value="자유게시판">자유게시판</option>
+					<option value="질문게시판">질문게시판</option>
+					<option value="정보게시판">정보게시판</option>
 
 				</select> <input type="text" id="keywordInput" placeholder="검색어 입력">
 				<button id="searchBtn">검색</button>
