@@ -109,25 +109,21 @@
 					<span class="close" onclick="closePopup()">X 닫기</span><br>
 					<div class="popup-body">
 						<c:if test="${not empty userId}">
-
 							<!-- 자주 조회한 통화 섹션 -->
 							<c:set var="hasFrequentCurrencies" value="false" />
-							<h3 style="font-weight: bold;">자주 조회한 통화</h3>
+							<h3 style="font-weight: bold;">${userId}님이 가장 많이 본 통화</h3>
 							<br>
-							<ul
-								style="list-style-type: none; padding: 0; white-space: nowrap;">
+							<ul>
 								<c:set var="count" value="0" />
 								<c:forEach var="currency" items="${frequentCurrencies}"
 									varStatus="status">
 									<c:if test="${currency.view_count >= 5 && count < 6}">
 										<li
-											onclick="location.href='exFinder_Currency?c_code=${currency.c_code }'"
-											style="display: inline-block; text-align: center; margin: 10px; cursor: pointer;">
+											onclick="location.href='exFinder_Currency?c_code=${currency.c_code }'">
 											<img
 											src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
-											class="popup-flag"
-											style="width: 70px; height: auto; display: block; margin: 0 auto;" />
-											${currency.c_code} <i class="often_${currency.c_code}"></i>
+											class="popup-flag" /> ${currency.c_code} <i
+											class="often_${currency.c_code}"></i>
 										</li>
 										<c:set var="count" value="${count + 1}" />
 										<c:set var="hasFrequentCurrencies" value="true" />
@@ -140,47 +136,43 @@
 						</c:if>
 
 						<br>
+						<hr class="divider">
 
 						<!-- 판매하기 좋은 통화 섹션 -->
 						<c:if test="${not empty firstList}">
-							<h3 style="font-weight: bold;">판매하기 좋은 통화</h3>
+							<h3 style="font-weight: bold;">오늘 판매하기 좋은 통화</h3>
 							<br>
-							<ul
-								style="list-style-type: none; padding: 0; white-space: nowrap;">
+							<ul>
 								<c:forEach var="currency" items="${firstList}"
 									varStatus="status">
 									<li
-										onclick="location.href='exFinder_Currency?c_code=${currency.c_code }'"
-										style="display: inline-block; text-align: center; margin: 10px; cursor: pointer;">
+										onclick="location.href='exFinder_Currency?c_code=${currency.c_code }'">
 										<img
 										src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
-										class="popup-flag"
-										style="width: 70px; height: auto; display: block; margin: 0 auto;" />
-										${currency.c_code} <i class="often_${currency.c_code}"></i>
+										class="popup-flag" /> ${currency.c_code} <i
+										class="often_${currency.c_code}"></i>
 									</li>
 								</c:forEach>
 							</ul>
 						</c:if>
 
 						<br>
+						<hr class="divider">
 
 						<!-- 구매하기 좋은 통화 섹션 -->
 						<c:if test="${not empty secondList}">
-							<h3 style="font-weight: bold;">구매하기 좋은 통화</h3>
+							<h3 style="font-weight: bold;">오늘 전일비가 가장 많이 상승한 통화입니다. 판매할거면 ㅋㅋㄹㄴㅇ</h3>
 							<br>
-							<ul
-								style="list-style-type: none; padding: 0; white-space: nowrap;">
+							<ul>
 								<c:forEach var="currency" items="${secondList}"
 									varStatus="status">
 									<c:if test="${currency.diff_percent < 0}">
 										<li
-											onclick="location.href='exFinder_Currency?c_code=${currency.c_code }'"
-											style="display: inline-block; text-align: center; margin: 10px; cursor: pointer;">
+											onclick="location.href='exFinder_Currency?c_code=${currency.c_code }'">
 											<img
 											src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png"
-											class="popup-flag"
-											style="width: 70px; height: auto; display: block; margin: 0 auto;" />
-											${currency.c_code} <i class="often_${currency.c_code}"></i>
+											class="popup-flag" /> ${currency.c_code} <i
+											class="often_${currency.c_code}"></i>
 										</li>
 									</c:if>
 								</c:forEach>
@@ -191,6 +183,7 @@
 				</div>
 			</div>
 		</c:if>
+
 
 
 
