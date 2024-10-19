@@ -157,6 +157,14 @@
     vertical-align: middle;
 	
 }
+.csTitle {
+	color : black;
+	text-decoration: none;
+}
+
+.csTitle:hover {
+	text-decoration: underline;
+}
 
 .user-table th {
 	text-align: center;

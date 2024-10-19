@@ -206,7 +206,7 @@
 								<c:forEach var="csDto" items="${list}">
 									<tr>
 										<td>${csDto.cs_id}</td>
-										<td><a href="/ex/cs/read?cs_id=${csDto.cs_id}">${csDto.cs_title}</a></td>
+										<td><a href="/ex/cs/read?cs_id=${csDto.cs_id}" class="csTitle">${csDto.cs_title}</a></td>
 										<td>${csDto.u_id}</td>
 										<!-- 상태 변경 폼 -->
 										<td>
