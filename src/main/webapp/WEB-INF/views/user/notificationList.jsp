@@ -54,7 +54,7 @@
     <ul id="myPosts" class="board-list">
         <li class="board-header">
             <span class="board-header-flag">국기</span>
-            <span class="board-header-c_country">국가</span>
+            <span class="board-header-c_country">통화</span>
             <span class="board-header-c_money">설정금액</span>
             <span class="board-header-c_action">삭제</span>
         </li>

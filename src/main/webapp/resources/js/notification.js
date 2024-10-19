@@ -48,8 +48,13 @@
 			success : function(response) {
 				if(response == 'success') {
 					// 알림 설정 완료 메시지 표시
+					const submitBtn = document.getElementById('submitBtn');
+					submitBtn.disabled = true; // 버튼 비활성화
+					
 	                alert('알림 설정이 완료되었습니다.');
 
+	                
+	                
 					targetRate.val("");
 					$('.checkbox-phone input[type="checkbox"]').prop('checked', false);
 					
@@ -95,5 +100,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 초기 상태에서 버튼 비활성화
     submitBtn.disabled = !checkbox.checked;
+    
 });
 
+//부모 창에서 메시지를 받을 때
+window.addEventListener('message', function(event) {
+    // 보안상의 이유로 메시지의 출처를 확인하는 것이 좋습니다.
+    // if (event.origin !== "https://example.com") return; // 실제 도메인으로 수정
+	console.log('메시지 수신:', event.data);
+    if (event.data === 'agreeCheckbox_disabled') {
+    	checkbox.checked = false; // 체크박스 해제
+        submitBtn.disabled = true; // 버튼 비활성화
+    }
+});
