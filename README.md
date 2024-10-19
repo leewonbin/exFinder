@@ -11,12 +11,12 @@
 <br/>
 
 # 목차 📚
-- <a href="https://github.com/leewonbin/test?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%86%8C%EA%B0%9C-">프로젝트 소개</a>
-- <a href="https://github.com/leewonbin/test?tab=readme-ov-file#%ED%8C%80%EC%9B%90%EC%86%8C%EA%B0%9C-%EB%B0%8F-%EC%97%AD%ED%95%A0-">팀원소개 및 역할
-- <a href="https://github.com/leewonbin/test?tab=readme-ov-file#%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D-">기술 스택
-- <a href="https://github.com/leewonbin/test?tab=readme-ov-file#erd-">ERD
-- <a href="https://github.com/leewonbin/test?tab=readme-ov-file#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-">주요 기능
-- <a href="https://github.com/leewonbin/test?tab=readme-ov-file#%ED%9B%84%EA%B8%B0-">후기
+- <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%86%8C%EA%B0%9C-">프로젝트 소개</a>
+- <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#%ED%8C%80%EC%9B%90%EC%86%8C%EA%B0%9C-%EB%B0%8F-%EC%97%AD%ED%95%A0-">팀원소개 및 역할
+- <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D-">기술 스택
+- <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#erd-">ERD
+- <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-">주요 기능
+- <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-">후기
 <br/>
 <br/>
 
@@ -131,3 +131,6 @@
 - 김정호 :
 - 최현웅 : 실제 은행에서 사용하는 API를 활용하지 못해 데이터의 디테일이 부족했던 점이 아쉬웠습니다. 그럼에도 불구하고 웹사이트의 완성도가 떨어져 보일 수 있지만, 제한된 조건 속에서 대체할 수 있는 방법을 찾아가며 계획한 핵심 기능들이 잘 구현된 것에 만족합니다. 특히 CRUD 작업에 대한 이해도가 높아졌고, 웹 크롤링, API, 웹소켓 등 여러 기술을 활용해볼 수 있는 경험이 매우 유익했습니다. <br/><br/>
 - 함지훈 :
+
+<br/><br/>
+<a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#exfinder">맨위로</a>
