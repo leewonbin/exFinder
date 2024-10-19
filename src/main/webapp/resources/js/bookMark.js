@@ -103,3 +103,32 @@ function processCurrencies_value(currencies_value) {
     });
 }
 
+//선택삭제
+function deleteSelectedBookmarks() {
+    // 선택된 항목들의 코드를 수집
+    let selectedItems = [];
+    $('.select-currency:checked').each(function() {
+        selectedItems.push($(this).val());
+    });
+
+    if (selectedItems.length === 0) {
+        alert('삭제할 항목을 선택하세요.');
+        return;
+    }
+
+    // 서버에 삭제 요청 보내기
+    $.ajax({
+        url: '/ex/user/deleteSelectedBookmarks',
+        type: 'POST',
+        data: JSON.stringify({ currencies: selectedItems }),
+        contentType: 'application/json',
+        success: function(response) {
+            alert('선택한 항목이 삭제되었습니다.');
+            // 페이지를 새로고침하여 변경 사항을 반영
+            location.reload();
+        },
+        error: function(error) {
+            alert('삭제 중 오류가 발생했습니다.');
+        }
+    });
+}

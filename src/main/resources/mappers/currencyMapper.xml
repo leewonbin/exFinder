@@ -90,5 +90,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="currencyInfoSelect" resultType="com.exfinder.dto.CurrencyInfoDto">
     	select * from currency order by c_id desc
     </select>
+    
+    <delete id="deleteSelectedBookmarks">
+	    DELETE FROM interest WHERE c_code IN
+	    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+	        #{item}
+	    </foreach>
+	</delete>
+    
 
 </mapper>

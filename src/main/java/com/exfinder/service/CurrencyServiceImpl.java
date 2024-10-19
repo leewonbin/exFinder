@@ -77,4 +77,10 @@ public class CurrencyServiceImpl implements CurrencyService{
 		return dao.currencyInfoSelect();
 	}
 
+	@Override
+	public void deleteSelectedBookmarks(List<String> c_code) throws Exception {
+		CurrencyDao dao = sqlSession.getMapper(CurrencyDao.class);
+		dao.deleteSelectedBookmarks(c_code);		
+	}
+
 }
