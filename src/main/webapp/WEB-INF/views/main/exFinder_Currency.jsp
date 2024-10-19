@@ -3,126 +3,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>환율 상세페이지</title>
-<link rel="icon" href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico" type="image/x-icon">
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery.min.js"></script>
-<!-- google charts -->
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/exFinder_Currency.css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/exFinder_Currency.js"></script>
-<style></style>
-<script>
-	var currencyCode = '${currencyDto.c_code}';
-</script>
+	<title>환율 상세페이지</title>
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/img/icon/EFL.ico" type="image/x-icon">
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<!-- google charts -->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<!-- 로그인 여부를 JSP에서 JavaScript로 전달 -->
-<script>
-	//sessionScope에 있는 dto가 null이 아니면 로그인 상태로 설정
-	var isLoggedIn = "${sessionScope.dto != null}";
-</script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/exFinder_Currency.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/exFinder_Currency.js"></script>
+	<style></style>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const rowsPerPage = 10; // 한 페이지에 보여줄 행 수
-    let currentPage = 1;
-    const rows = document.querySelectorAll("#currencyBody tr"); // 모든 데이터 행
+	<script>
+		var currencyCode = '${currencyDto.c_code}';
 
-    // 전체 페이지 수 계산
-    const totalPages = Math.ceil(rows.length / rowsPerPage);
-    
-    function displayTable(page) {
-        const start = (page - 1) * rowsPerPage;
-        const end = start + rowsPerPage;
-
-        // 테이블 행을 모두 숨긴 후 해당 페이지의 행만 보이게 함
-        rows.forEach((row, index) => {
-            row.style.display = (index >= start && index < end) ? "" : "none";
-        });
-
-        // 페이지 버튼 동적 생성
-        createPageButtons();
-
-        // 버튼 상태 업데이트
-        document.getElementById('prev').disabled = (page === 1);
-        document.getElementById('first').disabled = (page === 1);
-        document.getElementById('next').disabled = (page === totalPages);
-        document.getElementById('last').disabled = (page === totalPages);
-
-        // 버튼 보이기/숨기기
-        document.getElementById('first').style.display = (page === 1) ? 'none' : 'inline-block';
-        document.getElementById('prev').style.display = (page === 1) ? 'none' : 'inline-block';
-        document.getElementById('next').style.display = (page === totalPages) ? 'none' : 'inline-block';
-        document.getElementById('last').style.display = (page === totalPages) ? 'none' : 'inline-block';
-    }
-
-    // 페이지 번호 버튼을 동적으로 생성하는 함수
-    function createPageButtons() {
-        const pageButtonsDiv = document.getElementById("page-buttons");
-        pageButtonsDiv.innerHTML = ""; // 기존 버튼들을 모두 제거
-
-        // 현재 페이지 그룹 계산 (예: 1~10, 11~20)
-        const groupSize = 10; // 그룹당 버튼 수
-        const currentGroup = Math.ceil(currentPage / groupSize);
-        const startPage = (currentGroup - 1) * groupSize + 1;
-        const endPage = Math.min(startPage + groupSize - 1, totalPages);
-
-        // 버튼 생성
-        for (let i = startPage; i <= endPage; i++) {
-            const pageButton = document.createElement("button");
-            pageButton.textContent = i;
-            pageButton.classList.add("page-btn");
-
-            // 현재 페이지 버튼 스타일 강조
-            if (i === currentPage) {
-                pageButton.classList.add("active");
-            }
-
-            // 페이지 버튼 클릭 이벤트
-            pageButton.addEventListener("click", function () {
-                currentPage = i;
-                displayTable(currentPage);
-            });
-
-            pageButtonsDiv.appendChild(pageButton);
-        }
-    }
-
-    // 이전 버튼 클릭 이벤트
-    document.getElementById('prev').addEventListener('click', function () {
-        if (currentPage > 1) {
-            currentPage--;
-            displayTable(currentPage);
-        }
-    });
-
-    // 다음 버튼 클릭 이벤트
-    document.getElementById('next').addEventListener('click', function () {
-        if (currentPage < totalPages) {
-            currentPage++;
-            displayTable(currentPage);
-        }
-    });
-
-    // 첫 페이지 버튼 클릭 이벤트
-    document.getElementById('first').addEventListener('click', function () {
-        currentPage = 1;
-        displayTable(currentPage);
-    });
-
-    // 마지막 페이지 버튼 클릭 이벤트
-    document.getElementById('last').addEventListener('click', function () {
-        currentPage = totalPages;
-        displayTable(currentPage);
-    });
-
-    // 초기 테이블 및 버튼 표시
-    displayTable(currentPage);
-});
-</script>
+		//sessionScope에 있는 dto가 null이 아니면 로그인 상태로 설정
+		var isLoggedIn = "${sessionScope.dto != null}";
+		
+		
+	</script>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
@@ -358,9 +257,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			</tbody>
 		</table>
 	</div>
-	<footer>
+
 	<%@include file="/WEB-INF/views/footer/exFinder_footer.jsp"%>
-	</footer>
 
 </body>
 </html>

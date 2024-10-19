@@ -16,31 +16,34 @@ google.charts.load('current', {
 });
 
 $(document).ready(function() {
-    // AJAX 요청
-    ajaxData(currencyCode, 'chart_7day', 'seven-day');
-//    ajaxData(`${currencyDto.c_code}`, 'chart_1month', 'one-month'); 
-//    ajaxData(`${currencyDto.c_code}`, 'chart_3month', 'three-month'); 
-//    ajaxData(`${currencyDto.c_code}`, 'chart_1year', 'one-year'); 
-
-    
+	
 	fetchExchangeRateData(currencyCode, 'value_Currency');
-    // Google Charts 라이브러리가 로드된 후 차트 그리기
-    google.charts.setOnLoadCallback(function() {
+	
+	// Google Charts 라이브러리가 로드된 후 차트 그리기
+	google.charts.setOnLoadCallback(function() {
         // console.log('Google Charts 라이브러리 로드 완료');
+		
+		// AJAX 요청
+		ajaxData(currencyCode, 'chart_7day', 'seven-day');
+		
+//	    ajaxData(`${currencyDto.c_code}`, 'chart_1month', 'one-month'); 
+//	    ajaxData(`${currencyDto.c_code}`, 'chart_3month', 'three-month'); 
+//	    ajaxData(`${currencyDto.c_code}`, 'chart_1year', 'one-year'); 
     });
+	
 });
 
 
 
 // AJAX 요청 함수
-function ajaxData(c_code, chartDivId, cart_day) {
+function ajaxData(currencyCode, chartDivId, cart_day) {
     var end_date = formattedDate; // 오늘 날짜
 
     $.ajax({
         type: "POST",
         url: "/ex/currency/chart",
         data: {
-            c_code: c_code,
+            c_code: currencyCode,
             start_date: '2024/01/01', // 기본 시작 날짜 설정
             end_date: end_date,
             cart_day: cart_day
@@ -315,4 +318,103 @@ function togglePopup() {
 function closePopup() {
     document.getElementById("popup").style.display = "none"; // 팝업 닫기
 }
+
+
+//페이지 함수
+document.addEventListener("DOMContentLoaded", function () {
+    const rowsPerPage = 10; // 한 페이지에 보여줄 행 수
+    let currentPage = 1;
+    const rows = document.querySelectorAll("#currencyBody tr"); // 모든 데이터 행
+
+    // 전체 페이지 수 계산
+    const totalPages = Math.ceil(rows.length / rowsPerPage);
+    
+    function displayTable(page) {
+        const start = (page - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+
+        // 테이블 행을 모두 숨긴 후 해당 페이지의 행만 보이게 함
+        rows.forEach((row, index) => {
+            row.style.display = (index >= start && index < end) ? "" : "none";
+        });
+
+        // 페이지 버튼 동적 생성
+        createPageButtons();
+
+        // 버튼 상태 업데이트
+        document.getElementById('prev').disabled = (page === 1);
+        document.getElementById('first').disabled = (page === 1);
+        document.getElementById('next').disabled = (page === totalPages);
+        document.getElementById('last').disabled = (page === totalPages);
+
+        // 버튼 보이기/숨기기
+        document.getElementById('first').style.display = (page === 1) ? 'none' : 'inline-block';
+        document.getElementById('prev').style.display = (page === 1) ? 'none' : 'inline-block';
+        document.getElementById('next').style.display = (page === totalPages) ? 'none' : 'inline-block';
+        document.getElementById('last').style.display = (page === totalPages) ? 'none' : 'inline-block';
+    }
+
+    // 페이지 번호 버튼을 동적으로 생성하는 함수
+    function createPageButtons() {
+        const pageButtonsDiv = document.getElementById("page-buttons");
+        pageButtonsDiv.innerHTML = ""; // 기존 버튼들을 모두 제거
+
+        // 현재 페이지 그룹 계산 (예: 1~10, 11~20)
+        const groupSize = 10; // 그룹당 버튼 수
+        const currentGroup = Math.ceil(currentPage / groupSize);
+        const startPage = (currentGroup - 1) * groupSize + 1;
+        const endPage = Math.min(startPage + groupSize - 1, totalPages);
+
+        // 버튼 생성
+        for (let i = startPage; i <= endPage; i++) {
+            const pageButton = document.createElement("button");
+            pageButton.textContent = i;
+            pageButton.classList.add("page-btn");
+
+            // 현재 페이지 버튼 스타일 강조
+            if (i === currentPage) {
+                pageButton.classList.add("active");
+            }
+
+            // 페이지 버튼 클릭 이벤트
+            pageButton.addEventListener("click", function () {
+                currentPage = i;
+                displayTable(currentPage);
+            });
+
+            pageButtonsDiv.appendChild(pageButton);
+        }
+    }
+
+    // 이전 버튼 클릭 이벤트
+    document.getElementById('prev').addEventListener('click', function () {
+        if (currentPage > 1) {
+            currentPage--;
+            displayTable(currentPage);
+        }
+    });
+
+    // 다음 버튼 클릭 이벤트
+    document.getElementById('next').addEventListener('click', function () {
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayTable(currentPage);
+        }
+    });
+
+    // 첫 페이지 버튼 클릭 이벤트
+    document.getElementById('first').addEventListener('click', function () {
+        currentPage = 1;
+        displayTable(currentPage);
+    });
+
+    // 마지막 페이지 버튼 클릭 이벤트
+    document.getElementById('last').addEventListener('click', function () {
+        currentPage = totalPages;
+        displayTable(currentPage);
+    });
+
+    // 초기 테이블 및 버튼 표시
+    displayTable(currentPage);
+});
 
