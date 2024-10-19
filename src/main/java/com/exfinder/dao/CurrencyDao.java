@@ -27,5 +27,6 @@ public interface CurrencyDao {
 	public List<CurrencyDto> getFavoriteCurrencies(String userId) throws Exception;
 	
 	public List<CurrencyInfoDto> currencyInfoSelect() throws Exception;
+	public void deleteSelectedBookmarks(List<String> c_codes) throws Exception;
 
 }
