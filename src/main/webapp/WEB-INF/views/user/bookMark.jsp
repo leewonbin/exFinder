@@ -30,7 +30,7 @@
                 	<input type="checkbox"   id="selectAll" onclick="selectAllCheckboxes(this.checked)"> <!-- 전체 선택 체크박스 -->
                 </span>
                 <span style="width:40px" class="board-header-flag">국기</span>
-                <span style="width:100px" class="board-header-c_country">국가명</span>
+                <span style="width:120px" class="board-header-c_country">국가명</span>
                 <span style="width:100px" class="board-header-c_name">통화</span>
                 <span style="width:180px" class="board-header-c_name">매매 기준율</span>
             </li>
@@ -40,7 +40,7 @@
                     <span style="width:50px" class="board-c_flag">
                     	<img src="${pageContext.request.contextPath}/resources/img/gonfalon/${currency.c_code}.png" class="flag-img" />
                     </span>
-                    <span style="width:80px"class="board-c_country" 
+                    <span style="width:120px"class="board-c_country" 
                     onclick="window.location.href='/ex/exFinder_Currency?c_code=${currency.c_code}'">
                     	${currency.c_country}
                     </span>
