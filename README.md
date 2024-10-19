@@ -16,7 +16,7 @@
 - <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D-">기술 스택
 - <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#erd-">ERD
 - <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-">주요 기능
-- <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-">후기
+- <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#%ED%9B%84%EA%B8%B0-">후기</a>
 
 <br/>
 <br/>
@@ -132,7 +132,7 @@
 - 김정호 : CRUD 작업, 구글 차트, 웹 크롤링, 네이버 POP3/SMTP, 쿨에스엠에스 API 등 다양한 기술을 활용해 여러 기능을 구현한 점이 매우 만족스러웠습니다.
 수많은 시행착오를 겪었지만, 팀원들과 적극적으로 소통하며 문제를 빠르게 파악하고 해결한 경험이 큰 도움이 되었습니다. 또한, 모르는 부분이 있을 때 서로 질문하고 대화하면서 부족한 부분을 보완해 나간 점도 의미 있는 경험이었습니다. <br/><br/>
 - 최현웅 : 실제 은행에서 사용하는 API를 활용하지 못해 데이터의 디테일이 부족했던 점이 아쉬웠습니다. 그럼에도 불구하고 웹사이트의 완성도가 떨어져 보일 수 있지만, 제한된 조건 속에서 대체할 수 있는 방법을 찾아가며 계획한 핵심 기능들이 잘 구현된 것에 만족합니다. 특히 CRUD 작업에 대한 이해도가 높아졌고, 웹 크롤링, API, 웹소켓 등 여러 기술을 활용해볼 수 있는 경험이 매우 유익했습니다. <br/><br/>
-- 함지훈 : 관리자 권한에서 계정 및 게시물 삭제와 활성화 설정 기능을 추가해 효율적인 관리가 가능하게 했고, API를 활용해 외부 통신에 대한 개념을 확립한 점을 긍정적으로 평가했습니다. 하지만 마이페이지 디자인이 허전하게 느껴지고, 환율 관련 추가 관리자 기능이 부족한 점은 개선할 필요 한 거 같습니다.
+- 함지훈 : 관리자 권한에서 계정 및 게시물 삭제와 활성화 설정 기능을 추가해 효율적인 관리가 가능하게 했고, API를 활용해 외부 통신에 대한 개념을 확립한 점을 긍정적으로 평가했습니다. 하지만 마이페이지 디자인이 허전하게 느껴지고, 환율 관련 추가 관리자 기능이 부족한 점은 추후 개선할 예정입니다.
 
 <br/><br/>
 <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#exfinder">맨위로</a>
