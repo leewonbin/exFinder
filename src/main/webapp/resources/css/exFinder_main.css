@@ -569,19 +569,49 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	float: right;
 }
 
-/* 팝업창 전체 스타일 */
+
+
+/* 추천 기능 팝업창 전체 스타일 시작 */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 검정 배경 */
+  backdrop-filter: blur(5px); 
+  z-index: 1000; /* 팝업보다 낮게 설정 */
+}
+/* 픽셀화 효과를 위한 추가 스타일 */
+.popup-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(''); /* 모자이크 이미지 */
+  filter: pixelate(10px); /* 픽셀화 효과 */
+  opacity: 0.5; /* 모자이크 패턴의 투명도 조정 */
+  z-index: -1; /* 오버레이 뒤에 위치하게 함 */
+}
+@supports (-webkit-backdrop-filter: blur(0)) {
+  .popup-overlay::before {
+    backdrop-filter: blur(10px) contrast(1.2); /* 블러와 대비 조정 */
+  }
+}
+
 .popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
-  max-width: 600px;
+  max-width: 850px;
   background-color: white;
   border: 1px solid #ddd;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1001;
-  display: none;
 }
 
 /* 팝업창 내용 스타일 */
@@ -599,34 +629,53 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   font-size: 12px;
   color: #808080;
 }
+.close:hover {
+  color: #333333; /* 호버 시 색상 변경 (진한 색상으로) */
+  font-weight: bold;
+}
 
 /* 팝업 본문 스타일 */
 .popup-body {
   padding-top: 20px;
+  border-top: 1px solid #aaa;
   text-align: center;
+  
+  font-size: 16px;
+  font-weight: bold;
 }
-
+.popup-body > h3 {
+	font-size: 20px;
+	font-weight: bold;
+}
 /* 국기 이미지 스타일 */
 .popup-flag {
   width: 70px;
   height: auto;
   display: block;
   margin: 0 auto;
+  
 }
 
 /* 리스트 스타일 */
-ul {
+.popup-body > ul {
   list-style-type: none;
   padding: 0;
   white-space: nowrap;
+
+  display: flex;           /* flexbox 사용 */
+  flex-direction: row; 	   /* 가로 방향으로 정렬 */
+  align-items: center;     /* 수평 중앙 정렬 */
+  justify-content: center;
 }
 
-li {
-  display: inline-block;
+.popup-body > ul > li {
+  display: block;          /* 블록 요소로 변경 */
   text-align: center;
-  margin: 10px;
+  margin: 10px 20px;        /* 수직 마진만 적용 */
   cursor: pointer;
+  font-weight: bold;
 }
+/* 추천 기능 팝업창 전체 스타일 끝 */
 
 
 
@@ -641,7 +690,7 @@ li {
 	height: 750px;
 	background-color: white;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	z-index: 1000;
+	z-index: 1001;
 }
 
 /* 팝업창을 열 때 배경 흐리게 */

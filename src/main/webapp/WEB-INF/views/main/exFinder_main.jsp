@@ -102,8 +102,10 @@
 			<%@include file="/WEB-INF/views/main/calculrator.jsp"%>
 		</div>
 
-		<!-- 팝업창 -->
+		
+		<!-- 추천 기능 팝업창 -->
 		<c:if test="${not empty frequentCurrencies}">
+			<div id="popup-overlay" class="popup-overlay" style="display: none;"></div>
 			<div id="popup" class="popup" style="display: none;">
 				<div class="popup-content">
 					<span class="close" onclick="closePopup()">X 닫기</span><br>
@@ -111,7 +113,7 @@
 						<c:if test="${not empty userId}">
 							<!-- 자주 조회한 통화 섹션 -->
 							<c:set var="hasFrequentCurrencies" value="false" />
-							<h3 style="font-weight: bold;">${userId}님이 가장 많이 본 통화</h3>
+							<h3>${userId}님이 가장 많이 본 통화</h3>
 							<br>
 							<ul>
 								<c:set var="count" value="0" />
@@ -140,7 +142,7 @@
 
 						<!-- 판매하기 좋은 통화 섹션 -->
 						<c:if test="${not empty firstList}">
-							<h3 style="font-weight: bold;">오늘 판매하기 좋은 통화</h3>
+							<h3>오늘 판매하기 좋은 통화</h3>
 							<br>
 							<ul>
 								<c:forEach var="currency" items="${firstList}"
@@ -161,7 +163,7 @@
 
 						<!-- 구매하기 좋은 통화 섹션 -->
 						<c:if test="${not empty secondList}">
-							<h3 style="font-weight: bold;">오늘 전일비가 가장 많이 상승한 통화입니다. 판매할거면 ㅋㅋㄹㄴㅇ</h3>
+							<h3>오늘 전일비가 가장 많이 상승한 통화입니다.</h3>
 							<br>
 							<ul>
 								<c:forEach var="currency" items="${secondList}"
@@ -182,37 +184,10 @@
 					</div>
 				</div>
 			</div>
+			
 		</c:if>
 
-
-
-
-
-
 	</div>
-
-
-	<!-- 지도 팝업 -->
-	<div id="mapPopup">
-		<button onclick="closeMapPopup()">닫기</button>
-		<%@include file="/WEB-INF/views/main/map.jsp"%>
-	</div>
-
-	<script>
-		// 팝업창 열기
-		function openMapPopup() {
-			document.getElementById('mapPopup').style.display = 'block';
-			document.getElementById('popupBackground').style.display = 'block';
-			loadMap(); // 지도 로드
-		}
-
-		// 팝업창 닫기
-		function closeMapPopup() {
-			document.getElementById('mapPopup').style.display = 'none';
-			document.getElementById('popupBackground').style.display = 'none';
-		}
-	</script>
-
 
 	<!-- 알림을 표시할 div -->
 	<div id="alramContainer" style="display: none;"></div>
@@ -326,11 +301,13 @@
 			// showPopup이 true일 때 팝업을 표시
 			if (showPopup) {
 				document.getElementById('popup').style.display = 'flex'; // 팝업을 표시
+				document.getElementById('popup-overlay').style.display = 'flex'; // 팝업을 표시
 			}
 		};
 
 		function closePopup() {
 			document.getElementById('popup').style.display = 'none'; // 팝업 닫기
+			document.getElementById('popup-overlay').style.display = 'none'; // 팝업을 표시
 		}
 
 		function mapMove() {
