@@ -8,7 +8,6 @@
 - **프로젝트기간** : 24.08.21 ~ 24.10.16
 
 <br/>
-<br/>
 
 # 목차 📚
 - <a href="https://github.com/leewonbin/exFinder?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%86%8C%EA%B0%9C-">프로젝트 소개</a>
