@@ -151,7 +151,7 @@ lightgreen
 	display: none; /* 기본적으로 숨김 */
 	top: 110px; /* 화면 상단에서 20px 아래 */
 	right: 200px; /* 화면 오른쪽에서 20px 왼쪽 */
-	z-index: 1000; /* 가장 위로 배치되도록 설정 */
+	z-index: 2000; /* 가장 위로 배치되도록 설정 */
 	width: 350px; /* 너비 설정 */
 	height: 140px; /* 높이 설정 */
 	background-color: #ffffff; /* 배경색을 하얀색으로 설정 */

@@ -322,6 +322,13 @@ function closePopup() {
     document.getElementById('popup-overlay').style.display = 'none'; 
 }
 
+//메시지 이벤트 수신 처리 (iframe 내부에서 부모로 메시지 전달)
+window.addEventListener('message', function (event) {
+    if (event.data === 'closePopup') {
+        closePopup();
+    }
+});
+
 
 //페이지 함수
 document.addEventListener("DOMContentLoaded", function () {

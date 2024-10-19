@@ -53,12 +53,12 @@
 
 		<!-- 전화번호 수신동의 -->
 		<div class="checkbox-phone">
-			<input type="checkbox" value="">전화번호로 알림을 수신하는 데 동의합니다.
+			<input type="checkbox" id="agreeCheckbox" value="">전화번호로 알림을 수신하는 데 동의합니다.
 		</div>
 
 		<!-- 제출 버튼 -->
 		<div class="form-group">
-			<button type="button" onclick="submitNotification()" class="submit-btn">알림 설정</button>
+			<button type="button" id="submitBtn" onclick="submitNotification()" class="submit-btn" disabled>알림 설정</button>
 		</div>
 
 	</div>
