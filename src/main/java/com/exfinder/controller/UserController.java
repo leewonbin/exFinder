@@ -165,7 +165,7 @@ public class UserController {
 		String u_id = (String) session.getAttribute("userId");
 		userService.deactivate(u_id);
 
-		return "/";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/user/Logincomplete", method = RequestMethod.GET)

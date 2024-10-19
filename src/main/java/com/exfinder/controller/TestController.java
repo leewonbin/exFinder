@@ -26,6 +26,7 @@ public class TestController {
     @GetMapping("/ajaxRequest")
     @ResponseBody
     public ResponseEntity<String> handleAjaxRequest() {
+    	System.out.println("들어옴");
         sche.addAlram();
         String responseMessage = "AJAX 요청 처리 완료"; // 이 부분은 실제 반환할 내용을 설정
         return ResponseEntity.ok(responseMessage);

@@ -454,7 +454,22 @@ body, html {
         transform: translate(-50%, -50%);
     }
     
-    
+.popupcloseBtn {
+	position: absolute; 
+	top: 5px; 
+	right: 5px;
+	background-color : unset;
+	border : none;
+	color : gray;
+}
+
+.popupcloseBtn:hover {
+	cursor: pointer;
+}
+
+.favorit_img, .notification_img {
+	cursor: pointer;
+}
 
 
 #pagination {

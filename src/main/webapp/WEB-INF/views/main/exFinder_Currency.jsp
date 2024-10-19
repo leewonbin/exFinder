@@ -69,8 +69,7 @@
 						height="100%" style="overflow: hidden;"></iframe>
 
 				</div>
-				<button onclick="closePopup()"
-					style="position: absolute; top: 5px; right: 5px;">닫기</button>
+				<button class="popupcloseBtn" onclick="closePopup()">X</button>
 			</div>
 
 		</div>
