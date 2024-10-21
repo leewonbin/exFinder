@@ -291,6 +291,8 @@ function interestAction(isCheck,c_code) {
 
 
 function checkLoginAndTogglePopup() {
+	var submitBtn = document.getElementById('submitBtn');
+	 
     // 로그인 여부 확인
     if (isLoggedIn === 'true') {
         // 로그인 상태일 경우 팝업창을 열기
@@ -305,10 +307,14 @@ function checkLoginAndTogglePopup() {
 // 팝업을 토글하는 함수
 function togglePopup() {
     var popup = document.getElementById("popup");
-
+   
+    
     // 팝업을 토글합니다.
     if (popup.style.display === "none" || popup.style.display === "") {
+    	// 비활성화 요청 전송
+        
         popup.style.display = "block"; // 팝업 열기
+        
         document.getElementById('popup-overlay').style.display = 'block'; 
     } else {
         popup.style.display = "none"; // 팝업 닫기

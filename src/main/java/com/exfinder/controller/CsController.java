@@ -48,7 +48,7 @@ public class CsController {
 		
 		service.create(cs);
 		rttr.addFlashAttribute("msg", "success");
-		return "redirect:/admin/admin";
+		return "redirect:/admin/adminCs";
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
@@ -74,20 +74,20 @@ public class CsController {
 		logger.info("mod post..........");
 		service.update(cs);
 		rttr.addFlashAttribute("msg", "success");
-		return "redirect:/admin/admin";
+		return "redirect:/admin/adminCs";
 	}
 	
 	// 글 상태 업데이트를 처리하는 POST 요청
-    @RequestMapping(value = "/cs/updateStatus", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateStatus", method = RequestMethod.POST)
     public String updateStatus(@RequestParam int cs_id, @RequestParam int cs_state, RedirectAttributes redirectAttributes) {
         try {
             csService.updateStatus(cs_id, cs_state);
-            redirectAttributes.addFlashAttribute("message", "상태변경 성공!");
+            redirectAttributes.addFlashAttribute("message", "상태가 변경되었습니다.");
         } catch (Exception e) {
             logger.error("Error updating status", e);	
             redirectAttributes.addFlashAttribute("error", "상태변경 실패.");
         }
-        return "redirect:/admin/admin"; // 상태 업데이트 후 다시 관리자 페이지로 리다이렉트
+        return "redirect:/admin/adminCs"; // 상태 업데이트 후 다시 관리자 페이지로 리다이렉트
     }
 
 	
@@ -96,7 +96,7 @@ public class CsController {
 	public String delete(@RequestParam("cs_id") int cs_id, RedirectAttributes rttr) throws Exception {
 		service.delete(cs_id);
 		rttr.addFlashAttribute("msg", "success");
-		return "redirect:/admin/admin";
+		return "redirect:/admin/adminCs";
 	}
 
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
