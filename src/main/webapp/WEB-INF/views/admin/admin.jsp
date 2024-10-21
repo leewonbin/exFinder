@@ -23,8 +23,18 @@
 <style>
 </style>
 <body>
+	<!-- 메시지 표시 부분 -->
+	<script>
+        // 페이지 로드 후 메시지 출력
+        window.onload = function() {
+            <c:if test="${not empty message}">
+                alert('${message}');
+            </c:if>
+        }
+    </script>
+
 	<%@include file="/WEB-INF/views/header/exFinder_header.jsp"%>
-	
+
 	<!-- 알림을 표시할 div -->
 	<div id="alramContainer" style="display: none;"></div>
 		

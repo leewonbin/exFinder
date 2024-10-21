@@ -73,7 +73,7 @@ public class AdminController {
         try {
             AuthoritiesDto authoritiesDto = new AuthoritiesDto(u_id, authority);
             adminService.updateAuthority(authoritiesDto);
-            redirectAttributes.addFlashAttribute("message", "권한을 변경하였습니다.!");
+            redirectAttributes.addFlashAttribute("message", "권한이 변경되었습니다.");
         } catch (Exception e) {
             logger.error("Error updating authority", e);
             redirectAttributes.addFlashAttribute("error", "권한변경 실패.");
@@ -85,7 +85,7 @@ public class AdminController {
     public String updateStatus(@RequestParam String u_id, @RequestParam int enabled, RedirectAttributes redirectAttributes) {
         try {
             adminService.updateStatus(u_id, enabled);
-            redirectAttributes.addFlashAttribute("message", "상태를 변경하였습니다.");
+            redirectAttributes.addFlashAttribute("message", "상태가 변경되었습니다.");
         } catch (Exception e) {
             logger.error("Error updating status", e);	
             redirectAttributes.addFlashAttribute("error", "상태변경 실패.");
@@ -108,7 +108,7 @@ public class AdminController {
     public String updateBoardStatus(@RequestParam("b_id") int b_id,@RequestParam String b_del,RedirectAttributes redirectAttributes) throws Exception {
     	try {
             adminService.updateBoardStatus(b_id,b_del);
-            redirectAttributes.addFlashAttribute("message", "상태를 변경하였습니다.");
+            redirectAttributes.addFlashAttribute("message", "상태가 변경되었습니다.");
         } catch (Exception e) {
             logger.error("Error updating status", e);	
             redirectAttributes.addFlashAttribute("error", "상태변경 실패.");
@@ -122,7 +122,7 @@ public class AdminController {
     	try {
             // 게시물 삭제 서비스 호출
             adminService.deleteBoardAdmin(b_id);
-            redirectAttributes.addFlashAttribute("message", "게시물을 삭제하였습니다.");
+            redirectAttributes.addFlashAttribute("message", "게시물이 삭제되었습니다.");
         } catch (Exception e) {
             logger.error("게시물 삭제 실패", e);
             redirectAttributes.addFlashAttribute("error", "게시물 삭제 실패.");
