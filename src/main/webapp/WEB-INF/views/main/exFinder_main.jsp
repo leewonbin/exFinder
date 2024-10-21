@@ -163,7 +163,7 @@
 
 						<!-- 구매하기 좋은 통화 섹션 -->
 						<c:if test="${not empty secondList}">
-							<h3>오늘 전일비가 가장 많이 상승한 통화입니다.</h3>
+							<h3>오늘 구매하기 좋은 통화</h3>
 							<br>
 							<ul>
 								<c:forEach var="currency" items="${secondList}"
