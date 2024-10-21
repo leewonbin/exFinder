@@ -51,7 +51,7 @@
 						<li class="alram" onclick="toggleAlram()">알림</li>
 						<li onclick="location.href='/ex/board/listAll'">게시판</li>
 						<sec:authorize access="hasAnyRole('ADMIN')">
-							<li onclick="location.href='/ex/admin/admin'">관리자</li>
+							<li onclick="location.href='/ex/admin/adminUserinfo'">관리자</li>
 						</sec:authorize>
 					</ul>
 				</div>

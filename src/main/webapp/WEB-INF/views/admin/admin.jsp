@@ -59,7 +59,7 @@
 				</div>
 				<div class="menu_left">
 					<ul>
-						<li><a href="#" onclick="reg_type_select('1'); return false;" id="profile-link">계정정보 관리</a></li>
+						<li><a href="${pageContext.request.contextPath}/admin/adminUserinfo" id="profile-link">계정정보 관리</a></li>
         				<li><a href="#" onclick="reg_type_select('2'); return false;" id="info-link">계정권한 관리</a></li>
         				<li><a href="#" onclick="reg_type_select('3'); return false;" id="password-link">고객센터 관리</a></li>
         				<li><a href="#" onclick="reg_type_select('4'); return false;" id="board-link">게시판 관리</a></li>
