@@ -1,9 +1,7 @@
 package com.exfinder.dto;
 
-import java.time.LocalDate;
 import java.math.BigDecimal; // BigDecimal은 주로 정밀한 소수점 연산을 다루기 위해 사용됩니다. 특히, 금융 및 화폐 관련 계산에서 매우 유용합니다.
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class ExchangeRate_ComparisonValueDto {
 	

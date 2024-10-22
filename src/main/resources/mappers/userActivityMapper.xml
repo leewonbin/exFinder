@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exfinder.dao.UserActivityDao">
+
+	<!-- 사용자 활동 기록 생성 -->
+	<insert id="create"
+		parameterType="com.exfinder.dto.UserActivityDto">
+		INSERT INTO user_activity (id, u_id, c_code,
+		last_viewed, view_count)
+		VALUES (user_activity_seq.NEXTVAL, #{u_id},
+		#{c_code}, #{last_viewed},
+		1)  <!-- 기본값을 1로 직접 설정 -->
+	</insert>
+
+	<!-- 특정 사용자 자주 조회하는 통화 가져오기 -->
+	<select id="getFrequentCurrencies" parameterType="String"
+		resultType="com.exfinder.dto.UserActivityDto">
+		SELECT c_code, view_count
+		FROM user_activity
+		WHERE u_id = #{u_id}
+		ORDER BY view_count DESC
+	</select>
+
+	<update id="updateViewCount"
+		parameterType="com.exfinder.dto.UserActivityDto">
+		UPDATE user_activity
+		SET view_count = view_count + 1,
+		last_viewed = SYSDATE
+		WHERE u_id = #{u_id} AND c_code = #{c_code}
+	</update>
+
+</mapper>
+
+

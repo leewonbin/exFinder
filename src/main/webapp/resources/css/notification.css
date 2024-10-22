@@ -69,6 +69,14 @@ input[type="text"]::placeholder {
     background-color: #054184;
 }
 
+/* 비활성화된 버튼 스타일 */
+.submit-btn:disabled {
+    background-color: #cccccc; /* 연한 회색 배경 */
+    color: #666666; /* 텍스트 색상 변경 */
+    cursor: not-allowed; /* 커서 모양 변경 */
+    opacity: 0.6; /* 불투명도 낮추기 */
+}
+
 /* 차트 뷰 스타일 */
 .charts_view {
     display: flex;

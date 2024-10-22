@@ -21,7 +21,7 @@
     src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- JavaScript -->
 <script type="text/javascript"
-    src="${pageContext.request.contextPath}/resources/js/charts2.js"></script>
+    src="${pageContext.request.contextPath}/resources/js/alram_charts.js"></script>
 <script type="text/javascript"
     src="${pageContext.request.contextPath}/resources/js/notificationList.js"></script>
 <script type="text/javascript"
@@ -54,7 +54,7 @@
     <ul id="myPosts" class="board-list">
         <li class="board-header">
             <span class="board-header-flag">국기</span>
-            <span class="board-header-c_country">국가</span>
+            <span class="board-header-c_country">통화</span>
             <span class="board-header-c_money">설정금액</span>
             <span class="board-header-c_action">삭제</span>
         </li>
@@ -77,7 +77,7 @@
                 <!-- 수정 폼 -->
                 <form action="${pageContext.request.contextPath}/user/updateNotification" method="post" style="display:none;" id="target_exchange_${notification.n_id}">
                     <input type="hidden" name="n_id" value="${notification.n_id}" />
-                    <input type="number" name="target_exchange" class="text_box" value="${notification.target_exchange}" required />
+                    <input type="number" name="target_exchange" class="text_box" step="0.01" min="0" value="${notification.target_exchange}" required />
                     <button type="submit">
                     	<i class="fas fa-check" style="color: green;"></i>
                     </button>

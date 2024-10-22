@@ -1,8 +1,12 @@
+
 	$(function() {
 		$.ajax({
 			url : "/ex/getCurrency",
 			type : "POST",
 			success : function(response) { // success는 함수로 넘겨야 합니다
+				// 배열을 역순으로 변경
+	            response.reverse();
+	            
 				var selectInnerHtml = "<option value='default' selected>-- 통화를 선택하세요 --</option>";
 				var chartInnerHtml = "";
 				response.forEach(function(curr) {
@@ -43,9 +47,19 @@
 			},
 			success : function(response) {
 				if(response == 'success') {
-					alert('알림 설정이 완료되었습니다.');
+					// 알림 설정 완료 메시지 표시
+					const submitBtn = document.getElementById('submitBtn');
+					submitBtn.disabled = true; // 버튼 비활성화
+					
+	                alert('알림 설정이 완료되었습니다.');
+
+	                
+	                
 					targetRate.val("");
 					$('.checkbox-phone input[type="checkbox"]').prop('checked', false);
+					
+					// 부모 페이지에 팝업 닫기 요청 전송
+	                window.parent.postMessage('closePopup', '*');
 				}else {
 					alert('알림 설정에 실패했습니다. 다시 시도해주세요.');
 				}
@@ -74,3 +88,28 @@ function calculateTolerance() {
 	}
 }
 
+//페이지 로드 시 실행
+document.addEventListener('DOMContentLoaded', function() {
+    const checkbox = document.getElementById('agreeCheckbox');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // 체크박스 상태 변경 시 버튼 활성화/비활성화
+    checkbox.addEventListener('change', function() {
+        submitBtn.disabled = !this.checked; // 체크 여부에 따라 상태 변경
+    });
+
+    // 초기 상태에서 버튼 비활성화
+    submitBtn.disabled = !checkbox.checked;
+    
+});
+
+//부모 창에서 메시지를 받을 때
+window.addEventListener('message', function(event) {
+    // 보안상의 이유로 메시지의 출처를 확인하는 것이 좋습니다.
+    // if (event.origin !== "https://example.com") return; // 실제 도메인으로 수정
+	console.log('메시지 수신:', event.data);
+    if (event.data === 'agreeCheckbox_disabled') {
+    	checkbox.checked = false; // 체크박스 해제
+        submitBtn.disabled = true; // 버튼 비활성화
+    }
+});

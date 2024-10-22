@@ -35,7 +35,7 @@
 					</sec:authorize>
 					<option value="자유게시판">자유게시판</option>
 					<option value="질문게시판">질문게시판</option>
-					<option value="정보공유게시판">정보공유게시판</option>
+					<option value="정보게시판">정보게시판</option>
 				</select>
 			</h2>
 
@@ -50,7 +50,7 @@
 
 			<div class="box-footer">
 				<button type="submit" class="btn btn-primary">저장</button>
-				<button type="submit" class="btn btn-warning">취소</button>
+				<button type="button" class="btn btn-warning">취소</button>
 			</div>
 		</form>
 	</div>

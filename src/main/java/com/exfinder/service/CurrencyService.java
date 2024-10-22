@@ -25,6 +25,7 @@ public interface CurrencyService {
 
 	public List<CurrencyDto> getFavoriteCurrencies(String userId) throws Exception;
 	public List<CurrencyInfoDto> currencyInfoSelect() throws Exception;
+	public void deleteSelectedBookmarks(List<String> c_code)throws Exception;
 	
 }
 

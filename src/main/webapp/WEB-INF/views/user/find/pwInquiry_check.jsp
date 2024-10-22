@@ -61,7 +61,7 @@
 						</select>
 					</div>
 					<div class="find-button-container" >
-						<input class="email_btn find-certification-button" type="button" value="인증번호 전송">
+						<input class="email_btn find-certification-button" type="button" value="인증번호 전송" style="margin-top: -20px;">
 					</div>
 				</div>
 				
@@ -87,7 +87,7 @@
 						<input type="text" class="phoneNum3 find-input" >
 					</div>  <!-- 인증번호 받을사람 휴대폰 번호 -->
 					<div class="find-button-container" >
-						<input class="phone_btn find-certification-button" type="button" value="인증번호 전송" >
+						<button class="phone_btn find-certification-button" style="margin-top: -20px;">인증번호 전송</button>
 					</div>
 				</div>
 				

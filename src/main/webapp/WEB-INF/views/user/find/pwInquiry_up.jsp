@@ -39,7 +39,7 @@
 		<form action="/ex/find/pwInquiry_upDB" method="post">
 			<div class="find-input-container">
         		<label>변경할 비밀번호 입력</label> 
-        		<input type="text" class="find-input" name="u_pw" />
+        		<input type="password" class="find-input" name="u_pw" />
         	</div>
         	<div class="find-input-container">
        	 		<label>비밀번호 확인</label> 

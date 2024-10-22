@@ -176,6 +176,7 @@
 	border: none; /* 버튼의 테두리를 없앰 */
 	font-size: 16px; /* 버튼 텍스트의 크기를 16px로 설정 */
 	cursor: pointer; /* 버튼에 마우스 커서를 올렸을 때 포인터 모양으로 변경 */
+	top : 15px;
 	align-items: center;
 }
 /* 인증번호 전송 버튼 hover 효과 */

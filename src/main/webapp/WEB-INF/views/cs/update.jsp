@@ -51,7 +51,7 @@
 				console.log(formObj);
 				$(".btn-warning").on("click", function() {
 					event.preventDefault(); // 폼 제출 방지---500오류 발생하는데 board에서도 똑같이 쓴 코드가 여기선 오류뜸
-					self.location = "/ex/admin/admin";
+					self.location = "/ex/admin/adminCs";
 				});
 				$(".btn-primary").on("click", function() {
 					formObj.submit();

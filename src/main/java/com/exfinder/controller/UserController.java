@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -19,11 +20,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.exfinder.dto.AlramDto;
 import com.exfinder.dto.AuthoritiesDto;
 import com.exfinder.dto.BoardDto;
@@ -161,17 +165,19 @@ public class UserController {
 		String u_id = (String) session.getAttribute("userId");
 		userService.deactivate(u_id);
 
-		return "/";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/user/Logincomplete", method = RequestMethod.GET)
-	public String Logincomplete(HttpSession session) throws Exception {
+	public String Logincomplete(HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
 		String userid = (String) session.getAttribute("userId");
 		UserDto dto = userService.selectUser(userid);
 		System.out.println("dto : " + dto);
 
 		session.setAttribute("dto", dto);
-		return "redirect:/";
+		redirectAttributes.addFlashAttribute("showPopup", true);
+
+	    return "redirect:/";
 
 	}
 
@@ -307,6 +313,22 @@ public class UserController {
 		model.addAttribute("userCurrencies", favoriteCurrencies);
 		return "/user/bookMark"; // JSP 파일 이름
 	}
+	
+	// 선택된 즐겨찾기 항목 삭제
+    @RequestMapping(value = "/user/deleteSelectedBookmarks", method = RequestMethod.POST)
+    public ResponseEntity<String> deleteSelectedBookmarks(@RequestBody Map<String, List<String>> data) throws Exception {
+        // 클라이언트에서 전달한 "currencies" 목록 추출
+        List<String> currencies = data.get("currencies");
+
+        // 서비스에 삭제 요청 처리
+        currencyService.deleteSelectedBookmarks(currencies);
+
+        // 성공 메시지 반환
+        return new ResponseEntity<>("선택된 즐겨찾기 항목 삭제 성공", HttpStatus.OK);
+    }
+	
+	
+	
 
 	@RequestMapping(value = "/user/notification", method = RequestMethod.GET)
 	public void notification(Model model) throws Exception {
@@ -415,9 +437,19 @@ public class UserController {
 	@RequestMapping(value = "/user/alramRead", method = RequestMethod.POST)
 	public ResponseEntity<?> alramRead(HttpSession session) throws Exception {
 		UserDto dto = (UserDto) session.getAttribute("dto");
-		String userid = dto.getU_id();
-		alramService.alramCheck(userid);
+		if(dto != null) {
+			String userid = dto.getU_id();
+			alramService.alramCheck(userid);
+		}
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/main/map", method = RequestMethod.GET)
+	public void map(Model model) throws Exception {
+	}
+	
+	
+	
 
 }
+

@@ -1,6 +1,8 @@
 package com.exfinder.controller;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +29,11 @@ import com.exfinder.dto.CurrencyInfoDto;
 import com.exfinder.dto.ExchangeRateDto;
 import com.exfinder.dto.NewsDto;
 import com.exfinder.dto.NoticeExchangeRateDto;
+import com.exfinder.dto.UserActivityDto;
 import com.exfinder.dto.UserDto;
 import com.exfinder.service.CurrencyService;
 import com.exfinder.service.ExchangeRateService;
+import com.exfinder.service.UserActivityService;
 
 @Controller
 public class CurrencyController {
@@ -39,6 +43,9 @@ public class CurrencyController {
 
 	@Autowired
 	private ExchangeRateService exchangerateservice;
+	
+	@Autowired
+	private UserActivityService userActivityService;
 	
 	@RequestMapping(value = "/exFinder_Currency", method = RequestMethod.GET)
 	public String exFinder_Currency(Model model, HttpSession session, @RequestParam("c_code") String c_code)
@@ -140,9 +147,31 @@ public class CurrencyController {
 		
 		// Model 객체에 뉴스 URL과 제목을 속성으로 추가하여 JSP에 전달
 		model.addAttribute("newsList", newsList);
+		
+		UserDto dto = (UserDto) session.getAttribute("dto");
+		
+		// 사용자 조회수 증가 로직 추가
+	    if (dto != null) {
+	        UserActivityDto userActivity = new UserActivityDto();
+	        userActivity.setU_id(dto.getU_id());
+	        userActivity.setC_code(c_code);
+	        userActivity.setLast_viewed(Timestamp.valueOf(LocalDateTime.now()));
+	        
+	        // 사용자 활동 기록이 존재하는지 확인하고, 존재하면 업데이트
+	        List<UserActivityDto> existingRecords = userActivityService.getFrequentCurrencies(dto.getU_id());
+	        
+	        boolean recordExists = existingRecords.stream()
+	                .anyMatch(record -> record.getC_code().equals(c_code));
+	        
+	        if (recordExists) {
+	            userActivityService.updateViewCount(userActivity); // 기존 기록 업데이트
+	        } else {
+	            userActivityService.create(userActivity); // 새 기록 생성
+	        }
+	    }
+	    
 
 		// 즐겨찾기
-		UserDto dto = (UserDto) session.getAttribute("dto");
 		boolean isInterestCheck = false;
 		if (dto != null) {
 			isInterestCheck = service.interestCheck(c_code, dto.getU_id());
