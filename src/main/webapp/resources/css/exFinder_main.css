@@ -618,6 +618,8 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .popup-content {
   padding: 20px;
   text-align: center;
+  width: 100%;
+  margin: 0 auto; 
 }
 
 /* 닫기 버튼 스타일 */
@@ -642,6 +644,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   
   font-size: 16px;
   font-weight: bold;
+  
 }
 .popup-body > h3 {
 	font-size: 20px;
