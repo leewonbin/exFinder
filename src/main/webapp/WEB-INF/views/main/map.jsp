@@ -10,33 +10,33 @@
 </head>
 
 <body>
-	<div class="all">
-		<div class="ment">
-		 	주변 은행, 환전소를 찾아보세요!
-		</div>
-		
+   <div class="all">
+      <div class="ment">
+          주변 은행, 환전소를 찾아보세요!
+      </div>
+      
         <div class="buttons">
             <button type="button" class="Bbutton" onclick="setActive(this); searchBanks()">은행 보기</button>
             <button type="button" class="Ebutton" onclick="setActive(this); searchCurrencyExchanges()">환전소 보기</button>
-        	<button class="Lbutton" onclick="moveToCurrentLocation()">
-		        <img src="${pageContext.request.contextPath}/resources/img/myLocation.png" alt="내 위치 보기" />
-		    </button>
-       	</div>
+           <button class="Lbutton" onclick="moveToCurrentLocation()">
+              <img src="${pageContext.request.contextPath}/resources/img/myLocation.png" alt="내 위치 보기" />
+          </button>
+          </div>
      </div>
-       	<script>
-		    function setActive(button) {
-		        // 모든 버튼에서 active 클래스를 제거
-		        const buttons = document.querySelectorAll('.Bbutton, .Ebutton');
-		        buttons.forEach(btn => btn.classList.remove('active'));
-		
-		        // 클릭한 버튼에 active 클래스 추가
-		        button.classList.add('active');
-		    }
-		</script>
+          <script>
+          function setActive(button) {
+              // 모든 버튼에서 active 클래스를 제거
+              const buttons = document.querySelectorAll('.Bbutton, .Ebutton');
+              buttons.forEach(btn => btn.classList.remove('active'));
+      
+              // 클릭한 버튼에 active 클래스 추가
+              button.classList.add('active');
+          }
+      </script>
 <div class="map_wrap">
-	
+   
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-	
+   
     <div id="menu_wrap" class="bg_white">
         
         <hr>
@@ -67,17 +67,30 @@ window.onload = function() {
 };
 
 function getCurrentLocation() {
+    var lat = 0;
+    var lon = 0;
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            var lat = position.coords.latitude + 0.004456;
-            var lon = position.coords.longitude - 0.0193794;
+            lat = position.coords.latitude;
+            lon = position.coords.longitude;
+
+            // 위도와 경도를 가져온 후에 실행
             console.log("lat :" + lat);
             console.log("lon :" + lon);
             currentLocation = new kakao.maps.LatLng(lat, lon);
             map.setCenter(currentLocation); // 지도 중심을 내 위치로 이동
             addCurrentLocationMarker(currentLocation); // 내 위치 마커 표시
         }, function() {
-            alert('위치 정보를 가져오는 데 실패했습니다.');
+            // 위치 정보 가져오기에 실패한 경우 기본 위치 설정
+            lat = 37.4910;
+            lon = 126.7208;
+
+            // 기본 위치 사용
+            console.log("lat (default) :" + lat);
+            console.log("lon (default) :" + lon);
+            currentLocation = new kakao.maps.LatLng(lat, lon);
+            map.setCenter(currentLocation); // 지도 중심을 기본 위치로 이동
+            addCurrentLocationMarker(currentLocation); // 기본 위치 마커 표시
         });
     } else {
         alert('Geolocation을 지원하지 않는 브라우저입니다.');
@@ -237,12 +250,12 @@ function getListItem(index, places, distance) { // 거리 정보 추가
     
     
  // 거리 정보 표시: 1km 이상일 때는 km, 1km 이하일 때는 m 단위로 표시
- 	let distanceText;
+    let distanceText;
     if(distance>=1000){
-    	distanceText = (distance / 1000).toFixed(2) + ' km';
-    	
+       distanceText = (distance / 1000).toFixed(2) + ' km';
+       
     }else{
-    	distanceText = Math.floor(distance) + ' m';
+       distanceText = Math.floor(distance) + ' m';
     }
     
     itemStr += '  <span class="tel">' + places.phone + '</span>' +

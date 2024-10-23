@@ -31,9 +31,4 @@ public class TestController {
         String responseMessage = "AJAX 요청 처리 완료"; // 이 부분은 실제 반환할 내용을 설정
         return ResponseEntity.ok(responseMessage);
     }
-	
-	
-		
-	
-
 }
