@@ -78,7 +78,7 @@
 
 # ERD 📝
 
-![image](https://github.com/user-attachments/assets/4cd84744-d2fd-42d6-8a39-ce085d069201)
+![drawSQL-image-export-2024-10-21](https://github.com/user-attachments/assets/ee5aadae-be08-458c-a10c-a4699512fb7a)
 
 <br/><br/>
 # 주요 기능 💵
